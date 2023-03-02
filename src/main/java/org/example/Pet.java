@@ -4,6 +4,7 @@ public enum Pet {
     OWL,
     RAT,
     CAT,
-    TOAD
+    TOAD,
+    SNAKE
 }
 

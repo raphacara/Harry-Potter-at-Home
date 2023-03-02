@@ -1,5 +1,6 @@
 package org.example;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Wizard extends Character {
@@ -12,13 +13,13 @@ public class Wizard extends Character {
     private List<Potion> potions;
 
     // Constructor
-    public Wizard(String name, int health, Pet pet, Wand wand, House house, List<Spell> knownSpells, List<Potion> potions) {
-        super(name, health);
-        this.pet = pet;
-        this.wand = wand;
-        this.house = house;
-        this.knownSpells = knownSpells;
-        this.potions = potions;
+    public Wizard() {
+        super("unknown",100);
+        this.pet = null;
+        this.wand = null;
+        this.house = null;
+        this.knownSpells = new ArrayList<Spell>();
+        this.potions = new ArrayList<Potion>();
     }
 
     // Methods
