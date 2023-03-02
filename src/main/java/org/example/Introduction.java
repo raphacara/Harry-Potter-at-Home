@@ -101,11 +101,11 @@ public class Introduction implements StoryStep {
         System.out.println(BLUE_BOLD + "Hagrid - " + RESET + "Let's meet Ollivander, He's the best when it comes to wands ;)\n");
         Thread.sleep(3000);
         System.out.println(BLUE_BOLD + "Ollivander - " + RESET + "Hello " + name + "! Let's find you the perfect wand. Let me see...");
+        Thread.sleep(3000);
         String input2;
         String input3;
         int check = 0;
         while (check == 0) { //The size
-            Thread.sleep(3000);
             System.out.println(BLUE_BOLD + "Ollivander - " + RESET + "What's is the best definition of magic according to you ?");
             Thread.sleep(3000);
             System.out.println(GREEN_BOLD + "1. Power\n" + "2. Art\n" + "3. Miracle\n" + "4. Scam" + RED_BOLD);
@@ -271,11 +271,11 @@ public class Introduction implements StoryStep {
         System.out.println(GREEN_BOLD + "You got a " + size + "cm Wand, with a " + core + " core.\n" + RESET);
 
         //End of the Introduction
-        Thread.sleep(1000);
+        Thread.sleep(3000);
         System.out.println("** You are now ready to go to Hogwarts, so you go to the platform 9_3/4 at King's Cross Station. **");
-        Thread.sleep(4000);
+        Thread.sleep(5000);
         System.out.println("** And you take the Hogwarts™ Express's train right to Hogwarts!**");
-        Thread.sleep(4000);
+        Thread.sleep(5000);
         System.out.println("               || ____ ||\n               || ____ ||\n               || ____ ||\n               || ____ ||\n               || ____ ||");
         Thread.sleep(1000);
         System.out.println("               || ____ ||\n               || ____ ||\n               || ____ ||\n               || ____ ||\n               || ____ ||");

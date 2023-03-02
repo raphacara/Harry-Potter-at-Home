@@ -8,7 +8,7 @@ public class Wizard extends Character {
     // Properties
     private Pet pet;
     private Wand wand;
-    private House house;
+    private String house;
     private List<Spell> knownSpells;
     private List<Potion> potions;
 
@@ -45,11 +45,11 @@ public class Wizard extends Character {
         this.wand = wand;
     }
 
-    public House getHouse() {
+    public String getHouse() {
         return house;
     }
 
-    public void setHouse(House house) {
+    public void setHouse(String house) {
         this.house = house;
     }
 

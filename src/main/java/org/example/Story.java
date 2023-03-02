@@ -5,7 +5,7 @@ import java.util.List;
 public class Story {
 
     // Properties
-    private List<StoryStep> steps;
+    private final List<StoryStep> steps;
 
     // Constructor
     public Story() {
@@ -16,8 +16,8 @@ public class Story {
     public void addStep(StoryStep step) {
         steps.add(step);
     }
-    // Method to remobe a step from the story
-    public void removeStepp(StoryStep step) {
+    // Method to remove a step from the story
+    public void removeStep(StoryStep step) {
         steps.remove(step);
     }
 
