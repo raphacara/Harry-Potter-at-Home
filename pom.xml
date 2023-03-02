@@ -11,6 +11,11 @@
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
+        <dependency>
+            <groupId>javax.sound</groupId>
+            <artifactId>javax.sound.sampled</artifactId>
+            <version>1.0.0</version>
+        </dependency>
     </properties>
 
 </project>
