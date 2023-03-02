@@ -16,6 +16,10 @@ public class Story {
     public void addStep(StoryStep step) {
         steps.add(step);
     }
+    // Method to remobe a step from the story
+    public void removeStepp(StoryStep step) {
+        steps.remove(step);
+    }
 
     // Method to run the story
     public void run() throws InterruptedException {

@@ -9,20 +9,18 @@ public class Main {
         //create music
         BackgroundMusic music = new BackgroundMusic();
         try {
+            // ----- MUSIC -----
             music.play();
 
-            // Create a new story
+            // ----- STORY -----
             Story story = new Story();
+            Wizard wizard = new Wizard();
 
-            //Adding Steps of the story in the Story
+            // 1. --- INTRODUCTION ---
             Introduction intro = new Introduction();
             story.addStep(intro); //Introduction
-
-            //Run the story
             story.run();
 
-            // Create a new wizard
-            Wizard wizard = new Wizard();
             // getting players infos
             String nameWizard = intro.getName();
             Pet petWizard = intro.getPet();
@@ -34,6 +32,12 @@ public class Main {
             wizard.setName(nameWizard);
             wizard.setPet(petWizard);
             wizard.setWand(wandWizard);
+
+            // 2. --- SortingHat ---
+            SortingHat sort = new SortingHat(wizard);
+            story.removeStepp(intro);
+            story.addStep(sort);
+            story.run();
 
             //check
             System.out.println("You are " + wizard.getName() +
