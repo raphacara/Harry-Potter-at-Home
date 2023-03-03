@@ -52,7 +52,7 @@ public class Main {
             // getting players infos
             String houseWizard = sort.getHouse();
             // setting the infos in the wizard
-            wizard.setHouse(houseWizard);
+            test.setHouse(houseWizard);
 
             //check
             System.out.println("You are " + test.getName() +
