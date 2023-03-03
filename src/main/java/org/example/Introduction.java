@@ -272,10 +272,10 @@ public class Introduction implements StoryStep {
 
         //End of the Introduction
         Thread.sleep(3000);
-        System.out.println("** You are now ready to go to Hogwarts, so you go to the platform 9_3/4 at King's Cross Station. **");
+        System.out.println("** You are now ready to go to Hogwarts, so you go to the platform 9 3/4 at King's Cross Station. **");
         Thread.sleep(5000);
         System.out.println("** And you take the Hogwarts™ Express's train right to Hogwarts!**");
-        Thread.sleep(5000);
+        Thread.sleep(6000);
         System.out.println("               || ____ ||\n               || ____ ||\n               || ____ ||\n               || ____ ||\n               || ____ ||");
         Thread.sleep(1000);
         System.out.println("               || ____ ||\n               || ____ ||\n               || ____ ||\n               || ____ ||\n               || ____ ||");
@@ -289,7 +289,7 @@ public class Introduction implements StoryStep {
         System.out.println("** You follow the other students to a Great Hall, with a Sorting Hat. **");
         Thread.sleep(3000);
         System.out.println("** Now it is your turn to pass the Sorting Hat test... Good Luck! **");
-        Thread.sleep(2000);
+        Thread.sleep(3000);
     }
 
     // Method to get the wizard's name
