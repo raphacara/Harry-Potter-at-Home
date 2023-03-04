@@ -4,7 +4,7 @@ public abstract class Character {
 
     // Properties
     private String name;
-    private int health;
+    protected int health;
 
     // Constructor
     public Character(String name, int health) {
@@ -28,9 +28,7 @@ public abstract class Character {
         return health;
     }
 
-    public void setHealth(int health) {
-        this.health = health;
-    }
+    public abstract void setHealth(int health);
 }
 
 

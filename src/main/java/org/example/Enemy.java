@@ -1,9 +1,9 @@
 package org.example;
 
-public class Ennemy extends AbstractEnnemy {
+public class Enemy extends AbstractEnnemy {
 
     // Constructor
-    public Ennemy(String name, int health) {
+    public Enemy(String name, int health) {
         super(name, health);
     }
 
@@ -12,6 +12,11 @@ public class Ennemy extends AbstractEnnemy {
     public void specialAttack(Character target) {
         // Implement the behavior for a special attack
         // This could include casting a powerful spell or using a unique ability
+    }
+
+    @Override
+    public void setHealth(int health) {
+
     }
 }
 

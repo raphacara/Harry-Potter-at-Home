@@ -34,7 +34,6 @@ public abstract class AbstractSpell {
     }
 
     public abstract void cast(Character target);
-
 }
 
 

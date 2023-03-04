@@ -13,5 +13,10 @@ public class Boss extends AbstractEnnemy {
         // Implement the behavior for a special attack
         // This could include casting a powerful spell or using a unique ability
     }
+
+    @Override
+    public void setHealth(int health) {
+
+    }
 }
 

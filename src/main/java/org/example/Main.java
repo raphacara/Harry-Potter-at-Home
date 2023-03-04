@@ -2,7 +2,6 @@ package org.example;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
-import java.util.List;
 import java.util.Random; //test
 
 public class Main {
@@ -21,7 +20,7 @@ public class Main {
             // 1. ----- INTRODUCTION -----
             Introduction intro = new Introduction();
             story.addStep(intro);
-            story.run(); //You can hide this Step to skip it (you will have to use the random test wizard)
+            //story.run(); //You can hide this Step to skip it (you will have to use the random test wizard)
 
             // getting players infos
             String nameWizard = intro.getName();
@@ -47,13 +46,12 @@ public class Main {
             SortingHat sort = new SortingHat(wizard); // !!! You can change this argument by: wizard (if you run the intro) / test (if you don't) !!!
             story.removeStep(intro);
             story.addStep(sort);
-            story.run(); //You can hide this Step to skip it
+            //story.run(); //You can hide this Step to skip it
 
             // getting players infos
             String houseWizard = sort.getHouse();
             // setting the infos in the wizard
             wizard.setHouse(houseWizard);
-            wizard.checkWizard(wizard); //checking
 
                 //Intern test
                 if (houseWizard != null) {
@@ -62,14 +60,15 @@ public class Main {
                     String randomHouseName = org.example.House.houseNames.get(new Random().nextInt(org.example.House.houseNames.size()));
                     test.setHouse(randomHouseName);
                 }
+                wizard.checkWizard(test); //checking
 
             // 3. ----- Chapter 1 -----
-            Chapter1 one = new Chapter1(wizard); // !!! You can change this argument by: wizard (if you run the intro) / test (if you don't) !!!
+            Chapter1 one = new Chapter1(test); // !!! You can change this argument by: wizard (if you run the intro) / test (if you don't) !!!
             story.removeStep(sort);
             story.addStep(one);
             story.run();
             wizard = Chapter1.getWizard(); //I update the wizard
-            wizard.checkWizard(wizard); //checking
+            wizard.checkWizard(test); //checking
 
             //Stop the music
             } catch (InterruptedException | UnsupportedAudioFileException | IOException | LineUnavailableException e) {

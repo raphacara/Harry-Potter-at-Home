@@ -56,6 +56,7 @@ public class Wizard extends Character {
         this.house = house;
     }
 
+
     public List<Spell> getKnownSpells() {
         return knownSpells;
     }
@@ -76,6 +77,12 @@ public class Wizard extends Character {
     public void attack(Character target) {
     }
 
+    @Override
+    public void setHealth(int health) {
+        this.health = health;
+        System.out.println(GREEN_BOLD + "** Your health is now " + this.getHealth() + "! **" + RESET);
+    }
+
     //method to learn a spell
     public void learnSpell(Spell spell) {
         // Check if the spell is already known
@@ -88,6 +95,19 @@ public class Wizard extends Character {
         }
     }
 
+    //method to learn a potion
+    public void learnPotion(Potion potion) {
+        // Check if the potion is already known
+        if (potions.contains(potion)) {
+            System.out.println("You already know this potion.");
+        } else {
+            // Learn the new potion
+            potions.add(potion);
+            System.out.println(GREEN_BOLD + "** You have learned the potion " + potion.getName() + "! **" + RESET);
+        }
+    }
+
+    //Wonderful method to check what the attributes of the player.
     public void checkWizard(Wizard wizard) {
         System.out.println(YELLOW_BOLD + "\n----- You ----- " +
                 "\nNAME: " + wizard.getName() +
@@ -95,9 +115,13 @@ public class Wizard extends Character {
                 "\nWAND: " + wizard.getWand().getCore() + " (" + wizard.getWand().getSize() + "cm) " +
                 "\nHOUSE: " + wizard.getHouse() +
                 "\nSPELLS: ");
-        List<Spell> knownSpells = wizard.getKnownSpells();
+        //List<Spell> knownSpells = wizard.getKnownSpells();
         for (Spell spell : knownSpells) {
-            System.out.println("* "+spell.getName()+" *");
+            System.out.println("* "+spell.getName()+": "+spell.getDescription());
+        }
+        System.out.println("POTIONS: ");
+        for (Potion potion : potions) {
+            System.out.println("* "+potion.getName()+": "+potion.getDescription());
         }
     }
 }

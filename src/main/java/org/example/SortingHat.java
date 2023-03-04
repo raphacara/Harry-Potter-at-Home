@@ -178,16 +178,15 @@ public class SortingHat implements StoryStep {
                     input[5] = scanner.nextLine();
                     check = 2;
                     switch (input[5]) {
-                        case "1" :
-                            r -= 1;
-                            break;
-                        case "2" :
+                        case "1" -> r -= 1;
+                        case "2" -> {
                             h -= 1;
                             max = r;
-                            break;
-                        default :
+                        }
+                        default -> {
                             System.out.println(BLUE_BOLD + "Sorting Hat - " + RESET + "That is probably your final choice:");
                             check = 1;
+                        }
                     }
                 }
             }
@@ -201,17 +200,16 @@ public class SortingHat implements StoryStep {
                     input[6] = scanner.nextLine();
                     check = 3;
                     switch (input[6]) {
-                        case "1" :
+                        case "1" -> {
                             h -= 1;
                             r -= 1;
                             max = g;
-                            break;
-                        case "2" :
-                            g -= 1;
-                            break;
-                        default :
+                        }
+                        case "2" -> g -= 1;
+                        default -> {
                             System.out.println(BLUE_BOLD + "Sorting Hat - " + RESET + "That is probably your final choice:");
                             check = 2;
+                        }
                     }
                 }
             }
@@ -225,16 +223,15 @@ public class SortingHat implements StoryStep {
                     input[7] = scanner.nextLine();
                     check = 4;
                     switch (input[7]) {
-                        case "1" :
+                        case "1" -> {
                             s += 1;
                             max = s;
-                            break;
-                        case "2" :
-                            s -= 1;
-                            break;
-                        default :
+                        }
+                        case "2" -> s -= 1;
+                        default -> {
                             System.out.println(BLUE_BOLD + "Sorting Hat - " + RESET + "That is probably your final choice:");
                             check = 3;
+                        }
                     }
                 }
             }

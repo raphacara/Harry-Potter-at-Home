@@ -38,6 +38,10 @@ public class Potion {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public void usePotion(Wizard wizard) {
+        //effect of the potion
+    }
 }
 
 
