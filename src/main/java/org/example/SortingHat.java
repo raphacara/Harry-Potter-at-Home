@@ -2,16 +2,17 @@ package org.example;
 import java.util.Scanner;
 
 public class SortingHat implements StoryStep {
-    public static final String RESET = "\u001B[0m";
-    public static final String RED_BOLD = "\033[1;31m";
-    public static final String BLUE_BOLD = "\033[1;34m";
-    public static final String GREEN_BOLD = "\033[1;32m";
+    public static final String RESET = "\u001B[0m"; //fun
+    public static final String RED_BOLD = "\033[1;31m"; //fun
+    public static final String BLUE_BOLD = "\033[1;34m"; //fun
+    public static final String GREEN_BOLD = "\033[1;32m"; //fun
+    private final Wizard wizard; //the player
+    private String houseName; //for the House of the player (that's the only point of the Sorting Hat)
+    private int g, h, r, s = 0; //initials of the 4 houses for the system (you will see later in this class)
     private static final String[] input = {"1","2","3","4","5","6","7","8"}; //the player inputs
-    private final Wizard wizard;
-    private String houseName;
-    private final Scanner scanner = new Scanner(System.in);
-    private int g, h, r, s = 0;
-    private int check = 0;
+    private final Scanner scanner = new Scanner(System.in); //to scan the inputs
+
+    private int check = 0; //checking the loops
 
 
     //Constructor
@@ -21,7 +22,7 @@ public class SortingHat implements StoryStep {
 
     @Override
     public void run() throws InterruptedException {
-        System.out.println("\n----------------- SORTING HAT -----------------\n");
+        System.out.println(GREEN_BOLD + "\n----------------- SORTING HAT -----------------\n" + RESET);
         Thread.sleep(4000);
         System.out.print(BLUE_BOLD + "Sorting Hat - " + RESET + "Well, well, well... Let's see what student we have here...\n");
         Thread.sleep(4000);
@@ -34,12 +35,12 @@ public class SortingHat implements StoryStep {
             System.out.print(BLUE_BOLD + "Sorting Hat - " + RESET + "Oh, that's very very clear...\n");
             Thread.sleep(5000);
             System.out.print(BLUE_BOLD + "Sorting Hat - " + RESET + "SLYTHERIN !!!\n");
-            houseName = "Slytherin";
+            houseName = "SLYTHERIN";
         } else if (wizard.getPet() == Pet.RAT && wizard.getWand().getCore() == Core.PHOENIX_FEATHER) {
             System.out.print(BLUE_BOLD + "Sorting Hat - " + RESET + "Oh, that's very very clear...\n");
             Thread.sleep(5000);
             System.out.print(BLUE_BOLD + "Sorting Hat - " + RESET + "GRYFFINDOR !!!\n");
-            houseName = "Gryffindor";
+            houseName = "GRYFFINDOR";
         } else {
             System.out.print(BLUE_BOLD + "Sorting Hat - " + RESET + "Hmmm... Difficult, very difficult...\n");
             Thread.sleep(3000);
@@ -171,18 +172,22 @@ public class SortingHat implements StoryStep {
                 max = r;
             } else if (r == max) { //if it is equal.
                 while (check <= 1) {
-                    System.out.print(BLUE_BOLD + "Sorting Hat - " + RESET + "I can't choose... Do you prefer Hufflepuff or Ravenclaw?\n");
+                    System.out.print(BLUE_BOLD + "Sorting Hat - " + RESET + "I am wondering... Do you prefer Hufflepuff or Ravenclaw?\n");
                     System.out.println(GREEN_BOLD + "1. * HUFFLEPUFF *\n" + "2. * RAVENCLAW *" + RED_BOLD);
                     System.out.print("Enter a number to make your choice :\n" + RESET);
                     input[5] = scanner.nextLine();
                     check = 2;
                     switch (input[5]) {
-                        case "1" -> max = h;
-                        case "2" -> max = r;
-                        default -> {
+                        case "1" :
+                            r -= 1;
+                            break;
+                        case "2" :
+                            h -= 1;
+                            max = r;
+                            break;
+                        default :
                             System.out.println(BLUE_BOLD + "Sorting Hat - " + RESET + "That is probably your final choice:");
                             check = 1;
-                        }
                     }
                 }
             }
@@ -190,18 +195,23 @@ public class SortingHat implements StoryStep {
                 max = g;
             } else if (g == max) { //if it is equal.
                 while (check <= 2) {
-                    System.out.print(BLUE_BOLD + "Sorting Hat - " + RESET + "I can't choose... Do you prefer Ravenclaw or Gryffindor?\n");
-                    System.out.println(GREEN_BOLD + "1. * RAVENCLAW *\n" + "2. * GRYFFINDOR *" + RED_BOLD);
+                    System.out.print(BLUE_BOLD + "Sorting Hat - " + RESET + "I am wondering... Do you like Gryffindor?\n");
+                    System.out.println(GREEN_BOLD + "1. * YES *\n" + "2. * NO *" + RED_BOLD);
                     System.out.print("Enter a number to make your choice :\n" + RESET);
                     input[6] = scanner.nextLine();
                     check = 3;
                     switch (input[6]) {
-                        case "1" -> max = r;
-                        case "2" -> max = g;
-                        default -> {
+                        case "1" :
+                            h -= 1;
+                            r -= 1;
+                            max = g;
+                            break;
+                        case "2" :
+                            g -= 1;
+                            break;
+                        default :
                             System.out.println(BLUE_BOLD + "Sorting Hat - " + RESET + "That is probably your final choice:");
                             check = 2;
-                        }
                     }
                 }
             }
@@ -209,29 +219,33 @@ public class SortingHat implements StoryStep {
                 max = s;
             } else if (s == max) { //if it is equal.
                 while (check <= 3) {
-                    System.out.print(BLUE_BOLD + "Sorting Hat - " + RESET + "I can't choose... Do you prefer Gryffindor or Slytherin?\n");
-                    System.out.println(GREEN_BOLD + "1. * GRYFFINDOR *\n" + "2. * SLYTHERIN *" + RED_BOLD);
+                    System.out.print(BLUE_BOLD + "Sorting Hat - " + RESET + "I am wondering... Do you like Slytherin?\n");
+                    System.out.println(GREEN_BOLD + "1. * YES *\n" + "2. * NO *" + RED_BOLD);
                     System.out.print("Enter a number to make your choice :\n" + RESET);
                     input[7] = scanner.nextLine();
                     check = 4;
                     switch (input[7]) {
-                        case "1" -> max = g;
-                        case "2" -> max = s;
-                        default -> {
+                        case "1" :
+                            s += 1;
+                            max = s;
+                            break;
+                        case "2" :
+                            s -= 1;
+                            break;
+                        default :
                             System.out.println(BLUE_BOLD + "Sorting Hat - " + RESET + "That is probably your final choice:");
                             check = 3;
-                        }
                     }
                 }
             }
             if (max == g) {
-                houseName = "Gryffindor";
+                houseName = "GRYFFINDOR";
             } else if (max == h) {
-                houseName = "Hufflepuff";
+                houseName = "HUFFLEPUFF";
             } else if (max == r) {
-                houseName = "Ravenclaw";
+                houseName = "RAVENCLAW";
             } else {
-                houseName = "Slytherin";
+                houseName = "SLYTHERIN";
             }
             System.out.print(BLUE_BOLD + "Sorting Hat - " + RESET + "Well, I have it...\n");
             Thread.sleep(4000);

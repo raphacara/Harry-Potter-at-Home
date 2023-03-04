@@ -3,8 +3,8 @@ package org.example;
 public class Spell extends AbstractSpell {
 
     // Constructor
-    public Spell(String name, int powerLevel) {
-        super(name, powerLevel);
+    public Spell(String name, int powerLevel, int accuracy, String description) {
+        super(name, powerLevel, accuracy, description);
     }
 
     // Methods

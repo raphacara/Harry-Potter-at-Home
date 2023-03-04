@@ -1,9 +1,12 @@
 package org.example;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class Wizard extends Character {
+    // Fun property
+    public static final String GREEN_BOLD = "\033[1;32m"; //fun
+    public static final String YELLOW_BOLD = "\033[1;33m"; //fun
+    public static final String RESET = "\u001B[0m"; //fun
 
     // Properties
     private Pet pet;
@@ -71,6 +74,30 @@ public class Wizard extends Character {
 
     @Override
     public void attack(Character target) {
+    }
 
+    //method to learn a spell
+    public void learnSpell(Spell spell) {
+        // Check if the spell is already known
+        if (knownSpells.contains(spell)) {
+            System.out.println("You already know this spell.");
+        } else {
+            // Learn the new spell
+            knownSpells.add(spell);
+            System.out.println(GREEN_BOLD + "** You have learned the spell " + spell.getName() + "! **" + RESET);
+        }
+    }
+
+    public void checkWizard(Wizard wizard) {
+        System.out.println(YELLOW_BOLD + "\n----- You ----- " +
+                "\nNAME: " + wizard.getName() +
+                "\nPET: " + wizard.getPet() +
+                "\nWAND: " + wizard.getWand().getCore() + " (" + wizard.getWand().getSize() + "cm) " +
+                "\nHOUSE: " + wizard.getHouse() +
+                "\nSPELLS: ");
+        List<Spell> knownSpells = wizard.getKnownSpells();
+        for (Spell spell : knownSpells) {
+            System.out.println("* "+spell.getName()+" *");
+        }
     }
 }

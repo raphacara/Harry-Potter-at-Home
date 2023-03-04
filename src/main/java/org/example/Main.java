@@ -2,6 +2,7 @@ package org.example;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
+import java.util.List;
 import java.util.Random; //test
 
 public class Main {
@@ -20,7 +21,7 @@ public class Main {
             // 1. ----- INTRODUCTION -----
             Introduction intro = new Introduction();
             story.addStep(intro);
-            //story.run(); //You can hide this Step to skip it (you will have to use the random test wizard)
+            story.run(); //You can hide this Step to skip it (you will have to use the random test wizard)
 
             // getting players infos
             String nameWizard = intro.getName();
@@ -38,12 +39,12 @@ public class Main {
                 Wizard test = new Wizard();
                 Random random = new Random();
                 Wand wandTest = new Wand(Core.values()[random.nextInt(Core.values().length)], 30);
-                test.setName("Furty7");
+                test.setName("Raphaël");
                 test.setPet(Pet.values()[random.nextInt(Pet.values().length)]);
                 test.setWand(wandTest);
 
             // 2. ----- SortingHat -----
-            SortingHat sort = new SortingHat(test); // !!! You can change this argument by: wizard (if you run the intro) / test (if you don't) !!!
+            SortingHat sort = new SortingHat(wizard); // !!! You can change this argument by: wizard (if you run the intro) / test (if you don't) !!!
             story.removeStep(intro);
             story.addStep(sort);
             story.run(); //You can hide this Step to skip it
@@ -52,16 +53,23 @@ public class Main {
             String houseWizard = sort.getHouse();
             // setting the infos in the wizard
             wizard.setHouse(houseWizard);
+            wizard.checkWizard(wizard); //checking
+
+                //Intern test
+                if (houseWizard != null) {
+                    test.setHouse(houseWizard);
+                } else {
+                    String randomHouseName = org.example.House.houseNames.get(new Random().nextInt(org.example.House.houseNames.size()));
+                    test.setHouse(randomHouseName);
+                }
 
             // 3. ----- Chapter 1 -----
-            //Code...
-
-            //check
-            System.out.println("You are " + wizard.getName() +
-                    ", your Pet is a " + wizard.getPet() +
-                    ", your have a " + wizard.getWand().getSize() + "cm wand with a " + wizard.getWand().getCore() + " core." +
-                    " You are a " + wizard.getHouse() + "!");
-
+            Chapter1 one = new Chapter1(wizard); // !!! You can change this argument by: wizard (if you run the intro) / test (if you don't) !!!
+            story.removeStep(sort);
+            story.addStep(one);
+            story.run();
+            wizard = Chapter1.getWizard(); //I update the wizard
+            wizard.checkWizard(wizard); //checking
 
             //Stop the music
             } catch (InterruptedException | UnsupportedAudioFileException | IOException | LineUnavailableException e) {

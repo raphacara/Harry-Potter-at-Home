@@ -2,10 +2,10 @@ package org.example;
 import java.util.Scanner;
 
 public class Introduction implements StoryStep {
-    public static final String RESET = "\u001B[0m";
-    public static final String RED_BOLD = "\033[1;31m";
-    public static final String BLUE_BOLD = "\033[1;34m";
-    public static final String GREEN_BOLD = "\033[1;32m";
+    public static final String RESET = "\u001B[0m"; //fun
+    public static final String RED_BOLD = "\033[1;31m"; //fun
+    public static final String BLUE_BOLD = "\033[1;34m"; //fun
+    public static final String GREEN_BOLD = "\033[1;32m"; //fun
     private String name;
     private Pet pet;
     private int size;
@@ -15,7 +15,7 @@ public class Introduction implements StoryStep {
     public void run() throws InterruptedException {
         //Introduction
         Scanner scanner = new Scanner(System.in);
-        System.out.print("\n----------------- INTRODUCTION -----------------\n\n");
+        System.out.print(GREEN_BOLD + "\n----------------- INTRODUCTION -----------------\n\n" + RESET);
         Thread.sleep(2000);
         System.out.print("** Welcome in the Wizarding World, a world full of magic, hidden away for those who do not know magic, muggles. **\n");
         Thread.sleep(3000);
@@ -268,13 +268,13 @@ public class Introduction implements StoryStep {
         Thread.sleep(3000);
         System.out.println(BLUE_BOLD + "Ollivander - " + RESET + "Awesome, I knew it!");
         Thread.sleep(2000);
-        System.out.println(GREEN_BOLD + "You got a " + size + "cm Wand, with a " + core + " core.\n" + RESET);
+        System.out.println(GREEN_BOLD + "** You got a " + size + "cm Wand, with a " + core + " core. **\n" + RESET);
 
         //End of the Introduction
         Thread.sleep(3000);
         System.out.println("** You are now ready to go to Hogwarts, so you go to the platform 9 3/4 at King's Cross Station. **");
         Thread.sleep(5000);
-        System.out.println("** And you take the Hogwarts™ Express's train right to Hogwarts!**");
+        System.out.println("** And you take the Hogwarts™ Express's train right to Hogwarts! **");
         Thread.sleep(6000);
         System.out.println("               || ____ ||\n               || ____ ||\n               || ____ ||\n               || ____ ||\n               || ____ ||");
         Thread.sleep(1000);

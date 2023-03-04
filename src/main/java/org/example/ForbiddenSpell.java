@@ -3,8 +3,8 @@ package org.example;
 public class ForbiddenSpell extends AbstractSpell {
 
     // Constructor
-    public ForbiddenSpell(String name, int powerLevel) {
-        super(name, powerLevel);
+    public ForbiddenSpell(String name, int powerLevel, int accuracy, String description) {
+        super(name, powerLevel, accuracy, description);
     }
 
     // Methods
