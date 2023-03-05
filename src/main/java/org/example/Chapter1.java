@@ -26,7 +26,7 @@ public class Chapter1  implements StoryStep {
 
     @Override
     public void run() throws InterruptedException {
-        //Chapter 1
+        //Intro of Chapter 1
         Thread.sleep(2000);
         System.out.println(GREEN_BOLD + "\n----------------- Chapter 1 -----------------");
         Thread.sleep(1000);
@@ -76,6 +76,7 @@ public class Chapter1  implements StoryStep {
 
         // Call the learnSpell() method of the wizard object to add the new spell to the list of known spells
         //wizard.learnSpell(wingardiumLeviosa);
+        //fighting an enemy with Hagrid
 
         // 2nd lesson
         System.out.println(BLUE_BOLD + "Dumbledore - " + RESET + "Which class are you going to choose this time?");
