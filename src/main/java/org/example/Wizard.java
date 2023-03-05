@@ -17,7 +17,7 @@ public class Wizard extends Character {
 
     // Constructor
     public Wizard() {
-        super("unknown",100);
+        super("unknown",100, 1);
         this.pet = null;
         this.wand = null;
         this.house = null;
@@ -77,6 +77,7 @@ public class Wizard extends Character {
     public void attack(Character target) {
     }
 
+
     @Override
     public void setHealth(int health) {
         this.health = health;
@@ -111,17 +112,52 @@ public class Wizard extends Character {
     public void checkWizard(Wizard wizard) {
         System.out.println(YELLOW_BOLD + "\n----- You ----- " +
                 "\nNAME: " + wizard.getName() +
+                "\nHEALTH: " + wizard.getHealth() + "/" + wizard.getMaxHealth() + "hp" +
                 "\nPET: " + wizard.getPet() +
                 "\nWAND: " + wizard.getWand().getCore() + " (" + wizard.getWand().getSize() + "cm) " +
                 "\nHOUSE: " + wizard.getHouse() +
                 "\nSPELLS: ");
         //List<Spell> knownSpells = wizard.getKnownSpells();
         for (Spell spell : knownSpells) {
-            System.out.println("* "+spell.getName()+": "+spell.getDescription());
+            System.out.println("* "+spell.getName()+" *");
         }
         System.out.println("POTIONS: ");
         for (Potion potion : potions) {
-            System.out.println("* "+potion.getName()+": "+potion.getDescription());
+            System.out.println("* "+potion.getName()+" *");
+        }
+    }
+
+    //To apply the bonus of each house on the wizard
+    public void bonusHouses(Wizard wizard) {
+        switch (wizard.getHouse()) {
+            case "Hufflepuff" -> {
+                // Increase the effectiveness of potions for Hufflepuff members
+                for (Potion potion : wizard.getPotions()) {
+                    int newPower = potion.getHealthPoints() + 10;
+                    potion.setHealthPoints(newPower);
+                }
+                System.out.println("\nHufflepuff bonus: Your potions will be stronger! ");
+            }
+            case "Slytherin" -> {
+                // Increase spell damage for Slytherin members
+                float newPower = (float) (wizard.getPower() * 1.2);
+                wizard.setPower(newPower);
+                System.out.println("\nSlytherin bonus:\nPOWER: " + wizard.getPower());
+            }
+            case "Gryffindor" -> {
+                // Increase the wizard's health for Gryffindor members
+                int newHealth = wizard.getHealth() + 20;
+                wizard.setMaxHealth(newHealth);
+                System.out.println("\nGryffindor bonus:\nNEW HEALTH: " + wizard.getHealth() + "/" + wizard.getMaxHealth() + "hp");
+            }
+            case "Ravenclaw" -> {
+                // Increase the accuracy of spells for Ravenclaw members
+                for (Spell spell : wizard.getKnownSpells()) {
+                    int newAccuracy = spell.getAccuracy() + 10;
+                    spell.setAccuracy(newAccuracy);
+                }
+                System.out.println("\nRavenclaw bonus: Your spells will be more precise!");
+            }
         }
     }
 }

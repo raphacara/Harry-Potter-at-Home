@@ -1,10 +1,10 @@
 package org.example;
 
-public abstract class AbstractEnnemy extends Character {
+public abstract class AbstractEnemy extends Character {
 
     // Constructor
-    public AbstractEnnemy(String name, int health) {
-        super(name, health);
+    public AbstractEnemy(String name, int health, float power) {
+        super(name, health, power);
     }
 
     // Methods
@@ -17,5 +17,3 @@ public abstract class AbstractEnnemy extends Character {
     public abstract void specialAttack(Character target);
 
 }
-
-

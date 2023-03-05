@@ -14,4 +14,3 @@ public class ForbiddenSpell extends AbstractSpell {
         // This could include damaging the target or causing some other negative effect
     }
 }
-

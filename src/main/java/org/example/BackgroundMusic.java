@@ -23,4 +23,3 @@ public class BackgroundMusic {
         clip.close();
     }
 }
-

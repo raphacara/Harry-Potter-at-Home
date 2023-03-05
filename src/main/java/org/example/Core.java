@@ -5,4 +5,3 @@ public enum Core {
     DRAGON_HEARTSTRING,
     UNICORN_HAIR
 }
-

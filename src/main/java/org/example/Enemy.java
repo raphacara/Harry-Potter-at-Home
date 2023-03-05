@@ -1,10 +1,10 @@
 package org.example;
 
-public class Enemy extends AbstractEnnemy {
+public class Enemy extends AbstractEnemy {
 
     // Constructor
-    public Enemy(String name, int health) {
-        super(name, health);
+    public Enemy(String name, int health, float power) {
+        super(name, health, power);
     }
 
     // Methods
@@ -16,8 +16,6 @@ public class Enemy extends AbstractEnnemy {
 
     @Override
     public void setHealth(int health) {
-
+        this.health = health;
     }
 }
-
-

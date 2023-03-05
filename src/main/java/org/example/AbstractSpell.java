@@ -4,8 +4,8 @@ public abstract class AbstractSpell {
 
     // Properties
     final private String name;
-    final private int powerLevel;
-    final private int accuracy;
+    private int powerLevel;
+    private int accuracy;
     final private String description;
 
     // Constructor
@@ -25,8 +25,16 @@ public abstract class AbstractSpell {
         return powerLevel;
     }
 
+    public void setPowerLevel(int powerLevel) {
+        this.powerLevel = powerLevel;
+    }
+
     public int getAccuracy() {
         return accuracy;
+    }
+
+    public void setAccuracy(int accuracy) {
+        this.accuracy = accuracy;
     }
 
     public String getDescription() {
@@ -35,5 +43,3 @@ public abstract class AbstractSpell {
 
     public abstract void cast(Character target);
 }
-
-

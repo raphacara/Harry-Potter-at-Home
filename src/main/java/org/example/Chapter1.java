@@ -1,4 +1,5 @@
 package org.example;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Chapter1  implements StoryStep {
@@ -27,7 +28,7 @@ public class Chapter1  implements StoryStep {
     @Override
     public void run() throws InterruptedException {
         //Intro of Chapter 1
-        Thread.sleep(2000);
+        Thread.sleep(4000);
         System.out.println(GREEN_BOLD + "\n----------------- Chapter 1 -----------------");
         Thread.sleep(1000);
         System.out.println("---------- The Philosopher’s Stone -----------\n" + RESET);
@@ -267,12 +268,12 @@ public class Chapter1  implements StoryStep {
         Thread.sleep(3000);
         System.out.println("** The Herbology Teacher is showing you how to how to take care of magical plants **");
         Thread.sleep(5000);
-        if (wizard.getHouse() == "Hufflepuff") {
+        if (Objects.equals(wizard.getHouse(), "Hufflepuff")) {
             System.out.println("** And it is really interesting! **");
             Thread.sleep(2000);
             System.out.println("** you have gained a bonus of 20hp. **");
             Thread.sleep(2000);
-            wizard.setHealth(wizard.getHealth() + 20);
+            wizard.setMaxHealth(wizard.getMaxHealth() + 20);
         } else {
             System.out.println("** But you don't really understand the lesson... **");
             Thread.sleep(2000);
@@ -280,8 +281,9 @@ public class Chapter1  implements StoryStep {
             Thread.sleep(2000);
             System.out.println("** you have gained a bonus of 10hp. **");
             Thread.sleep(2000);
-            wizard.setHealth(wizard.getHealth() + 10);
+            wizard.setMaxHealth(wizard.getMaxHealth() + 10);
         }
+        System.out.println(GREEN_BOLD + "** Your health is now " + wizard.getHealth() + "hp! **" + RESET);
         Thread.sleep(2000);
         System.out.println(BLUE_BOLD + "\nHerbology Teacher - " + RESET + "Perfect, that will be enough for today. See you next time!");
 
@@ -325,6 +327,8 @@ public class Chapter1  implements StoryStep {
             }
         }
         System.out.println("** You wake up, the class has just ended. **");
+        Thread.sleep(2000);
+        System.out.println(BLUE_BOLD + "History Teacher - " + RESET + "Thank you all for your attention.\n");
     }
 
     public void potionsClass() throws InterruptedException {

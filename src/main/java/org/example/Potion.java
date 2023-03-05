@@ -43,5 +43,3 @@ public class Potion {
         //effect of the potion
     }
 }
-
-

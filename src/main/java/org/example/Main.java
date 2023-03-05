@@ -60,7 +60,9 @@ public class Main {
                     String randomHouseName = org.example.House.houseNames.get(new Random().nextInt(org.example.House.houseNames.size()));
                     test.setHouse(randomHouseName);
                 }
-                wizard.checkWizard(test); //checking
+
+            wizard.checkWizard(test); //checking
+            wizard.bonusHouses(test); //adding houses bonuses
 
             // 3. ----- Chapter 1 -----
             Chapter1 one = new Chapter1(test); // !!! You can change this argument by: wizard (if you run the intro) / test (if you don't) !!!

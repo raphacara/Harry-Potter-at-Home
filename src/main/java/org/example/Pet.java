@@ -7,4 +7,3 @@ public enum Pet {
     TOAD,
     SNAKE
 }
-
