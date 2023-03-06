@@ -5,7 +5,7 @@ public class Potion {
     // Properties
     private String name;
     private int healthPoints;
-    private String description;
+    private final String description;
 
     // Constructor
     public Potion(String name, int healthPoints, String description) {
@@ -33,10 +33,6 @@ public class Potion {
 
     public String getDescription() {
         return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public void usePotion(Wizard wizard) {

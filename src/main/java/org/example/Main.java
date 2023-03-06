@@ -13,64 +13,35 @@ public class Main {
             // ----- MUSIC -----
             music.play();
 
-            // ----- STORY -----
-            Story story = new Story();
+            //instance of wizard
             Wizard wizard = new Wizard();
 
             // 1. ----- INTRODUCTION -----
-            Introduction intro = new Introduction();
-            story.addStep(intro);
-            //story.run(); //You can hide this Step to skip it (you will have to use the random test wizard)
+            Introduction intro = new Introduction(wizard);
+            //intro.run(); //You can hide this Step to skip it (you will have to use the random test wizard)
 
-            // getting players infos
-            String nameWizard = intro.getName();
-            Pet petWizard = intro.getPet();
-            int sizeWand = intro.getSize();
-            Core coreWand = intro.getCore();
-            // creating the wizard's wand
-            Wand wandWizard = new Wand(coreWand, sizeWand);
-            // setting the infos in the wizard
-            wizard.setName(nameWizard);
-            wizard.setPet(petWizard);
-            wizard.setWand(wandWizard);
+            //getting players infos
+            wizard = Introduction.getWizard(); //Updating the wizard
+            wizard.checkWizard(wizard); //checking
+            wizard.bonusHouses(wizard); //adding houses bonuses
 
-                //Intern tests (use it to test only 1 Step of the story by creating a random wizard)
+                //Intern tests (use it to test the story by creating a random wizard)
                 Wizard test = new Wizard();
-                Random random = new Random();
-                Wand wandTest = new Wand(Core.values()[random.nextInt(Core.values().length)], 30);
-                test.setName("Raphaël");
-                test.setPet(Pet.values()[random.nextInt(Pet.values().length)]);
-                test.setWand(wandTest);
-
-            // 2. ----- SortingHat -----
-            SortingHat sort = new SortingHat(wizard); // !!! You can change this argument by: wizard (if you run the intro) / test (if you don't) !!!
-            story.removeStep(intro);
-            story.addStep(sort);
-            //story.run(); //You can hide this Step to skip it
-
-            // getting players infos
-            String houseWizard = sort.getHouse();
-            // setting the infos in the wizard
-            wizard.setHouse(houseWizard);
-
-                //Intern test
-                if (houseWizard != null) {
-                    test.setHouse(houseWizard);
-                } else {
+                if (wizard.getHouse() == null) {
+                    Random random = new Random();
+                    Wand wandTest = new Wand(Core.values()[random.nextInt(Core.values().length)], 30);
                     String randomHouseName = org.example.House.houseNames.get(new Random().nextInt(org.example.House.houseNames.size()));
-                    test.setHouse(randomHouseName);
-                }
+                    test.setName("Raphaël");
+                        test.setPet(Pet.values()[random.nextInt(Pet.values().length)]);
+                        test.setWand(wandTest);
+                        test.setHouse(randomHouseName);
+                    }
 
-            wizard.checkWizard(test); //checking
-            wizard.bonusHouses(test); //adding houses bonuses
-
-            // 3. ----- Chapter 1 -----
-            Chapter1 one = new Chapter1(test); // !!! You can change this argument by: wizard (if you run the intro) / test (if you don't) !!!
-            story.removeStep(sort);
-            story.addStep(one);
-            story.run();
-            wizard = Chapter1.getWizard(); //I update the wizard
-            wizard.checkWizard(test); //checking
+            // 2. ----- CHAPTER 1 -----
+            Chapter1 chapter1 = new Chapter1(test); //Change the (wizard) by (test) if you skipped the intro
+            chapter1.run();
+            wizard = Chapter1.getWizard(); //Updating the wizard (don't need to change wizard for test if you skipped the intro)
+            wizard.checkWizard(wizard); //checking
 
             //Stop the music
             } catch (InterruptedException | UnsupportedAudioFileException | IOException | LineUnavailableException e) {

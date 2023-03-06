@@ -6,10 +6,10 @@ public abstract class Character {
     private String name;
     protected int health;
     protected int maxHealth;
-    protected float power;
+    protected int power;
 
     // Constructor
-    public Character(String name, int health, float power) {
+    public Character(String name, int health, int power) {
         this.name = name;
         this.health = health;
         this.maxHealth = health;
@@ -17,7 +17,7 @@ public abstract class Character {
     }
 
     // Methods
-    public abstract void attack(Character target);
+    public abstract float attack(Character target);
 
     // Getters and setters
     public String getName() {
@@ -47,7 +47,14 @@ public abstract class Character {
         return power;
     }
 
-    public void setPower(float power) {
+    public void setPower(int power) {
         this.power = power;
+    }
+
+    public void takeDamage(int damage) {
+        health -= damage;
+        if (health < 0) {
+            health = 0;
+        }
     }
 }

@@ -28,7 +28,7 @@ public class Chapter1  implements StoryStep {
     @Override
     public void run() throws InterruptedException {
         //Intro of Chapter 1
-        Thread.sleep(4000);
+        Thread.sleep(5000);
         System.out.println(GREEN_BOLD + "\n----------------- Chapter 1 -----------------");
         Thread.sleep(1000);
         System.out.println("---------- The Philosopher’s Stone -----------\n" + RESET);
@@ -40,17 +40,17 @@ public class Chapter1  implements StoryStep {
         System.out.println("** There are ghosts and secret passages hidden everywhere. **");
         Thread.sleep(3000);
         System.out.println("** But you can not do what you want, you are a student and you have class today. **");
-        Thread.sleep(4000);
+        Thread.sleep(3000);
         System.out.println("** So you go to the Great Hall because it's the perfect place to eat, work, and meet. **");
         Thread.sleep(4000);
         System.out.println("** Furthermore, there is the headmaster of hogwarts, Albus Dumbledore, who says: **\n");
-        Thread.sleep(4000);
+        Thread.sleep(3000);
         System.out.println(BLUE_BOLD + "Dumbledore - " + RESET + "Dear students, welcome to Hogwarts!");
         Thread.sleep(3000);
         System.out.println(BLUE_BOLD + "Dumbledore - " + RESET + "Here, you can choose the classes you want to take.");
         Thread.sleep(3000);
         System.out.println(BLUE_BOLD + "Dumbledore - " + RESET + "Let me present them to you:\n");
-        Thread.sleep(4000);
+        Thread.sleep(3000);
         System.out.println(BLACK_BOLD + "CHARMS: " + RESET + "A course that teaches the casting and effects of charms, which are spells that alter the properties of an object or creature.");
         Thread.sleep(4000);
         System.out.println(BLACK_BOLD + "DEFENSE AGAINST THE DARK ARTS: " + RESET + "A course that teaches the defense against dark creatures, spells, and curses.");
@@ -62,7 +62,7 @@ public class Chapter1  implements StoryStep {
         System.out.println(BLACK_BOLD + "POTIONS: " + RESET + "A course that teaches the brewing of magical potions, which can have various effects on the drinker.\n");
         Thread.sleep(4000);
         System.out.println(BLUE_BOLD + "Dumbledore - " + RESET + "You will not be able to participate in all classes.");
-        Thread.sleep(4000);
+        Thread.sleep(3000);
         System.out.println(BLUE_BOLD + "Dumbledore - " + RESET + "So choose well. I recommend Potions class...");
         Thread.sleep(3000);
 
@@ -72,29 +72,62 @@ public class Chapter1  implements StoryStep {
         Thread.sleep(3000);
         System.out.println("\n** The year goes on and it is almost Christmas. **");
         Thread.sleep(4000);
-        System.out.println("** You are going to attend your last lesson before the Christmas holidays. **\n");
-        Thread.sleep(4000);
 
-        // Call the learnSpell() method of the wizard object to add the new spell to the list of known spells
-        //wizard.learnSpell(wingardiumLeviosa);
-        //fighting an enemy with Hagrid
+        // Learning Wingardium Leviosa with Hagrid
+        System.out.println("** Meanwhile, You went to see Hagrid who lives in a small hut between the castle and the forest. **\n");
+        Thread.sleep(3000);
+        System.out.println(BLUE_BOLD + "Hagrid - " + RESET + "Hey " + wizard.getName() + "! I hope you like your experience here :)");
+        Thread.sleep(3000);
+        System.out.println(BLUE_BOLD + "Hagrid - " + RESET + "I am happy you are a " + wizard.getHouse() + " by the way, it fits you well.");
+        Thread.sleep(3000);
+        System.out.println(BLUE_BOLD + "Hagrid - " + RESET + "Oh, I'll give you a little help, by teaching a new spell!");
+        Thread.sleep(3000);
+        System.out.println(BLUE_BOLD + "Hagrid - " + RESET + "It is a charm used to levitate objects: Wingardium Leviosa.");
+        Thread.sleep(3000);
+        System.out.println(BLUE_BOLD + "Hagrid - " + RESET + "But you have to pronounce it well, try it.");
+        Thread.sleep(3000);
+        System.out.println(RED_BOLD + "Write the spell to learn it :" + RESET);
+        while (true) {
+            input[0] = scanner.nextLine();
+            if (input[0].equals("Wingardium Leviosaaa")) {
+                break;
+            } else {
+                System.out.println(BLUE_BOLD + "Hagrid - " + RESET + "Haha! This one is tricky. Try: Wingardium Leviosaaa");
+            }
+        }
+        wizard.learnSpell(wingardiumLeviosa);
+        System.out.println(BLUE_BOLD + "\nHagrid - " + RESET + "Well done " + wizard.getName() + "! ");
+        Thread.sleep(3000);
+        System.out.println(BLUE_BOLD + "Hagrid - " + RESET + "Even if it deals no damage, this spell can even be useful in fight sometimes...");
+        Thread.sleep(4000);
+        System.out.println(BLUE_BOLD + "Hagrid - " + RESET + "Go back to the castle for your next class.\n");
+        Thread.sleep(3000);
 
         // 2nd lesson
+        System.out.println("** You are going to attend your last lesson before the Christmas holidays. **\n");
+        Thread.sleep(4000);
         System.out.println(BLUE_BOLD + "Dumbledore - " + RESET + "Which class are you going to choose this time?");
         chooseClass();
         Thread.sleep(3000);
         System.out.println("\n** The year goes on and it is now almost the end of the year **");
         Thread.sleep(4000);
-        System.out.println("** You have to do a last lesson **\n");
-        Thread.sleep(4000);
 
         // 3rd lesson
+        System.out.println("** You have to do a last lesson before the end of the year. **\n");
+        Thread.sleep(4000);
         System.out.println(BLUE_BOLD + "Dumbledore - " + RESET + "This is going to be your last class, which one will you choose?");
         chooseClass();
         Thread.sleep(3000);
+
+        // Final boss battle
+        System.out.println("\n** Just after the lesson, you want to go to the toilet. **");
+        Thread.sleep(2000);
+        Enemy troll = new Enemy("Troll", 150, 30);
+        Fight fight = new Fight(wizard, troll);
+        fight.run();
+        Thread.sleep(2000);
         System.out.println("\n** This is the end of the year, well done ! **");
         Thread.sleep(4000);
-
     }
 
     //ultra powerful method that let my main class to get ALL the information (attributes) of the player.

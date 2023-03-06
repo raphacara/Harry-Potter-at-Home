@@ -3,7 +3,7 @@ package org.example;
 public class Boss extends AbstractEnemy {
 
     // Constructor
-    public Boss(String name, int health, float power) {
+    public Boss(String name, int health, int power) {
         super(name, health, power);
     }
 

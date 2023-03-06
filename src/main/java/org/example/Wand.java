@@ -3,8 +3,8 @@ package org.example;
 public class Wand {
 
     // Properties
-    private Core core;
-    private int size;
+    private final Core core;
+    private final int size;
 
     // Constructor
     public Wand(Core core, int size) {
@@ -17,15 +17,7 @@ public class Wand {
         return core;
     }
 
-    public void setCore(Core core) {
-        this.core = core;
-    }
-
     public int getSize() {
         return size;
-    }
-
-    public void setSize(int size) {
-        this.size = size;
     }
 }

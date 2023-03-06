@@ -7,10 +7,15 @@ public class Introduction implements StoryStep {
     public static final String BLUE_BOLD = "\033[1;34m"; //fun
     public static final String GREEN_BOLD = "\033[1;32m"; //fun
     private static final String[] input = {"1","2","3","4","5","6","7","8"}; //the player inputs
+    private static Wizard wizard; //the player
     private String name;
-    private Pet pet;
     private int size;
     private Core core = null;
+
+    //Constructor
+    public Introduction(Wizard player) {
+        wizard = player;
+    }
 
     // Method to run this step of the story
     public void run() throws InterruptedException {
@@ -28,6 +33,9 @@ public class Introduction implements StoryStep {
         Thread.sleep(2000);
         System.out.print(RED_BOLD + "Enter your name :\n" + RESET);
         this.name = scanner.nextLine();
+        wizard.setName(name);
+
+        //Story
         System.out.print(BLUE_BOLD + "??? - " + RESET + "OH! So you are " + name + "! Sorry, I didn't introduce myself, I am Hagrid.\n");
         Thread.sleep(3000);
         System.out.println(BLUE_BOLD + "Hagrid - " + RESET + "I was looking for you, and I have a letter for you :\n");
@@ -56,7 +64,7 @@ public class Introduction implements StoryStep {
         Thread.sleep(3000);
         System.out.println(BLUE_BOLD + "Hagrid - " + RESET + "Usually, students choose an Owl, a Cat, or a Toad.");
         Thread.sleep(3000);
-        pet = null;
+        Pet pet = null;
         while (pet == null) {
             System.out.println(BLUE_BOLD + "Hagrid - " + RESET + "Which Pet do you want?");
             System.out.println(GREEN_BOLD + "1. Owl\n" + "2. Cat\n" + "3. Toad\n" + "4. I really don't like those" + RED_BOLD );
@@ -67,11 +75,8 @@ public class Introduction implements StoryStep {
                 case "2" -> pet = Pet.CAT;
                 case "3" -> pet = Pet.TOAD;
                 case "4" -> {
-                    System.out.println(BLUE_BOLD + "Hagrid - " + RESET + "Oh, you really don't like those... But you need to have a Pet...");
-                    Thread.sleep(3000);
                     while (pet == null) {
                         System.out.println(BLUE_BOLD + "Hagrid - " + RESET + "Well, I have one last idea: Do you want a Really Kind Pet or a Really Dangerous Pet ?");
-                        Thread.sleep(1000);
                         System.out.println(GREEN_BOLD + "1. Really Kind Pet\n" + "2. Really Dangerous Pet" + RED_BOLD);
                         System.out.print("Enter a number to make your choice :\n" + RESET);
                         input[1] = scanner.nextLine();
@@ -94,6 +99,7 @@ public class Introduction implements StoryStep {
         Thread.sleep(500);
         System.out.println(GREEN_BOLD + "** You now have a " + pet + "! **\n");
         Thread.sleep(3000);
+        wizard.setPet(pet);
 
         //Choosing a wand
         System.out.println(BLUE_BOLD + "Hagrid - " + RESET + "Perfect! The last thing you need is a magic wand.");
@@ -102,8 +108,10 @@ public class Introduction implements StoryStep {
         Thread.sleep(3000);
         System.out.println(BLUE_BOLD + "Ollivander - " + RESET + "Hello " + name + "! Let's find you the perfect wand. Let me see...");
         Thread.sleep(3000);
+
+        //Size of the wand
         int check = 0;
-        while (check == 0) { //The size
+        while (check == 0) { //The size based on player ambition
             System.out.println(BLUE_BOLD + "Ollivander - " + RESET + "What's is the best definition of magic according to you ?");
             Thread.sleep(3000);
             System.out.println(GREEN_BOLD + "1. Power\n" + "2. Art\n" + "3. Miracle\n" + "4. Scam" + RED_BOLD);
@@ -121,7 +129,7 @@ public class Introduction implements StoryStep {
                 }
             }
         }
-        while (check == 1) {
+        while (check == 1) { //modification of the size based on the player height
             System.out.println(BLUE_BOLD + "Ollivander - " + RESET + "Okay... And how do you consider your own height?");
             Thread.sleep(2000);
             System.out.println(GREEN_BOLD + "1. Giant\n" + "2. Tall\n" + "3. Average\n" + "4. Little\n" + "5. Dwarf" + RED_BOLD);
@@ -148,32 +156,26 @@ public class Introduction implements StoryStep {
                     check = 1;
             }
         }
+
+        //Core of the Wand
         Thread.sleep(1000);
         System.out.println(BLUE_BOLD + "Ollivander - " + RESET + "I see...");
         Thread.sleep(3000);
-        while (core == null) { //The core
-            switch (pet) {
-                case RAT, SNAKE -> {
+        while (core == null) {
+            switch (pet) { //the pet influence the core
+                case RAT, SNAKE -> { //if you have a special pet
                     System.out.println(BLUE_BOLD + "Ollivander - " + RESET + "How do you imagine your future? ");
-                    Thread.sleep(2000);
                     System.out.println(GREEN_BOLD + "1. Rich\n" + "2. Normal\n" + "3. Powerful\n" + "4. Famous\n" + "5. Sad\n" + "6. Cheerful\n" + "7. no idea" + RED_BOLD);
                     System.out.print("Enter a number to make your choice :\n" + RESET);
                     input[4] = scanner.nextLine();
                     switch (input[4]) {
                         case "3", "6" -> {
                             System.out.println(BLUE_BOLD + "Ollivander - " + RESET + "Really... And Do you prefer Odd or Even numbers ?");
-                            Thread.sleep(2000);
                             System.out.println(GREEN_BOLD + "1. Odd\n" + "2. Even\n" + "3. It doesn't matter" + RED_BOLD);
                             System.out.print("Enter a number to make your choice :\n" + RESET);
                             input[5] = scanner.nextLine();
                             switch (pet) {
-                                case RAT:
-                                    switch (input[5]) {
-                                        case "2" -> core = Core.PHOENIX_FEATHER;
-                                        case "1", "3" -> core = Core.UNICORN_HAIR;
-                                        default -> System.out.println(BLUE_BOLD + "Ollivander - " + RESET + "Please focus... I will ask again from the question about the future:");
-                                    }
-                                case SNAKE:
+                                case RAT, SNAKE:
                                     switch (input[5]) {
                                         case "1" -> core = Core.PHOENIX_FEATHER;
                                         case "2", "3" -> core = Core.DRAGON_HEARTSTRING;
@@ -186,63 +188,30 @@ public class Introduction implements StoryStep {
                         default -> System.out.println(BLUE_BOLD + "Ollivander - " + RESET + "You must think again about your future.");
                     }
                 }
-                case CAT, TOAD, OWL -> {
+                case CAT, TOAD, OWL -> { //if you don't have a special pet
                     System.out.println(BLUE_BOLD + "Ollivander - " + RESET + "I see that you have a " + pet + ", why did you choose it ?");
-                    Thread.sleep(2000);
                     System.out.println(GREEN_BOLD + "1. It is cute\n" + "2. It is strong\n" + "3. It is beautiful\n" + "4. It is useful\n" + "5. It is smart\n" + "6. I don't know" + RED_BOLD);
                     System.out.print("Enter a number to make your choice :\n" + RESET);
                     input[4] = scanner.nextLine();
                     switch (input[4]) {
-                        case "1", "3", "6" -> {
-                            System.out.println(BLUE_BOLD + "Ollivander - " + RESET + "Really... And Do you prefer Odd or Even numbers ?");
-                            Thread.sleep(2000);
-                            System.out.println(GREEN_BOLD + "1. Odd\n" + "2. Even\n" + "3. It doesn't matter" + RED_BOLD);
-                            System.out.print("Enter a number to make your choice :\n" + RESET);
-                            input[5] = scanner.nextLine();
-                            switch (input[5]) {
-                                case "1", "2", "3" -> {
-                                    System.out.println(BLUE_BOLD + "Ollivander - " + RESET + "That's what I thought...");
-                                    Thread.sleep(2000);
-                                    core = Core.UNICORN_HAIR;
-                                }
-                                default -> System.out.println(BLUE_BOLD + "Ollivander - " + RESET + "Please focus... I will ask again from the question about the pet:");
-                            }
-                        }
-                        case "2", "5" -> {
-                            System.out.println(BLUE_BOLD + "Ollivander - " + RESET + "Really... And Do you prefer Odd or Even numbers ?");
-                            Thread.sleep(2000);
-                            System.out.println(GREEN_BOLD + "1. Odd\n" + "2. Even\n" + "3. It doesn't matter" + RED_BOLD);
-                            System.out.print("Enter a number to make your choice :\n" + RESET);
-                            input[5] = scanner.nextLine();
-                            switch (input[5]) {
-                                case "1", "2", "3" -> {
-                                    System.out.println(BLUE_BOLD + "Ollivander - " + RESET + "Well, this is not the answer I was expecting...");
-                                    Thread.sleep(2000);
-                                    core = Core.DRAGON_HEARTSTRING;
-                                }
-                                default -> System.out.println(BLUE_BOLD + "Ollivander - " + RESET + "Please focus... I will ask again from the question about the pet:");
-                            }
-                        }
+                        case "1", "3", "6" -> core = Core.UNICORN_HAIR;
+                        case "2", "5" -> core = Core.DRAGON_HEARTSTRING;
                         case "4" -> {
                             System.out.println(BLUE_BOLD + "Ollivander - " + RESET + "Really... And Do you prefer Odd or Even numbers ?");
-                            Thread.sleep(2000);
                             System.out.println(GREEN_BOLD + "1. Odd\n" + "2. Even\n" + "3. It doesn't matter" + RED_BOLD);
                             System.out.print("Enter a number to make your choice :\n" + RESET);
                             input[5] = scanner.nextLine();
                             switch (input[5]) {
-                                case "1" -> {
+                                case "1" -> { //only case to get PHOENIX_FEATHER if you have a basic pet
                                     System.out.println(BLUE_BOLD + "Ollivander - " + RESET + "I also prefer Odd numbers.");
-                                    Thread.sleep(2000);
                                     core = Core.PHOENIX_FEATHER;
                                 }
                                 case "2" -> {
                                     System.out.println(BLUE_BOLD + "Ollivander - " + RESET + "Even numbers are beautiful, I agree.");
-                                    Thread.sleep(2000);
                                     core = Core.DRAGON_HEARTSTRING;
                                 }
                                 case "3" -> {
                                     System.out.println(BLUE_BOLD + "Ollivander - " + RESET + "If you say so...");
-                                    Thread.sleep(2000);
                                     core = Core.UNICORN_HAIR;
                                 }
                                 default -> System.out.println(BLUE_BOLD + "Ollivander - " + RESET + "Please focus... I will ask again from the question about the pet:");
@@ -253,7 +222,7 @@ public class Introduction implements StoryStep {
                 }
             }
         }
-        Thread.sleep(1000);
+        Thread.sleep(2000);
         System.out.println(BLUE_BOLD + "Ollivander - " + RESET + "I think I exactly know what is the best for you.");
         Thread.sleep(2000);
         System.out.println("** Ollivander gives you a magic wand **");
@@ -263,6 +232,8 @@ public class Introduction implements StoryStep {
         System.out.println(BLUE_BOLD + "Ollivander - " + RESET + "Awesome, I knew it!");
         Thread.sleep(2000);
         System.out.println(GREEN_BOLD + "** You got a " + size + "cm Wand, with a " + core + " core. **\n" + RESET);
+        Wand wandWizard = new Wand(core, size);
+        wizard.setWand(wandWizard);
 
         //End of the Introduction
         Thread.sleep(3000);
@@ -284,24 +255,21 @@ public class Introduction implements StoryStep {
         Thread.sleep(3000);
         System.out.println("** Now it is your turn to pass the Sorting Hat test... Good Luck! **");
         Thread.sleep(3000);
+
+        //Sorting Hat test
+        SortingHat sort = new SortingHat(wizard); //Instance of sorting hat
+        sort.run(); //Calling Class SortingHat for the sorting hat test
+        String houseWizard = sort.getHouse(); //getting the house that the sorting hat choose
+        wizard.setHouse(houseWizard); //setting the house of the wizard
+    }
+
+    //ultra powerful method that let my main class to get ALL the information (attributes) of the player.
+    public static Wizard getWizard() {
+        return wizard;
     }
 
     // Method to get the wizard's name
     public String getName() {
         return this.name;
-    }
-
-    // Method to get the Pet chosen by the player
-    public Pet getPet() {
-        return pet;
-    }
-
-    // Method to get the Wand of the player
-    public int getSize() {
-        return size;
-    }
-
-    public Core getCore() {
-        return core;
     }
 }

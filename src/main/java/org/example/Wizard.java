@@ -12,17 +12,17 @@ public class Wizard extends Character {
     private Pet pet;
     private Wand wand;
     private String house;
-    private List<Spell> knownSpells;
-    private List<Potion> potions;
+    private final List<Spell> knownSpells;
+    private final List<Potion> potions;
 
     // Constructor
     public Wizard() {
-        super("unknown",100, 1);
+        super("unknown",100, 0);
         this.pet = null;
         this.wand = null;
         this.house = null;
-        this.knownSpells = new ArrayList<Spell>();
-        this.potions = new ArrayList<Potion>();
+        this.knownSpells = new ArrayList<>();
+        this.potions = new ArrayList<>();
     }
 
     // Methods
@@ -61,20 +61,13 @@ public class Wizard extends Character {
         return knownSpells;
     }
 
-    public void setKnownSpells(List<Spell> knownSpells) {
-        this.knownSpells = knownSpells;
-    }
-
     public List<Potion> getPotions() {
         return potions;
     }
 
-    public void setPotions(List<Potion> potions) {
-        this.potions = potions;
-    }
-
     @Override
-    public void attack(Character target) {
+    public float attack(Character target) {
+        return 0;
     }
 
 
@@ -125,6 +118,11 @@ public class Wizard extends Character {
         for (Potion potion : potions) {
             System.out.println("* "+potion.getName()+" *");
         }
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     //To apply the bonus of each house on the wizard
@@ -140,7 +138,7 @@ public class Wizard extends Character {
             }
             case "Slytherin" -> {
                 // Increase spell damage for Slytherin members
-                float newPower = (float) (wizard.getPower() * 1.2);
+                int newPower = (int) (wizard.getPower() + 10);
                 wizard.setPower(newPower);
                 System.out.println("\nSlytherin bonus:\nPOWER: " + wizard.getPower());
             }
