@@ -36,6 +36,9 @@ public class Potion {
     }
 
     public void usePotion(Wizard wizard) {
-        //effect of the potion
+        int heal = (this.getHealthPoints() + wizard.getBotanist());
+        wizard.healing(heal);
+        System.out.println("You heal " + heal + "hp.");
+
     }
 }

@@ -9,7 +9,7 @@ public class ForbiddenSpell extends AbstractSpell {
 
     // Methods
     @Override
-    public void cast(Character target) {
+    public void cast(Wizard wizard, Character target) {
         // Implement the behavior for casting a forbidden spell
         // This could include damaging the target or causing some other negative effect
     }

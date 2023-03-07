@@ -3,11 +3,11 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class Chapter1  implements StoryStep {
-    public static final String RESET = "\u001B[0m"; //fun
-    public static final String RED_BOLD = "\033[1;31m"; //fun
-    public static final String BLUE_BOLD = "\033[1;34m"; //fun
-    public static final String GREEN_BOLD = "\033[1;32m"; //fun
-    public static final String BLACK_BOLD = "\033[1;30m"; //fun
+    private static final String RESET = "\u001B[0m"; //fun
+    private static final String RED_BOLD = "\033[1;31m"; //fun
+    private static final String BLUE_BOLD = "\033[1;34m"; //fun
+    private static final String GREEN_BOLD = "\033[1;32m"; //fun
+    private static final String BLACK_BOLD = "\033[1;30m"; //fun
     private static Wizard wizard;
     private static final String[] input = {"1","2","3","4","5","6","7","8"}; //the player inputs
     private final Scanner scanner = new Scanner(System.in); //to scan the inputs
@@ -15,10 +15,10 @@ public class Chapter1  implements StoryStep {
     private final boolean[] classesTaken = new boolean[6]; //changing to true when the player take a lesson
 
     // Create a new instance of Sells and Potions
-    Spell wingardiumLeviosa = new Spell("Wingardium Leviosa", 0, 80, "This charm causes objects to levitate, but deals no damage by itself.");
-    Spell lumos = new Spell("Lumos", 0, 100, "A charm that creates a small beam of light from the tip of a wand.");
-    Spell protego = new Spell("Protego", 0, 80, "A charm used to create a shield to deflect spells.");
-    Potion wiggenweld = new Potion("Wiggenweld", 40, "A potion that instantly heals by restoring some health.");
+    Spell wingardiumLeviosa = new Spell("Wingardium Leviosa", 0, 80, "** It makes objects to levitate, but it does not work on the enemy. **");
+    Spell lumos = new Spell("Lumos", 0, 100, "** It makes light! **");
+    Spell protego = new Spell("Protego", 0, 75, "** It protect you. **");
+    Potion wiggenweld = new Potion("Wiggenweld", 40, "** A potion that instantly heals by restoring some health. **");
 
     //Constructor
     public Chapter1(Wizard player) {
@@ -27,7 +27,7 @@ public class Chapter1  implements StoryStep {
 
     @Override
     public void run() throws InterruptedException {
-        //Intro of Chapter 1
+        //-- Intro of Chapter 1 --
         System.out.println(GREEN_BOLD + "\n----------------- Chapter 1 -----------------");
         Thread.sleep(1000);
         System.out.println("---------- The Philosopher’s Stone -----------\n" + RESET);
@@ -39,9 +39,9 @@ public class Chapter1  implements StoryStep {
         System.out.println("** There are ghosts and secret passages hidden everywhere. **");
         Thread.sleep(2000);
         System.out.println("** But you can not do what you want, you are a student and you have class today. **");
-        Thread.sleep(2000);
-        System.out.println("** So you go to the Great Hall because it's the perfect place to eat, work, and meet. **");
         Thread.sleep(3000);
+        System.out.println("** So you go to the Great Hall because it's the perfect place to eat, work, and meet. **");
+        Thread.sleep(4000);
         System.out.println("** Furthermore, there is the headmaster of hogwarts, Albus Dumbledore, who says: **\n");
         Thread.sleep(3000);
         System.out.println(BLUE_BOLD + "Dumbledore - " + RESET + "Dear students, welcome to Hogwarts!");
@@ -65,26 +65,26 @@ public class Chapter1  implements StoryStep {
         System.out.println(BLUE_BOLD + "Dumbledore - " + RESET + "So choose well. I recommend Potions class...");
         Thread.sleep(2000);
 
-        // 1st lesson
+        //-- 1st lesson --
         System.out.println(BLUE_BOLD + "Dumbledore - " + RESET + wizard.getName() + ", what are you going to choose for your first class?");
         chooseClass();
         Thread.sleep(2000);
         System.out.println("\n** The year goes on and it is almost Christmas. **");
         Thread.sleep(3000);
 
-        // Learning Wingardium Leviosa with Hagrid
+        //-- Learning Wingardium Leviosa --
         System.out.println("** Meanwhile, You went to see Hagrid who lives in a small hut between the castle and the forest. **\n");
         Thread.sleep(3000);
         System.out.println(BLUE_BOLD + "Hagrid - " + RESET + "Hey " + wizard.getName() + "! I hope you like your experience here :)");
         Thread.sleep(2000);
         System.out.println(BLUE_BOLD + "Hagrid - " + RESET + "I am happy you are a " + wizard.getHouse() + " by the way, it fits you well.");
-        Thread.sleep(2000);
-        System.out.println(BLUE_BOLD + "Hagrid - " + RESET + "Oh, I'll give you a little help, by teaching a new spell!");
+        Thread.sleep(3000);
+        System.out.println(BLUE_BOLD + "Hagrid - " + RESET + "Oh, I'll give you a little help, by teaching you a new spell!");
         Thread.sleep(2000);
         System.out.println(BLUE_BOLD + "Hagrid - " + RESET + "It is a charm used to levitate objects: Wingardium Leviosa.");
         Thread.sleep(2000);
         System.out.println(BLUE_BOLD + "Hagrid - " + RESET + "But you have to pronounce it well, try it.");
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         System.out.println(RED_BOLD + "Write the spell to learn it :" + RESET);
         while (true) {
             input[0] = scanner.nextLine();
@@ -95,30 +95,20 @@ public class Chapter1  implements StoryStep {
             }
         }
         wizard.learnSpell(wingardiumLeviosa);
-        System.out.println(BLUE_BOLD + "\nHagrid - " + RESET + "Well done " + wizard.getName() + "! ");
+        System.out.println(BLUE_BOLD + "\nHagrid - " + RESET + "Well done " + wizard.getName() + "! Next time you will be able to write it with one 'a'.");
         Thread.sleep(2000);
         System.out.println(BLUE_BOLD + "Hagrid - " + RESET + "Even if it deals no damage, this spell can even be useful in fight sometimes...");
         Thread.sleep(3000);
         System.out.println(BLUE_BOLD + "Hagrid - " + RESET + "Go back to the castle for your next class.\n");
         Thread.sleep(2000);
 
-        // 2nd lesson
+        //-- 2nd lesson --
         System.out.println("** You are going to attend your last lesson before the Christmas holidays. **\n");
         Thread.sleep(3000);
         System.out.println(BLUE_BOLD + "Dumbledore - " + RESET + "Which class are you going to choose this time?");
         chooseClass();
-        Thread.sleep(2000);
-        System.out.println("\n** The year goes on and it is now almost the end of the year **");
-        Thread.sleep(3000);
 
-        // 3rd lesson
-        System.out.println("** You have to do a last lesson before the end of the year. **\n");
-        Thread.sleep(3000);
-        System.out.println(BLUE_BOLD + "Dumbledore - " + RESET + "This is going to be your last class, which one will you choose?");
-        chooseClass();
-        Thread.sleep(2000);
-
-        // Final boss battle
+        //-- Troll battle --
         System.out.println("\n** Just after the lesson, you want to go to the toilet. **");
         Thread.sleep(2000);
         System.out.println("** You find yourself in a dark and damp toilet, next to the dungeon. **");
@@ -127,23 +117,45 @@ public class Chapter1  implements StoryStep {
         Thread.sleep(3000);
         System.out.println("** As you turn around, you see a huge troll blocking the exit. You have no choice but to fight for your life! **");
         Thread.sleep(4000);
-        System.out.println(RED_BOLD + "Troll - " + RESET + "Raaargh!");
+        System.out.println(RED_BOLD + "\nTroll - " + RESET + "Raaargh!");
         Thread.sleep(2000);
-        Enemy troll = new Enemy("Troll", 150, 20);
-        Fight fight = new Fight(wizard, troll);
-        fight.run();
+        Enemy troll = new Enemy("Troll", 150, 30); //Creating a Troll
+        wizard.attack(troll); //attacking the troll
+        System.out.println("\n** The year goes on and it is now almost the end of the year **");
+        Thread.sleep(3000);
+
+        //-- 3rd lesson
+        System.out.println("** You have to do a last lesson before the end of the year. **\n");
+        Thread.sleep(3000);
+        System.out.println(BLUE_BOLD + "Dumbledore - " + RESET + "This is going to be your last class, which one will you choose?");
+        chooseClass();
+        Thread.sleep(2000);
 
         // End
         Thread.sleep(2000);
-        System.out.println("\n** This is the end of the year, well done ! **");
+        System.out.println("\n** This is the end of the year, so all the students meet in the Great Hall. **\n");
+        Thread.sleep(3000);
+        System.out.println(BLUE_BOLD + "Dumbledore - " + RESET + "It is time to say which house was the best this year.");
+        Thread.sleep(2000);
+        System.out.println(BLUE_BOLD + "Dumbledore - " + RESET + "Before that, I would like to thanks " + wizard.getName() + " for beating the troll this year.");
         Thread.sleep(4000);
+        System.out.println(BLUE_BOLD + "Dumbledore - " + RESET + "And I give 50 points to " + wizard.getHouse() + "!");
+        Thread.sleep(3000);
+        System.out.println(BLUE_BOLD + "Dumbledore - " + RESET + "So the winning House of this year is...");
+        Thread.sleep(4000);
+        System.out.println(BLUE_BOLD + "Dumbledore - " + RESET + wizard.getHouse() + "!");
+        Thread.sleep(2000);
+        System.out.println("\n** Chapter 1 - THE END **\n");
+        Thread.sleep(2000);
     }
 
+    //To get the wizard's infos back
     @Override
     public Wizard getWizard() {
         return wizard;
     }
 
+    //Algorithm to let the player choose a class (I use it 3 times in the story)
     public void chooseClass() throws InterruptedException {
         boolean ok = check;
         while (check == ok) {
@@ -190,7 +202,7 @@ public class Chapter1  implements StoryStep {
                         System.out.println(BLUE_BOLD + "Dumbledore - " + RESET + "You have already taken the Herbology class.");
                         check = ok;
                     } else {
-                        System.out.println(BLUE_BOLD + "Dumbledore - " + RESET + "You must love nature.");
+                        System.out.println(BLUE_BOLD + "Dumbledore - " + RESET + "You must love plants.");
                         herbologyClass();
                     }
                     break;
@@ -219,9 +231,7 @@ public class Chapter1  implements StoryStep {
         }
     }
 
-    //ultra powerful method that let my main class to get ALL the information (attributes) of the player.
-
-
+    //The 5 lessons method
     public void charmsClass() throws InterruptedException {
         classesTaken[1] = true;
         Thread.sleep(2000);
@@ -311,7 +321,7 @@ public class Chapter1  implements StoryStep {
         Thread.sleep(2000);
         System.out.println(BLUE_BOLD + "Herbology Teacher - " + RESET + "Today, We will see the benefits of plants.\n");
         Thread.sleep(3000);
-        System.out.println("** The Herbology Teacher is showing you how to how to take care of magical plants **");
+        System.out.println("** The Herbology Teacher is showing you how to take care of magical plants **");
         Thread.sleep(4000);
         if (Objects.equals(wizard.getHouse(), "Hufflepuff")) {
             System.out.println("** And it is really interesting! **");

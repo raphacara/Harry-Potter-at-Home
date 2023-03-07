@@ -11,6 +11,5 @@ public class Boss extends AbstractEnemy {
     @Override
     public void specialAttack(Character target) {
         // Implement the behavior for a special attack
-        // This could include casting a powerful spell or using a unique ability
     }
 }

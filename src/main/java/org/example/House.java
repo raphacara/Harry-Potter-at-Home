@@ -5,9 +5,8 @@ import java.util.List;
 public class House {
 
     // Properties
-    private String name;
-    // Define a list of the four house names
-    public static List<String> houseNames = Arrays.asList("Gryffindor", "Hufflepuff", "Ravenclaw", "Slytherin");
+    private String name; // Name of the House
+    protected static List<String> houseNames = Arrays.asList("Gryffindor", "Hufflepuff", "Ravenclaw", "Slytherin"); // Define a list of the four house names
 
     // Constructor
     public House(String name) {

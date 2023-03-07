@@ -2,18 +2,16 @@ package org.example;
 import java.util.Scanner;
 
 public class SortingHat implements StoryStep {
-    public static final String RESET = "\u001B[0m"; //fun
-    public static final String RED_BOLD = "\033[1;31m"; //fun
-    public static final String BLUE_BOLD = "\033[1;34m"; //fun
-    public static final String GREEN_BOLD = "\033[1;32m"; //fun
+    private static final String RESET = "\u001B[0m"; //fun
+    private static final String RED_BOLD = "\033[1;31m"; //fun
+    private static final String BLUE_BOLD = "\033[1;34m"; //fun
+    private static final String GREEN_BOLD = "\033[1;32m"; //fun
     private final Wizard wizard; //the player
     private String houseName; //for the House of the player (that's the only point of the Sorting Hat)
     private int g, h, r, s = 0; //initials of the 4 houses for the system (you will see later in this class)
     private static final String[] input = {"1","2","3","4","5","6","7","8"}; //the player inputs
     private final Scanner scanner = new Scanner(System.in); //to scan the inputs
-
     private int check = 0; //checking the loops
-
 
     //Constructor
     public SortingHat(Wizard player) {
@@ -257,13 +255,13 @@ public class SortingHat implements StoryStep {
             System.out.print(houseName + "!!!\n");
         }
         Thread.sleep(2000);
-        System.out.println(GREEN_BOLD + "** You are now a " + houseName + " student! **\n" + RESET);
-        Thread.sleep(3000);
+        System.out.println(GREEN_BOLD + "** You are now a " + houseName + " student! **" + RESET);
+        Thread.sleep(2000);
     }
 
     @Override
     public Wizard getWizard() {
-        return null;
+        return wizard;
     }
 
     public String getHouse() { //Method to get the House

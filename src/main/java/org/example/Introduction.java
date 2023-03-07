@@ -2,10 +2,10 @@ package org.example;
 import java.util.Scanner;
 
 public class Introduction implements StoryStep {
-    public static final String RESET = "\u001B[0m"; //fun
-    public static final String RED_BOLD = "\033[1;31m"; //fun
-    public static final String BLUE_BOLD = "\033[1;34m"; //fun
-    public static final String GREEN_BOLD = "\033[1;32m"; //fun
+    private static final String RESET = "\u001B[0m"; //fun
+    private static final String RED_BOLD = "\033[1;31m"; //fun
+    private static final String BLUE_BOLD = "\033[1;34m"; //fun
+    private static final String GREEN_BOLD = "\033[1;32m"; //fun
     private static final String[] input = {"1","2","3","4","5","6","7","8"}; //the player inputs
     private static Wizard wizard; //the player
     private String name;
@@ -24,7 +24,7 @@ public class Introduction implements StoryStep {
         System.out.print(GREEN_BOLD + "\n----------------- INTRODUCTION -----------------\n\n" + RESET);
         Thread.sleep(2000);
         System.out.print("** Welcome in the Wizarding World, a world full of magic, hidden away for those who do not know magic, muggles. **\n");
-        Thread.sleep(2000);
+        Thread.sleep(3000);
         System.out.print("** And you were a muggle, until today. Because today your door got kicked in by a half-giant. **\n\n");
         Thread.sleep(2000);
 
@@ -57,7 +57,7 @@ public class Introduction implements StoryStep {
         System.out.println(BLUE_BOLD + "Hagrid - " + RESET + "Congratulations " + name + "! Follow me, I will help you to go to Hogwarts.\n");
         Thread.sleep(2000);
         System.out.print("** You and Hagrid are now on the way to Hogwarts, the school of wizards ... **\n\n");
-        Thread.sleep(2000);
+        Thread.sleep(3000);
 
         //Choosing a Pet
         System.out.println(BLUE_BOLD + "Hagrid - " + RESET + "First, you will have to choose a pet for your adventure,");
@@ -97,9 +97,10 @@ public class Introduction implements StoryStep {
             }
         }
         Thread.sleep(500);
-        System.out.println(GREEN_BOLD + "** You now have a " + pet + "! **\n");
+        System.out.println(GREEN_BOLD + "** You now have a " + pet + "! **");
         Thread.sleep(2000);
-        wizard.setPet(pet);
+        wizard.setPet(pet); //setting the Pet to the wizard
+        wizard.bonusPet(wizard); //Setting the BONUS of the PET's wizard
 
         //Choosing a wand
         System.out.println(BLUE_BOLD + "Hagrid - " + RESET + "Perfect! The last thing you need is a magic wand.");
@@ -114,7 +115,7 @@ public class Introduction implements StoryStep {
         while (check == 0) { //The size based on player ambition
             System.out.println(BLUE_BOLD + "Ollivander - " + RESET + "What's is the best definition of magic according to you ?");
             Thread.sleep(1000);
-            System.out.println(GREEN_BOLD + "1. Power\n" + "2. Art\n" + "3. Miracle\n" + "4. Scam" + RED_BOLD);
+            System.out.println(GREEN_BOLD + "1. Power\n" + "2. Art\n" + "3. Miracle\n" + "4. Fraud" + RED_BOLD);
             System.out.print("Enter a number to make your choice :\n" + RESET);
             input[2] = scanner.nextLine();
             check = 1;
@@ -165,7 +166,7 @@ public class Introduction implements StoryStep {
             switch (pet) { //the pet influence the core
                 case RAT, SNAKE -> { //if you have a special pet
                     System.out.println(BLUE_BOLD + "Ollivander - " + RESET + "How do you imagine your future? ");
-                    System.out.println(GREEN_BOLD + "1. Rich\n" + "2. Normal\n" + "3. Powerful\n" + "4. Famous\n" + "5. Sad\n" + "6. Cheerful\n" + "7. no idea" + RED_BOLD);
+                    System.out.println(GREEN_BOLD + "1. Rich\n" + "2. Normal\n" + "3. Powerful\n" + "4. Famous\n" + "5. Sad\n" + "6. Cheerful\n" + "7. No idea" + RED_BOLD);
                     System.out.print("Enter a number to make your choice :\n" + RESET);
                     input[4] = scanner.nextLine();
                     switch (input[4]) {
@@ -222,7 +223,6 @@ public class Introduction implements StoryStep {
                 }
             }
         }
-        Thread.sleep(2000);
         System.out.println(BLUE_BOLD + "Ollivander - " + RESET + "I think I exactly know what is the best for you.");
         Thread.sleep(2000);
         System.out.println("** Ollivander gives you a magic wand **");
@@ -231,9 +231,10 @@ public class Introduction implements StoryStep {
         Thread.sleep(3000);
         System.out.println(BLUE_BOLD + "Ollivander - " + RESET + "Awesome, I knew it!");
         Thread.sleep(2000);
-        System.out.println(GREEN_BOLD + "** You got a " + size + "cm Wand, with a " + core + " core. **\n" + RESET);
-        Wand wandWizard = new Wand(core, size);
-        wizard.setWand(wandWizard);
+        System.out.println(GREEN_BOLD + "** You got a " + size + "cm Wand, with a " + core + " core. **" + RESET);
+        Wand wandWizard = new Wand(core, size); //creating the wizard's wand
+        wizard.setWand(wandWizard); //setting the wand to the wizard
+        wizard.bonusWand(wizard); //setting the BONUS of the core's wand
 
         //End of the Introduction
         Thread.sleep(2000);
@@ -249,6 +250,8 @@ public class Introduction implements StoryStep {
         Thread.sleep(500);
         System.out.println("               || ____ ||\n               || ____ ||\n               || ____ ||\n               || ____ ||\n               || ____ ||\n               || ____ ||");
         Thread.sleep(500);
+        System.out.println("               || ____ ||\n               || ____ ||\n               || ____ ||\n               || ____ ||\n               || ____ ||\n               || ____ ||");
+        Thread.sleep(500);
         System.out.println("** Finally, you arrive at Hogwarts Castle. **");
         Thread.sleep(2000);
         System.out.println("** You follow the other students to a Great Hall, with a Sorting Hat. **");
@@ -259,10 +262,12 @@ public class Introduction implements StoryStep {
         //Sorting Hat test
         SortingHat sort = new SortingHat(wizard); //Instance of sorting hat
         sort.run(); //Calling Class SortingHat for the sorting hat test
-        String houseWizard = sort.getHouse(); //getting the house that the sorting hat choose
-        wizard.setHouse(houseWizard); //setting the house of the wizard
+        wizard.setHouse(sort.getHouse()); //setting the house of the wizard
+        wizard.bonusHouses(wizard); //setting the BONUS considering the House of the wizard
+        Thread.sleep(2000);
     }
 
+    //Ultra powerful method to return all the wizard infos :)
     @Override
     public Wizard getWizard() {
         return wizard;

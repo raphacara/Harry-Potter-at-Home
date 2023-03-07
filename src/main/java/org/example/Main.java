@@ -16,7 +16,6 @@ public class Main {
             // 1. ----- INTRODUCTION -----
             Introduction intro = new Introduction(wizard);
             play(intro, "Introduction");
-            wizard.bonusHouses(wizard); //adding houses bonuses
 
             // 2. ----- CHAPTER 1 -----
             Chapter1 chapter1 = new Chapter1(wizard); //Change the (wizard) by (test) if you skipped the intro
@@ -36,7 +35,7 @@ public class Main {
     public static void play(StoryStep step, String name) throws InterruptedException {
         System.out.println("\n=======================================");
         System.out.println("Do you want to play the " + name + "?");
-        System.out.println("1. PLAY\n2. SKIP");
+        System.out.println("* 1. PLAY\n* 2. SKIP");
         while (true) {
             Scanner scanner = new Scanner(System.in);
             String input = scanner.nextLine();

@@ -2,13 +2,14 @@ package org.example;
 import java.util.Scanner;
 
 public class Fight implements StoryStep {
-    public static final String RESET = "\u001B[0m"; //fun
-    public static final String RED_BOLD = "\033[1;31m"; //fun
-    public static final String GREEN_BOLD = "\033[1;32m"; //fun
-    public static final String YELLOW_BOLD = "\033[1;33m"; //fun
-    private final Wizard wizard;
-    private Enemy enemy;
-    private final Scanner scanner = new Scanner(System.in);
+    private static final String RESET = "\u001B[0m"; //fun
+    private static final String RED_BOLD = "\033[1;31m"; //fun
+    private static final String GREEN_BOLD = "\033[1;32m"; //fun
+    private static final String YELLOW_BOLD = "\033[1;33m"; //fun
+    private final Wizard wizard; //The wizard
+    private final Enemy enemy; //The enemy
+    private boolean isFinished = false; //Checking is the fight is finished
+    private final Scanner scanner = new Scanner(System.in); //to scan the inputs
 
     public Fight(Wizard wizard, Enemy enemy) {
         this.wizard = wizard;
@@ -16,44 +17,36 @@ public class Fight implements StoryStep {
     }
 
     @Override
-    public void run() {
-        boolean isFinished = false;
-        while (!isFinished) {
-            System.out.println(YELLOW_BOLD + "\n-----------------------");
-            System.out.println(wizard.getName() + ": " + wizard.getHealth() + "/" + wizard.getMaxHealth() + " hp \n        - VS -");
+    public void run() throws InterruptedException {
+        while (!isFinished) { //Fight loop
+            //-- INFOS --
+            System.out.println("\n-----------------------" + YELLOW_BOLD);
+            System.out.println(wizard.getName() + ": " + wizard.getHealth() + "/" + wizard.getMaxHealth() + " hp" + RESET +"\n        - VS -");
             System.out.println(RED_BOLD + enemy.getName() + ": " + enemy.getHealth() + "/" + enemy.getMaxHealth() + " hp");
-            System.out.println(YELLOW_BOLD + "-----------------------\n" + RESET);
-            // Player's turn
-            System.out.println("** Your turn! **");
-            System.out.println(GREEN_BOLD + "1. Cast a spell\n2. Use a potion\n3. Quit the fight" + RESET);
+            System.out.println(RESET + "-----------------------\n");
+            Thread.sleep(1000);
+
+            //-- PLAYER's TURN --
+            System.out.println("~~ Your turn! ~~");
+            System.out.println(GREEN_BOLD + "1. Cast a spell\n2. Use a potion\n3. Run away" + RESET);
             String choice = scanner.nextLine();
-            scanner.nextLine();
             switch (choice) {
                 case "1" -> castSpell();
                 case "2" -> usePotion();
-                case "3" -> {
-                    System.out.println("You decide to flee the fight. But as you turn around to run away, the " + enemy.getName() + " catches you and hits you hard. You die instantly.");
-                    wizard.setHealth(0);
-                    System.out.println("You have died. Game over!");
-                    System.exit(0);
-                }
-                default -> System.out.println("You missed");
+                case "3" -> System.out.println("** You decide to flee the fight. But as you turn around to run away, the " + enemy.getName() + " catches you... **");
+                default -> System.out.println("You missed your choice...");
             }
+            Thread.sleep(2000);
+            ifDead(wizard, enemy); // Check if the fight is over
 
-            // Troll's turn
-            System.out.println("\n** " + enemy.getName() + " turn! **");
-            enemy.attack(wizard); //This method is in AbstractEnemy
-
-            // Check if the fight is over
-            if (wizard.getHealth() <= 0) {
-                System.out.println("You've been defeated by the " + enemy.getName() + ". Game over!");
-                System.exit(0);
-                isFinished = true;
-            } else if (enemy.getHealth() <= 0) {
-                System.out.println("You've defeated the " + enemy.getName() + "!");
-                wizard.setHealth(wizard.getMaxHealth());
-                upgrade(wizard);
-                isFinished = true;
+            //-- TROLL's TURN
+            if (!isFinished) {
+                System.out.println(RED_BOLD + "\n~~ " + enemy.getName() + " turn! ~~" + RESET);
+                Thread.sleep(2000);
+                enemy.attack(wizard); // This method is in AbstractEnemy
+                Thread.sleep(1000);
+                ifDead(wizard, enemy); // Check if the fight is over
+                Thread.sleep(1000);
             }
         }
     }
@@ -63,100 +56,109 @@ public class Fight implements StoryStep {
         return null;
     }
 
-    private void castSpell() {
-        // display spells and get user input
-        System.out.println("\n-- Spells --");
+    private void ifDead(Wizard wizard, AbstractEnemy enemy) {
+        if (wizard.getHealth() <= 0) {
+            System.out.println("** You have been defeated by the " + enemy.getName() + ". Game over! **");
+            System.exit(0);
+            isFinished = true;
+        } else if (enemy.getHealth() <= 0) {
+            System.out.println("** You have defeated the " + enemy.getName() + "! **");
+            upgrade(wizard);
+            isFinished = true;
+        }
+    }
+
+    private void castSpell() throws InterruptedException {
+        // List of spells
+        System.out.println("\n--- Spells ---");
         for (Spell spell : wizard.getKnownSpells()) {
             System.out.println(spell.getName());
         }
-        System.out.println("-------------");
-        String input = scanner.nextLine();
+        System.out.println("---------------");
 
-        // find the selected spell
+        // Choosing a spell
+        System.out.println(RED_BOLD + "Write the spell you want to use :" + RESET);
+        String input = scanner.nextLine();
         Spell selectedSpell = null;
         for (Spell spell : wizard.getKnownSpells()) {
             if (input.equalsIgnoreCase(spell.getName())) {
                 selectedSpell = spell;
+                checkingSpell(selectedSpell); //checking the way to kill the enemy
                 break;
             }
         }
-
-        // handle invalid input
         if (selectedSpell == null) {
-            System.out.println("Invalid spell. Please try again.");
-            castSpell();
-            return;
-        }
-
-        // display spell description and prompt for confirmation
-        System.out.println("\n" + selectedSpell.getDescription());
-        System.out.println("Do you want to cast " + selectedSpell.getName() + "? (Y/N)");
-        String confirm = scanner.nextLine();
-
-        // handle user confirmation
-        if (confirm.equalsIgnoreCase("Y")) {
-            int damage = selectedSpell.getPowerLevel();
-            System.out.println("You cast " + selectedSpell.getName() + " for " + damage + " damage.");
-            enemy.takeDamage(damage);
-        } else {
-            castSpell();
+            System.out.println("You missed the spell.");
         }
     }
 
     private void usePotion() {
-        // display potions and get user input
-        System.out.println("\n-- Potions --");
+        //List of potions
+        System.out.println("\n--- Potions ---");
         for (Potion potion : wizard.getPotions()) {
             System.out.println(potion.getName());
         }
-        System.out.println("-------------");
+        System.out.println("---------------");
+        //Choosing a potion
+        System.out.println(RED_BOLD + "\nWrite the potion you want to use :" + RESET);
         String input = scanner.nextLine();
-
-        // find the selected potion
-        Potion selectedPotion = null;
+        Potion selectedPotion = null; //Initialize selectedPotion to null
         for (Potion potion : wizard.getPotions()) {
             if (input.equalsIgnoreCase(potion.getName())) {
                 selectedPotion = potion;
-                break;
+                selectedPotion.usePotion(wizard);
+                wizard.setHealth(wizard.getHealth() + selectedPotion.getHealthPoints());
+                break; //break after setting selectedPotion
             }
         }
-
-        // handle invalid input
-        if (selectedPotion == null) {
-            System.out.println("Invalid potion. Please try again.");
-            usePotion();
-            return;
-        }
-
-        // display potion description and prompt for confirmation
-        System.out.println("\n" + selectedPotion.getDescription());
-        System.out.println("Do you want to use " + selectedPotion.getName() + "? (Y/N)");
-        String confirm = scanner.nextLine();
-
-        // handle user confirmation
-        if (confirm.equalsIgnoreCase("Y")) {
-            int healing = selectedPotion.getHealthPoints();
-            System.out.println("You use " + selectedPotion.getName() + " for " + healing + " healing.");
-            wizard.setHealth(wizard.getHealth() + healing);
-        } else {
-            usePotion();
+        if (selectedPotion == null) { //Check if a potion was selected
+            System.out.println("This potion does not exist.");
         }
     }
 
     public void upgrade(Wizard wizard) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Do you want to upgrade your maxHealth (type '1') or your power multiplier (type '2')?");
+        wizard.setHealth(wizard.getMaxHealth()); //Putting the Heath of the player to the max
+        System.out.println(RED_BOLD + "\nWhat do you want to upgrade?");
+        System.out.println(GREEN_BOLD + "1. Hp\n2. Damage\n3. Accuracy\n4. Botanist");
         int choice = scanner.nextInt();
-        if (choice == 1) {
-            int newMaxHealth = wizard.getMaxHealth() + 10;
-            wizard.setMaxHealth(newMaxHealth);
-            System.out.println("Your max health has been increased to " + newMaxHealth + "!");
-        } else if (choice == 2) {
-            int newPowerMultiplier = (int) (wizard.getPower() + 1);
-            wizard.setPower(newPowerMultiplier);
-            System.out.println("Your power multiplier has been increased to " + newPowerMultiplier + "!");
-        } else {
-            System.out.println("Invalid choice.");
+        switch (choice) {
+            case 1 -> {
+                int newMaxHealth = wizard.getMaxHealth() + 10;
+                wizard.setMaxHealth(newMaxHealth);
+                System.out.println(GREEN_BOLD + "** You have gained +10hp! **" + RESET);
+            }
+            case 2 -> {
+                int newPower = wizard.getPower() + 5;
+                wizard.setPower(newPower);
+                System.out.println(GREEN_BOLD + "** You have gained +5 of power! **" + RESET);
+            }
+            case 3 -> {
+                int newAccuracy = wizard.getAccuracy() + 5;
+                wizard.setAccuracy(newAccuracy);
+                System.out.println(GREEN_BOLD + "** You have gained +5 of accuracy!" + RESET);
+            }
+            case 4 -> {
+                int newBotanist = wizard.getBotanist() + 5;
+                wizard.setBotanist(newBotanist);
+                System.out.println(GREEN_BOLD + "** You have gained +5 of healing points!" + RESET);
+            }
+            default -> System.out.println("Don't miss an upgrade!");
+        }
+    }
+
+    public void checkingSpell(Spell spell) throws InterruptedException {
+        if (enemy.getName().equals("Troll") && spell.getName().equals("Wingardium Leviosa")) {
+            System.out.println("\n** You are casting Wingardium Leviosa on the Troll **");
+            Thread.sleep(2000);
+            System.out.println("** You make his mass to levitate... Just above the Troll's head... **");
+            Thread.sleep(3000);
+            System.out.println("** And BOOM! The mass falls right on the his head! **");
+            Thread.sleep(2000);
+            enemy.setHealth(0);
+        }
+        else {
+            spell.cast(wizard, enemy);
+            Thread.sleep(2000);
         }
     }
 }

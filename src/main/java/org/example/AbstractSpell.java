@@ -3,10 +3,10 @@ package org.example;
 public abstract class AbstractSpell {
 
     // Properties
-    final private String name;
-    private int powerLevel;
-    private int accuracy;
-    final private String description;
+    private final String name;
+    private final int powerLevel;
+    private final int accuracy;
+    private final String description;
 
     // Constructor
     public AbstractSpell(String name, int powerLevel, int accuracy, String description) {
@@ -25,21 +25,13 @@ public abstract class AbstractSpell {
         return powerLevel;
     }
 
-    public void setPowerLevel(int powerLevel) {
-        this.powerLevel = powerLevel;
-    }
-
     public int getAccuracy() {
         return accuracy;
-    }
-
-    public void setAccuracy(int accuracy) {
-        this.accuracy = accuracy;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public abstract void cast(Character target);
+    public abstract void cast(Wizard wizard, Character target);
 }
