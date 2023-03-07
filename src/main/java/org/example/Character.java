@@ -32,7 +32,9 @@ public abstract class Character {
         return health;
     }
 
-    public abstract void setHealth(int health);
+    public void setHealth(int health) {
+        this.health = health;
+    }
 
     public int getMaxHealth() {
         return maxHealth;

@@ -1,6 +1,7 @@
 package org.example;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Wizard extends Character {
     // Fun property
@@ -27,8 +28,7 @@ public class Wizard extends Character {
 
     // Methods
     public void defend() {
-        // Implement the behavior for defending against an attack
-        // This could include casting a spell or using a potion
+
     }
 
     // Getters and setters
@@ -70,13 +70,6 @@ public class Wizard extends Character {
         return 0;
     }
 
-
-    @Override
-    public void setHealth(int health) {
-        this.health = health;
-        System.out.println(GREEN_BOLD + "** Your health is now " + this.getHealth() + "! **" + RESET);
-    }
-
     //method to learn a spell
     public void learnSpell(Spell spell) {
         // Check if the spell is already known
@@ -102,7 +95,7 @@ public class Wizard extends Character {
     }
 
     //Wonderful method to check what the attributes of the player.
-    public void checkWizard(Wizard wizard) {
+    public void checkWizard(Wizard wizard) throws InterruptedException {
         System.out.println(YELLOW_BOLD + "\n----- You ----- " +
                 "\nNAME: " + wizard.getName() +
                 "\nHEALTH: " + wizard.getHealth() + "/" + wizard.getMaxHealth() + "hp" +
@@ -118,15 +111,12 @@ public class Wizard extends Character {
         for (Potion potion : potions) {
             System.out.println("* "+potion.getName()+" *");
         }
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        System.out.println(RESET);
+        Thread.sleep(6000);
     }
 
     //To apply the bonus of each house on the wizard
-    public void bonusHouses(Wizard wizard) {
+    public void bonusHouses(Wizard wizard) throws InterruptedException {
         switch (wizard.getHouse()) {
             case "Hufflepuff" -> {
                 // Increase the effectiveness of potions for Hufflepuff members
@@ -134,19 +124,19 @@ public class Wizard extends Character {
                     int newPower = potion.getHealthPoints() + 10;
                     potion.setHealthPoints(newPower);
                 }
-                System.out.println("\nHufflepuff bonus: Your potions will be stronger! ");
+                System.out.println("Hufflepuff bonus: Your potions will be stronger! ");
             }
             case "Slytherin" -> {
                 // Increase spell damage for Slytherin members
                 int newPower = (int) (wizard.getPower() + 10);
                 wizard.setPower(newPower);
-                System.out.println("\nSlytherin bonus:\nPOWER: " + wizard.getPower());
+                System.out.println("Slytherin bonus:\nPOWER: " + wizard.getPower());
             }
             case "Gryffindor" -> {
                 // Increase the wizard's health for Gryffindor members
                 int newHealth = wizard.getHealth() + 20;
                 wizard.setMaxHealth(newHealth);
-                System.out.println("\nGryffindor bonus:\nNEW HEALTH: " + wizard.getHealth() + "/" + wizard.getMaxHealth() + "hp");
+                System.out.println("Gryffindor bonus:\nNEW HEALTH: " + wizard.getHealth() + "/" + wizard.getMaxHealth() + "hp");
             }
             case "Ravenclaw" -> {
                 // Increase the accuracy of spells for Ravenclaw members
@@ -154,8 +144,20 @@ public class Wizard extends Character {
                     int newAccuracy = spell.getAccuracy() + 10;
                     spell.setAccuracy(newAccuracy);
                 }
-                System.out.println("\nRavenclaw bonus: Your spells will be more precise!");
+                System.out.println("Ravenclaw bonus: Your spells will be more precise!");
             }
         }
+        Thread.sleep(2000);
+    }
+
+    //A randomWizard to skip the intro
+    public void randomWizard(Wizard wizard) {
+        Random random = new Random();
+        Wand wandTest = new Wand(Core.values()[random.nextInt(Core.values().length)], 30);
+        String randomHouseName = org.example.House.houseNames.get(new Random().nextInt(org.example.House.houseNames.size()));
+        wizard.setName("Wizard");
+        wizard.setPet(Pet.values()[random.nextInt(Pet.values().length)]);
+        wizard.setWand(wandTest);
+        wizard.setHouse(randomHouseName);
     }
 }

@@ -13,9 +13,4 @@ public class Enemy extends AbstractEnemy {
         // Implement the behavior for a special attack
         // This could include casting a powerful spell or using a unique ability
     }
-
-    @Override
-    public void setHealth(int health) {
-        this.health = health;
-    }
 }

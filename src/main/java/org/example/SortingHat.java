@@ -23,29 +23,29 @@ public class SortingHat implements StoryStep {
     @Override
     public void run() throws InterruptedException {
         System.out.println(GREEN_BOLD + "\n----------------- SORTING HAT -----------------\n" + RESET);
-        Thread.sleep(4000);
-        System.out.print(BLUE_BOLD + "Sorting Hat - " + RESET + "Well, well, well... Let's see what student we have here...\n");
-        Thread.sleep(4000);
-        System.out.print(BLUE_BOLD + "Sorting Hat - " + RESET + wizard.getName() + "... ");
         Thread.sleep(2000);
-        System.out.print("what an intriguing name.\n");
+        System.out.print(BLUE_BOLD + "Sorting Hat - " + RESET + "Well, well, well... Let's see what student we have here...\n");
         Thread.sleep(3000);
+        System.out.print(BLUE_BOLD + "Sorting Hat - " + RESET + wizard.getName() + "... ");
+        Thread.sleep(1500);
+        System.out.print("what an intriguing name.\n");
+        Thread.sleep(2000);
         //Little condition if you were specifically lucky/unlucky during the Introduction
         if (wizard.getPet() == Pet.SNAKE && wizard.getWand().getCore() == Core.PHOENIX_FEATHER) {
             System.out.print(BLUE_BOLD + "Sorting Hat - " + RESET + "Oh, that's very very clear...\n");
-            Thread.sleep(5000);
+            Thread.sleep(4000);
             System.out.print(BLUE_BOLD + "Sorting Hat - " + RESET + "SLYTHERIN !!!\n");
             houseName = "SLYTHERIN";
         } else if (wizard.getPet() == Pet.RAT && wizard.getWand().getCore() == Core.PHOENIX_FEATHER) {
             System.out.print(BLUE_BOLD + "Sorting Hat - " + RESET + "Oh, that's very very clear...\n");
-            Thread.sleep(5000);
+            Thread.sleep(4000);
             System.out.print(BLUE_BOLD + "Sorting Hat - " + RESET + "GRYFFINDOR !!!\n");
             houseName = "GRYFFINDOR";
         } else {
             System.out.print(BLUE_BOLD + "Sorting Hat - " + RESET + "Hmmm... Difficult, very difficult...\n");
-            Thread.sleep(3000);
+            Thread.sleep(2000);
             System.out.print(BLUE_BOLD + "Sorting Hat - " + RESET + "Well, I will ask you some questions...\n");
-            Thread.sleep(3000);
+            Thread.sleep(2000);
             //Ingenious system that I created to define a house.
             //Question 1
             while (check == 0) {
@@ -88,7 +88,7 @@ public class SortingHat implements StoryStep {
                 }
             }
             System.out.print(BLUE_BOLD + "Sorting Hat - " + RESET + "I was sure about that.\n");
-            Thread.sleep(2000);
+            Thread.sleep(1000);
             System.out.print(BLUE_BOLD + "Sorting Hat - " + RESET + "Now:\n");
             Thread.sleep(1000);
             //Question 3
@@ -110,7 +110,7 @@ public class SortingHat implements StoryStep {
                 }
             }
             System.out.print(BLUE_BOLD + "Sorting Hat - " + RESET + "basic answer...\n");
-            Thread.sleep(2000);
+            Thread.sleep(1000);
             System.out.print(BLUE_BOLD + "Sorting Hat - " + RESET + "Anyway:\n");
             Thread.sleep(1000);
             //Question 4
@@ -245,24 +245,28 @@ public class SortingHat implements StoryStep {
                 houseName = "SLYTHERIN";
             }
             System.out.print(BLUE_BOLD + "Sorting Hat - " + RESET + "Well, I have it...\n");
-            Thread.sleep(4000);
+            Thread.sleep(2000);
             System.out.print(BLUE_BOLD + "Sorting Hat - " + RESET + "I would say");
-            Thread.sleep(2000);
+            Thread.sleep(1000);
             System.out.print(".");
-            Thread.sleep(2000);
+            Thread.sleep(1000);
             System.out.print(".");
-            Thread.sleep(2000);
+            Thread.sleep(1000);
             System.out.print(". ");
             Thread.sleep(2000);
             System.out.print(houseName + "!!!\n");
         }
-        Thread.sleep(3000);
+        Thread.sleep(2000);
         System.out.println(GREEN_BOLD + "** You are now a " + houseName + " student! **\n" + RESET);
         Thread.sleep(3000);
     }
 
-    //Method to get the House
-    public String getHouse() {
+    @Override
+    public Wizard getWizard() {
+        return null;
+    }
+
+    public String getHouse() { //Method to get the House
         return this.houseName;
     }
 }

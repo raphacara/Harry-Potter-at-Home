@@ -12,7 +12,8 @@ public abstract class AbstractEnemy extends Character {
     public float attack(Character target) {
         // Basic attack implementation
         int damage = power * (int) (Math.random() * 3) + 1; // random damage between 1 and 3 * power
-        target.takeDamage(damage);
+        System.out.println("You take " + damage + "damage!");
+        target.takeDamage(damage); //This method is in Character
         return damage;
     }
 

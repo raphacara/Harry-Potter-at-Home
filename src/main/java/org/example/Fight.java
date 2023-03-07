@@ -1,88 +1,66 @@
 package org.example;
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Fight implements StoryStep {
-
+    public static final String RESET = "\u001B[0m"; //fun
+    public static final String RED_BOLD = "\033[1;31m"; //fun
+    public static final String GREEN_BOLD = "\033[1;32m"; //fun
+    public static final String YELLOW_BOLD = "\033[1;33m"; //fun
     private final Wizard wizard;
-    private Enemy troll;
-    private boolean isFinished;
-    private final int playerMaxHealth;
-    private float playerHealth;
-    private final int trollHealth;
-    private final Scanner scanner;
+    private Enemy enemy;
+    private final Scanner scanner = new Scanner(System.in);
 
-    public Fight(Wizard wizard, Enemy troll) {
+    public Fight(Wizard wizard, Enemy enemy) {
         this.wizard = wizard;
-        this.troll = troll;
-        this.isFinished = false;
-        this.playerMaxHealth = wizard.getMaxHealth();
-        this.playerHealth = wizard.getHealth();
-        int trollMaxHealth = troll.getMaxHealth();
-        this.trollHealth = troll.getHealth();
-        float playerPower = wizard.getPower();
-        List<Spell> playerSpells = new ArrayList<>(wizard.getKnownSpells());
-        List<Potion> playerPotions = new ArrayList<>(wizard.getPotions());
-        this.scanner = new Scanner(System.in);
+        this.enemy = enemy;
     }
 
     @Override
     public void run() {
-        System.out.println("You find yourself in a dark and damp toilet, next to the dungeon. Suddenly, you hear loud footsteps approaching. As you turn around, you see a huge troll blocking the exit. You have no choice but to fight for your life!");
-        System.out.println("Troll: Raaargh!");
-        System.out.println("Your current health: " + playerHealth);
-        System.out.println("Troll's current health: " + trollHealth);
-        System.out.println();
-
+        boolean isFinished = false;
         while (!isFinished) {
+            System.out.println(YELLOW_BOLD + "\n-----------------------");
+            System.out.println(wizard.getName() + ": " + wizard.getHealth() + "/" + wizard.getMaxHealth() + " hp \n        - VS -");
+            System.out.println(RED_BOLD + enemy.getName() + ": " + enemy.getHealth() + "/" + enemy.getMaxHealth() + " hp");
+            System.out.println(YELLOW_BOLD + "-----------------------\n" + RESET);
             // Player's turn
-            System.out.println("It's your turn!");
-            System.out.println("Choose an action:");
-            System.out.println("1. Cast a spell");
-            System.out.println("2. Use a potion");
-            System.out.println("3. Quit the fight");
-            int choice = scanner.nextInt();
+            System.out.println("** Your turn! **");
+            System.out.println(GREEN_BOLD + "1. Cast a spell\n2. Use a potion\n3. Quit the fight" + RESET);
+            String choice = scanner.nextLine();
             scanner.nextLine();
-
             switch (choice) {
-                case 1:
-                    castSpell();
-                    break;
-                case 2:
-                    usePotion();
-                    break;
-                case 3:
-                    System.out.println("You decide to flee the fight. But as you turn around to run away, the troll catches you and hits you hard. You die instantly.");
-                    isFinished = true;
+                case "1" -> castSpell();
+                case "2" -> usePotion();
+                case "3" -> {
+                    System.out.println("You decide to flee the fight. But as you turn around to run away, the " + enemy.getName() + " catches you and hits you hard. You die instantly.");
                     wizard.setHealth(0);
-                    break;
-                default:
-                    System.out.println("Invalid choice. Please choose again.");
+                    System.out.println("You have died. Game over!");
+                    System.exit(0);
+                }
+                default -> System.out.println("You missed");
             }
 
-            if (!isFinished) {
-                // Troll's turn
-                float trollDamage = troll.attack(wizard);
-                playerHealth -= trollDamage;
-                System.out.println("The troll attacks you with all its might and deals " + trollDamage + " damage.");
-                System.out.println("Your current health: " + playerHealth);
-                System.out.println("Troll's current health: " + trollHealth);
-                System.out.println();
+            // Troll's turn
+            System.out.println("\n** " + enemy.getName() + " turn! **");
+            enemy.attack(wizard); //This method is in AbstractEnemy
 
-                // Check if the fight is over
-                if (playerHealth <= 0) {
-                    System.out.println("You've been defeated by the troll. Game over!");
-                    isFinished = true;
-                } else if (trollHealth <= 0) {
-                    System.out.println("You've defeated the troll! Congratulations!");
-                    wizard.setHealth(playerMaxHealth);
-                    upgrade(wizard);
-                    isFinished = true;
-                }
+            // Check if the fight is over
+            if (wizard.getHealth() <= 0) {
+                System.out.println("You've been defeated by the " + enemy.getName() + ". Game over!");
+                System.exit(0);
+                isFinished = true;
+            } else if (enemy.getHealth() <= 0) {
+                System.out.println("You've defeated the " + enemy.getName() + "!");
+                wizard.setHealth(wizard.getMaxHealth());
+                upgrade(wizard);
+                isFinished = true;
             }
         }
+    }
+
+    @Override
+    public Wizard getWizard() {
+        return null;
     }
 
     private void castSpell() {
@@ -119,7 +97,7 @@ public class Fight implements StoryStep {
         if (confirm.equalsIgnoreCase("Y")) {
             int damage = selectedSpell.getPowerLevel();
             System.out.println("You cast " + selectedSpell.getName() + " for " + damage + " damage.");
-            troll.setHealth(trollHealth - damage);
+            enemy.takeDamage(damage);
         } else {
             castSpell();
         }
@@ -162,38 +140,6 @@ public class Fight implements StoryStep {
             wizard.setHealth(wizard.getHealth() + healing);
         } else {
             usePotion();
-        }
-    }
-
-    private void fight() {
-        System.out.println("\n-- Fight --");
-
-        // create a new Troll instance as the boss enemy
-        troll = new Enemy("Troll", 100, 20);
-
-        // fight loop
-        while (true) {
-            // display wizard and troll health
-            System.out.println("\n" + wizard.getName() + ": " + wizard.getHealth() + "/" + wizard.getMaxHealth());
-            System.out.println(troll.getName() + ": " + troll.getHealth());
-
-            // prompt for player action
-            System.out.println("\nWhat do you want to do?");
-            System.out.println("1. Cast a spell");
-            System.out.println("2. Use a potion");
-            String action = scanner.nextLine();
-
-            // handle player action
-            if (action.equals("1")) {
-                castSpell();
-            } else if (action.equals("2")) {
-                usePotion();
-            } else {
-                System.out.println("Invalid action. Please try again.");
-            }
-
-            // check if troll is defeated
-
         }
     }
 

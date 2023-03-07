@@ -2,46 +2,27 @@ package org.example;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
-import java.util.Random; //test
+import java.util.Scanner;
 
 public class Main {
+    private static Wizard wizard = new Wizard(); //The player
 
     public static void main(String[] args) {
-        //create music
-        BackgroundMusic music = new BackgroundMusic();
+        BackgroundMusic music = new BackgroundMusic(); //create music
         try {
             // ----- MUSIC -----
             music.play();
 
-            //instance of wizard
-            Wizard wizard = new Wizard();
-
             // 1. ----- INTRODUCTION -----
             Introduction intro = new Introduction(wizard);
-            //intro.run(); //You can hide this Step to skip it (you will have to use the random test wizard)
-
-            //getting players infos
-            wizard = Introduction.getWizard(); //Updating the wizard
-            wizard.checkWizard(wizard); //checking
+            play(intro, "Introduction");
             wizard.bonusHouses(wizard); //adding houses bonuses
 
-                //Intern tests (use it to test the story by creating a random wizard)
-                Wizard test = new Wizard();
-                if (wizard.getHouse() == null) {
-                    Random random = new Random();
-                    Wand wandTest = new Wand(Core.values()[random.nextInt(Core.values().length)], 30);
-                    String randomHouseName = org.example.House.houseNames.get(new Random().nextInt(org.example.House.houseNames.size()));
-                    test.setName("Raphaël");
-                        test.setPet(Pet.values()[random.nextInt(Pet.values().length)]);
-                        test.setWand(wandTest);
-                        test.setHouse(randomHouseName);
-                    }
-
             // 2. ----- CHAPTER 1 -----
-            Chapter1 chapter1 = new Chapter1(test); //Change the (wizard) by (test) if you skipped the intro
-            chapter1.run();
-            wizard = Chapter1.getWizard(); //Updating the wizard (don't need to change wizard for test if you skipped the intro)
-            wizard.checkWizard(wizard); //checking
+            Chapter1 chapter1 = new Chapter1(wizard); //Change the (wizard) by (test) if you skipped the intro
+            play(chapter1, "Chapter 1");
+
+            // 3. ----- CHAPTER 2 -----
 
             //Stop the music
             } catch (InterruptedException | UnsupportedAudioFileException | IOException | LineUnavailableException e) {
@@ -49,5 +30,31 @@ public class Main {
             } finally {
                 music.stop();
         }
+    }
+
+    //I created this method because my game is a bit long, so it will ask to skip steps of the game.
+    public static void play(StoryStep step, String name) throws InterruptedException {
+        System.out.println("\n=======================================");
+        System.out.println("Do you want to play the " + name + "?");
+        System.out.println("1. PLAY\n2. SKIP");
+        while (true) {
+            Scanner scanner = new Scanner(System.in);
+            String input = scanner.nextLine();
+            if (input.equals("1")) { //Play the step
+                System.out.println("=======================================\n");
+                step.run(); //run the step of history
+                wizard = step.getWizard(); //Updating the wizard
+                break;
+            } else if (input.equals("2")) { //skip the step
+                System.out.println("=======================================\n");
+                if (wizard.getHouse() == null) { //= if you skipped the intro
+                    wizard.randomWizard(wizard); //create a random wizard
+                }
+                break;
+            } else {
+                System.out.println("You have to enter a number.");
+            }
+        }
+        wizard.checkWizard(wizard); //checking the wizard infos
     }
 }
