@@ -33,5 +33,5 @@ public abstract class AbstractSpell {
         return description;
     }
 
-    public abstract void cast(Wizard wizard, Character target);
+    public abstract void cast(Wizard wizard, AbstractEnemy target);
 }

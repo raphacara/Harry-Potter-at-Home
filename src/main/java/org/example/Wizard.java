@@ -101,6 +101,7 @@ public class Wizard extends Character {
 
     //Wonderful method to check what the attributes of the player.
     public void checkWizard(Wizard wizard) throws InterruptedException {
+        Thread.sleep(1000);
         System.out.println(YELLOW_BOLD + "\n----- You ----- " +
                 "\nNAME: " + wizard.getName() +
                 "\nHEALTH: " + wizard.getHealth() + "/" + wizard.getMaxHealth() + "hp" +
@@ -119,11 +120,12 @@ public class Wizard extends Character {
         System.out.println("---------------\nPOWER bonus: " + wizard.getPower() +
                 "\nACCURACY bonus: " + wizard.getAccuracy() +
                 "\nBOTANIST bonus: " + wizard.getBotanist() + "\n" + RESET);
-        Thread.sleep(5000);
+        Thread.sleep(4000);
     }
 
     //To apply the bonus of each house on the wizard (huge bonus)
     public void bonusHouses(Wizard wizard) {
+        System.out.println("test");
         switch (wizard.getHouse()) {
             case "Hufflepuff" -> {
                 // Increase the effectiveness of potions for Hufflepuff members

@@ -98,15 +98,16 @@ public class Introduction implements StoryStep {
         }
         Thread.sleep(500);
         System.out.println(GREEN_BOLD + "** You now have a " + pet + "! **");
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         wizard.setPet(pet); //setting the Pet to the wizard
         wizard.bonusPet(wizard); //Setting the BONUS of the PET's wizard
+        Thread.sleep(2000);
 
         //Choosing a wand
         System.out.println(BLUE_BOLD + "Hagrid - " + RESET + "Perfect! The last thing you need is a magic wand.");
         Thread.sleep(2000);
         System.out.println(BLUE_BOLD + "Hagrid - " + RESET + "Let's meet Ollivander, He's the best when it comes to wands ;)\n");
-        Thread.sleep(2000);
+        Thread.sleep(3000);
         System.out.println(BLUE_BOLD + "Ollivander - " + RESET + "Hello " + name + "! Let's find you the perfect wand. Let me see...");
         Thread.sleep(2000);
 
@@ -232,12 +233,13 @@ public class Introduction implements StoryStep {
         System.out.println(BLUE_BOLD + "Ollivander - " + RESET + "Awesome, I knew it!");
         Thread.sleep(2000);
         System.out.println(GREEN_BOLD + "** You got a " + size + "cm Wand, with a " + core + " core. **" + RESET);
+        Thread.sleep(1000);
         Wand wandWizard = new Wand(core, size); //creating the wizard's wand
         wizard.setWand(wandWizard); //setting the wand to the wizard
         wizard.bonusWand(wizard); //setting the BONUS of the core's wand
+        Thread.sleep(2000);
 
         //End of the Introduction
-        Thread.sleep(2000);
         System.out.println("** You are now ready to go to Hogwarts, so you go to the platform 9 3/4 at King's Cross Station. **");
         Thread.sleep(4000);
         System.out.println("** And you take the Hogwarts™ Express's train right to Hogwarts! **");
@@ -257,14 +259,12 @@ public class Introduction implements StoryStep {
         System.out.println("** You follow the other students to a Great Hall, with a Sorting Hat. **");
         Thread.sleep(2000);
         System.out.println("** Now it is your turn to pass the Sorting Hat test... Good Luck! **");
-        Thread.sleep(2000);
+        Thread.sleep(3000);
 
         //Sorting Hat test
         SortingHat sort = new SortingHat(wizard); //Instance of sorting hat
         sort.run(); //Calling Class SortingHat for the sorting hat test
-        wizard.setHouse(sort.getHouse()); //setting the house of the wizard
-        wizard.bonusHouses(wizard); //setting the BONUS considering the House of the wizard
-        Thread.sleep(2000);
+        wizard = sort.getWizard(); //Get the Wizard's infos
     }
 
     //Ultra powerful method to return all the wizard infos :)

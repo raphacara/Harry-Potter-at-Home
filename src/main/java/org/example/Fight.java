@@ -43,8 +43,13 @@ public class Fight implements StoryStep {
             if (!isFinished) {
                 System.out.println(RED_BOLD + "\n~~ " + enemy.getName() + " turn! ~~" + RESET);
                 Thread.sleep(2000);
-                enemy.attack(wizard); // This method is in AbstractEnemy
-                Thread.sleep(1000);
+                if (enemy.isAttacking()) {
+                    enemy.attack(wizard); // This method is in AbstractEnemy
+                    Thread.sleep(1000);
+                } else {
+                    enemy.setIsAttacking(true);
+                    System.out.println("You blocked the attack!");
+                }
                 ifDead(wizard, enemy); // Check if the fight is over
                 Thread.sleep(1000);
             }

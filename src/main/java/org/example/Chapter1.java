@@ -15,10 +15,10 @@ public class Chapter1  implements StoryStep {
     private final boolean[] classesTaken = new boolean[6]; //changing to true when the player take a lesson
 
     // Create a new instance of Sells and Potions
-    Spell wingardiumLeviosa = new Spell("Wingardium Leviosa", 0, 80, "** It makes objects to levitate, but it does not work on the enemy. **");
-    Spell lumos = new Spell("Lumos", 0, 100, "** It makes light! **");
-    Spell protego = new Spell("Protego", 0, 75, "** It protect you. **");
-    Potion wiggenweld = new Potion("Wiggenweld", 40, "** A potion that instantly heals by restoring some health. **");
+    Spell wingardiumLeviosa = new Spell("Wingardium Leviosa", 0, 80, "It makes objects to levitate, but it does not work on the enemy.");
+    Spell lumos = new Spell("Lumos", 0, 100, "It makes light!");
+    Spell protego = new Spell("Protego", 0, 75, "It will protect you.");
+    Potion wiggenweld = new Potion("Wiggenweld", 40, "A potion that instantly heals by restoring some health.");
 
     //Constructor
     public Chapter1(Wizard player) {
@@ -35,8 +35,6 @@ public class Chapter1  implements StoryStep {
         System.out.println("** You are in your first year at Hogwarts. **");
         Thread.sleep(2000);
         System.out.println("** Your school is a huge castle full of magic. **");
-        Thread.sleep(2000);
-        System.out.println("** There are ghosts and secret passages hidden everywhere. **");
         Thread.sleep(2000);
         System.out.println("** But you can not do what you want, you are a student and you have class today. **");
         Thread.sleep(3000);
@@ -62,7 +60,7 @@ public class Chapter1  implements StoryStep {
         Thread.sleep(5000);
         System.out.println(BLUE_BOLD + "Dumbledore - " + RESET + "You will not be able to participate in all classes.");
         Thread.sleep(2000);
-        System.out.println(BLUE_BOLD + "Dumbledore - " + RESET + "So choose well. I recommend Potions class...");
+        System.out.println(BLUE_BOLD + "Dumbledore - " + RESET + "So choose well...");
         Thread.sleep(2000);
 
         //-- 1st lesson --
@@ -95,9 +93,9 @@ public class Chapter1  implements StoryStep {
             }
         }
         wizard.learnSpell(wingardiumLeviosa);
-        System.out.println(BLUE_BOLD + "\nHagrid - " + RESET + "Well done " + wizard.getName() + "! Next time you will be able to write it with one 'a'.");
+        System.out.println(BLUE_BOLD + "\nHagrid - " + RESET + "Well done " + wizard.getName() + "!");
         Thread.sleep(2000);
-        System.out.println(BLUE_BOLD + "Hagrid - " + RESET + "Even if it deals no damage, this spell can even be useful in fight sometimes...");
+        System.out.println(BLUE_BOLD + "\nHagrid - " + RESET + "Next time you will be able to write it with one 'a'.");
         Thread.sleep(3000);
         System.out.println(BLUE_BOLD + "Hagrid - " + RESET + "Go back to the castle for your next class.\n");
         Thread.sleep(2000);
@@ -107,10 +105,11 @@ public class Chapter1  implements StoryStep {
         Thread.sleep(3000);
         System.out.println(BLUE_BOLD + "Dumbledore - " + RESET + "Which class are you going to choose this time?");
         chooseClass();
-
-        //-- Troll battle --
+        Thread.sleep(2000);
         System.out.println("\n** Just after the lesson, you want to go to the toilet. **");
         Thread.sleep(2000);
+
+        //-- Troll battle --
         System.out.println("** You find yourself in a dark and damp toilet, next to the dungeon. **");
         Thread.sleep(3000);
         System.out.println("** Suddenly, you hear loud footsteps approaching. **");
@@ -132,7 +131,6 @@ public class Chapter1  implements StoryStep {
         Thread.sleep(2000);
 
         // End
-        Thread.sleep(2000);
         System.out.println("\n** This is the end of the year, so all the students meet in the Great Hall. **\n");
         Thread.sleep(3000);
         System.out.println(BLUE_BOLD + "Dumbledore - " + RESET + "It is time to say which house was the best this year.");
@@ -280,11 +278,7 @@ public class Chapter1  implements StoryStep {
         Thread.sleep(3000);
         System.out.println(BLUE_BOLD + "Defense Teacher - " + RESET + "Welcome to the Defense Against the Dark Arts class!");
         Thread.sleep(3000);
-        System.out.println(BLUE_BOLD + "Defense Teacher - " + RESET + "It is your first lesson in this class.");
-        Thread.sleep(2000);
-        System.out.println(BLUE_BOLD + "Defense Teacher - " + RESET + "So we will learn one of the most important and useful spell.");
-        Thread.sleep(3000);
-        System.out.println(BLUE_BOLD + "Defense Teacher - " + RESET + "How to defend yourself!");
+        System.out.println(BLUE_BOLD + "Defense Teacher - " + RESET + "Today we will learn one of the most important and useful spell.");
         Thread.sleep(2000);
         System.out.println(BLUE_BOLD + "Defense Teacher - " + RESET + "A spell that protects you for a moment: Protego");
         Thread.sleep(2000);
@@ -359,19 +353,19 @@ public class Chapter1  implements StoryStep {
         System.out.println(BLUE_BOLD + "History Teacher - " + RESET + "Today, we will be studying the story of the four founders of Hogwarts School of Witchcraft and Wizardry.");
         Thread.sleep(4000);
         System.out.println(BLUE_BOLD + "History Teacher - " + RESET + "In the 10th century, four powerful wizards : Godric Gryffindor, Helga Hufflepuff, Rowena Ravenclaw, and Salazar Slytherin.");
-        Thread.sleep(4000);
+        Thread.sleep(5000);
         System.out.println(BLUE_BOLD + "History Teacher - " + RESET + "They came together to create a school where young witches and wizards could learn and hone their magical skills.");
-        Thread.sleep(4000);
+        Thread.sleep(5000);
         System.out.println(BLUE_BOLD + "History Teacher - " + RESET + "Each of the founders valued different qualities in their students, and they created separate houses within the school to reflect these values.");
-        Thread.sleep(4000);
+        Thread.sleep(5000);
         System.out.println(BLUE_BOLD + "History Teacher - " + RESET + "Gryffindor valued bravery and chivalry, Hufflepuff valued hard work and loyalty, Ravenclaw valued intelligence and wit, and Slytherin valued ambition and cunning.");
-        Thread.sleep(4000);
+        Thread.sleep(5000);
         System.out.println(BLUE_BOLD + "History Teacher - " + RESET + "Over the centuries, Hogwarts has grown and evolved, but the four houses founded by the school's founders have remained at the heart of its culture and tradition.");
-        Thread.sleep(4000);
+        Thread.sleep(5000);
         System.out.println(BLUE_BOLD + "History Teacher - " + RESET + "In this class, we will explore the story of the four founders and the legacy they left behind, as well as the role that Hogwarts has played in shaping the course of magical history.\n");
-        Thread.sleep(4000);
+        Thread.sleep(5000);
         System.out.println("**    Zzz... **");
-        Thread.sleep(4000);
+        Thread.sleep(5000);
         System.out.print(RED_BOLD + "Press 1 to wake up :\n" + RESET);
         while (true) {
             input[6] = scanner.nextLine();
@@ -401,9 +395,7 @@ public class Chapter1  implements StoryStep {
         Thread.sleep(3000);
         System.out.println(BLUE_BOLD + "Professor Snape - " + RESET + "This will probably be your most important class of the year.");
         Thread.sleep(3000);
-        System.out.println(BLUE_BOLD + "Professor Snape - " + RESET + "I don't know how you can survive without potions...");
-        Thread.sleep(3000);
-        System.out.println(BLUE_BOLD + "Professor Snape - " + RESET + "Well, today we will learn a potion that can heal you a bit.");
+        System.out.println(BLUE_BOLD + "Professor Snape - " + RESET + "Well, today we will learn a potion that can heal you.");
         Thread.sleep(3000);
         System.out.println(BLUE_BOLD + "Professor Snape - " + RESET + "This potion is called: Wiggenweld");
         Thread.sleep(2000);
@@ -425,7 +417,7 @@ public class Chapter1  implements StoryStep {
         }
         wizard.learnPotion(wiggenweld);
         Thread.sleep(2000);
-        System.out.println(BLUE_BOLD + "Professor Snape - " + RESET + "Not bad.");
+        System.out.println(BLUE_BOLD + "\nProfessor Snape - " + RESET + "Not bad.");
         Thread.sleep(2000);
         System.out.println(BLUE_BOLD + "Professor Snape - " + RESET + "This potion will be useful later, believe me.");
         Thread.sleep(2000);

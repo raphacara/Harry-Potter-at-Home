@@ -7,9 +7,8 @@ public class SortingHat implements StoryStep {
     private static final String BLUE_BOLD = "\033[1;34m"; //fun
     private static final String GREEN_BOLD = "\033[1;32m"; //fun
     private final Wizard wizard; //the player
-    private String houseName; //for the House of the player (that's the only point of the Sorting Hat)
     private int g, h, r, s = 0; //initials of the 4 houses for the system (you will see later in this class)
-    private static final String[] input = {"1","2","3","4","5","6","7","8"}; //the player inputs
+    private static final String[] input = {"1", "2", "3", "4", "5", "6", "7", "8"}; //the player inputs
     private final Scanner scanner = new Scanner(System.in); //to scan the inputs
     private int check = 0; //checking the loops
 
@@ -25,23 +24,24 @@ public class SortingHat implements StoryStep {
         System.out.print(BLUE_BOLD + "Sorting Hat - " + RESET + "Well, well, well... Let's see what student we have here...\n");
         Thread.sleep(3000);
         System.out.print(BLUE_BOLD + "Sorting Hat - " + RESET + wizard.getName() + "... ");
-        Thread.sleep(1500);
+        Thread.sleep(2000);
         System.out.print("what an intriguing name.\n");
         Thread.sleep(2000);
         //Little condition if you were specifically lucky/unlucky during the Introduction
+        String houseName;
         if (wizard.getPet() == Pet.SNAKE && wizard.getWand().getCore() == Core.PHOENIX_FEATHER) {
             System.out.print(BLUE_BOLD + "Sorting Hat - " + RESET + "Oh, that's very very clear...\n");
             Thread.sleep(4000);
             System.out.print(BLUE_BOLD + "Sorting Hat - " + RESET + "SLYTHERIN !!!\n");
-            houseName = "SLYTHERIN";
+            houseName = "Slytherin";
         } else if (wizard.getPet() == Pet.RAT && wizard.getWand().getCore() == Core.PHOENIX_FEATHER) {
             System.out.print(BLUE_BOLD + "Sorting Hat - " + RESET + "Oh, that's very very clear...\n");
             Thread.sleep(4000);
             System.out.print(BLUE_BOLD + "Sorting Hat - " + RESET + "GRYFFINDOR !!!\n");
-            houseName = "GRYFFINDOR";
+            houseName = "Gryffindor";
         } else {
             System.out.print(BLUE_BOLD + "Sorting Hat - " + RESET + "Hmmm... Difficult, very difficult...\n");
-            Thread.sleep(2000);
+            Thread.sleep(3000);
             System.out.print(BLUE_BOLD + "Sorting Hat - " + RESET + "Well, I will ask you some questions...\n");
             Thread.sleep(2000);
             //Ingenious system that I created to define a house.
@@ -152,16 +152,16 @@ public class SortingHat implements StoryStep {
                 }
             }
             //Bonuses
-            if (wizard.getPet() == Pet.SNAKE||wizard.getWand().getCore() == Core.PHOENIX_FEATHER) {
+            if (wizard.getPet() == Pet.SNAKE || wizard.getWand().getCore() == Core.PHOENIX_FEATHER) {
                 s += 1;
             }
-            if (wizard.getPet() == Pet.RAT||wizard.getWand().getCore() == Core.PHOENIX_FEATHER) {
+            if (wizard.getPet() == Pet.RAT || wizard.getWand().getCore() == Core.PHOENIX_FEATHER) {
                 g += 1;
             }
-            if (wizard.getPet() == Pet.OWL && wizard.getWand().getCore() == Core.DRAGON_HEARTSTRING ) {
+            if (wizard.getPet() == Pet.OWL && wizard.getWand().getCore() == Core.DRAGON_HEARTSTRING) {
                 r += 1;
             }
-            if (wizard.getPet() == Pet.TOAD && wizard.getWand().getCore() == Core.UNICORN_HAIR ) {
+            if (wizard.getPet() == Pet.TOAD && wizard.getWand().getCore() == Core.UNICORN_HAIR) {
                 h += 1;
             }
             // checking the max
@@ -234,13 +234,13 @@ public class SortingHat implements StoryStep {
                 }
             }
             if (max == g) {
-                houseName = "GRYFFINDOR";
+                houseName = "Gryffindor";
             } else if (max == h) {
-                houseName = "HUFFLEPUFF";
+                houseName = "Hufflepuff";
             } else if (max == r) {
-                houseName = "RAVENCLAW";
+                houseName = "Ravenclaw";
             } else {
-                houseName = "SLYTHERIN";
+                houseName = "Slytherin";
             }
             System.out.print(BLUE_BOLD + "Sorting Hat - " + RESET + "Well, I have it...\n");
             Thread.sleep(2000);
@@ -256,15 +256,14 @@ public class SortingHat implements StoryStep {
         }
         Thread.sleep(2000);
         System.out.println(GREEN_BOLD + "** You are now a " + houseName + " student! **" + RESET);
+        wizard.setHouse(houseName);
+        Thread.sleep(1000);
+        wizard.bonusHouses(wizard); //setting the BONUS considering the House of the wizard
         Thread.sleep(2000);
     }
 
     @Override
     public Wizard getWizard() {
         return wizard;
-    }
-
-    public String getHouse() { //Method to get the House
-        return this.houseName;
     }
 }

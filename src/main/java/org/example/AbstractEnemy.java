@@ -1,10 +1,23 @@
 package org.example;
 
 public abstract class AbstractEnemy extends Character {
+    private boolean isAttacking = true; //to check if an enemy is attacking
 
     // Constructor
     public AbstractEnemy(String name, int health, int power) {
         super(name, health, power);
+    }
+
+    public void setIsAttacking(boolean isAttacking) { //setter
+        this.isAttacking = isAttacking;
+    }
+
+    public boolean isAttacking() { //getter
+        return isAttacking;
+    }
+
+    public void stopAttack() {
+        isAttacking = false;
     }
 
     // Attack methods
@@ -14,17 +27,20 @@ public abstract class AbstractEnemy extends Character {
         int randomNum = (int)(Math.random() * 10); // Generate a random number between 0 and 10
         int damage;
         if (randomNum == 0) {
-            damage = 0; // Missed
-            System.out.println("You dodge the attack!");
+            System.out.println("You dodge the attack!"); // Missed
+            damage = 0; // 0% damage
         } else if (randomNum == 1) {
-            damage = this.getPower() / 2; // Weak hit
-            System.out.println("Weak hit.");
-        } else if (randomNum == 8 || randomNum == 9) {
-            damage = this.getPower() * 2; // Critical hit
-            System.out.println("Critical hit.");
+            System.out.println("Weak hit."); // Weak hit
+            damage = this.getPower() / 2; // 50% damage
+        } else if (randomNum == 8) {
+            System.out.println("Critical hit."); // Critical hit
+            damage = this.getPower() + this.getPower() * 2 ; // 150% damage
+        }else if (randomNum == 9) {
+            System.out.println("Ultra-Critical hit."); // Ultra-Critical hit
+            damage = this.getPower() * 2; // 200% damage
         } else {
-            damage = this.getPower(); // Normal hit
-            System.out.println("The " + this.getName() + " attack you.");
+            System.out.println("The " + this.getName() + " attack you."); // Normal hit
+            damage = this.getPower(); // 100% damage
         }
         Thread.sleep(2000);
         System.out.println("You take " + damage + " damage!");
