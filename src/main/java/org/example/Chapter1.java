@@ -14,12 +14,6 @@ public class Chapter1  implements StoryStep {
     private boolean check = false; //checking the loops
     private final boolean[] classesTaken = new boolean[6]; //changing to true when the player take a lesson
 
-    // Create a new instance of Sells and Potions
-    Spell wingardiumLeviosa = new Spell("Wingardium Leviosa", 0, 80, "It makes objects to levitate, but it does not work on the enemy.");
-    Spell lumos = new Spell("Lumos", 0, 100, "It makes light!");
-    Spell protego = new Spell("Protego", 0, 75, "It will protect you.");
-    Potion wiggenweld = new Potion("Wiggenweld", 40, "A potion that instantly heals by restoring some health.");
-
     //Constructor
     public Chapter1(Wizard player) {
         wizard = player;
@@ -92,7 +86,7 @@ public class Chapter1  implements StoryStep {
                 System.out.println(BLUE_BOLD + "Hagrid - " + RESET + "Haha! This one is tricky. Try: Wingardium Leviosaaa");
             }
         }
-        wizard.learnSpell(wingardiumLeviosa);
+        wizard.learnSpell(Spell.wingardiumLeviosa);
         System.out.println(BLUE_BOLD + "\nHagrid - " + RESET + "Well done " + wizard.getName() + "!");
         Thread.sleep(2000);
         System.out.println(BLUE_BOLD + "\nHagrid - " + RESET + "Next time you will be able to write it with one 'a'.");
@@ -258,7 +252,7 @@ public class Chapter1  implements StoryStep {
                 System.out.println(BLUE_BOLD + "Charms Teacher - " + RESET + "It is not exactly that, write: Lumos");
             }
         }
-        wizard.learnSpell(lumos);
+        wizard.learnSpell(Spell.lumos);
         Thread.sleep(2000);
         System.out.println(BLUE_BOLD + "\nCharms Teacher - " + RESET + "Wonderful!");
         Thread.sleep(2000);
@@ -293,7 +287,7 @@ public class Chapter1  implements StoryStep {
                 System.out.println(BLUE_BOLD + "Defense Teacher - " + RESET + "It is not so easy, i know.");
             }
         }
-        wizard.learnSpell(protego);
+        wizard.learnSpell(Spell.protego);
         Thread.sleep(2000);
         System.out.println(BLUE_BOLD + "\nDefense Teacher - " + RESET + "Fabulous");
         Thread.sleep(2000);
@@ -415,7 +409,7 @@ public class Chapter1  implements StoryStep {
                         System.out.println(BLUE_BOLD + "Professor Snape - " + RESET + "That is not correct, try again.");
             }
         }
-        wizard.learnPotion(wiggenweld);
+        wizard.learnPotion(Potion.wiggenweld);
         Thread.sleep(2000);
         System.out.println(BLUE_BOLD + "\nProfessor Snape - " + RESET + "Not bad.");
         Thread.sleep(2000);

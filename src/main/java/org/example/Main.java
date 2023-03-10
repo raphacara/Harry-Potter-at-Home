@@ -17,7 +17,7 @@ public class Main {
             play(intro, "Introduction", wizard);
 
             // 2. ----- CHAPTER 1 -----
-            Chapter1 chapter1 = new Chapter1(wizard); //Change the (wizard) by (test) if you skipped the intro
+            Chapter1 chapter1 = new Chapter1(wizard);
             play(chapter1, "Chapter 1", wizard);
 
             // 3. ----- CHAPTER 2 -----

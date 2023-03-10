@@ -1,11 +1,11 @@
 package org.example;
 
 public class Potion {
-
-    // Properties
     private String name;
     private int healthPoints;
     private final String description;
+    // Create Potions (protected because there are instance, more than attributes, that I might need everywhere without creating a new Potion).
+    protected static final Potion wiggenweld = new Potion("Wiggenweld", 40, "A potion that instantly heals by restoring some health.");
 
     // Constructor
     public Potion(String name, int healthPoints, String description) {
@@ -40,5 +40,10 @@ public class Potion {
         wizard.healing(heal);
         System.out.println("You heal " + heal + "hp.");
 
+    }
+
+    //Getters of all potions
+    public Potion getWiggenweld() {
+        return wiggenweld;
     }
 }

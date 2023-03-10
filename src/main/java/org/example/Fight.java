@@ -1,4 +1,5 @@
 package org.example;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Fight implements StoryStep {
@@ -24,7 +25,7 @@ public class Fight implements StoryStep {
             System.out.println(wizard.getName() + ": " + wizard.getHealth() + "/" + wizard.getMaxHealth() + " hp" + RESET +"\n        - VS -");
             System.out.println(RED_BOLD + enemy.getName() + ": " + enemy.getHealth() + "/" + enemy.getMaxHealth() + " hp");
             System.out.println(RESET + "-----------------------\n");
-            Thread.sleep(1000);
+            threadSleep(1000);
 
             //-- PLAYER's TURN --
             System.out.println("~~ Your turn! ~~");
@@ -33,25 +34,25 @@ public class Fight implements StoryStep {
             switch (choice) {
                 case "1" -> castSpell();
                 case "2" -> usePotion();
-                case "3" -> System.out.println("** You decide to flee the fight. But as you turn around to run away, the " + enemy.getName() + " catches you... **");
+                case "3" -> System.out.println("You decide to flee the fight. But as you turn around to run away, the " + enemy.getName() + " catches you...");
                 default -> System.out.println("You missed your choice...");
             }
-            Thread.sleep(2000);
+            threadSleep(2000);
             ifDead(wizard, enemy); // Check if the fight is over
 
             //-- TROLL's TURN
             if (!isFinished) {
                 System.out.println(RED_BOLD + "\n~~ " + enemy.getName() + " turn! ~~" + RESET);
-                Thread.sleep(2000);
-                if (enemy.isAttacking()) {
+                threadSleep(2000);
+                if (enemy.isAttacking()) { // If isAttacking = true -> if the enemy is able to attack
                     enemy.attack(wizard); // This method is in AbstractEnemy
-                    Thread.sleep(1000);
+                    threadSleep(1000);
                 } else {
                     enemy.setIsAttacking(true);
                     System.out.println("You blocked the attack!");
                 }
                 ifDead(wizard, enemy); // Check if the fight is over
-                Thread.sleep(1000);
+                threadSleep(1000);
             }
         }
     }
@@ -73,7 +74,7 @@ public class Fight implements StoryStep {
         }
     }
 
-    private void castSpell() throws InterruptedException {
+    private void castSpell() {
         // List of spells
         System.out.println("\n--- Spells ---");
         for (Spell spell : wizard.getKnownSpells()) {
@@ -151,19 +152,29 @@ public class Fight implements StoryStep {
         }
     }
 
-    public void checkingSpell(Spell spell) throws InterruptedException {
+    public void checkingSpell(Spell spell) { //Checking how to kill each enemy
         if (enemy.getName().equals("Troll") && spell.getName().equals("Wingardium Leviosa")) {
-            System.out.println("\n** You are casting Wingardium Leviosa on the Troll **");
-            Thread.sleep(2000);
-            System.out.println("** You make his mass to levitate... Just above the Troll's head... **");
-            Thread.sleep(3000);
-            System.out.println("** And BOOM! The mass falls right on the his head! **");
-            Thread.sleep(2000);
-            enemy.setHealth(0);
+            System.out.println("\nYou are casting Wingardium Leviosa on the Troll");
+            threadSleep(2000);
+            System.out.println("You make his mass to levitate... Just above the Troll's head...");
+            threadSleep(3000);
+            System.out.println("And BOOM! The mass falls right on the his head!");
+            threadSleep(2000);
+            int damage = new Random().nextInt(51) + 50; //random number between 50 and 100
+            System.out.println("It deals " + damage + " damage!");
+            enemy.takeDamage(damage); //method in Character class.
         }
         else {
             spell.cast(wizard, enemy);
-            Thread.sleep(2000);
+            threadSleep(2000);
+        }
+    }
+
+    public void threadSleep(int time) { //To use it in the while loop otherwise it is "busy waiting"
+        try {
+            Thread.sleep(time);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
     }
 }

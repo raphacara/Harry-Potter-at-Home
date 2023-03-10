@@ -79,7 +79,9 @@ public class Wizard extends Character {
     public void learnSpell(Spell spell) {
         // Check if the spell is already known
         if (knownSpells.contains(spell)) {
-            System.out.println("You already know this spell.");
+            System.out.println("** You already know this spell. **\n");
+            System.out.println("** So you get +1 damage bonus. **");
+            this.setPower(this.getPower() + 1); //Compensation
         } else {
             // Learn the new spell
             knownSpells.add(spell);
@@ -91,7 +93,9 @@ public class Wizard extends Character {
     public void learnPotion(Potion potion) {
         // Check if the potion is already known
         if (potions.contains(potion)) {
-            System.out.println("You already know this potion.");
+            System.out.println("** You already know this potion. **\n");
+            System.out.println("** So you get +1 botanist bonus. **");
+            this.setBotanist(this.getBotanist() + 1); //Compensation
         } else {
             // Learn the new potion
             potions.add(potion);
