@@ -1,8 +1,12 @@
 package org.example;
+import lombok.Getter;
+import lombok.Setter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+@Getter
+@Setter
 public class Wizard extends Character {
     // Properties
     private static final String GREEN_BOLD = "\033[1;32m"; //fun
@@ -14,6 +18,8 @@ public class Wizard extends Character {
     private final List<Spell> knownSpells;
     private final List<Potion> potions;
     private int botanist;
+    private String patronus;
+
 
     // Constructor
     public Wizard() {
@@ -24,53 +30,13 @@ public class Wizard extends Character {
         this.knownSpells = new ArrayList<>();
         this.potions = new ArrayList<>();
         this.botanist = 0;
+        this.patronus = "???";
     }
 
-    // Getters and setters
-    public Pet getPet() {
-        return pet;
-    }
-
-    public void setPet(Pet pet) {
-        this.pet = pet;
-    }
-
-    public Wand getWand() {
-        return wand;
-    }
-
-    public void setWand(Wand wand) {
-        this.wand = wand;
-    }
-
-    public String getHouse() {
-        return house;
-    }
-
-    public void setHouse(String house) {
-        this.house = house;
-    }
-
-
-    public List<Spell> getKnownSpells() {
-        return knownSpells;
-    }
-
-    public List<Potion> getPotions() {
-        return potions;
-    }
-    public int getBotanist() {
-        return botanist;
-    }
-
-    public void setBotanist(int botanist) {
-        this.botanist = botanist;
-    }
-
-    //Method to attack an enemy
-    @Override //I switched the defend() method in the subject by an attack() method. (easier because of the @Override)
+    //method to attack an enemy
+    @Override //I switched the name of defend() method in the subject by an attack() method. (easier because of the @Override)
     public void attack(Character target) throws InterruptedException {
-        Fight fight = new Fight(this, (Enemy) target); //Creating the fight
+        Fight fight = new Fight(this, target); //Creating the fight
         fight.run(); //Running the fight
         Thread.sleep(2000);
     }
@@ -103,7 +69,7 @@ public class Wizard extends Character {
         }
     }
 
-    //Wonderful method to check what the attributes of the player.
+    //Wonderful method to check the attributes of the player.
     public void checkWizard(Wizard wizard) throws InterruptedException {
         Thread.sleep(1000);
         System.out.println(YELLOW_BOLD + "\n----- You ----- " +
@@ -112,6 +78,7 @@ public class Wizard extends Character {
                 "\nPET: " + wizard.getPet() +
                 "\nWAND: " + wizard.getWand().getCore() + " (" + wizard.getWand().getSize() + "cm) " +
                 "\nHOUSE: " + wizard.getHouse() +
+                "\nPATRONUS: " + wizard.getPatronus() +
                 "\nSPELLS: ");
         //List<Spell> knownSpells = wizard.getKnownSpells();
         for (Spell spell : knownSpells) {
@@ -124,7 +91,7 @@ public class Wizard extends Character {
         System.out.println("---------------\nPOWER bonus: " + wizard.getPower() +
                 "\nACCURACY bonus: " + wizard.getAccuracy() +
                 "\nBOTANIST bonus: " + wizard.getBotanist() + "\n" + RESET);
-        Thread.sleep(4000);
+        Thread.sleep(3000);
     }
 
     //To apply the bonus of each house on the wizard (huge bonus)

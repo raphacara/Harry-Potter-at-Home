@@ -1,6 +1,11 @@
 package org.example;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public abstract class Character {
+    private boolean isAttacking = true; //to check if a Character is attacking
 
     // Properties
     private String name;
@@ -8,6 +13,7 @@ public abstract class Character {
     private int maxHealth;
     private int power;
     private int accuracy;
+    private String condition;
 
     // Constructor
     public Character(String name, int health, int power) {
@@ -16,51 +22,21 @@ public abstract class Character {
         this.maxHealth = health;
         this.power = power;
         this.accuracy = 0;
+        this.condition = "normal";
     }
 
     // Methods
     public abstract void attack(Character target) throws InterruptedException;
 
-    // Getters and setters
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getHealth() {
-        return health;
-    }
-
-    public void setHealth(int health) {
-        this.health = Math.min(health, this.getMaxHealth());
-    }
-
-    public int getMaxHealth() {
-        return maxHealth;
-    }
-
-    public void setMaxHealth(int maxHealth) {
+    // Specific setter
+    public void setMaxHealth(int maxHealth) { //specific need for setting the max health
         this.maxHealth = maxHealth;
         this.health = maxHealth;
     }
 
-    public int getPower() {
-        return power;
-    }
-
-    public void setPower(int power) {
-        this.power = power;
-    }
-
-    public int getAccuracy() {
-        return accuracy;
-    }
-
-    public void setAccuracy(int accuracy) {
-        this.accuracy = accuracy;
+    public void stopAttack(Spell spell) {
+        isAttacking = false;
+        condition = spell.getName();
     }
 
     // Method when a Character take damage from an enemy

@@ -12,7 +12,7 @@ public class Chapter1  implements StoryStep {
     private static final String[] input = {"1","2","3","4","5","6","7","8"}; //the player inputs
     private final Scanner scanner = new Scanner(System.in); //to scan the inputs
     private boolean check = false; //checking the loops
-    private final boolean[] classesTaken = new boolean[6]; //changing to true when the player take a lesson
+    private final boolean[] classesTaken = new boolean[7]; //changing to true when the player take a lesson
 
     //Constructor
     public Chapter1(Wizard player) {
@@ -89,7 +89,7 @@ public class Chapter1  implements StoryStep {
         wizard.learnSpell(Spell.wingardiumLeviosa);
         System.out.println(BLUE_BOLD + "\nHagrid - " + RESET + "Well done " + wizard.getName() + "!");
         Thread.sleep(2000);
-        System.out.println(BLUE_BOLD + "\nHagrid - " + RESET + "Next time you will be able to write it with one 'a'.");
+        System.out.println(BLUE_BOLD + "Hagrid - " + RESET + "Next time you will be able to write it with one 'a'.");
         Thread.sleep(3000);
         System.out.println(BLUE_BOLD + "Hagrid - " + RESET + "Go back to the castle for your next class.\n");
         Thread.sleep(2000);
@@ -167,6 +167,7 @@ public class Chapter1  implements StoryStep {
             if (!classesTaken[5]) {
                 System.out.println("5. POTIONS");
             }
+            System.out.println("6. Skip class");
             System.out.print(RED_BOLD + "Enter a number to make your choice :\n" + RESET);
             input[1] = scanner.nextLine();
             check = !ok;
@@ -215,6 +216,9 @@ public class Chapter1  implements StoryStep {
                         System.out.println(BLUE_BOLD + "Dumbledore - " + RESET + "Nice, that is always useful.");
                         potionsClass();
                     }
+                    break;
+                case "6":
+                    System.out.println(BLUE_BOLD + "Dumbledore - " + RESET + "As you want.");
                     break;
                 default :
                     System.out.println(BLUE_BOLD + "Dumbledore - " + RESET + "You have to choose a class. -10 points for " + wizard.getHouse()+ "!");

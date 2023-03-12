@@ -18,6 +18,11 @@ public class Chapter4 implements StoryStep {
         Thread.sleep(1000);
         System.out.println("------------- The Goblet of Fire ------------\n" + RESET);
         Thread.sleep(2000);
+        //Triwizard Tournament
+        //Fighting a Dragon
+        //Choosing how to do water test (reward?)
+        //Labyrinth
+        //graveyard
     }
 
     @Override

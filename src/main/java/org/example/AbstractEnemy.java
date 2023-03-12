@@ -1,23 +1,9 @@
 package org.example;
 
 public abstract class AbstractEnemy extends Character {
-    private boolean isAttacking = true; //to check if an enemy is attacking
-
     // Constructor
     public AbstractEnemy(String name, int health, int power) {
         super(name, health, power);
-    }
-
-    public void setIsAttacking(boolean isAttacking) { //setter
-        this.isAttacking = isAttacking;
-    }
-
-    public boolean isAttacking() { //getter
-        return isAttacking;
-    }
-
-    public void stopAttack() {
-        isAttacking = false;
     }
 
     // Attack methods
@@ -34,7 +20,7 @@ public abstract class AbstractEnemy extends Character {
             damage = this.getPower() / 2; // 50% damage
         } else if (randomNum == 8) {
             System.out.println("Critical hit."); // Critical hit
-            damage = this.getPower() + this.getPower() * 2 ; // 150% damage
+            damage = this.getPower() + (this.getPower() / 2) ; // 150% damage
         }else if (randomNum == 9) {
             System.out.println("Ultra-Critical hit."); // Ultra-Critical hit
             damage = this.getPower() * 2; // 200% damage

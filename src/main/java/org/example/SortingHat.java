@@ -54,9 +54,9 @@ public class SortingHat implements StoryStep {
                 check = 1;
                 switch (input[0]) {
                     case "1" -> r += 1;
-                    case "2" -> g += 1;
-                    case "3" -> h += 1;
-                    case "4" -> s += 1;
+                    case "2" -> s += 1;
+                    case "3" -> g += 1;
+                    case "4" -> h += 1;
                     default -> {
                         System.out.println(BLUE_BOLD + "Sorting Hat - " + RESET + "That is not an Element.");
                         check = 0;

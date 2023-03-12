@@ -1,5 +1,7 @@
 package org.example;
+import lombok.Getter;
 
+@Getter
 public abstract class AbstractSpell {
 
     // Properties
@@ -17,21 +19,5 @@ public abstract class AbstractSpell {
     }
 
     // Methods
-    public String getName() {
-        return name;
-    }
-
-    public int getPowerLevel() {
-        return powerLevel;
-    }
-
-    public int getAccuracy() {
-        return accuracy;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public abstract void cast(Wizard wizard, AbstractEnemy target);
+    public abstract void cast(Wizard wizard, Character target);
 }

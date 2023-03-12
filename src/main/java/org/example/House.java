@@ -1,6 +1,11 @@
 package org.example;
+import lombok.Getter;
+import lombok.Setter;
 import java.util.Arrays;
 import java.util.List;
+
+@Getter
+@Setter
 
 public class House {
 
@@ -10,15 +15,6 @@ public class House {
 
     // Constructor
     public House(String name) {
-        this.name = name;
-    }
-
-    // Getters and setters
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
         this.name = name;
     }
 }

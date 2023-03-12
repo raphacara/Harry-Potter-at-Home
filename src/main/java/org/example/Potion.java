@@ -1,8 +1,10 @@
 package org.example;
+import lombok.Getter;
 
+@Getter
 public class Potion {
-    private String name;
-    private int healthPoints;
+    private final String name;
+    private final int healthPoints;
     private final String description;
     // Create Potions (protected because there are instance, more than attributes, that I might need everywhere without creating a new Potion).
     protected static final Potion wiggenweld = new Potion("Wiggenweld", 40, "A potion that instantly heals by restoring some health.");
@@ -14,36 +16,10 @@ public class Potion {
         this.description = description;
     }
 
-    // Getters and setters
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getHealthPoints() {
-        return healthPoints;
-    }
-
-    public void setHealthPoints(int healthPoints) {
-        this.healthPoints = healthPoints;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
     public void usePotion(Wizard wizard) {
         int heal = (this.getHealthPoints() + wizard.getBotanist());
         wizard.healing(heal);
         System.out.println("You heal " + heal + "hp.");
 
-    }
-
-    //Getters of all potions
-    public Potion getWiggenweld() {
-        return wiggenweld;
     }
 }
