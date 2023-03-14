@@ -1,6 +1,9 @@
 package org.game.character.enemies;
 
 import org.game.character.Character;
+import org.game.character.Wizard;
+
+import java.util.Objects;
 
 public abstract class AbstractEnemy extends Character {
     // Constructor
@@ -36,5 +39,11 @@ public abstract class AbstractEnemy extends Character {
         Thread.sleep(1000);
     }
 
-    public abstract void specialAttack(Character target);
+    public void specialAttack(Wizard wizard, String spell) {
+        if (Objects.equals(spell, "Protego")) {
+            System.out.println("test");
+        } else {
+            System.out.println("test failed");
+        }
+    }
 }

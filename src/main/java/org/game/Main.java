@@ -1,9 +1,13 @@
 package org.game;
+import org.game.attributes.Pet;
+import org.game.attributes.Potion;
 import org.game.character.Wizard;
+import org.game.spells.Spell;
 import org.game.story.*;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Main {
@@ -71,6 +75,24 @@ public class Main {
                 System.out.println("=======================================\n");
                 if (wizard.getHouse() == null) { //= if you skipped the intro
                     wizard.randomWizard(wizard); //create a random wizard
+                }
+                if (Objects.equals(name, "Introduction") ) { //If the player didn't play Chapter 1
+                    wizard.bonusHouses(wizard);
+                    wizard.bonusPet(wizard);
+                    wizard.bonusWand(wizard);
+                    System.out.println(" ");
+                }
+                if (Objects.equals(name, "Chapter 1") ) { //If the player didn't play Chapter 1
+                    wizard.learnSpell(Spell.protego); //assign spells
+                    wizard.learnPotion(Potion.wiggenweld);
+                    System.out.println(" ");
+                }
+                if (Objects.equals(name, "Chapter 3") ) { //If the player didn't play Chapter 3
+                    wizard.setPatronus("Snail"); //This is a joke
+                    wizard.learnSpell(Spell.expectoPatronum); //assign spells
+                    wizard.learnSpell(Spell.diffindo);
+                    wizard.learnSpell(Spell.incendio);
+                    System.out.println(" ");
                 }
                 break;
             } else {

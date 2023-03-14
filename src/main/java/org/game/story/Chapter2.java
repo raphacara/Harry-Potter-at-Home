@@ -92,8 +92,7 @@ public class Chapter2 implements StoryStep {
         //-- The Basilisk BOSS fight --
         System.out.println("** You fall in front of a giant snake : the Basilisk!  **");
         threadSleep(3000);
-        Boss Basilisk = new Boss("Basilisk", 500, 48); //Creating a Troll
-        wizard.attack(Basilisk);
+        wizard.attack(Boss.Basilisk);
         threadSleep(2000);
         System.out.println("\n** What an intense fight! You leave the Chamber of Secrets to tell everything to Dumbledore. **");
         threadSleep(3000);
@@ -364,8 +363,7 @@ public class Chapter2 implements StoryStep {
         threadSleep(3000);
         System.out.println("** But suddenly a spider attacks you from behind! **");
         threadSleep(3000);
-        Enemy spider = new Enemy("spider", 70, 20); //Creating a Troll
-        wizard.attack(spider);
+        wizard.attack(Enemy.spider);
         System.out.println("\n** What a fight! **\n");
         threadSleep(2000);
         System.out.println(RED_BOLD + "Giant Spider - " + RESET + "Sorry for that, my spiders attack everyone except Hagrid.");

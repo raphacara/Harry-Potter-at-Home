@@ -28,6 +28,7 @@ public abstract class Character {
 
     // Methods
     public abstract void attack(Character target) throws InterruptedException;
+    public abstract void specialAttack(Wizard wizard, String spell);
 
     // Specific setter
     public void setMaxHealth(int maxHealth) { //specific need for setting the max health

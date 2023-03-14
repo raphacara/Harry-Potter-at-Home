@@ -206,8 +206,7 @@ public class Chapter3 implements StoryStep {
         System.out.println(BLUE_BOLD + "Student - " + RESET + "Today you will fight against a Slytherin student.\n");
         threadSleep(2000);
         System.out.println(RED_BOLD + "Slytherin Student - " + RESET + "Good luck...");
-        Enemy student = new Enemy("Slytherin Student", 120, 40); //Creating a Troll
-        wizard.attack(student);
+        wizard.attack(Enemy.student);
         threadSleep(1000);
         if (Objects.equals(wizard.getCondition(), "Defeated")) {
             System.out.println(BLUE_BOLD + "\nStudent - " + RESET + "You are not enough powerful, come back when you'll be better.\n");
@@ -239,6 +238,7 @@ public class Chapter3 implements StoryStep {
         System.out.println("** The road splits into 3 paths, which one to choose? **");
         threadSleep(2000);
         System.out.println(GREEN_BOLD + "1. Left side\n2. Right side\n3. Straight ahead" + RESET);
+        System.out.println(RED_BOLD + "Enter a number to make your choice" + RESET);
         while (!classesTaken[4]) {
             classesTaken[4] = true;
             String input = scanner.nextLine();
@@ -255,9 +255,8 @@ public class Chapter3 implements StoryStep {
         threadSleep(2000);
         System.out.println("** Suddenly, you perceive dark beings coming for you... They are dementors! **");
         threadSleep(2000);
-        Enemy dementors = new Enemy("Dementors", 99999, 10); //Creating a Troll
         wizard.stopAttack(Spell.lumos); //Just for the story.
-        wizard.attack(dementors); //attacking the dementors.
+        wizard.attack(Enemy.dementors); //attacking the dementors.
         System.out.println("** Wow, that was crazy, you are exhausted. **");
         threadSleep(2000);
     }

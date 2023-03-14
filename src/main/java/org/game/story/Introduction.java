@@ -109,7 +109,7 @@ public class Introduction implements StoryStep {
         Thread.sleep(2000);
 
         //Choosing a wand
-        System.out.println(BLUE_BOLD + "Hagrid - " + RESET + "Perfect! The last thing you need is a magic wand.");
+        System.out.println(BLUE_BOLD + "Hagrid - " + RESET + "\nPerfect! The last thing you need is a magic wand.");
         Thread.sleep(2000);
         System.out.println(BLUE_BOLD + "Hagrid - " + RESET + "Let's meet Ollivander, He's the best when it comes to wands ;)\n");
         Thread.sleep(3000);
@@ -245,7 +245,7 @@ public class Introduction implements StoryStep {
         Thread.sleep(2000);
 
         //End of the Introduction
-        System.out.println("** You are now ready to go to Hogwarts, so you go to the platform 9 3/4 at King's Cross Station. **");
+        System.out.println("\n** You are now ready to go to Hogwarts, so you go to the platform 9 3/4 at King's Cross Station. **");
         Thread.sleep(4000);
         System.out.println("** And you take the Hogwarts™ Express's train right to Hogwarts! **");
         Thread.sleep(5000);

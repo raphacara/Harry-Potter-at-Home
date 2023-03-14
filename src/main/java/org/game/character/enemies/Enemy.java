@@ -1,16 +1,13 @@
 package org.game.character.enemies;
-import org.game.character.Character;
-
 public class Enemy extends AbstractEnemy {
+    //Instances are public because that's not attributes
+    public static final Enemy troll = new Enemy("Troll", 150, 30); //Creating a Troll
+    public static final Enemy spider = new Enemy("spider", 70, 25); //Creating a Spider
+    public static final Enemy student = new Enemy("Slytherin Student", 120, 30); //Creating a Student
+    public static final Enemy dementors = new Enemy("Dementors", 9999, 10); //Creating a Dementor
 
     // Constructor
     public Enemy(String name, int health, int power) {
         super(name, health, power);
-    }
-
-    // Methods
-    @Override
-    public void specialAttack(Character target) {
-        // Implement the behavior for a special attack
     }
 }
