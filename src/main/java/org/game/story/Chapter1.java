@@ -1,5 +1,10 @@
-package org.example;
-import java.util.Objects;
+package org.game.story;
+import org.game.attributes.House;
+import org.game.attributes.Potion;
+import org.game.character.enemies.Enemy;
+import org.game.character.Wizard;
+import org.game.spells.Spell;
+
 import java.util.Scanner;
 
 public class Chapter1  implements StoryStep {
@@ -315,7 +320,7 @@ public class Chapter1  implements StoryStep {
         Thread.sleep(3000);
         System.out.println("** The Herbology Teacher is showing you how to take care of magical plants **");
         Thread.sleep(4000);
-        if (Objects.equals(wizard.getHouse(), "Hufflepuff")) {
+        if (wizard.getHouse() == House.Hufflepuff) {
             System.out.println("** And it is really interesting! **");
             Thread.sleep(2000);
             System.out.println("** you have gained a bonus of 20hp. **");

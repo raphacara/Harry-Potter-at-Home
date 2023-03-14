@@ -1,4 +1,6 @@
-package org.example;
+package org.game.story;
+
+import org.game.character.Wizard;
 
 public class Chapter4 implements StoryStep {
     private static final String RESET = "\u001B[0m"; //fun

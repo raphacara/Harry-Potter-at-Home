@@ -1,4 +1,9 @@
-package org.example;
+package org.game.story;
+import org.game.attributes.Core;
+import org.game.attributes.Pet;
+import org.game.attributes.Wand;
+import org.game.character.Wizard;
+
 import java.util.Scanner;
 
 public class Introduction implements StoryStep {

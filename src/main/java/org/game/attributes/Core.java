@@ -1,4 +1,4 @@
-package org.example;
+package org.game.attributes;
 
 public enum Core {
     PHOENIX_FEATHER,

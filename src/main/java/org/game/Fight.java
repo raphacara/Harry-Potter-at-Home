@@ -1,4 +1,12 @@
-package org.example;
+package org.game;
+import org.game.attributes.House;
+import org.game.attributes.Potion;
+import org.game.character.enemies.Boss;
+import org.game.character.Character;
+import org.game.character.Wizard;
+import org.game.spells.Spell;
+import org.game.story.StoryStep;
+
 import java.util.Objects;
 import java.util.Random;
 import java.util.Scanner;
@@ -13,6 +21,7 @@ public class Fight implements StoryStep {
     private boolean isFinished = false; //Checking is the fight is finished
     boolean firstAttack = true; //a check when it is the 1st round of a fight
     private final Scanner scanner = new Scanner(System.in); //to scan the inputs
+    private boolean isDead;
 
     public Fight(Wizard wizard, Character enemy) {
         this.wizard = wizard;
@@ -30,33 +39,43 @@ public class Fight implements StoryStep {
             threadSleep(1000);
 
             //-- PLAYER's TURN --
-            System.out.println("~~~~~~~~~~ Your turn! ~~~~~~~~~~");
-            if (wizard.isAttacking()) {
-                System.out.println(GREEN_BOLD + "1. Cast a spell\n2. Use a potion\n3. Run away" + RESET);
-                String choice = scanner.nextLine();
-                switch (choice) {
-                    case "1" -> castSpell();
-                    case "2" -> usePotion();
-                    case "3" -> System.out.println("You decide to flee the fight. But as you turn around to run away, the " + enemy.getName() + " catches you...");
-                    default -> System.out.println("You missed your choice...");
-                }
-            }
-            threadSleep(1000);
-            ifDead(wizard, enemy); // Check if the fight is over
+            playerTurn();
 
             //-- ENEMY's TURN
-            enemyTurn();
-            checkingBoss(); //Do different things regarding which boss you are fighting.
+            if (!isDead) {
+                enemyTurn();
+                checkingBoss(); //Do different things regarding which boss you are fighting.
+                ifDead(wizard, enemy); // Check if the fight is over
+            }
+        }
+    }
+
+    //method for the player turn
+    public void playerTurn() throws InterruptedException {
+        System.out.println("~~~~~~~~~~ Your turn! ~~~~~~~~~~");
+        if (wizard.isAttacking()) {
+            System.out.println(GREEN_BOLD + "1. Cast a spell\n2. Use a potion\n3. Run away" + RESET);
+            String choice = scanner.nextLine();
+            switch (choice) {
+                case "1" -> castSpell();
+                case "2" -> usePotion();
+                case "3" -> System.out.println("You decide to flee the fight. But as you turn around to run away, the " + enemy.getName() + " catches you...");
+                default -> System.out.println("You missed your choice...");
+            }
+        } else {
+            System.out.println("You are scared.");
+            wizard.setAttacking(true);
             threadSleep(1000);
         }
-        upgrade(wizard);
+        threadSleep(1000);
+        ifDead(wizard, enemy); // Check if the fight is over
     }
 
     //The method when it is the enemy turn in a fight
     public void enemyTurn() throws InterruptedException {
         if (!isFinished) {
             System.out.println(RED_BOLD + "\n~~~~~~~~~~ " + enemy.getName() + " turn! ~~~~~~~~~~" + RESET);
-            threadSleep(2000);
+            threadSleep(1000);
             if (enemy.isAttacking()) { // If isAttacking = true -> if the enemy is able to attack
                 enemy.attack(wizard); // This method is in AbstractEnemy
                 threadSleep(1000);
@@ -69,19 +88,26 @@ public class Fight implements StoryStep {
                 System.out.println("The enemy is burned and loose " + damage + "hp!");
                 threadSleep(1000);
             }
-            ifDead(wizard, enemy); // Check if the fight is over
         }
     }
 
     //To check if someone is dead
     private void ifDead(Wizard wizard, Character enemy) {
         if (wizard.getHealth() <= 0) {
-            System.out.println("\n** You have been defeated by the " + enemy.getName() + ". Game over! **");
-            System.exit(0);
+            System.out.println("\n** You have been defeated by the " + enemy.getName() + ". **");
+            if (Objects.equals(enemy.getName(), "Slytherin Student")) {
+                wizard.setHealth(wizard.getMaxHealth()); //Putting the Heath of the player to the max
+                wizard.setCondition("Defeated");
+            } else {
+                System.out.println(RED_BOLD + "** Game over! **" + RESET);
+                System.exit(0);
+            }
             isFinished = true;
         } else if (enemy.getHealth() <= 0) {
             System.out.println("\n** You have defeated the " + enemy.getName() + "! **");
             isFinished = true;
+            isDead = true;
+            upgrade(wizard); //To upgrade the Wizard
         }
     }
 
@@ -125,9 +151,7 @@ public class Fight implements StoryStep {
         for (Potion potion : wizard.getPotions()) {
             if (input.equalsIgnoreCase(potion.getName())) {
                 selectedPotion = potion;
-                int heal = selectedPotion.getHealthPoints();
-                System.out.println("You recover " + heal + " hp!");
-                wizard.healing(heal);
+                selectedPotion.usePotion(wizard);
                 break; //break after setting selectedPotion
             }
         }
@@ -143,9 +167,9 @@ public class Fight implements StoryStep {
             threadSleep(2000);
             System.out.println("You make his mass to levitate... Just above the Troll's head...");
             threadSleep(3000);
-            System.out.println("And BOOM! The mass falls right on the his head!");
+            System.out.println("And BOOM! The mass falls right on his head!");
             threadSleep(2000);
-            int damage = new Random().nextInt(51) + 50; //random number between 50 and 100
+            int damage = new Random().nextInt(51) + 50 + wizard.getPower(); //random number between 50 and 100
             System.out.println("It deals " + damage + " damage!");
             enemy.takeDamage(damage); //method in Character class.
         } else if (enemy.getName().equals("Basilisk") && spell.getName().equalsIgnoreCase("Accio")) {
@@ -154,7 +178,14 @@ public class Fight implements StoryStep {
             threadSleep(2000);
             System.out.println("Now you try to pierce the Basilisk skin with his own tooth.");
             threadSleep(2000);
-            basiliskFight("sharp tooth");
+            basiliskFight("sharp tooth"); //method to fight the basilisk
+        } else  if (enemy.getName().equals("Dementors") && spell.getName().equalsIgnoreCase("Expecto Patronum")) {
+            System.out.println("You are making an intense light!");
+            threadSleep(1000);
+            System.out.println("And your " + wizard.getPatronus() + " emerges all bright.");
+            threadSleep(1000);
+            System.out.println("It is too much for the dementors, they are going far away...");
+            enemy.setHealth(0);
         } else {
             System.out.println(spell.getDescription());
             threadSleep(2000);
@@ -177,7 +208,6 @@ public class Fight implements StoryStep {
                 enemy.takeDamage(damage);
                 threadSleep(1000);
             }
-            enemy.setAttacking(true);
         }
         if (Objects.equals(enemy.getCondition(), "Expelliarmus")) {
             if (luck <= (33 + wizard.getAccuracy())) {
@@ -187,7 +217,6 @@ public class Fight implements StoryStep {
                 enemy.attack(wizard); // This method is in AbstractEnemy
                 threadSleep(1000);
             }
-            enemy.setAttacking(true);
         }
         if (Objects.equals(enemy.getCondition(), "Incendio")) {
             if (luck <= (50 + wizard.getAccuracy())) {
@@ -198,12 +227,13 @@ public class Fight implements StoryStep {
             enemy.attack(wizard); // This method is in AbstractEnemy
             threadSleep(1000);
         }
+        enemy.setAttacking(true);
     }
 
     //Method to check when there is a specific fight against a boss
     public void checkingBoss() throws InterruptedException {
         if (Objects.equals(enemy.getName(), "Basilisk")) {
-            if (Objects.equals(wizard.getHouse(), "Gryffindor")) {
+            if (wizard.getHouse() == House.Gryffindor) {
                 System.out.println("You see a Phoenix flying over you and dropping the Sorting Hat next to you.");
                 threadSleep(2000);
                 System.out.println("And in the Sorting Hat, you discover a shiny and sharp sword.");
@@ -237,7 +267,18 @@ public class Fight implements StoryStep {
                 firstAttack = false;
             }
         }
-        //if (another boss)
+        if (Objects.equals(enemy.getName(), "Dementors")) {
+            threadSleep(1000);
+            System.out.println("There are plenty of dementors! A an other one attack you.");
+            threadSleep(2000);
+            enemy.attack(wizard);
+            System.out.println("An other one attack you!");
+            enemy.attack(wizard);
+            System.out.println("An other one attack you!");
+            enemy.attack(wizard);
+            ifDead(wizard, enemy);
+        }
+        threadSleep(1000);
     }
 
     public void basiliskFight(String weapon) throws InterruptedException {
@@ -276,26 +317,32 @@ public class Fight implements StoryStep {
         System.out.println(RED_BOLD + "\nWhat do you want to upgrade?");
         System.out.println(GREEN_BOLD + "1. Hp\n2. Damage\n3. Accuracy\n4. Botanist");
         int choice = scanner.nextInt();
+        int bonus;
+        if (enemy instanceof Boss) {
+            bonus = 2;
+        } else {
+            bonus = 1;
+        }
         switch (choice) {
             case 1 -> {
-                int newMaxHealth = wizard.getMaxHealth() + 5;
+                int newMaxHealth = wizard.getMaxHealth() + (bonus * 5);
                 wizard.setMaxHealth(newMaxHealth);
-                System.out.println(GREEN_BOLD + "** You have gained +5hp! **" + RESET);
+                System.out.println(GREEN_BOLD + "** You have gained +" + (bonus * 5) + "hp! **" + RESET);
             }
             case 2 -> {
-                int newPower = wizard.getPower() + 1;
+                int newPower = wizard.getPower() + bonus;
                 wizard.setPower(newPower);
-                System.out.println(GREEN_BOLD + "** You have gained +1 of power! **" + RESET);
+                System.out.println(GREEN_BOLD + "** You have gained +" + bonus + " of power! **" + RESET);
             }
             case 3 -> {
-                int newAccuracy = wizard.getAccuracy() + 1;
+                int newAccuracy = wizard.getAccuracy() + bonus;
                 wizard.setAccuracy(newAccuracy);
-                System.out.println(GREEN_BOLD + "** You have gained +1 of accuracy!" + RESET);
+                System.out.println(GREEN_BOLD + "** You have gained +" + bonus + " of accuracy!" + RESET);
             }
             case 4 -> {
-                int newBotanist = wizard.getBotanist() + 1;
+                int newBotanist = wizard.getBotanist() + bonus;
                 wizard.setBotanist(newBotanist);
-                System.out.println(GREEN_BOLD + "** You have gained +1 of healing points!" + RESET);
+                System.out.println(GREEN_BOLD + "** You have gained +" + bonus +  "of healing points!" + RESET);
             }
             default -> System.out.println("Don't miss an upgrade!");
         }

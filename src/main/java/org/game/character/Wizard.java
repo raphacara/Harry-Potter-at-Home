@@ -1,6 +1,10 @@
-package org.example;
+package org.game.character;
 import lombok.Getter;
 import lombok.Setter;
+import org.game.*;
+import org.game.attributes.*;
+import org.game.spells.Spell;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -14,7 +18,7 @@ public class Wizard extends Character {
     private static final String RESET = "\u001B[0m"; //fun
     private Pet pet;
     private Wand wand;
-    private String house;
+    private House house;
     private final List<Spell> knownSpells;
     private final List<Potion> potions;
     private int botanist;
@@ -45,7 +49,7 @@ public class Wizard extends Character {
     public void learnSpell(Spell spell) {
         // Check if the spell is already known
         if (knownSpells.contains(spell)) {
-            System.out.println("** You already know this spell. **\n");
+            System.out.println("** You already know this spell. **");
             System.out.println("** So you get +1 damage bonus. **");
             this.setPower(this.getPower() + 1); //Compensation
         } else {
@@ -59,7 +63,7 @@ public class Wizard extends Character {
     public void learnPotion(Potion potion) {
         // Check if the potion is already known
         if (potions.contains(potion)) {
-            System.out.println("** You already know this potion. **\n");
+            System.out.println("** You already know this potion. **");
             System.out.println("** So you get +1 botanist bonus. **");
             this.setBotanist(this.getBotanist() + 1); //Compensation
         } else {
@@ -96,27 +100,26 @@ public class Wizard extends Character {
 
     //To apply the bonus of each house on the wizard (huge bonus)
     public void bonusHouses(Wizard wizard) {
-        System.out.println("test");
         switch (wizard.getHouse()) {
-            case "Hufflepuff" -> {
+            case Hufflepuff -> {
                 // Increase the effectiveness of potions for Hufflepuff members
                 int newBotanist = wizard.getBotanist()+ 10;
                 wizard.setBotanist(newBotanist);
                 System.out.println(GREEN_BOLD + "Hufflepuff bonus: +10 Botanist points\n" + RESET);
             }
-            case "Slytherin" -> {
+            case Slytherin -> {
                 // Increase spell damage for Slytherin members
                 int newPower = wizard.getPower() + 10;
                 wizard.setPower(newPower);
                 System.out.println(GREEN_BOLD + "Slytherin bonus: +10 damage\n" + RESET);
             }
-            case "Gryffindor" -> {
+            case Gryffindor -> {
                 // Increase the wizard's health for Gryffindor members
                 int newHealth = wizard.getHealth() + 20;
                 wizard.setMaxHealth(newHealth);
                 System.out.println(GREEN_BOLD + "Gryffindor bonus: +20 hp\n" + RESET);
             }
-            case "Ravenclaw" -> {
+            case Ravenclaw -> {
                 // Increase the accuracy of spells for Ravenclaw members
                 int newAccuracy = wizard.getAccuracy() + 10;
                 wizard.setAccuracy(newAccuracy);
@@ -179,10 +182,9 @@ public class Wizard extends Character {
     public void randomWizard(Wizard wizard) {
         Random random = new Random();
         Wand wandTest = new Wand(Core.values()[random.nextInt(Core.values().length)], 30);
-        String randomHouseName = org.example.House.houseNames.get(new Random().nextInt(org.example.House.houseNames.size()));
+        wizard.setHouse(House.values()[random.nextInt(House.values().length)]);
         wizard.setName("Wizard");
         wizard.setPet(Pet.values()[random.nextInt(Pet.values().length)]);
         wizard.setWand(wandTest);
-        wizard.setHouse(randomHouseName);
     }
 }

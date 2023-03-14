@@ -1,4 +1,9 @@
-package org.example;
+package org.game.story;
+import org.game.attributes.Core;
+import org.game.attributes.House;
+import org.game.attributes.Pet;
+import org.game.character.Wizard;
+
 import java.util.Scanner;
 
 public class SortingHat implements StoryStep {
@@ -28,17 +33,17 @@ public class SortingHat implements StoryStep {
         System.out.print("what an intriguing name.\n");
         Thread.sleep(2000);
         //Little condition if you were specifically lucky/unlucky during the Introduction
-        String houseName;
+        House houseName;
         if (wizard.getPet() == Pet.SNAKE && wizard.getWand().getCore() == Core.PHOENIX_FEATHER) {
             System.out.print(BLUE_BOLD + "Sorting Hat - " + RESET + "Oh, that's very very clear...\n");
             Thread.sleep(4000);
             System.out.print(BLUE_BOLD + "Sorting Hat - " + RESET + "SLYTHERIN !!!\n");
-            houseName = "Slytherin";
+            houseName = House.Slytherin;
         } else if (wizard.getPet() == Pet.RAT && wizard.getWand().getCore() == Core.PHOENIX_FEATHER) {
             System.out.print(BLUE_BOLD + "Sorting Hat - " + RESET + "Oh, that's very very clear...\n");
             Thread.sleep(4000);
             System.out.print(BLUE_BOLD + "Sorting Hat - " + RESET + "GRYFFINDOR !!!\n");
-            houseName = "Gryffindor";
+            houseName = House.Gryffindor;
         } else {
             System.out.print(BLUE_BOLD + "Sorting Hat - " + RESET + "Hmmm... Difficult, very difficult...\n");
             Thread.sleep(3000);
@@ -234,13 +239,13 @@ public class SortingHat implements StoryStep {
                 }
             }
             if (max == g) {
-                houseName = "Gryffindor";
+                houseName = House.Gryffindor;
             } else if (max == h) {
-                houseName = "Hufflepuff";
+                houseName = House.Hufflepuff;
             } else if (max == r) {
-                houseName = "Ravenclaw";
+                houseName = House.Ravenclaw;
             } else {
-                houseName = "Slytherin";
+                houseName = House.Slytherin;
             }
             System.out.print(BLUE_BOLD + "Sorting Hat - " + RESET + "Well, I have it...\n");
             Thread.sleep(2000);
@@ -255,8 +260,8 @@ public class SortingHat implements StoryStep {
             System.out.print(houseName + "!!!\n");
         }
         Thread.sleep(2000);
-        System.out.println(GREEN_BOLD + "** You are now a " + houseName + " student! **" + RESET);
         wizard.setHouse(houseName);
+        System.out.println(GREEN_BOLD + "** You are now a " + wizard.getHouse() + " student! **" + RESET);
         Thread.sleep(1000);
         wizard.bonusHouses(wizard); //setting the BONUS considering the House of the wizard
         Thread.sleep(2000);

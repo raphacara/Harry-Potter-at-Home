@@ -1,6 +1,7 @@
-package org.example;
+package org.game.character;
 import lombok.Getter;
 import lombok.Setter;
+import org.game.spells.Spell;
 
 @Getter
 @Setter

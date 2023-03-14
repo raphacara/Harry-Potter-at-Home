@@ -1,5 +1,6 @@
-package org.example;
+package org.game.attributes;
 import lombok.Getter;
+import org.game.character.Wizard;
 
 @Getter
 public class Potion {
@@ -7,7 +8,7 @@ public class Potion {
     private final int healthPoints;
     private final String description;
     // Create Potions (protected because there are instance, more than attributes, that I might need everywhere without creating a new Potion).
-    protected static final Potion wiggenweld = new Potion("Wiggenweld", 40, "A potion that instantly heals by restoring some health.");
+    public static final Potion wiggenweld = new Potion("Wiggenweld", 40, "A potion that instantly heals by restoring some health.");
 
     // Constructor
     public Potion(String name, int healthPoints, String description) {
@@ -20,6 +21,5 @@ public class Potion {
         int heal = (this.getHealthPoints() + wizard.getBotanist());
         wizard.healing(heal);
         System.out.println("You heal " + heal + "hp.");
-
     }
 }

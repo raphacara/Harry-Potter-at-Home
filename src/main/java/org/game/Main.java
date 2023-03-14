@@ -1,4 +1,6 @@
-package org.example;
+package org.game;
+import org.game.character.Wizard;
+import org.game.story.*;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;

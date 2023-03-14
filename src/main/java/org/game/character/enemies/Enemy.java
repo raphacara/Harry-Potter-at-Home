@@ -1,9 +1,10 @@
-package org.example;
+package org.game.character.enemies;
+import org.game.character.Character;
 
-public class Boss extends AbstractEnemy {
+public class Enemy extends AbstractEnemy {
 
     // Constructor
-    public Boss(String name, int health, int power) {
+    public Enemy(String name, int health, int power) {
         super(name, health, power);
     }
 

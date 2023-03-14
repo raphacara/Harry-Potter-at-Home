@@ -1,4 +1,6 @@
-package org.example;
+package org.game.character.enemies;
+
+import org.game.character.Character;
 
 public abstract class AbstractEnemy extends Character {
     // Constructor
@@ -28,7 +30,7 @@ public abstract class AbstractEnemy extends Character {
             System.out.println("The " + this.getName() + " attack you."); // Normal hit
             damage = this.getPower(); // 100% damage
         }
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         System.out.println("You take " + damage + " damage!");
         target.takeDamage(damage); //This method is in Character
         Thread.sleep(1000);

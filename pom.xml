@@ -4,7 +4,7 @@
               xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <game:modelVersion>4.0.0</game:modelVersion>
 
-    <game:groupId>org.example</game:groupId>
+    <game:groupId>org.game</game:groupId>
     <game:artifactId>Harry_Potter_at_Home</game:artifactId>
     <game:version>1.0-SNAPSHOT</game:version>
 

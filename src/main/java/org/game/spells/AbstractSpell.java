@@ -1,5 +1,7 @@
-package org.example;
+package org.game.spells;
 import lombok.Getter;
+import org.game.character.Character;
+import org.game.character.Wizard;
 
 @Getter
 public abstract class AbstractSpell {

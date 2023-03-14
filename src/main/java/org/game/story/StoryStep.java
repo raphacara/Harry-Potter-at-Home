@@ -1,4 +1,6 @@
-package org.example;
+package org.game.story;
+
+import org.game.character.Wizard;
 
 public interface StoryStep { //Maybe most useful class (more exactly interface) of my code.
 

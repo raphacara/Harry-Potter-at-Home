@@ -1,4 +1,4 @@
-package org.example;
+package org.game.attributes;
 import lombok.Getter;
 
 @Getter

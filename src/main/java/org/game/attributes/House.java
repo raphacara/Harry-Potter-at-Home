@@ -1,20 +1,17 @@
-package org.example;
-import lombok.Getter;
-import lombok.Setter;
-import java.util.Arrays;
-import java.util.List;
+package org.game.attributes;
 
-@Getter
-@Setter
+public enum House {
+    Gryffindor,
+    Hufflepuff,
+    Ravenclaw,
+    Slytherin
+}
 
-public class House {
-
-    // Properties
+/*// Properties
     private String name; // Name of the House
     protected static List<String> houseNames = Arrays.asList("Gryffindor", "Hufflepuff", "Ravenclaw", "Slytherin"); // Define a list of the four house names
 
     // Constructor
     public House(String name) {
         this.name = name;
-    }
-}
+    }*/
