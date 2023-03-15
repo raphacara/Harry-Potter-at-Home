@@ -1,5 +1,4 @@
 package org.game;
-import org.game.attributes.Pet;
 import org.game.attributes.Potion;
 import org.game.character.Wizard;
 import org.game.spells.Spell;

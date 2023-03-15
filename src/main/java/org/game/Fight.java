@@ -65,7 +65,7 @@ public class Fight implements StoryStep {
                 default -> System.out.println("You missed your choice...");
             }
         } else {
-            System.out.println("You are scared.");
+            System.out.println("You can't damage the " + enemy.getName() + "!");
             wizard.setAttacking(true);
             threadSleep(1000);
         }
@@ -165,7 +165,7 @@ public class Fight implements StoryStep {
     //It specifies how an enemy Attack
     public void attackMethod() throws InterruptedException {
         int randomNum = (int)(Math.random() * 3); // Generate a random number between 0 and 10
-        if (Objects.equals(enemy.getName(), "Slytherin Student")) {
+        if (Objects.equals(enemy.getName(), "Slytherin Student") || Objects.equals(enemy.getName(), "Tournament Champion") ) {
             if (randomNum == 0) {
                 enemy.specialAttack(wizard, "Protego");
             } else {

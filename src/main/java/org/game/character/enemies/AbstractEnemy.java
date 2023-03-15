@@ -2,6 +2,7 @@ package org.game.character.enemies;
 
 import org.game.character.Character;
 import org.game.character.Wizard;
+import org.game.spells.Spell;
 
 import java.util.Objects;
 
@@ -41,9 +42,10 @@ public abstract class AbstractEnemy extends Character {
 
     public void specialAttack(Wizard wizard, String spell) {
         if (Objects.equals(spell, "Protego")) {
-            System.out.println("test");
+            wizard.stopAttack(Spell.protego);
+            System.out.println("Protego! It will block your next attack.");
         } else {
-            System.out.println("test failed");
+            System.out.println("test");
         }
     }
 }
