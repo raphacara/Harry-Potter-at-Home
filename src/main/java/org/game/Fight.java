@@ -24,10 +24,12 @@ public class Fight implements StoryStep {
     private boolean isDead; //check if someone is dead
     private boolean isBurned; //check if someone is burned
     private final Random random = new Random(); //create random
+    private int turn; //to count the turn
 
     public Fight(Wizard wizard, Character enemy) { //Instance
         this.wizard = wizard;
         this.enemy = enemy;
+        this.turn = 0;
     }
 
     @Override
@@ -49,6 +51,7 @@ public class Fight implements StoryStep {
                 checkingBoss(); //Do different things regarding which boss you are fighting.
                 ifDead(wizard, enemy); // Check if the fight is over
             }
+            turn += 1; //To count the turn
         }
     }
 
@@ -243,6 +246,15 @@ public class Fight implements StoryStep {
                 threadSleep(1000);
             }
         }
+        if (Objects.equals(enemy.getCondition(), "Stupefy")) {
+            if (luck <= (75 + wizard.getAccuracy())) {
+                System.out.println("Stupefy stunned the " + enemy.getName() + "!");
+                threadSleep(1000);
+            } else {
+                enemy.attack(wizard); // This method is in AbstractEnemy
+                threadSleep(1000);
+            }
+        }
         if (Objects.equals(enemy.getCondition(), "Incendio")) {
             if (luck <= (50 + wizard.getAccuracy()) || enemy.getHealth() < 1000) {
                 isBurned = true;
@@ -301,6 +313,20 @@ public class Fight implements StoryStep {
             System.out.println("An other one attack you!");
             enemy.attack(wizard);
             ifDead(wizard, enemy);
+        }
+        if (Objects.equals(enemy.getName(), "Umbridge")) {
+            int randomNum = (int)(Math.random() * 100); // Generate a random number between 0 and 100
+            if (randomNum <= turn + wizard.getAccuracy() + wizard.getBotanist() ) {
+                System.out.println("Wait...");
+                threadSleep(2000);
+                System.out.println("You have got some fireworks!");
+                threadSleep(2000);
+                System.out.println("You can mess with Umbridge and just have fun!");
+                enemy.setHealth(0);
+                threadSleep(2000);
+            } else {
+                turn += 1; //To increase the turn more otherwise the fight is too long.
+            }
         }
         threadSleep(1000);
     }

@@ -1,5 +1,4 @@
 package org.game.story;
-
 import org.game.attributes.Potion;
 import org.game.character.Wizard;
 import org.game.character.enemies.Boss;
@@ -79,7 +78,9 @@ public class Chapter4 implements StoryStep {
 
         //Final battle in the Cemetery
         System.out.println(" ****** Little Hangleton Cemetery ******\n" + RESET);
-        threadSleep(1000);
+        cemetery();
+        System.out.println("\n** Chapter 4 - THE END **\n");
+        threadSleep(2000);
     }
 
     public void learnSkill() {
@@ -172,19 +173,33 @@ public class Chapter4 implements StoryStep {
                     System.out.println("** So you easily grab the egg, and pass the challenge. **");
                 }
                 case "2" -> {
-                    for (Spell spell : wizard.getKnownSpells()) {
-                        if (spell.getName().equals("Disilluminatus")) {
-                            System.out.println("** You use the Disillusion spell to be really stealthy... **");
-                            threadSleep(2000);
+                    boolean invisible = true;
+                    while (invisible) {
+                        for (Spell spell : wizard.getKnownSpells()) {
+                            if (spell.getName().equals("Disilluminatus")) {
+                                System.out.println("** You use the Disillusion spell to be really stealthy... **");
+                                threadSleep(2000);
+                                invisible = false;
+                            }
                         }
-                    }
-                    for (Potion potion: wizard.getPotions()) {
-                        if (potion.getName().equals("Invisibility")) {
-                            System.out.println("** You use the Gillyweed Potion to be extremely stealthy... **");
-                            wizard.setAccuracy(wizard.getAccuracy() + 1);
+                        for (Potion potion : wizard.getPotions()) {
+                            if (potion.getName().equals("Invisibility")) {
+                                System.out.println("** You use the Gillyweed Potion to be extremely stealthy... **");
+                                wizard.setAccuracy(wizard.getAccuracy() + 1);
+                                threadSleep(2000);
+                                System.out.println(GREEN + "** It works very well so you gain +1 accuracy point! **" + RESET);
+                                threadSleep(2000);
+                                invisible = false;
+                            }
+                        }
+                        if (invisible) {
+                            System.out.println("You don't have any invisible spell or potions... So you have to fight the boss.");
+                            wizard.attack(Boss.dragon);
+                            threadSleep(1000);
+                            System.out.println("** You really killed the Dragon! **");
                             threadSleep(2000);
-                            System.out.println(GREEN + "** It works very well so you gain +1 accuracy point! **" + RESET);
-                            threadSleep(2000);
+                            System.out.println("** So you easily grab the egg, and pass the challenge. **");
+                            invisible = false;
                         }
                     }
                     System.out.println("** You reach the egg without being spotted by the dragon! **");
@@ -283,13 +298,13 @@ public class Chapter4 implements StoryStep {
         threadSleep(2000);
         System.out.println("** You step inside the labyrinth at the " + wizard.getCondition() + " place, because of the previous task. **");
         threadSleep(3000);
-        System.out.println(BLUE + "!!! This is the Beta Test, the full labyrinth will be available later in the game with JavaFX !!!" + RESET);
+        System.out.println(BLUE + "\n!!! This is the Beta Test, the full labyrinth will be available later in the game with JavaFX !!!\n" + RESET);
         threadSleep(3000);
         System.out.println("** You turn right, and see the trophy at the end of the corridor. **");
         threadSleep(2000);
-        System.out.println("** But an other participant reach the same place as you, he also saw trophy... **\n");
+        System.out.println("** But an other participant reaches you, he also saw trophy... **\n");
         threadSleep(2000);
-        System.out.println(RED + "I'm gonna kill you to win!!" + RESET);
+        System.out.println(RED + "I'm gonna kill you to get the trophy!!" + RESET);
         threadSleep(2000);
         wizard.attack(Enemy.tournamentChampion);
         System.out.println("** You killed him! But you had to... Anyway, you run to grab the trophy... **");
@@ -308,6 +323,59 @@ public class Chapter4 implements StoryStep {
         threadSleep(500);
         System.out.println("                  * *\n                   *");
         threadSleep(500);
+    }
+
+    public void cemetery() {
+        threadSleep(3000);
+        System.out.println(BLUE + "Other participant - " + RESET + "The trophy was a Portkey...");
+        threadSleep(3000);
+        System.out.println(BLUE + "Other participant - " + RESET + "So when we touched it, it teleported us.");
+        threadSleep(2000);
+        System.out.println(RED + "??? - " + RESET + "AH AH AH AH!!! What a wonderful evening to kill you, both!");
+        threadSleep(3000);
+        System.out.println(RED + "??? - " + RESET + "I am " + BLACK + "Voldemort" + RESET + "And thanks to you, i will become the lord of the world again!");
+        threadSleep(3000);
+        System.out.println("\n** Voldemort is in front of you two, and he has a partisan called Peter Pettigrew next to him. **\n");
+        threadSleep(3000);
+        System.out.println("** You have to act, what do you do? **");
+        System.out.println(GREEN + "1. attack them\n 2. Trying to go back at the Portkey\n3. To play dead." + RESET);
+        threadSleep(4000);
+        System.out.println("\n** You don't even have the time to do anything that Voldemort said: **\n");
+        threadSleep(3000);
+        System.out.println(RED + "Lord Voldemort - " + RESET + "Kill them.");
+        threadSleep(2000);
+        System.out.println("\n** His partisan instantly take his wand and look at the other participant... **\n");
+        threadSleep(3000);
+        System.out.println(RED + "Peter Pettigrew - " + RESET + "AVADA KEDAVRA!");
+        threadSleep(4000);
+        System.out.println("\n** The other participant immediately dies. **");
+        threadSleep(3000);
+        System.out.println("** You don't have the time to think, just attract the Portkey... NOW! **");
+        threadSleep(3000);
+        System.out.println(RED + "Write Accio to attract the Portkey :" + RESET);
+        String input = scanner.nextLine();
+        if (input.equalsIgnoreCase("Accio")) {
+            System.out.println("** You attract the portkey and instantly teleport to the castle. **\n");
+        } else {
+            System.out.println(RED + "\nPeter Pettigrew - " + RESET + "AVADA KEDAVRA!");
+            threadSleep(3000);
+            System.out.println(RED + "** You died. **");
+            threadSleep(2000);
+            System.exit(0);
+        }
+        threadSleep(2000);
+        System.out.println("** You attract the portkey and instantly teleport to the castle. **");
+        threadSleep(2000);
+        System.out.println("** Now, you can be sure the Voldemort is alive... **");
+        threadSleep(2000);
+        System.out.println("** Anyway, you won the Triwizard Tournament! **");
+        threadSleep(2000);
+        System.out.println(GREEN + "** All your stats have increased! **" + RESET);
+        wizard.setAccuracy(wizard.getAccuracy() + 1);
+        wizard.setBotanist(wizard.getBotanist() + 1);
+        wizard.setMaxHealth(wizard.getMaxHealth() + 5);
+        wizard.setPower(wizard.getPower() + 1);
+        threadSleep(2000);
     }
 
     public void threadSleep(int time) { //To use it in the while loop otherwise it is "busy waiting"

@@ -11,10 +11,10 @@ import java.util.Scanner;
 
 public class Chapter3 implements StoryStep {
     private static final String RESET = "\u001B[0m"; //fun
-    private static final String RED_BOLD = "\033[1;31m"; //fun
-    private static final String BLUE_BOLD = "\033[1;34m"; //fun
-    private static final String GREEN_BOLD = "\033[1;32m"; //fun
-    private static final String BLACK_BOLD = "\033[1;30m"; //fun
+    private static final String RED = "\033[1;31m"; //fun
+    private static final String BLUE = "\033[1;34m"; //fun
+    private static final String GREEN = "\033[1;32m"; //fun
+    private static final String BLACK = "\033[1;30m"; //fun
     private static Wizard wizard;
     private final Scanner scanner = new Scanner(System.in); //to scan the inputs
     private boolean check = false; //checking the loops
@@ -27,7 +27,7 @@ public class Chapter3 implements StoryStep {
     @Override
     public void run() throws InterruptedException {
         //-- Intro of Chapter 3 --
-        System.out.println(GREEN_BOLD + "\n----------------- Chapter 3 -----------------");
+        System.out.println(GREEN + "\n----------------- Chapter 3 -----------------");
         Thread.sleep(1000);
         System.out.println("---------- The Prisoner of Azkaban ----------\n" + RESET);
         Thread.sleep(2000);
@@ -37,7 +37,7 @@ public class Chapter3 implements StoryStep {
         Thread.sleep(2000);
         System.out.println("** Anyway, you know that this year you can take part in two new classes: **");
         Thread.sleep(3000);
-        System.out.println(BLACK_BOLD + "~~ DIVINATION ~~ " + RESET + "and" + BLACK_BOLD + " ~~ CARE OF MAGICAL CREATURES ~~" + RESET);
+        System.out.println(BLACK + "~~ DIVINATION ~~ " + RESET + "and" + BLACK + " ~~ CARE OF MAGICAL CREATURES ~~" + RESET);
         Thread.sleep(300);
         System.out.println("** And you also remember about a dueling club... **");
         Thread.sleep(3000);
@@ -63,8 +63,8 @@ public class Chapter3 implements StoryStep {
         //-- Final Dementors fight and end of the Chapter --
         System.out.println("** You hear a wolf howl not very far from you, so you quicky go back to the castle. **");
         Thread.sleep(3000);
-        System.out.println("** It is the end of the year, and you have heard that the winning house of this year was Ravenclaw. **");
-        Thread.sleep(4000);
+        System.out.println("** It is the end of the year.**");
+        Thread.sleep(2000);
         System.out.println("\n** Chapter 3 - THE END **\n");
         Thread.sleep(2000);
     }
@@ -72,7 +72,7 @@ public class Chapter3 implements StoryStep {
     public void chooseClass() throws InterruptedException {
         boolean ok = check;
         while (check == ok) {
-            System.out.print(GREEN_BOLD);
+            System.out.print(GREEN);
             if (!classesTaken[1]) { // hiding if the lesson was taken before
                 System.out.println("1. Divinity class");
             }
@@ -86,7 +86,7 @@ public class Chapter3 implements StoryStep {
             if (classesTaken[5]) {
                 System.out.println("5. Forbidden Forest");
             }
-            System.out.print(RED_BOLD + "Enter a number to make your choice :\n" + RESET);
+            System.out.print(RED + "Enter a number to make your choice :\n" + RESET);
             String input = scanner.nextLine();
             check = !ok;
             switch (input) {
@@ -142,16 +142,16 @@ public class Chapter3 implements StoryStep {
         threadSleep(1000);
         System.out.println("                   | |\n                   | |\n                   | |\n                   | |\n                   | |");
         threadSleep(1000);
-        System.out.println(BLACK_BOLD + "           ~~~   DIVINITY   ~~~\n" + RESET);
+        System.out.println(BLACK + "           ~~~   DIVINITY   ~~~\n" + RESET);
         threadSleep(3000);
-        System.out.println(BLUE_BOLD + "Divinity Teacher - " + RESET + "Welcome to the Divinity class!");
+        System.out.println(BLUE + "Divinity Teacher - " + RESET + "Welcome to the Divinity class!");
         threadSleep(2000);
-        System.out.println(BLUE_BOLD + "Divinity Teacher - " + RESET + "Here we will try to see your future...");
+        System.out.println(BLUE + "Divinity Teacher - " + RESET + "Here we will try to see your future...");
         threadSleep(3000);
-        System.out.println(BLUE_BOLD + "Divinity Teacher - " + RESET + wizard.getName() + ", I see some dark sides in your future, how do you interpret it?");
+        System.out.println(BLUE + "Divinity Teacher - " + RESET + wizard.getName() + ", I see some dark sides in your future, how do you interpret it?");
         threadSleep(1000);
-        System.out.println(GREEN_BOLD + "1. That's my fate.\n2. That's my enemies.\n3. I don't want to tell you.\n4. I don't care.");
-        System.out.println(RED_BOLD + "Enter a number to make your choice :" + RESET);
+        System.out.println(GREEN + "1. That's my fate.\n2. That's my enemies.\n3. I don't want to tell you.\n4. I don't care.");
+        System.out.println(RED + "Enter a number to make your choice :" + RESET);
         while (!classesTaken[1]) {
             classesTaken[1] = true;
             String input = scanner.nextLine();
@@ -166,11 +166,11 @@ public class Chapter3 implements StoryStep {
                 }
             }
         }
-        System.out.println(GREEN_BOLD + "** One of your stats has secretly increased... **" + RESET);
+        System.out.println(GREEN + "** One of your stats has secretly increased... **" + RESET);
         threadSleep(2000);
-        System.out.println(BLUE_BOLD + "\nDivinity Teacher - " + RESET + "Interesting...");
+        System.out.println(BLUE + "\nDivinity Teacher - " + RESET + "Interesting...");
         threadSleep(2000);
-        System.out.println(BLUE_BOLD + "Divinity Teacher - " + RESET + "That will be enough for today.\n");
+        System.out.println(BLUE + "Divinity Teacher - " + RESET + "That will be enough for today.\n");
         threadSleep(2000);
     }
 
@@ -184,7 +184,7 @@ public class Chapter3 implements StoryStep {
         threadSleep(2000);
         System.out.println("** They are known for their strength and loyalty, but can be easily offended if not shown proper respect. **");
         threadSleep(3000);
-        System.out.println(GREEN_BOLD + "** You get +1 botanist point for this lesson! **" + RESET);
+        System.out.println(GREEN + "** You get +1 botanist point for this lesson! **" + RESET);
         wizard.setBotanist(wizard.getBotanist() + 1);
         threadSleep(2000);
     }
@@ -193,39 +193,39 @@ public class Chapter3 implements StoryStep {
         classesTaken[3] = true;
         System.out.println("** You are going at the secret Dueling Student Club. **");
         threadSleep(2000);
-        System.out.println(BLUE_BOLD + "Student - " + RESET + "Hey " + wizard.getName() + "! Welcome here.");
+        System.out.println(BLUE + "Student - " + RESET + "Hey " + wizard.getName() + "! Welcome here.");
         threadSleep(2000);
-        System.out.println(BLUE_BOLD + "Student - " + RESET + "I will explain you how this club works.");
+        System.out.println(BLUE + "Student - " + RESET + "I will explain you how this club works.");
         threadSleep(2000);
-        System.out.println(BLUE_BOLD + "Student - " + RESET + "You can practice your spells in a combat against an other student.");
+        System.out.println(BLUE + "Student - " + RESET + "You can practice your spells in a combat against an other student.");
         threadSleep(3000);
-        System.out.println(BLUE_BOLD + "Student - " + RESET + "No one dies, but the winner can learn a new spell that I will teach him.");
+        System.out.println(BLUE + "Student - " + RESET + "No one dies, but the winner can learn a new spell that I will teach him.");
         threadSleep(3000);
-        System.out.println(BLUE_BOLD + "Student - " + RESET + "You came here by yourself, so I suppose you are ready to fight.");
+        System.out.println(BLUE + "Student - " + RESET + "You came here by yourself, so I suppose you are ready to fight.");
         threadSleep(3000);
-        System.out.println(BLUE_BOLD + "Student - " + RESET + "Today you will fight against a Slytherin student.\n");
+        System.out.println(BLUE + "Student - " + RESET + "Today you will fight against a Slytherin student.\n");
         threadSleep(2000);
-        System.out.println(RED_BOLD + "Slytherin Student - " + RESET + "Good luck...");
+        System.out.println(RED + "Slytherin Student - " + RESET + "Good luck...");
         wizard.attack(Enemy.student);
         threadSleep(1000);
         if (Objects.equals(wizard.getCondition(), "Defeated")) {
-            System.out.println(BLUE_BOLD + "\nStudent - " + RESET + "You are not enough powerful, come back when you'll be better.\n");
+            System.out.println(BLUE + "\nStudent - " + RESET + "You are not enough powerful, come back when you'll be better.\n");
         } else {
-            System.out.println(BLUE_BOLD + "\nStudent - " + RESET + "Congratulation " + wizard.getName() + "!");
+            System.out.println(BLUE + "\nStudent - " + RESET + "Congratulation " + wizard.getName() + "!");
             threadSleep(2000);
-            System.out.println(BLUE_BOLD + "Student - " + RESET + "You deserve me to teach you a new Spell: Diffindo");
+            System.out.println(BLUE + "Student - " + RESET + "You deserve me to teach you a new Spell: Diffindo");
             threadSleep(2000);
-            System.out.println(RED_BOLD + "Write the spell to learn it :" + RESET);
+            System.out.println(RED + "Write the spell to learn it :" + RESET);
             while (true) {
                 String input = scanner.nextLine();
                 if (input.equalsIgnoreCase("Diffindo")) {
                     wizard.learnSpell(Spell.diffindo);
                     break;
                 } else {
-                    System.out.println(BLUE_BOLD + "Student - " + RESET + "Try again.");
+                    System.out.println(BLUE + "Student - " + RESET + "Try again.");
                 }
             }
-            System.out.println(BLUE_BOLD + "Student - " + RESET + "Awesome, Come back next time to fight harder students!\n");
+            System.out.println(BLUE + "Student - " + RESET + "Awesome, Come back next time to fight harder students!\n");
         }
         threadSleep(2000);
     }
@@ -237,8 +237,8 @@ public class Chapter3 implements StoryStep {
         threadSleep(2000);
         System.out.println("** The road splits into 3 paths, which one to choose? **");
         threadSleep(2000);
-        System.out.println(GREEN_BOLD + "1. Left side\n2. Right side\n3. Straight ahead" + RESET);
-        System.out.println(RED_BOLD + "Enter a number to make your choice" + RESET);
+        System.out.println(GREEN + "1. Left side\n2. Right side\n3. Straight ahead" + RESET);
+        System.out.println(RED + "Enter a number to make your choice" + RESET);
         while (!classesTaken[4]) {
             classesTaken[4] = true;
             String input = scanner.nextLine();
@@ -266,27 +266,27 @@ public class Chapter3 implements StoryStep {
         threadSleep(1000);
         System.out.println("                   | |\n                   | |\n                   | |\n                   | |\n                   | |");
         threadSleep(1000);
-        System.out.println(BLACK_BOLD + "~~~   DEFENSE AGAINST THE DARK ARTS   ~~~\n" + RESET);
+        System.out.println(BLACK + "~~~   DEFENSE AGAINST THE DARK ARTS   ~~~\n" + RESET);
         threadSleep(3000);
-        System.out.println(BLUE_BOLD + "Defense Teacher - " + RESET + "Welcome to the Defense class! My name in Lupin.");
+        System.out.println(BLUE + "Defense Teacher - " + RESET + "Welcome to the Defense class! My name in Lupin.");
         threadSleep(2000);
-        System.out.println(BLUE_BOLD + "Lupin - " + RESET + "This year, there are some dark beeings outside the castle.");
+        System.out.println(BLUE + "Lupin - " + RESET + "This year, there are some dark beeings outside the castle.");
         threadSleep(3000);
-        System.out.println(BLUE_BOLD + "Lupin - " + RESET + "They are called: the dementors");
+        System.out.println(BLUE + "Lupin - " + RESET + "They are called: the dementors");
         threadSleep(2000);
-        System.out.println(BLUE_BOLD + "Lupin - " + RESET + "To defeat them, you will need to use a specific spell: Expecto Patronum.");
+        System.out.println(BLUE + "Lupin - " + RESET + "To defeat them, you will need to use a specific spell: Expecto Patronum.");
         threadSleep(3000);
-        System.out.println(BLUE_BOLD + "Lupin - " + RESET + "It's hard to cast it, but it released a positive light energy, we called it: a patronus");
+        System.out.println(BLUE + "Lupin - " + RESET + "It's hard to cast it, but it released a positive light energy, we called it: a patronus");
         threadSleep(3000);
-        System.out.println(BLUE_BOLD + "Lupin - " + RESET + "A patronus takes the form of an animal that protects you from dark magic.");
+        System.out.println(BLUE + "Lupin - " + RESET + "A patronus takes the form of an animal that protects you from dark magic.");
         threadSleep(3000);
-        System.out.println(RED_BOLD + "Write Expecto Patronum to learn the spell :" + RESET);
+        System.out.println(RED + "Write Expecto Patronum to learn the spell :" + RESET);
         while (true) {
             String input = scanner.nextLine();
             if (input.equals("EXPECTO PATRONUM")) {
                 break;
             } else {
-                System.out.println(BLUE_BOLD + "Lupin - " + RESET + "This one is difficult, to learn it, try writing using ALL CAPS.");
+                System.out.println(BLUE + "Lupin - " + RESET + "This one is difficult, to learn it, try writing using ALL CAPS.");
             }
         }
         wizard.learnSpell(Spell.expectoPatronum);
@@ -294,13 +294,13 @@ public class Chapter3 implements StoryStep {
         threadSleep(3000);
         createPatronus();
         System.out.println("** a " + wizard.getPatronus() + "!!! **");
-        System.out.println(GREEN_BOLD + "** Your Patronus is a " + wizard.getPatronus() + "! **" + RESET); //telling the player what he/she got.
+        System.out.println(GREEN + "** Your Patronus is a " + wizard.getPatronus() + "! **" + RESET); //telling the player what he/she got.
         threadSleep(2000);
-        System.out.println(BLUE_BOLD + "\nLupin - " + RESET + "Unbelievable! You did it!");
+        System.out.println(BLUE + "\nLupin - " + RESET + "Unbelievable! You did it!");
         threadSleep(2000);
-        System.out.println(BLUE_BOLD + "Lupin - " + RESET + "A lot of dementors have been seen in the Forbidden Forest, so be careful.");
+        System.out.println(BLUE + "Lupin - " + RESET + "A lot of dementors have been seen in the Forbidden Forest, so be careful.");
         threadSleep(2000);
-        System.out.println(BLUE_BOLD + "Lupin - " + RESET + "Anyway, see you next time.\n");
+        System.out.println(BLUE + "Lupin - " + RESET + "Anyway, see you next time.\n");
         threadSleep(2000);
     }
 
