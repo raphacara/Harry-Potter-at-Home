@@ -125,42 +125,16 @@ public class Introduction implements StoryStep {
             System.out.print("Enter a number to make your choice :\n" + RESET);
             input[2] = scanner.nextLine();
             check = 1;
+            int random = (int)(Math.random() * 4); //random num
             switch (input[2]) {
-                case "1" -> size = 25;
-                case "2" -> size = 31;
-                case "3" -> size = 29;
-                case "4" -> size = 27;
+                case "1" -> size = 25 + random;
+                case "2" -> size = 31 + random;
+                case "3" -> size = 29 + random;
+                case "4" -> size = 27 + random;
                 default -> {
                     System.out.println(BLUE + "Ollivander - " + RESET + "That is not a joke, please focus.");
                     check = 0;
                 }
-            }
-        }
-        while (check == 1) { //modification of the size based on the player height
-            System.out.println(BLUE + "Ollivander - " + RESET + "Okay... And how do you consider your own height?");
-            Thread.sleep(1000);
-            System.out.println(GREEN + "1. Giant\n" + "2. Tall\n" + "3. Average\n" + "4. Little\n" + "5. Dwarf" + RED);
-            System.out.print("Enter a number to make your choice :\n" + RESET);
-            input[3] = scanner.nextLine();
-            check = 2;
-            switch (input[3]) {
-                case "1":
-                    size += 3;
-                    break;
-                case "2":
-                    size += 2;
-                    break;
-                case "3":
-                    break;
-                case "4":
-                    size -= 2;
-                    break;
-                case "5":
-                    size -= 3;
-                    break;
-                default:
-                    System.out.println(BLUE + "Ollivander - " + RESET + "That is not an appropriate answer.");
-                    check = 1;
             }
         }
 
@@ -171,25 +145,12 @@ public class Introduction implements StoryStep {
         while (core == null) {
             switch (pet) { //the pet influence the core
                 case RAT, SNAKE -> { //if you have a special pet
-                    System.out.println(BLUE + "Ollivander - " + RESET + "How do you imagine your future? ");
+                    System.out.println(BLUE + "Ollivander - " + RESET + "And how do you imagine your future? ");
                     System.out.println(GREEN + "1. Rich\n" + "2. Normal\n" + "3. Powerful\n" + "4. Famous\n" + "5. Sad\n" + "6. Cheerful\n" + "7. No idea" + RED);
                     System.out.print("Enter a number to make your choice :\n" + RESET);
                     input[4] = scanner.nextLine();
                     switch (input[4]) {
-                        case "3", "6" -> {
-                            System.out.println(BLUE + "Ollivander - " + RESET + "Really... And Do you prefer Odd or Even numbers ?");
-                            System.out.println(GREEN + "1. Odd\n" + "2. Even\n" + "3. It doesn't matter" + RED);
-                            System.out.print("Enter a number to make your choice :\n" + RESET);
-                            input[5] = scanner.nextLine();
-                            switch (pet) {
-                                case RAT, SNAKE:
-                                    switch (input[5]) {
-                                        case "1" -> core = Core.PHOENIX_FEATHER;
-                                        case "2", "3" -> core = Core.DRAGON_HEARTSTRING;
-                                        default -> System.out.println(BLUE + "Ollivander - " + RESET + "Please focus... I will ask again from the question about the future:");
-                                    }
-                            }
-                        }
+                        case "3", "6" -> core = Core.PHOENIX_FEATHER;
                         case "1", "2", "5" -> core = Core.UNICORN_HAIR;
                         case "4", "7" -> core = Core.DRAGON_HEARTSTRING;
                         default -> System.out.println(BLUE + "Ollivander - " + RESET + "You must think again about your future.");
@@ -203,27 +164,7 @@ public class Introduction implements StoryStep {
                     switch (input[4]) {
                         case "1", "3", "6" -> core = Core.UNICORN_HAIR;
                         case "2", "5" -> core = Core.DRAGON_HEARTSTRING;
-                        case "4" -> {
-                            System.out.println(BLUE + "Ollivander - " + RESET + "Really... And Do you prefer Odd or Even numbers ?");
-                            System.out.println(GREEN + "1. Odd\n" + "2. Even\n" + "3. It doesn't matter" + RED);
-                            System.out.print("Enter a number to make your choice :\n" + RESET);
-                            input[5] = scanner.nextLine();
-                            switch (input[5]) {
-                                case "1" -> { //only case to get PHOENIX_FEATHER if you have a basic pet
-                                    System.out.println(BLUE + "Ollivander - " + RESET + "I also prefer Odd numbers.");
-                                    core = Core.PHOENIX_FEATHER;
-                                }
-                                case "2" -> {
-                                    System.out.println(BLUE + "Ollivander - " + RESET + "Even numbers are beautiful, I agree.");
-                                    core = Core.DRAGON_HEARTSTRING;
-                                }
-                                case "3" -> {
-                                    System.out.println(BLUE + "Ollivander - " + RESET + "If you say so...");
-                                    core = Core.UNICORN_HAIR;
-                                }
-                                default -> System.out.println(BLUE + "Ollivander - " + RESET + "Please focus... I will ask again from the question about the pet:");
-                            }
-                        }
+                        case "4" -> core = Core.PHOENIX_FEATHER;
                         default -> System.out.println(BLUE + "Ollivander - " + RESET + "You have to answer my question!");
                     }
                 }
@@ -231,9 +172,9 @@ public class Introduction implements StoryStep {
         }
         System.out.println(BLUE + "Ollivander - " + RESET + "I think I exactly know what is the best for you.");
         Thread.sleep(2000);
-        System.out.println("** Ollivander gives you a magic wand **");
+        System.out.println("\n** Ollivander gives you a magic wand **");
         Thread.sleep(2000);
-        System.out.println("** You take it, and... You feel very comfortable with it! **");
+        System.out.println("** You take it, and... You feel very comfortable with it! **\n");
         Thread.sleep(3000);
         System.out.println(BLUE + "Ollivander - " + RESET + "Awesome, I knew it!");
         Thread.sleep(2000);

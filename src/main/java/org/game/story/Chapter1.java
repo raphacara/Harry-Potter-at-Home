@@ -85,7 +85,7 @@ public class Chapter1  implements StoryStep {
         System.out.println(RED + "Write the spell to learn it :" + RESET);
         while (true) {
             input[0] = scanner.nextLine();
-            if (input[0].equals("Wingardium Leviosaaa")) {
+            if (input[0].equalsIgnoreCase("Wingardium Leviosaaa")) {
                 break;
             } else {
                 System.out.println(BLUE + "Hagrid - " + RESET + "Haha! This one is tricky. Try: Wingardium Leviosaaa");
@@ -254,7 +254,7 @@ public class Chapter1  implements StoryStep {
         System.out.println(RED + "Write Lumos to learn the spell :" + RESET);
         while (true) {
             input[3] = scanner.nextLine();
-            if (input[3].equals("Lumos")) {
+            if (input[3].equalsIgnoreCase("Lumos")) {
                 break;
             } else {
                 System.out.println(BLUE + "Charms Teacher - " + RESET + "It is not exactly that, write: Lumos");
@@ -289,7 +289,7 @@ public class Chapter1  implements StoryStep {
         System.out.println(RED + "Write Protego to learn the spell :" + RESET);
         while (true) {
             input[4] = scanner.nextLine();
-            if (input[4].equals("Protego")) {
+            if (input[4].equalsIgnoreCase("Protego")) {
                 break;
             } else {
                 System.out.println(BLUE + "Defense Teacher - " + RESET + "It is not so easy, i know.");

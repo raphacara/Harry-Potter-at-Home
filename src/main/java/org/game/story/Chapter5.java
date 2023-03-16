@@ -2,20 +2,15 @@ package org.game.story;
 
 import org.game.attributes.Potion;
 import org.game.character.Wizard;
+import org.game.character.enemies.Boss;
 import org.game.spells.Spell;
-
-import java.util.Scanner;
 
 public class Chapter5 implements StoryStep {
     private static final String RESET = "\u001B[0m"; //fun
     private static final String RED = "\033[1;31m"; //fun
-    private static final String BLUE = "\033[1;34m"; //fun
     private static final String GREEN = "\033[1;32m"; //fun
     private static final String BLACK = "\033[1;30m"; //fun
-    private static Wizard wizard;
-    private boolean check; //checking the loops
-    private final Scanner scanner = new Scanner(System.in); //to scan the inputs
-
+    private static Wizard wizard; //the player
 
     //Constructor
     public Chapter5(Wizard player) {
@@ -26,7 +21,7 @@ public class Chapter5 implements StoryStep {
         //-- Intro of Chapter 5 --
         System.out.println(GREEN + "\n----------------- Chapter 5 -----------------");
         threadSleep(1000);
-        System.out.println("---------- The Order of the Phoenix ----------\n" + RESET);
+        System.out.println("---------- The Order of the Phoenix ---------\n" + RESET);
         threadSleep(2000);
         System.out.println("** This is your 5th year at Hogwarts. **");
         threadSleep(2000);
@@ -50,34 +45,37 @@ public class Chapter5 implements StoryStep {
         threadSleep(1000);
         wizard.learnSpell(Spell.stupefy);
         threadSleep(1000);
-        System.out.println("** Still and always... **");
+        System.out.println("** Still and always... **" + GREEN);
         threadSleep(1000);
         wizard.learnPotion(Potion.wiggenweld);
         threadSleep(1000);
-        System.out.println("** And increase your power... **");
+        System.out.println(RESET + "** And increase your power... **");
         threadSleep(1000);
         wizard.setPower(wizard.getPower() + 1);
         System.out.println(GREEN + "** You gained +1 of power! **" + RESET);
         threadSleep(1000);
         System.out.println("** As you are training really hard, the year is going on. **");
         threadSleep(2000);
-        System.out.println("** You npw have to pass your B.U.S.E : Basic Understanding of Subjects Exam. **");
+        System.out.println("** You now have to pass your B.U.S.E : Basic Understanding of Subjects Exam. **");
         threadSleep(3000);
         System.out.println("** Supervised by... Dolores Umbridge. **\n");
         threadSleep(3000);
 
         //B.U.S.E exam and final fight
-        System.out.println(RED + "Umbridge - " + "Well, I hope you have revised for you exam... Good Luck.\n");
+        System.out.println(RED + "Umbridge - " + RESET + "Well, I hope you have revised for you exam... Good Luck.\n");
         threadSleep(3000);
         System.out.println("** The situation is so terrible that it's as if you were fighting Umbridge... **");
         threadSleep(3000);
-        System.out.println(BLACK + "          |\n          |\n          |\n          |\n          |\n          |\n" + RESET);
-
+        System.out.println(BLACK + "            |\n            |\n            |\n            |\n            |\n            |" + RESET);
+        threadSleep(1000);
+        System.out.println(BLACK + "            |\n            |\n            |\n            |\n            |\n            |\n" + RESET);
+        threadSleep(1000);
+        wizard.attack(Boss.umbridge);
 
         //-- End of Chapter 5--
-        System.out.println("** Y **");
+        System.out.println("** Well played! Everyone get their exams this year! **");
         threadSleep(2000);
-        System.out.println("\n** Chapter 4 - THE END **\n");
+        System.out.println("\n** Chapter 5 - THE END **\n");
         threadSleep(2000);
     }
 

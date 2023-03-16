@@ -58,21 +58,22 @@ public class Fight implements StoryStep {
     //method for the player turn
     public void playerTurn() throws InterruptedException {
         System.out.println("~~~~~~~~~~ Your turn! ~~~~~~~~~~");
-        if (wizard.isAttacking()) {
+
             System.out.println(GREEN_BOLD + "1. Cast a spell\n2. Use a potion\n3. Run away" + RESET);
             String choice = scanner.nextLine();
             switch (choice) {
-                case "1" -> castSpell();
+                case "1" -> {
+                    if (wizard.isAttacking()) {
+                        castSpell();
+                    } else {
+                        System.out.println("You can't damage the " + enemy.getName() + "!");
+                        wizard.setAttacking(true);
+                    }
+                }
                 case "2" -> usePotion();
                 case "3" -> System.out.println("You decide to flee the fight. But as you turn around to run away, the " + enemy.getName() + " catches you...");
                 default -> System.out.println("You missed your choice...");
             }
-        } else {
-            System.out.println("You can't damage the " + enemy.getName() + "!");
-            wizard.setAttacking(true);
-            threadSleep(1000);
-        }
-        threadSleep(1000);
         ifDead(wizard, enemy); // Check if the fight is over
     }
 
@@ -83,8 +84,9 @@ public class Fight implements StoryStep {
             threadSleep(1000);
             if (enemy.isAttacking()) { // If isAttacking = true -> if the enemy is able to attack
                 attackMethod();
+            } else {
+                checkingCondition(); //checking the condition of the enemy.
             }
-            checkingCondition(); //checking the condition of the enemy.
 
             //adding debuffs to the enemy
             if (isBurned) {
@@ -167,7 +169,7 @@ public class Fight implements StoryStep {
 
     //It specifies how an enemy Attack
     public void attackMethod() throws InterruptedException {
-        int randomNum = (int)(Math.random() * 3); // Generate a random number between 0 and 10
+        int randomNum = (int)(Math.random() * 4); // Generate a random number between 0 and 10
         if (Objects.equals(enemy.getName(), "Slytherin Student") || Objects.equals(enemy.getName(), "Tournament Champion") ) {
             if (randomNum == 0) {
                 enemy.specialAttack(wizard, "Protego");
@@ -183,6 +185,7 @@ public class Fight implements StoryStep {
             }
         } else {
             enemy.attack(wizard); // Standard attack
+            wizard.setAttacking(true);
         }
         threadSleep(1000);
     }
@@ -214,8 +217,6 @@ public class Fight implements StoryStep {
             System.out.println("It is too much for the dementors, they are going far away...");
             enemy.setHealth(0);
         } else {
-            System.out.println(spell.getDescription());
-            threadSleep(2000);
             spell.cast(wizard, enemy);
             threadSleep(2000);
         }
@@ -373,26 +374,26 @@ public class Fight implements StoryStep {
             bonus = 1;
         }
         boolean test = true;
-        int choice = scanner.nextInt();
         while (test) {
             test = false;
-            switch (choice) {
-                case 1 -> {
+            String input = scanner.nextLine();
+            switch (input) {
+                case "1" -> {
                     int newMaxHealth = wizard.getMaxHealth() + (bonus * 5);
                     wizard.setMaxHealth(newMaxHealth);
                     System.out.println(GREEN_BOLD + "** You have gained +" + (bonus * 5) + "hp! **" + RESET);
                 }
-                case 2 -> {
+                case "2" -> {
                     int newPower = wizard.getPower() + bonus;
                     wizard.setPower(newPower);
                     System.out.println(GREEN_BOLD + "** You have gained +" + bonus + " of power! **" + RESET);
                 }
-                case 3 -> {
+                case "3" -> {
                     int newAccuracy = wizard.getAccuracy() + bonus;
                     wizard.setAccuracy(newAccuracy);
                     System.out.println(GREEN_BOLD + "** You have gained +" + bonus + " of accuracy!" + RESET);
                 }
-                case 4 -> {
+                case "4" -> {
                     int newBotanist = wizard.getBotanist() + bonus;
                     wizard.setBotanist(newBotanist);
                     System.out.println(GREEN_BOLD + "** You have gained +" + bonus + "of healing points!" + RESET);

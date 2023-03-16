@@ -283,7 +283,7 @@ public class Chapter3 implements StoryStep {
         System.out.println(RED + "Write Expecto Patronum to learn the spell :" + RESET);
         while (true) {
             String input = scanner.nextLine();
-            if (input.equals("EXPECTO PATRONUM")) {
+            if (input.equals("EXPECTO PATRONUM")) { //Not IgnoreCase on purpose.
                 break;
             } else {
                 System.out.println(BLUE + "Lupin - " + RESET + "This one is difficult, to learn it, try writing using ALL CAPS.");

@@ -106,7 +106,7 @@ public class Wizard extends Character {
         switch (wizard.getHouse()) {
             case Hufflepuff -> {
                 // Increase the effectiveness of potions for Hufflepuff members
-                int newBotanist = wizard.getBotanist()+ 10;
+                int newBotanist = wizard.getBotanist()+ 5;
                 wizard.setBotanist(newBotanist);
                 System.out.println(GREEN_BOLD + "Hufflepuff bonus: +5 Botanist points" + RESET);
             }
@@ -138,19 +138,19 @@ public class Wizard extends Character {
                 // Increase the effectiveness of accuracy
                 int newAccuracy = wizard.getAccuracy() + 2;
                 wizard.setAccuracy(newAccuracy);
-                System.out.println(GREEN_BOLD + "Dragon heartstring core bonus: +2 accuracy" + RESET);
+                System.out.println(GREEN_BOLD + "Dragon heartstring Core bonus: +2 accuracy" + RESET);
             }
             case UNICORN_HAIR -> {
                 // Increase spell damage
                 int newHealth = wizard.getHealth() + 5;
                 wizard.setMaxHealth(newHealth);
-                System.out.println(GREEN_BOLD + "Unicorn hair core bonus: +5hp" + RESET);
+                System.out.println(GREEN_BOLD + "Unicorn hair Core bonus: +5hp" + RESET);
             }
             case PHOENIX_FEATHER -> {
                 // Increase the wizard's power
                 int newPower = wizard.getPower() + 2;
                 wizard.setPower(newPower);
-                System.out.println(GREEN_BOLD + "Phoenix Feather core bonus: +2 damage" + RESET);
+                System.out.println(GREEN_BOLD + "Phoenix Feather Core bonus: +2 damage" + RESET);
             }
         }
     }

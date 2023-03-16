@@ -304,7 +304,7 @@ public class Chapter4 implements StoryStep {
         threadSleep(2000);
         System.out.println("** But an other participant reaches you, he also saw trophy... **\n");
         threadSleep(2000);
-        System.out.println(RED + "I'm gonna kill you to get the trophy!!" + RESET);
+        System.out.println(RED + "Tournament Champion - " + RESET + "I'm gonna kill you to get the trophy!!");
         threadSleep(2000);
         wizard.attack(Enemy.tournamentChampion);
         System.out.println("** You killed him! But you had to... Anyway, you run to grab the trophy... **");
