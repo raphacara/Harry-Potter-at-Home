@@ -14,12 +14,25 @@ public class Chapter6 implements StoryStep {
         wizard = player;
     }
     @Override
-    public void run() throws InterruptedException {
+    public void run() {
         //-- Intro of Chapter 6 --
         System.out.println(GREEN_BOLD + "\n----------------- Chapter 6 -----------------");
-        Thread.sleep(1000);
+        threadSleep(1000);
         System.out.println("----------- The Half-Blood Prince -----------\n" + RESET);
-        Thread.sleep(2000);
+        threadSleep(2000);
+
+        //-- End of Chapter 6 --
+        threadSleep(2000);
+        System.out.println("\n** Chapter 6 - THE END **\n");
+        threadSleep(2000);
+    }
+
+    public void threadSleep(int time) { //To use it in the while loop otherwise it is "busy waiting"
+        try {
+            Thread.sleep(time);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
