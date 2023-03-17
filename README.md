@@ -8,5 +8,5 @@ A Harry Potter game in Java.
 
 GAMEPLAY:
 Currently -> Console game //I will later use JavaFX for this game.
-* Steps created: Introduction - Sorting Hat - Chapter 1/2/3
-* Steps missings: Chapters 4/5/6/7 - Conclusion
+* Steps created: Introduction - Sorting Hat - Chapter 1/2/3/4/5
+* Steps missings: Chapters 6/7 - Conclusion
