@@ -24,6 +24,7 @@ public class Chapter6 implements StoryStep {
         threadSleep(2000);
         System.out.println("\n** Chapter 6 - THE END **\n");
         threadSleep(2000);
+        System.out.println("test");
     }
 
     public void threadSleep(int time) { //To use it in the while loop otherwise it is "busy waiting"
