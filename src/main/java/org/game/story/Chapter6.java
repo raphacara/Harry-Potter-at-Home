@@ -7,7 +7,6 @@ public class Chapter6 implements StoryStep {
     private static final String RED_BOLD = "\033[1;31m"; //fun
     private static final String BLUE_BOLD = "\033[1;34m"; //fun
     private static final String GREEN_BOLD = "\033[1;32m"; //fun
-    private static final String BLACK_BOLD = "\033[1;30m"; //fun
     private static Wizard wizard;
     //Constructor
     public Chapter6(Wizard player) {
