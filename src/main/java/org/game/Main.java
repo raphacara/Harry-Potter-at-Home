@@ -46,8 +46,13 @@ public class Main {
             play(chapter6, "Chapter 6", wizard);
 
             // 8. ----- CHAPTER 7 -----
-            Chapter7 chapter7 = new Chapter7(wizard);
-            play(chapter7, "Chapter 7", wizard);
+            if (Objects.equals(wizard.getCondition(), "Dark")) { //If the enemy joined the Voldemort's army
+                Chapter7_Dark chapter7_dark = new Chapter7_Dark(wizard); //Then it is an alternative Chapter 7
+                play(chapter7_dark, "Chapter 7", wizard);
+            } else { //Else: regular Chapter 7
+                Chapter7 chapter7 = new Chapter7(wizard);
+                play(chapter7, "Chapter 7", wizard);
+            }
 
             //Stop the music
             } catch (InterruptedException | UnsupportedAudioFileException | IOException | LineUnavailableException e) {

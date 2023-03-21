@@ -16,7 +16,7 @@ public abstract class AbstractEnemy extends Character {
     @Override
     public void attack(Character target) throws InterruptedException {
         // Basic attack implementation
-        int randomNum = (int)(Math.random() * 10); // Generate a random number between 0 and 10
+        int randomNum = (int)(Math.random() * 10); // Generate a random number between 0 and 9
         int damage;
         if (randomNum == 0) {
             System.out.println("You dodge the attack!"); // Missed
@@ -41,9 +41,21 @@ public abstract class AbstractEnemy extends Character {
     }
 
     public void specialAttack(Wizard wizard, String spell) {
+        int randomNum = (int)(Math.random() * 3); // Generate a random number between 0 and 2
         if (Objects.equals(spell, "Protego")) {
             wizard.stopAttack(Spell.protego);
             System.out.println("Protego! It will block your next attack.");
+        } else if (Objects.equals(spell, "Expelliarmus")) {
+            if (randomNum == 0) {
+                wizard.stopAttack(Spell.protego);
+                System.out.println("Expelliarmus, you take 30 damage and you lost your wand for this turn!");
+            }
+            System.out.println("Expelliarmus, you take 30 damage!");
+        } else if (Objects.equals(spell, "Avada Kedavra")) {
+            System.out.println("AVADA..... KEDAVRAAAA !!!!");
+            if (randomNum == 0) {
+                wizard.setCondition("Dead");
+            }
         } else {
             System.out.println("test");
         }

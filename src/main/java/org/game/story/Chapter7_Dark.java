@@ -2,7 +2,7 @@ package org.game.story;
 
 import org.game.character.Wizard;
 
-public class Chapter7 implements StoryStep {
+public class Chapter7_Dark implements StoryStep {
     private static final String RESET = "\u001B[0m"; //fun
     private static final String RED = "\033[1;31m"; //fun
     private static final String BLUE = "\033[1;34m"; //fun
@@ -10,7 +10,7 @@ public class Chapter7 implements StoryStep {
     private static final String BLACK = "\033[1;30m"; //fun
     private static Wizard wizard;
     //Constructor
-    public Chapter7(Wizard player) {
+    public Chapter7_Dark(Wizard player) {
         wizard = player;
     }
     @Override

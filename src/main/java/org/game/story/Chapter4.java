@@ -193,7 +193,7 @@ public class Chapter4 implements StoryStep {
                             }
                         }
                         if (invisible) {
-                            System.out.println("You don't have any invisible spell or potions... So you have to fight the boss.");
+                            System.out.println("You don't have any invisible spell or potion... So you have to fight the boss.");
                             wizard.attack(Boss.dragon);
                             threadSleep(1000);
                             System.out.println("** You really killed the Dragon! **");
