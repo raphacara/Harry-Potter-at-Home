@@ -46,11 +46,13 @@ public abstract class AbstractEnemy extends Character {
             wizard.stopAttack(game.spell("Protego"));
             System.out.println("Protego! It will block your next attack.");
         } else if (Objects.equals(spell, "Expelliarmus")) {
+            wizard.takeDamage(30);
             if (randomNum == 0) {
                 wizard.stopAttack(game.spell("Expelliarmus"));
                 System.out.println("Expelliarmus, you take 30 damage and you lost your wand for this turn!");
+            } else {
+                System.out.println("Expelliarmus, you take 30 damage!");
             }
-            System.out.println("Expelliarmus, you take 30 damage!");
         } else if (Objects.equals(spell, "Avada Kedavra")) {
             System.out.println("AVADA..... KEDAVRAAAA !!!!");
             if (randomNum == 0) {

@@ -86,25 +86,25 @@ public class Main {
                     wizard.bonusHouses(wizard); //adding House bonus
                     wizard.bonusPet(wizard); //adding Pet bonus
                     wizard.bonusWand(wizard);//adding Wand bonus
-                    System.out.println(" ");
                 }
                 if (Objects.equals(name, "Chapter 1") ) { //If the player didn't play Chapter 1
                     wizard.learnSpell(game.spell("Wingardium Leviosa")); //assign spells
                     wizard.learnSpell(game.spell("Protego"));
                     wizard.learnPotion(game.potion("Wiggenweld"));
-                    System.out.println(" ");
                 }
                 if (Objects.equals(name, "Chapter 2") ) { //If the player didn't play Chapter 2
                     wizard.learnSpell(game.spell("Accio"));
                     wizard.learnSpell(game.spell("Incendio"));
-                    System.out.println(" ");
                 }
                 if (Objects.equals(name, "Chapter 3") ) { //If the player didn't play Chapter 3
                     wizard.setPatronus("Snail"); //This is a joke
                     wizard.learnSpell(game.spell("Expecto Patronum")); //assign spells
                     wizard.learnSpell(game.spell("Diffindo"));
-                    System.out.println(" ");
                 }
+                if (Objects.equals(name, "Chapter 6") ) { //If the player didn't play Chapter 3
+                    wizard.learnSpell(game.spell("Sectumsempra")); //assign spells
+                }
+                System.out.println(" ");
                 break;
             } else {
                 System.out.println("You have to enter a number.");

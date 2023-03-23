@@ -15,7 +15,7 @@ public class Spell extends AbstractSpell {
     public void cast(Wizard wizard, Character target) {
         int randomNum = (int)(Math.random() * 4); //for critical hits
         int accuracyRoll = (int) (Math.random() * 101); // Generate a random number between 0 and 100 (inclusive)
-        if (accuracyRoll <= (this.getAccuracy() + wizard.getAccuracy())) { // Check if the spell hits its target
+        if (accuracyRoll <= (this.getAccuracy() + wizard.getAccuracy() + wizard.getLuck())) { // Check if the spell hits its target
             if (Objects.equals(this.getName(), "Protego") || Objects.equals(this.getName(), "Expelliarmus") || Objects.equals(this.getName(), "Stupefy")) {
                 target.stopAttack(this); //in Character class -> isAttacking = false.
             } else if (Objects.equals(this.getName(), "Incendio") || Objects.equals(this.getName(), "Sectumsempra")) {

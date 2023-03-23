@@ -53,7 +53,7 @@ public class GameContent {
         potions.add(new Potion("Invisibility", 0, "it allows you to be invisible for a limited time."));
         potions.add(new Potion("Wiggenweld", 40, "It instantly heals by restoring some health."));
         //Enemies
-        enemies.add(new Enemy("Death Eater", 120, 40)); //Creating a DeathEater
+        enemies.add(new Enemy("Death Eater", 130, 35)); //Creating a DeathEater
         enemies.add(new Enemy("Dementors", 9999, 10)); //Creating a Dementor
         enemies.add(new Enemy("Spider", 70, 25)); //Creating a Spider
         enemies.add(new Enemy("Slytherin Student", 120, 25)); //Creating a Student

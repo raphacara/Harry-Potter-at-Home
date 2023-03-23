@@ -1,6 +1,5 @@
 package org.game.story;
 import org.game.GameContent;
-import org.game.attributes.Potion;
 import org.game.character.Wizard;
 
 import java.util.Scanner;

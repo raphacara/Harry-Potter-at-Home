@@ -5,6 +5,7 @@ import org.game.character.enemies.Boss;
 import org.game.character.Character;
 import org.game.character.Wizard;
 import org.game.spells.AbstractSpell;
+import org.game.spells.Spell;
 import org.game.story.StoryStep;
 
 import java.util.Objects;
@@ -88,7 +89,6 @@ public class Fight implements StoryStep {
             } else {
                 checkingCondition(); //checking the condition of the enemy.
             }
-
             //adding debuffs to the enemy
             if (isBurned) {
                 int damage = enemy.getMaxHealth() / 10; //burn makes damage on the enemy max hp.
@@ -105,7 +105,7 @@ public class Fight implements StoryStep {
     }
 
     //To check if someone is dead
-    private void ifDead(Wizard wizard, Character enemy) {
+    private void ifDead(Wizard wizard, Character enemy) throws InterruptedException {
         if (wizard.getHealth() <= 0) {
             System.out.println("\n** You have been defeated by the " + enemy.getName() + ". **");
             if (Objects.equals(enemy.getName(), "Slytherin Student")) {
@@ -113,7 +113,19 @@ public class Fight implements StoryStep {
                 wizard.setCondition("Defeated");
             } else {
                 System.out.println(RED + "** Game over! **" + RESET);
-                System.exit(0);
+                System.out.println("\nDo you want to restart this fight?");
+                Scanner scanner = new Scanner(System.in);
+                String input;
+                System.out.print(RED + "Enter Yes or No :" + RESET);
+                input = scanner.nextLine();
+                switch (input.toLowerCase()) {
+                    case "yes" -> {
+                        wizard.setHealth(wizard.getMaxHealth());
+                        wizard.setLuck(0);
+                        wizard.attack(enemy);
+                    }
+                    case "no" -> System.exit(0);
+                }
             }
             isFinished = true;
         } else if (enemy.getHealth() <= 0) {
@@ -147,6 +159,14 @@ public class Fight implements StoryStep {
         if (selectedSpell == null) {
             System.out.println("You missed the spell.");
         }
+        if (Objects.equals(enemy.getCondition(), "Incendio")) {
+            isBurned = true;
+            enemy.setCondition("Normal");
+        }
+        if (Objects.equals(enemy.getCondition(), "Sectumsempra")) {
+            isBleeding = true;
+            enemy.setCondition("Normal");
+        }
     }
 
     //Method to use a potion
@@ -164,7 +184,7 @@ public class Fight implements StoryStep {
         for (Potion potion : wizard.getPotions()) {
             if (input.equalsIgnoreCase(potion.getName())) {
                 selectedPotion = potion;
-                selectedPotion.usePotion(wizard);
+                checkingPotion(selectedPotion);
                 break; //break after setting selectedPotion
             }
         }
@@ -184,20 +204,33 @@ public class Fight implements StoryStep {
             } else if (randomNum == 1) {
                 enemy.specialAttack(wizard, "Expelliarmus");
                 threadSleep(1000);
-            } else if (randomNum == 5 && Objects.equals(enemy.getName(), "Death Eater")) {
+            } else if (randomNum == 4 && Objects.equals(enemy.getName(), "Death Eater")) {
                 enemy.specialAttack(wizard, "Avada Kedavra");
                 if (Objects.equals(wizard.getCondition(), "Dead")) {
                     threadSleep(2000);
                     System.out.println(RED + "** You died. **" + RESET);
-                    System.exit(0);
+                    System.out.println("\nDo you want to restart this fight?");
+                    Scanner scanner = new Scanner(System.in);
+                    String input;
+                    System.out.print(RED + "Enter Yes or No :" + RESET);
+                    input = scanner.nextLine();
+                    switch (input.toLowerCase()) {
+                        case "yes" -> {
+                            wizard.setHealth(wizard.getMaxHealth());
+                            wizard.setLuck(0);
+                            wizard.attack(enemy);
+                        }
+                        case "no" -> System.exit(0);
+                    }
                 } else {
-                    threadSleep(1000);
-                    System.out.println(YELLOW + "YOU" + RESET + "EXPELLIARMUS!");
                     threadSleep(2000);
+                    System.out.println(YELLOW + "YOU - " + RESET + "EXPELLIARMUS!");
+                    threadSleep(3000);
                     System.out.println("You have countered the spell!");
                 }
             } else {
                 enemy.attack(wizard); // This method is in AbstractEnemy
+                wizard.setAttacking(true);
             }
         } else if (Objects.equals(enemy.getName(), "Dragon")) {
             if (randomNum == 0) {
@@ -242,6 +275,23 @@ public class Fight implements StoryStep {
         } else {
             spell.cast(wizard, enemy);
             threadSleep(2000);
+        }
+    }
+
+    //Method to do different things regarding the potion that the player is using
+    public void checkingPotion(Potion potion) {
+        System.out.println(potion.getDescription());
+        threadSleep(1000);
+        if (Objects.equals(potion.getName(), "Wiggenweld")) {
+            potion.usePotion(wizard);
+        } else if (Objects.equals(potion.getName(), "Felix Felicis")) {
+            wizard.setLuck(100);
+        } else if (Objects.equals(potion.getName(), "Invisibility")) {
+            Spell spell = new Spell("", 0, 0, ""); //void spell
+            enemy.stopAttack(spell);
+        } else {
+            System.out.println("It is useless...");
+            threadSleep(1000);
         }
     }
 
@@ -396,6 +446,7 @@ public class Fight implements StoryStep {
     //Method get rewarded at the end of a fight
     public void upgrade(Wizard wizard) {
         wizard.setHealth(wizard.getMaxHealth()); //Putting the Heath of the player to the max
+        wizard.setLuck(0); //Luck is coming back to 0
         System.out.println(RED + "\nWhat do you want to upgrade?");
         System.out.println(GREEN + "1. Hp\n2. Damage\n3. Accuracy\n4. Botanist");
         int bonus;

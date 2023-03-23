@@ -23,6 +23,9 @@ public class Chapter7_Dark implements StoryStep {
         threadSleep(1000);
         System.out.println("------------ The Deathly Hallows ------------\n" + RESET);
         threadSleep(2000);
+
+        //-- Story --
+        System.out.println("** Dark version **");
     }
 
     public void threadSleep(int time) { //To use it in the while loop otherwise it is "busy waiting"
