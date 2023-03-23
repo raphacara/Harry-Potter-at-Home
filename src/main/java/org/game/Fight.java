@@ -1,7 +1,6 @@
 package org.game;
 import org.game.attributes.House;
 import org.game.attributes.Potion;
-import org.game.character.enemies.Boss;
 import org.game.character.Character;
 import org.game.character.Wizard;
 import org.game.spells.AbstractSpell;
@@ -13,10 +12,10 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Fight implements StoryStep {
-    private static final String RESET = "\u001B[0m"; //fun
-    private static final String RED = "\033[1;31m"; //fun
-    private static final String GREEN = "\033[1;32m"; //fun
-    private static final String YELLOW = "\033[1;33m"; //fun
+    private final String RESET = "\u001B[0m"; //fun
+    private final String RED = "\033[1;31m"; //fun
+    private final String GREEN = "\033[1;32m"; //fun
+    private final String YELLOW = "\033[1;33m"; //fun
     private final Wizard wizard; //The wizard
     private final Character enemy; //The enemy
     private boolean isFinished = false; //Checking is the fight is finished
@@ -123,6 +122,7 @@ public class Fight implements StoryStep {
                         wizard.setHealth(wizard.getMaxHealth());
                         wizard.setLuck(0);
                         wizard.attack(enemy);
+                        threadSleep(1000);
                     }
                     case "no" -> System.exit(0);
                 }
@@ -203,7 +203,7 @@ public class Fight implements StoryStep {
                 enemy.specialAttack(wizard, "Protego");
             } else if (randomNum == 1) {
                 enemy.specialAttack(wizard, "Expelliarmus");
-                threadSleep(1000);
+                threadSleep(500);
             } else if (randomNum == 4 && Objects.equals(enemy.getName(), "Death Eater")) {
                 enemy.specialAttack(wizard, "Avada Kedavra");
                 if (Objects.equals(wizard.getCondition(), "Dead")) {
@@ -219,13 +219,14 @@ public class Fight implements StoryStep {
                             wizard.setHealth(wizard.getMaxHealth());
                             wizard.setLuck(0);
                             wizard.attack(enemy);
+                            threadSleep(1000);
                         }
                         case "no" -> System.exit(0);
                     }
                 } else {
-                    threadSleep(2000);
+                    threadSleep(1000);
                     System.out.println(YELLOW + "YOU - " + RESET + "EXPELLIARMUS!");
-                    threadSleep(3000);
+                    threadSleep(1000);
                     System.out.println("You have countered the spell!");
                 }
             } else {
@@ -235,7 +236,6 @@ public class Fight implements StoryStep {
         } else if (Objects.equals(enemy.getName(), "Dragon")) {
             if (randomNum == 0) {
                 System.out.println("The dragon is preparing his attack...");
-                threadSleep(2000);
             } else {
                 enemy.attack(wizard); // This method is in AbstractEnemy
             }
@@ -243,27 +243,26 @@ public class Fight implements StoryStep {
             enemy.attack(wizard); // Standard attack
             wizard.setAttacking(true);
         }
-        threadSleep(1000);
     }
 
     //Method to check if a specific spell is used in a fight
     public void checkingSpell(AbstractSpell spell) throws InterruptedException { //Checking how to kill each enemy
         if (enemy.getName().equals("Troll") && spell.getName().equalsIgnoreCase("Wingardium Leviosa")) {
             System.out.println("\nYou are casting Wingardium Leviosa on the Troll");
-            threadSleep(2000);
+            threadSleep(1000);
             System.out.println("You make his mass to levitate... Just above the Troll's head...");
-            threadSleep(3000);
+            threadSleep(1000);
             System.out.println("And BOOM! The mass falls right on his head!");
-            threadSleep(2000);
+            threadSleep(1000);
             int damage = new Random().nextInt(51) + 50 + wizard.getPower(); //random number between 50 and 100
             System.out.println("It deals " + damage + " damage!");
             enemy.takeDamage(damage); //method in Character class.
         } else if (enemy.getName().equals("Basilisk") && spell.getName().equalsIgnoreCase("Accio")) {
             firstAttack = false;
             System.out.println("You attract a Basilisk tooth with Accio!");
-            threadSleep(2000);
+            threadSleep(1000);
             System.out.println("Now you try to pierce the Basilisk skin with his own tooth.");
-            threadSleep(2000);
+            threadSleep(1000);
             basiliskFight("sharp tooth"); //method to fight the basilisk
         } else  if (enemy.getName().equals("Dementors") && spell.getName().equalsIgnoreCase("Expecto Patronum")) {
             System.out.println("You are making an intense light!");
@@ -274,7 +273,6 @@ public class Fight implements StoryStep {
             enemy.setHealth(0);
         } else {
             spell.cast(wizard, enemy);
-            threadSleep(2000);
         }
     }
 
@@ -330,7 +328,7 @@ public class Fight implements StoryStep {
             }
         }
         if (Objects.equals(enemy.getCondition(), "Incendio")) {
-            if (luck <= (67 + wizard.getAccuracy()) && enemy.getHealth() < 1000) {
+            if (luck <= (67 + wizard.getAccuracy()) && enemy.getMaxHealth() < 1000) {
                 isBurned = true;
                 System.out.println("The " + enemy.getName() + " is burned!");
                 threadSleep(1000);
@@ -353,11 +351,11 @@ public class Fight implements StoryStep {
         if (Objects.equals(enemy.getName(), "Basilisk")) {
             if (wizard.getHouse() == House.Gryffindor) {
                 System.out.println("You see a Phoenix flying over you and dropping the Sorting Hat next to you.");
-                threadSleep(2000);
+                threadSleep(1000);
                 System.out.println("And in the Sorting Hat, you discover a shiny and sharp sword.");
-                threadSleep(2000);
+                threadSleep(1000);
                 System.out.println("You quickly grab the sword, notice that -GRYFFINDOR- is written on it, and continue the fight...");
-                threadSleep(3000);
+                threadSleep(1000);
                 System.out.println("~~ Your turn! ~~"); //-- PLAYER's TURN --
                 System.out.println(GREEN + "1. Sword strike on the Basilisk\n2. Drop the sword and fight without it" + RESET);
                 boolean check = false;
@@ -379,16 +377,16 @@ public class Fight implements StoryStep {
                 threadSleep(1000);
             } else if (firstAttack) {
                 System.out.println("During the attack, the Basilisk loose a huge tooth that gets stuck in a wall.");
-                threadSleep(2000);
+                threadSleep(1000);
                 System.out.println("If you could attract the tooth to you, it might help you to kill the snake...");
-                threadSleep(2000);
+                waiting();
                 firstAttack = false;
             }
         }
         if (Objects.equals(enemy.getName(), "Dementors")) {
             threadSleep(1000);
             System.out.println("There are plenty of dementors! A an other one attack you.");
-            threadSleep(2000);
+            threadSleep(1000);
             enemy.attack(wizard);
             System.out.println("An other one attack you!");
             enemy.attack(wizard);
@@ -405,22 +403,21 @@ public class Fight implements StoryStep {
                 threadSleep(2000);
                 System.out.println("You can mess with Umbridge and just have fun!");
                 enemy.setHealth(0);
-                threadSleep(2000);
+                threadSleep(1000);
             } else {
                 turn += 2; //To increase the turn more otherwise the fight is too long.
             }
         }
-        threadSleep(1000);
     }
 
     public void basiliskFight(String weapon) throws InterruptedException {
         System.out.println("So you are attacking the Basilisk with the " + weapon + "!");
-        threadSleep(2000);
+        threadSleep(1000);
         System.out.println("You plant it in his skin!");
         threadSleep(1000);
         System.out.println("It deals 300 damage!");
         enemy.takeDamage(300);
-        threadSleep(2000);
+        threadSleep(1000);
         // -- Enemy Turn --
         System.out.println("The Basilisk tries a last attack.");
         enemyTurn();
@@ -438,7 +435,7 @@ public class Fight implements StoryStep {
         System.out.println("~~~~~~~~~~ Your turn! ~~~~~~~~~~");
         threadSleep(1000);
         System.out.println("You put all your strength in your attack and the " + weapon + " pierce the Basilisk!");
-        threadSleep(3000);
+        threadSleep(1000);
         System.out.println("It kills it instantly!");
         enemy.setHealth(0);
     }
@@ -449,12 +446,7 @@ public class Fight implements StoryStep {
         wizard.setLuck(0); //Luck is coming back to 0
         System.out.println(RED + "\nWhat do you want to upgrade?");
         System.out.println(GREEN + "1. Hp\n2. Damage\n3. Accuracy\n4. Botanist");
-        int bonus;
-        if (enemy instanceof Boss) {
-            bonus = 2;
-        } else {
-            bonus = 3;
-        }
+        int bonus = 1;
         boolean test = true;
         while (test) {
             test = false;
@@ -478,7 +470,7 @@ public class Fight implements StoryStep {
                 case "4" -> {
                     int newBotanist = wizard.getBotanist() + bonus;
                     wizard.setBotanist(newBotanist);
-                    System.out.println(GREEN + "** You have gained +" + bonus + "of healing points!" + RESET);
+                    System.out.println(GREEN + "** You have gained +" + bonus + " of healing points!" + RESET);
                 }
                 default -> {
                     System.out.println("Don't miss an upgrade!");
@@ -491,13 +483,5 @@ public class Fight implements StoryStep {
     @Override
     public Wizard getWizard() {
         return wizard;
-    }
-
-    public void threadSleep(int time) { //To use it in the while loop otherwise it is "busy waiting"
-        try {
-            Thread.sleep(time);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
     }
 }

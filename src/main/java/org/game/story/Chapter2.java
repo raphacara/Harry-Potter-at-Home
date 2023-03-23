@@ -23,34 +23,34 @@ public class Chapter2 implements StoryStep {
     public void run() throws InterruptedException {
         //-- Intro of Chapter 2 --
         System.out.println(GREEN + "\n----------------- Chapter 2 -----------------");
-        threadSleep(1000);
+        threadSleep(200);
         System.out.println("---------- The Chamber of Secrets -----------\n" + RESET);
-        threadSleep(2000);
+        threadSleep(1000);
         System.out.println("** This is your 2nd year at Hogwarts. **");
-        threadSleep(2000);
+        threadSleep(200);
         System.out.println("** You are back in the Great Hall with the other Students. **\n");
-        threadSleep(2000);
+        threadSleep(200);
         System.out.println(BLUE + "Dumbledore - " + RESET + "Hello to all of you.");
-        threadSleep(2000);
+        threadSleep(200);
         System.out.println(BLUE + "Dumbledore - " + RESET + "There is a great danger in the school this year.");
-        threadSleep(2000);
+        threadSleep(200);
         System.out.println(BLUE + "Dumbledore - " + RESET + "The Chamber of Secrets has been opened.");
-        threadSleep(2000);
+        threadSleep(200);
         System.out.println(BLUE + "Dumbledore - " + RESET + "No one knows where it is but it contains a deadly enemy.");
-        threadSleep(2000);
+        threadSleep(200);
         System.out.println(BLUE + "Dumbledore - " + RESET + "So be very careful.\n");
-        threadSleep(2000);
+        waiting();
         System.out.println("** Dumbledore leave the Great Hall. **");
-        threadSleep(2000);
+        threadSleep(200);
 
         //-- 1st part of free time --
         System.out.println("** What do you want to do? **");
-        threadSleep(1000);
+        threadSleep(200);
         chooseWhatToDo();
         System.out.println("** It was a great experience. **");
-        threadSleep(2000);
+        waiting();
         System.out.println("** The next morning, you have to go to class.  **");
-        threadSleep(2000);
+        threadSleep(200);
         System.out.println("** But you have heard the the Defense Against the Dark Arts teacher was really bad this year... **");
 
         //-- Learning Accio --
@@ -58,77 +58,71 @@ public class Chapter2 implements StoryStep {
 
         //-- 2nd part of the free time --
         System.out.println("** You have some free time this afternoon. **");
-        threadSleep(2000);
+        threadSleep(200);
         System.out.println("** What will you do? **");
-        threadSleep(1000);
+        threadSleep(200);
         chooseWhatToDo();
 
         //-- 3rd part of the free time --
         if (!stuffDone[4]) {
             System.out.println("** It was interesting **");
-            threadSleep(2000);
+            threadSleep(200);
             System.out.println("** But the sun sets, so you are going to the " + wizard.getHouse() + " dormitory to sleep. **");
-            threadSleep(3000);
+            threadSleep(200);
             System.out.println("** ZzzzzZzzzZZzzzZZZZzzzzZZzzZZZzzZZzz... **");
-            threadSleep(3000);
+            waiting();
             System.out.println("** You wake up, what have you planned today? **");
-            threadSleep(2000);
+            threadSleep(200);
             chooseWhatToDo();
         }
 
         //-- 4th part of the free time --
         if (!stuffDone[4]) {
             System.out.println("** It was refreshing. **");
-            threadSleep(2000);
+            threadSleep(200);
             System.out.println("** The year goes on slowly. **");
-            threadSleep(2000);
+            threadSleep(200);
             System.out.println("** What will you do? **");
             chooseWhatToDo();
         }
 
         //-- The Basilisk BOSS fight --
         System.out.println("** You fall in front of a giant snake : the Basilisk!  **");
-        threadSleep(3000);
+        waiting();
         wizard.attack(game.enemy("Basilisk"));
-        threadSleep(2000);
+        threadSleep(200);
         System.out.println("\n** What an intense fight! You leave the Chamber of Secrets to tell everything to Dumbledore. **");
-        threadSleep(3000);
-        System.out.println("** It thanks you for beating the Basilisk, and have made the castle safe. **");
-        threadSleep(3000);
+        threadSleep(200);
+        System.out.println("** He thanks you for beating the Basilisk, and have made the castle safe. **");
+        threadSleep(200);
         System.out.println("** Since it's the end of the year, Dumbledore declare this : **\n");
-        threadSleep(2000);
+        threadSleep(200);
         System.out.println(BLUE + "Dumbledore - " + RESET + "This year again, regarding what happened in Hogwarts, the winning house is...");
-        threadSleep(2000);
+        waiting();
         System.out.println(BLUE + "Dumbledore - " + RESET + wizard.getHouse() + "!");
-        Thread.sleep(2000);
+        waiting();
         System.out.println("\n** Chapter 2 - THE END **\n");
-        Thread.sleep(2000);
-    }
-
-
-    @Override
-    public Wizard getWizard() {
-        return wizard;
+        Thread.sleep(1000);
     }
 
     public void defenseClass() {
-        threadSleep(3000);
+        threadSleep(200);
         System.out.println("** So you decide to go to the Charms class. **");
-        threadSleep(2000);
+        threadSleep(200);
         System.out.println("                   | |\n                   | |\n                   | |\n                   | |\n                   | |");
-        threadSleep(1000);
+        threadSleep(200);
         System.out.println("                   | |\n                   | |\n                   | |\n                   | |\n                   | |");
-        threadSleep(1000);
+        threadSleep(200);
         //fun
         String BLACK = "\033[1;30m";
         System.out.println(BLACK + "            ~~~   CHARMS   ~~~\n" + RESET);
-        threadSleep(3000);
+        threadSleep(1000);
         System.out.println(BLUE + "Charms Teacher - " + RESET + "Welcome to the Charms class!");
-        threadSleep(2000);
+        threadSleep(200);
         System.out.println(BLUE + "Charms Teacher - " + RESET + "Today, we will learn how to attract objects with: Accio");
-        threadSleep(3000);
+        threadSleep(200);
         System.out.println(BLUE + "Charms Teacher - " + RESET + "Let's try to learn it.");
-        threadSleep(2000);
+        threadSleep(200);
         System.out.println(RED + "Write Accio to learn the spell :" + RESET);
         while (true) {
             String input = scanner.nextLine();
@@ -139,9 +133,9 @@ public class Chapter2 implements StoryStep {
             }
         }
         wizard.learnSpell(game.spell("Accio"));
-        threadSleep(2000);
+        threadSleep(200);
         System.out.println(BLUE + "\nCharms Teacher - " + RESET + "Wonderful! That's it for today.\n");
-        threadSleep(2000);
+        threadSleep(200);
     }
 
     //Algorithm to let the player choose a class (I use it 3 times in the story)
@@ -190,7 +184,7 @@ public class Chapter2 implements StoryStep {
                         check = ok;
                     } else {
                         System.out.println("** You are now in the " + wizard.getHouse() + " common room. **");
-                        threadSleep(2000);
+                        threadSleep(200);
                         System.out.println("** It's very spacious! **");
                         thirdChoice();
                     }
@@ -222,11 +216,11 @@ public class Chapter2 implements StoryStep {
 
     public void libraryChoice() {
         System.out.println("** You are now in the library. **");
-        threadSleep(2000);
+        threadSleep(200);
         System.out.println("** There are a lots of books here! So you starts with the easy ones. **");
-        threadSleep(2000);
+        threadSleep(200);
         System.out.println("** Which one will you choose? **" + GREEN);
-        threadSleep(1000);
+        threadSleep(200);
         System.out.println("1. Magical plants\n2. Pronunciation of spells\n3. Cleaning your mind\n4. Wiggenweld potion\n5. All mighty" + RESET);
         while (!stuffDone[1]) {
             stuffDone[1] = true;
@@ -234,30 +228,30 @@ public class Chapter2 implements StoryStep {
             switch (input) {
                 case "1" -> {
                     System.out.println("** You learn plenty of things about magical plants... **");
-                    threadSleep(3000);
+                    waiting();
                     System.out.println(GREEN + "** You get +1 botanist point! **" + RESET);
                     wizard.setBotanist(wizard.getBotanist() + 1);
                 }
                 case "2" -> {
                     System.out.println("** You learn how to pronounce spells correctly... **");
-                    threadSleep(3000);
+                    waiting();
                     System.out.println(GREEN + "** You get +1 accuracy point! **" + RESET);
                     wizard.setAccuracy(wizard.getAccuracy() + 1);
                 }
                 case "3" -> {
                     System.out.println("** This book really clear your mind! **");
-                    threadSleep(3000);
+                    waiting();
                     System.out.println(GREEN + "** You get +5 health point! **" + RESET);
                     wizard.setMaxHealth(wizard.getMaxHealth() + 5);
                 }
                 case "4" -> {
                     System.out.println("** You read all the steps to do a healing potion called Wiggenweld... **");
-                    threadSleep(3000);
+                    waiting();
                     wizard.learnPotion(game.potion("Wiggenweld"));
                 }
                 case "5" -> {
                     System.out.println("** This is an intriguing book written by a Mr. Riddle... **");
-                    threadSleep(3000);
+                    waiting();
                     System.out.println(GREEN + "** You get +1 of power! **" + RESET);
                     wizard.setPower(wizard.getPower()+ 1);
                 }
@@ -267,24 +261,24 @@ public class Chapter2 implements StoryStep {
                 }
             }
         }
-        threadSleep(2000);
+        threadSleep(200);
     }
 
     public void hagridChoice() {
         System.out.println("** You are now in the Hagrid's hut. **\n");
-        threadSleep(2000);
+        threadSleep(200);
         System.out.println(BLUE + "Hagrid - " + RESET + "Hey " + wizard.getName() + "! I am happy to see you this year!");
-        threadSleep(2000);
+        threadSleep(200);
         System.out.println(BLUE + "Hagrid - " + RESET + "Have you heard about the Chamber of Secrets?");
-        threadSleep(2000);
+        threadSleep(200);
         System.out.println(BLUE + "Hagrid - " + RESET + "I have an old friend who knows a lot on the subject.");
-        threadSleep(3000);
+        threadSleep(200);
         System.out.println(BLUE + "Hagrid - " + RESET + "It is a Giant Spider hidden in the forbidden forest.");
-        threadSleep(3000);
+        threadSleep(200);
         System.out.println(BLUE + "Hagrid - " + RESET + "I advise you to go there if you want some info...");
-        threadSleep(2000);
+        threadSleep(200);
         System.out.println(BLUE + "Hagrid - " + RESET + "However the forest is dangerous, so i will teach you a fire spell: Incendio");
-        threadSleep(3000);
+        threadSleep(200);
         System.out.println(RED + "Write Incendio to learn the spell :" + RESET);
         while (!stuffDone[2]) {
             String input = scanner.nextLine();
@@ -295,27 +289,27 @@ public class Chapter2 implements StoryStep {
             }
         }
         wizard.learnSpell(game.spell("Incendio"));
-        threadSleep(2000);
+        threadSleep(200);
         System.out.println(BLUE + "\nHagrid - " + RESET + "Nice! Make good use of it!");
-        threadSleep(2000);
+        threadSleep(200);
         System.out.println("\n** You go back to the castle **");
-        threadSleep(2000);
+        waiting();
     }
 
     public void thirdChoice() {
-        threadSleep(2000);
+        threadSleep(200);
         System.out.println("** Suddenly, you hear someone calling you. **\n");
-        threadSleep(2000);
+        threadSleep(200);
         System.out.println(BLUE + "Student - " + RESET + "Hey! You are " + wizard.getName() + ", right?");
-        threadSleep(2000);
+        threadSleep(200);
         System.out.println(BLUE + "Student - " + RESET + "It is my 3rd year at Hogwarts, and I am the boss of a secret dueling club for students.");
-        threadSleep(4000);
+        threadSleep(200);
         System.out.println(BLUE + "Student - " + RESET + "You might be interested by our club because you have beaten a Troll last year.");
-        threadSleep(3000);
+        threadSleep(200);
         System.out.println(BLUE + "Student - " + RESET + "But still, you are not enough strong as a 2nd year. So i will teach you a private spell lesson.");
-        threadSleep(4000);
+        threadSleep(200);
         System.out.println(BLUE + "Student - " + RESET + "What spell would you like to learn?");
-        threadSleep(2000);
+        threadSleep(200);
         System.out.println(GREEN + "1. Aguamenti\n2. Reducto" + RESET);
         while (!stuffDone[3]) {
             stuffDone[3] = true;
@@ -329,7 +323,7 @@ public class Chapter2 implements StoryStep {
                 }
             }
         }
-        threadSleep(2000);
+        threadSleep(200);
         System.out.println(RED + "Write the spell to learn it :" + RESET);
         while (stuffDone[3]) {
             stuffDone[3] = false;
@@ -344,49 +338,46 @@ public class Chapter2 implements StoryStep {
             }
         }
         stuffDone[3] = true;
-        threadSleep(2000);
+        threadSleep(200);
         System.out.println(BLUE + "\nStudent - " + RESET + "Perfect, practice this spell, and next year, don't hesitate to come to the dueling club!\n");
-        threadSleep(2000);
+        waiting();
     }
 
     //Chapter 2 fights, and end of chapter 2
     public void spiderChoice() throws InterruptedException {
-        threadSleep(2000);
+        threadSleep(200);
         System.out.println("** It is a dense and mysterious woodland... **");
-        threadSleep(2000);
+        threadSleep(200);
         System.out.println("** It is home of a variety of dangerous creatures such as unicorns, centaurs, and giant spiders... **");
-        threadSleep(3000);
+        threadSleep(200);
         System.out.println("** But hopefully you exactly know where to go thanks to Hagrid. **");
-        threadSleep(3000);
+        threadSleep(200);
         System.out.println("** So you enter in the dark cave, where the Giant Spider is supposed to be... **");
-        threadSleep(3000);
+        threadSleep(200);
         System.out.println("** But suddenly a spider attacks you from behind! **");
-        threadSleep(3000);
+        waiting();
         wizard.attack(game.enemy("Spider"));
         System.out.println("\n** What a fight! **\n");
-        threadSleep(2000);
+        threadSleep(200);
         System.out.println(RED + "Giant Spider - " + RESET + "Sorry for that, my spiders attack everyone except Hagrid.");
-        threadSleep(3000);
+        threadSleep(200);
         System.out.println(RED + "Giant Spider - " + RESET + "But he told me be that you would come.");
-        threadSleep(3000);
+        threadSleep(200);
         System.out.println(RED + "Giant Spider - " + RESET + "So I will tell you what I know about the Chamber of Secrets...");
-        threadSleep(3000);
+        waiting();
         System.out.println(RED + "Giant Spider - " + RESET + "It contains a giant snake called: the Basilisk.");
-        threadSleep(3000);
+        threadSleep(200);
         System.out.println(RED + "Giant Spider - " + RESET + "And the entrance of the Chamber of Secrets is located in the basement toilets...");
-        threadSleep(3000);
+        waiting();
         System.out.println("\n** You thanks the spider and don't waste time to find the secret room. **");
-        threadSleep(3000);
+        threadSleep(200);
         System.out.println("** Once you are in the lowest toilets of the castle, you find a hidden hole, and you decide to jump in... **");
-        threadSleep(4000);
+        threadSleep(200);
         stuffDone[4] = true;
     }
 
-    public void threadSleep(int time) { //To use it in the while loop otherwise it is "busy waiting"
-        try {
-            Thread.sleep(time);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+    @Override
+    public Wizard getWizard() {
+        return wizard;
     }
 }

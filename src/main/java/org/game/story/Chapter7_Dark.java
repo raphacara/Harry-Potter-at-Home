@@ -3,6 +3,8 @@ package org.game.story;
 import org.game.GameContent;
 import org.game.character.Wizard;
 
+import java.io.IOException;
+
 public class Chapter7_Dark implements StoryStep {
     private final String RESET = "\u001B[0m"; //fun
     private final String RED = "\033[1;31m"; //fun
@@ -20,20 +22,12 @@ public class Chapter7_Dark implements StoryStep {
     public void run() throws InterruptedException {
         //-- Intro of Chapter 7 --
         System.out.println(GREEN + "\n----------------- Chapter 7 -----------------");
-        threadSleep(1000);
+        threadSleep(200);
         System.out.println("------------ The Deathly Hallows ------------\n" + RESET);
-        threadSleep(2000);
+        threadSleep(1000);
 
         //-- Story --
-        System.out.println("** Dark version **");
-    }
-
-    public void threadSleep(int time) { //To use it in the while loop otherwise it is "busy waiting"
-        try {
-            Thread.sleep(time);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        System.out.println("** You are a Death Eater. **");
     }
 
     @Override

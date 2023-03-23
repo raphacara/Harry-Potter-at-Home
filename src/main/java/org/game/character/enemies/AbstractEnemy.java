@@ -30,7 +30,7 @@ public abstract class AbstractEnemy extends Character {
             System.out.println("Ultra-Critical hit."); // Ultra-Critical hit
             damage = this.getPower() * 2; // 200% damage
         } else {
-            System.out.println("The " + this.getName() + " attack you."); // Normal hit
+            System.out.println(this.getName() + " attack you."); // Normal hit
             damage = this.getPower(); // 100% damage
         }
         Thread.sleep(1000);
@@ -52,14 +52,17 @@ public abstract class AbstractEnemy extends Character {
                 System.out.println("Expelliarmus, you take 30 damage and you lost your wand for this turn!");
             } else {
                 System.out.println("Expelliarmus, you take 30 damage!");
+                wizard.setAttacking(true);
             }
         } else if (Objects.equals(spell, "Avada Kedavra")) {
             System.out.println("AVADA..... KEDAVRAAAA !!!!");
             if (randomNum == 0) {
                 wizard.setCondition("Dead");
             }
+            wizard.setAttacking(true);
         } else {
             System.out.println("test");
+            wizard.setAttacking(true);
         }
     }
 }

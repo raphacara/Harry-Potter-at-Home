@@ -22,15 +22,7 @@ public class Chapter7 implements StoryStep {
         System.out.println(GREEN + "\n----------------- Chapter 7 -----------------");
         threadSleep(1000);
         System.out.println("------------ The Deathly Hallows ------------\n" + RESET);
-        threadSleep(2000);
-    }
-
-    public void threadSleep(int time) { //To use it in the while loop otherwise it is "busy waiting"
-        try {
-            Thread.sleep(time);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        threadSleep(1000);
     }
 
     @Override
