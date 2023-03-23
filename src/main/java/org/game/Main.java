@@ -1,8 +1,8 @@
 package org.game;
-import org.game.attributes.Potion;
+
 import org.game.character.Wizard;
-import org.game.spells.Spell;
 import org.game.story.*;
+
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
@@ -13,45 +13,46 @@ public class Main {
     public static void main(String[] args) {
         Wizard wizard = new Wizard(); //creating wizard
         BackgroundMusic music = new BackgroundMusic(); //creating music
+        GameContent game = new GameContent(); // instantiate game content like Spells Enemies and Bosses
         try {
             // ----- MUSIC -----
             music.play(); //playing the music
 
             // 1. ----- INTRODUCTION -----
             Introduction intro = new Introduction(wizard); //creating an Introduction
-            play(intro, "Introduction", wizard); //playing it
+            play(intro, "Introduction", wizard, game); //playing it
 
             // 2. ----- CHAPTER 1 -----
             Chapter1 chapter1 = new Chapter1(wizard);
-            play(chapter1, "Chapter 1", wizard);
+            play(chapter1, "Chapter 1", wizard, game);
 
             // 3. ----- CHAPTER 2 -----
             Chapter2 chapter2 = new Chapter2(wizard);
-            play(chapter2, "Chapter 2", wizard);
+            play(chapter2, "Chapter 2", wizard, game);
 
             // 4. ----- CHAPTER 3 -----
             Chapter3 chapter3 = new Chapter3(wizard);
-            play(chapter3, "Chapter 3", wizard);
+            play(chapter3, "Chapter 3", wizard, game);
 
             // 5. ----- CHAPTER 4 -----
             Chapter4 chapter4 = new Chapter4(wizard);
-            play(chapter4, "Chapter 4", wizard);
+            play(chapter4, "Chapter 4", wizard, game);
 
             // 6. ----- CHAPTER 5 -----
             Chapter5 chapter5 = new Chapter5(wizard);
-            play(chapter5, "Chapter 5", wizard);
+            play(chapter5, "Chapter 5", wizard, game);
 
             // 7. ----- CHAPTER 6 -----
             Chapter6 chapter6 = new Chapter6(wizard);
-            play(chapter6, "Chapter 6", wizard);
+            play(chapter6, "Chapter 6", wizard, game);
 
             // 8. ----- CHAPTER 7 -----
             if (Objects.equals(wizard.getCondition(), "Dark")) { //If the enemy joined the Voldemort's army
                 Chapter7_Dark chapter7_dark = new Chapter7_Dark(wizard); //Then it is an alternative Chapter 7
-                play(chapter7_dark, "Chapter 7", wizard);
+                play(chapter7_dark, "Chapter 7", wizard, game);
             } else { //Else: regular Chapter 7
                 Chapter7 chapter7 = new Chapter7(wizard);
-                play(chapter7, "Chapter 7", wizard);
+                play(chapter7, "Chapter 7", wizard, game);
             }
 
             //Stop the music
@@ -63,7 +64,7 @@ public class Main {
     }
 
     //I created this method because my game is a bit long, so it will ask to skip steps of the game.
-    public static void play(StoryStep step, String name, Wizard wizard) throws InterruptedException {
+    public static void play(StoryStep step, String name, Wizard wizard, GameContent game) throws InterruptedException {
         System.out.println("\n=======================================");
         System.out.println("Do you want to play the " + name + "?");
         System.out.println("* 1. PLAY\n* 2. SKIP");
@@ -88,20 +89,20 @@ public class Main {
                     System.out.println(" ");
                 }
                 if (Objects.equals(name, "Chapter 1") ) { //If the player didn't play Chapter 1
-                    wizard.learnSpell(Spell.wingardiumLeviosa); //assign spells
-                    wizard.learnSpell(Spell.protego);
-                    wizard.learnPotion(Potion.wiggenweld);
+                    wizard.learnSpell(game.spell("Wingardium Leviosa")); //assign spells
+                    wizard.learnSpell(game.spell("Protego"));
+                    wizard.learnPotion(game.potion("Wiggenweld"));
                     System.out.println(" ");
                 }
                 if (Objects.equals(name, "Chapter 2") ) { //If the player didn't play Chapter 2
-                    wizard.learnSpell(Spell.accio);
-                    wizard.learnSpell(Spell.incendio);
+                    wizard.learnSpell(game.spell("Accio"));
+                    wizard.learnSpell(game.spell("Incendio"));
                     System.out.println(" ");
                 }
                 if (Objects.equals(name, "Chapter 3") ) { //If the player didn't play Chapter 3
                     wizard.setPatronus("Snail"); //This is a joke
-                    wizard.learnSpell(Spell.expectoPatronum); //assign spells
-                    wizard.learnSpell(Spell.diffindo);
+                    wizard.learnSpell(game.spell("Expecto Patronum")); //assign spells
+                    wizard.learnSpell(game.spell("Diffindo"));
                     System.out.println(" ");
                 }
                 break;

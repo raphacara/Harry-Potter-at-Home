@@ -1,19 +1,17 @@
 package org.game.story;
+import org.game.GameContent;
 import org.game.attributes.Potion;
-import org.game.character.enemies.Boss;
-import org.game.character.enemies.Enemy;
 import org.game.character.Wizard;
-import org.game.spells.Spell;
 
 import java.util.Scanner;
 
 public class Chapter2 implements StoryStep {
-    private static final String RESET = "\u001B[0m"; //fun
-    private static final String RED = "\033[1;31m"; //fun
-    private static final String BLUE = "\033[1;34m"; //fun
-    private static final String GREEN = "\033[1;32m"; //fun
-    private static final String BLACK = "\033[1;30m"; //fun
-    private static Wizard wizard;
+    private final String RESET = "\u001B[0m"; //fun
+    private final String RED = "\033[1;31m"; //fun
+    private final String BLUE = "\033[1;34m"; //fun
+    private final String GREEN = "\033[1;32m"; //fun
+    private final Wizard wizard;
+    private final GameContent game = new GameContent(); //to have access to the game content
     private final Scanner scanner = new Scanner(System.in); //to scan the inputs
     private final boolean[] stuffDone = new boolean[5]; //changing to true when the player take a lesson
     private boolean check = true; //to check the loops
@@ -92,7 +90,7 @@ public class Chapter2 implements StoryStep {
         //-- The Basilisk BOSS fight --
         System.out.println("** You fall in front of a giant snake : the Basilisk!  **");
         threadSleep(3000);
-        wizard.attack(Boss.basilisk);
+        wizard.attack(game.enemy("Basilisk"));
         threadSleep(2000);
         System.out.println("\n** What an intense fight! You leave the Chamber of Secrets to tell everything to Dumbledore. **");
         threadSleep(3000);
@@ -122,6 +120,8 @@ public class Chapter2 implements StoryStep {
         threadSleep(1000);
         System.out.println("                   | |\n                   | |\n                   | |\n                   | |\n                   | |");
         threadSleep(1000);
+        //fun
+        String BLACK = "\033[1;30m";
         System.out.println(BLACK + "            ~~~   CHARMS   ~~~\n" + RESET);
         threadSleep(3000);
         System.out.println(BLUE + "Charms Teacher - " + RESET + "Welcome to the Charms class!");
@@ -139,7 +139,7 @@ public class Chapter2 implements StoryStep {
                 System.out.println(BLUE + "Charms Teacher - " + RESET + "It is not exactly that, write: Accio");
             }
         }
-        wizard.learnSpell(Spell.accio);
+        wizard.learnSpell(game.spell("Accio"));
         threadSleep(2000);
         System.out.println(BLUE + "\nCharms Teacher - " + RESET + "Wonderful! That's it for today.\n");
         threadSleep(2000);
@@ -254,7 +254,7 @@ public class Chapter2 implements StoryStep {
                 case "4" -> {
                     System.out.println("** You read all the steps to do a healing potion called Wiggenweld... **");
                     threadSleep(3000);
-                    wizard.learnPotion(Potion.wiggenweld);
+                    wizard.learnPotion(game.potion("Wiggenweld"));
                 }
                 case "5" -> {
                     System.out.println("** This is an intriguing book written by a Mr. Riddle... **");
@@ -295,7 +295,7 @@ public class Chapter2 implements StoryStep {
                 System.out.println(BLUE + "Hagrid - " + RESET + "Haha, it is not so easy, right? try again.");
             }
         }
-        wizard.learnSpell(Spell.incendio);
+        wizard.learnSpell(game.spell("Incendio"));
         threadSleep(2000);
         System.out.println(BLUE + "\nHagrid - " + RESET + "Nice! Make good use of it!");
         threadSleep(2000);
@@ -336,9 +336,9 @@ public class Chapter2 implements StoryStep {
             stuffDone[3] = false;
             String input2 = scanner.nextLine();
             if (input2.equalsIgnoreCase("Aguamenti")) {
-                wizard.learnSpell(Spell.aguamenti);
+                wizard.learnSpell(game.spell("Aguamenti"));
             } else if (input2.equalsIgnoreCase("Reducto")) {
-                 wizard.learnSpell(Spell.reducto);
+                 wizard.learnSpell(game.spell("Reducto"));
             } else {
                 System.out.println(BLUE + "Student - " + RESET + "Wrong spelling, try again.");
                 stuffDone[3] = true;
@@ -363,7 +363,7 @@ public class Chapter2 implements StoryStep {
         threadSleep(3000);
         System.out.println("** But suddenly a spider attacks you from behind! **");
         threadSleep(3000);
-        wizard.attack(Enemy.spider);
+        wizard.attack(game.enemy("Spider"));
         System.out.println("\n** What a fight! **\n");
         threadSleep(2000);
         System.out.println(RED + "Giant Spider - " + RESET + "Sorry for that, my spiders attack everyone except Hagrid.");

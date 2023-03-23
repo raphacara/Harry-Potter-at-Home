@@ -4,7 +4,7 @@ import org.game.attributes.Potion;
 import org.game.character.enemies.Boss;
 import org.game.character.Character;
 import org.game.character.Wizard;
-import org.game.spells.Spell;
+import org.game.spells.AbstractSpell;
 import org.game.story.StoryStep;
 
 import java.util.Objects;
@@ -23,6 +23,7 @@ public class Fight implements StoryStep {
     private final Scanner scanner = new Scanner(System.in); //to scan the inputs
     private boolean isDead; //check if someone is dead
     private boolean isBurned; //check if someone is burned
+    private boolean isBleeding; //check if someone is burned
     private final Random random = new Random(); //create random
     private int turn; //to count the turn
 
@@ -95,6 +96,11 @@ public class Fight implements StoryStep {
                 System.out.println("The enemy is burned and loose " + damage + "hp!");
                 threadSleep(1000);
             }
+            if (isBleeding) {
+                enemy.takeDamage(10);
+                System.out.println("The enemy is bleeding and loose 10hp!");
+                threadSleep(1000);
+            }
         }
     }
 
@@ -122,7 +128,7 @@ public class Fight implements StoryStep {
     private void castSpell() throws InterruptedException {
         // List of spells
         System.out.println("\n--- Spells ---");
-        for (Spell spell : wizard.getKnownSpells()) {
+        for (AbstractSpell spell : wizard.getKnownSpells()) {
             System.out.println(spell.getName());
         }
         System.out.println("---------------");
@@ -130,8 +136,8 @@ public class Fight implements StoryStep {
         // Choosing a spell
         System.out.println(RED + "Write the spell you want to use :" + RESET);
         String input = scanner.nextLine();
-        Spell selectedSpell = null;
-        for (Spell spell : wizard.getKnownSpells()) {
+        AbstractSpell selectedSpell = null;
+        for (AbstractSpell spell : wizard.getKnownSpells()) {
             if (input.equalsIgnoreCase(spell.getName())) {
                 selectedSpell = spell;
                 checkingSpell(selectedSpell); //checking the way to kill the enemy
@@ -208,7 +214,7 @@ public class Fight implements StoryStep {
     }
 
     //Method to check if a specific spell is used in a fight
-    public void checkingSpell(Spell spell) throws InterruptedException { //Checking how to kill each enemy
+    public void checkingSpell(AbstractSpell spell) throws InterruptedException { //Checking how to kill each enemy
         if (enemy.getName().equals("Troll") && spell.getName().equalsIgnoreCase("Wingardium Leviosa")) {
             System.out.println("\nYou are casting Wingardium Leviosa on the Troll");
             threadSleep(2000);
@@ -274,9 +280,17 @@ public class Fight implements StoryStep {
             }
         }
         if (Objects.equals(enemy.getCondition(), "Incendio")) {
-            if (luck <= (50 + wizard.getAccuracy()) || enemy.getHealth() < 1000) {
+            if (luck <= (67 + wizard.getAccuracy()) && enemy.getHealth() < 1000) {
                 isBurned = true;
                 System.out.println("The " + enemy.getName() + " is burned!");
+                threadSleep(1000);
+            }
+            threadSleep(1000);
+        }
+        if (Objects.equals(enemy.getCondition(), "Sectumsempra")) {
+            if (luck <= (75 + wizard.getAccuracy())) {
+                isBleeding = true;
+                System.out.println("The " + enemy.getName() + " is Bleeding!");
                 threadSleep(1000);
             }
             threadSleep(1000);
@@ -343,7 +357,7 @@ public class Fight implements StoryStep {
                 enemy.setHealth(0);
                 threadSleep(2000);
             } else {
-                turn += 1; //To increase the turn more otherwise the fight is too long.
+                turn += 2; //To increase the turn more otherwise the fight is too long.
             }
         }
         threadSleep(1000);
@@ -388,7 +402,7 @@ public class Fight implements StoryStep {
         if (enemy instanceof Boss) {
             bonus = 2;
         } else {
-            bonus = 1;
+            bonus = 3;
         }
         boolean test = true;
         while (test) {

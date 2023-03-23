@@ -1,9 +1,8 @@
 package org.game.character.enemies;
 
+import org.game.GameContent;
 import org.game.character.Character;
 import org.game.character.Wizard;
-import org.game.spells.Spell;
-
 import java.util.Objects;
 
 public abstract class AbstractEnemy extends Character {
@@ -42,12 +41,13 @@ public abstract class AbstractEnemy extends Character {
 
     public void specialAttack(Wizard wizard, String spell) {
         int randomNum = (int)(Math.random() * 3); // Generate a random number between 0 and 2
+        GameContent game = new GameContent(); //to have access to the game content
         if (Objects.equals(spell, "Protego")) {
-            wizard.stopAttack(Spell.protego);
+            wizard.stopAttack(game.spell("Protego"));
             System.out.println("Protego! It will block your next attack.");
         } else if (Objects.equals(spell, "Expelliarmus")) {
             if (randomNum == 0) {
-                wizard.stopAttack(Spell.protego);
+                wizard.stopAttack(game.spell("Expelliarmus"));
                 System.out.println("Expelliarmus, you take 30 damage and you lost your wand for this turn!");
             }
             System.out.println("Expelliarmus, you take 30 damage!");

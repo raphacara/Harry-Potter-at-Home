@@ -3,7 +3,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.game.*;
 import org.game.attributes.*;
-import org.game.spells.Spell;
+import org.game.spells.AbstractSpell;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,13 +13,13 @@ import java.util.Random;
 @Setter
 public class Wizard extends Character {
     // Properties
-    private static final String GREEN_BOLD = "\033[1;32m"; //fun
-    private static final String YELLOW_BOLD = "\033[1;33m"; //fun
-    private static final String RESET = "\u001B[0m"; //fun
+    private final String GREEN_BOLD = "\033[1;32m"; //fun
+    private final String YELLOW_BOLD = "\033[1;33m"; //fun
+    private final String RESET = "\u001B[0m"; //fun
     private Pet pet;
     private Wand wand;
     private House house;
-    private final List<Spell> knownSpells;
+    private final List<AbstractSpell> knownSpells;
     private final List<Potion> potions;
     private int botanist;
     private String patronus;
@@ -51,7 +51,7 @@ public class Wizard extends Character {
     }
 
     //method to learn a spell
-    public void learnSpell(Spell spell) {
+    public void learnSpell(AbstractSpell spell) {
         // Check if the spell is already known
         if (knownSpells.contains(spell)) {
             System.out.println("** You already know this spell. **");
@@ -89,7 +89,7 @@ public class Wizard extends Character {
                 "\nHOUSE: " + wizard.getHouse() +
                 "\nPATRONUS: " + wizard.getPatronus() +
                 "\nSPELLS: ");
-        for (Spell spell : knownSpells) {
+        for (AbstractSpell spell : knownSpells) {
             System.out.println("* "+spell.getName()+" *");
         }
         System.out.println("POTIONS: ");
@@ -106,27 +106,27 @@ public class Wizard extends Character {
         switch (wizard.getHouse()) {
             case Hufflepuff -> {
                 // Increase the effectiveness of potions for Hufflepuff members
-                int newBotanist = wizard.getBotanist()+ 5;
+                int newBotanist = wizard.getBotanist()+ 10;
                 wizard.setBotanist(newBotanist);
-                System.out.println(GREEN_BOLD + "Hufflepuff bonus: +5 Botanist points" + RESET);
+                System.out.println(GREEN_BOLD + "Hufflepuff bonus: +10 Botanist points" + RESET);
             }
             case Slytherin -> {
                 // Increase spell damage for Slytherin members
-                int newPower = wizard.getPower() + 5;
+                int newPower = wizard.getPower() + 10;
                 wizard.setPower(newPower);
-                System.out.println(GREEN_BOLD + "Slytherin bonus: +5 damage" + RESET);
+                System.out.println(GREEN_BOLD + "Slytherin bonus: +10 damage" + RESET);
             }
             case Gryffindor -> {
                 // Increase the wizard's health for Gryffindor members
-                int newHealth = wizard.getHealth() + 10;
+                int newHealth = wizard.getHealth() + 20;
                 wizard.setMaxHealth(newHealth);
-                System.out.println(GREEN_BOLD + "Gryffindor bonus: +10 hp" + RESET);
+                System.out.println(GREEN_BOLD + "Gryffindor bonus: +20 hp" + RESET);
             }
             case Ravenclaw -> {
                 // Increase the accuracy of spells for Ravenclaw members
-                int newAccuracy = wizard.getAccuracy() + 5;
+                int newAccuracy = wizard.getAccuracy() + 10;
                 wizard.setAccuracy(newAccuracy);
-                System.out.println(GREEN_BOLD + "Ravenclaw bonus: +5 accuracy" + RESET);
+                System.out.println(GREEN_BOLD + "Ravenclaw bonus: +10 accuracy" + RESET);
             }
         }
     }

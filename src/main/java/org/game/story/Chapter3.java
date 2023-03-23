@@ -1,21 +1,21 @@
 package org.game.story;
 
+import org.game.GameContent;
 import org.game.attributes.Core;
 import org.game.attributes.House;
-import org.game.character.enemies.Enemy;
 import org.game.character.Wizard;
-import org.game.spells.Spell;
 
 import java.util.Objects;
 import java.util.Scanner;
 
 public class Chapter3 implements StoryStep {
-    private static final String RESET = "\u001B[0m"; //fun
-    private static final String RED = "\033[1;31m"; //fun
-    private static final String BLUE = "\033[1;34m"; //fun
-    private static final String GREEN = "\033[1;32m"; //fun
-    private static final String BLACK = "\033[1;30m"; //fun
-    private static Wizard wizard;
+    private final String RESET = "\u001B[0m"; //fun
+    private final String RED = "\033[1;31m"; //fun
+    private final String BLUE = "\033[1;34m"; //fun
+    private final String GREEN = "\033[1;32m"; //fun
+    private final String BLACK = "\033[1;30m"; //fun
+    private final Wizard wizard;
+    private final GameContent game = new GameContent(); //to have access to the game content
     private final Scanner scanner = new Scanner(System.in); //to scan the inputs
     private boolean check = false; //checking the loops
     private final boolean[] classesTaken = new boolean[7]; //changing to true when the player take a lesson
@@ -206,7 +206,7 @@ public class Chapter3 implements StoryStep {
         System.out.println(BLUE + "Student - " + RESET + "Today you will fight against a Slytherin student.\n");
         threadSleep(2000);
         System.out.println(RED + "Slytherin Student - " + RESET + "Good luck...");
-        wizard.attack(Enemy.student);
+        wizard.attack(game.enemy("Slytherin Student"));
         threadSleep(1000);
         if (Objects.equals(wizard.getCondition(), "Defeated")) {
             System.out.println(BLUE + "\nStudent - " + RESET + "You are not enough powerful, come back when you'll be better.\n");
@@ -219,7 +219,7 @@ public class Chapter3 implements StoryStep {
             while (true) {
                 String input = scanner.nextLine();
                 if (input.equalsIgnoreCase("Diffindo")) {
-                    wizard.learnSpell(Spell.diffindo);
+                    wizard.learnSpell(game.spell("Diffindo"));
                     break;
                 } else {
                     System.out.println(BLUE + "Student - " + RESET + "Try again.");
@@ -255,8 +255,8 @@ public class Chapter3 implements StoryStep {
         threadSleep(2000);
         System.out.println("** Suddenly, you perceive dark beings coming for you... They are dementors! **");
         threadSleep(2000);
-        wizard.stopAttack(Spell.lumos); //Just for the story.
-        wizard.attack(Enemy.dementors); //attacking the dementors.
+        wizard.stopAttack(game.spell("Lumos")); //Just for the story.
+        wizard.attack(game.enemy("Dementors")); //attacking the dementors.
         System.out.println("** Wow, that was crazy, you are exhausted. **");
         threadSleep(2000);
     }
@@ -289,7 +289,7 @@ public class Chapter3 implements StoryStep {
                 System.out.println(BLUE + "Lupin - " + RESET + "This one is difficult, to learn it, try writing using ALL CAPS.");
             }
         }
-        wizard.learnSpell(Spell.expectoPatronum);
+        wizard.learnSpell(game.spell("Expecto Patronum"));
         System.out.println("** Your wand is casting a intense light, and it create...  **");
         threadSleep(3000);
         createPatronus();

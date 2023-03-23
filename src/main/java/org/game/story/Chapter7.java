@@ -1,14 +1,17 @@
 package org.game.story;
 
+import org.game.GameContent;
 import org.game.character.Wizard;
 
 public class Chapter7 implements StoryStep {
-    private static final String RESET = "\u001B[0m"; //fun
-    private static final String RED = "\033[1;31m"; //fun
-    private static final String BLUE = "\033[1;34m"; //fun
-    private static final String GREEN = "\033[1;32m"; //fun
-    private static final String BLACK = "\033[1;30m"; //fun
-    private static Wizard wizard;
+    private final String RESET = "\u001B[0m"; //fun
+    private final String RED = "\033[1;31m"; //fun
+    private final String BLUE = "\033[1;34m"; //fun
+    private final String GREEN = "\033[1;32m"; //fun
+    private final String BLACK = "\033[1;30m"; //fun
+    private final Wizard wizard;
+    private final GameContent game = new GameContent(); //to have access to the game content
+
     //Constructor
     public Chapter7(Wizard player) {
         wizard = player;

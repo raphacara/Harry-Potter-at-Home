@@ -1,19 +1,19 @@
 package org.game.story;
+import org.game.GameContent;
 import org.game.attributes.Potion;
 import org.game.character.Wizard;
-import org.game.character.enemies.Boss;
-import org.game.character.enemies.Enemy;
-import org.game.spells.Spell;
+import org.game.spells.AbstractSpell;
 
 import java.util.Scanner;
 
 public class Chapter4 implements StoryStep {
-    private static final String RESET = "\u001B[0m"; //fun
-    private static final String RED = "\033[1;31m"; //fun
-    private static final String BLUE = "\033[1;34m"; //fun
-    private static final String GREEN = "\033[1;32m"; //fun
-    private static final String BLACK = "\033[1;30m"; //fun
-    private static Wizard wizard; //the player
+    private final String RESET = "\u001B[0m"; //fun
+    private final String RED = "\033[1;31m"; //fun
+    private final String BLUE = "\033[1;34m"; //fun
+    private final String GREEN = "\033[1;32m"; //fun
+    private final String BLACK = "\033[1;30m"; //fun
+    private final Wizard wizard; //the player
+    private final GameContent game = new GameContent(); //to have access to the game content
     private boolean check; //checking the loops
     private final Scanner scanner = new Scanner(System.in); //to scan the inputs
     private final boolean[] verify = new boolean[3]; //to verify loops
@@ -98,49 +98,49 @@ public class Chapter4 implements StoryStep {
                     threadSleep(2000);
                     System.out.println("** It is a spell that makes a water jet. **");
                     threadSleep(2000);
-                    wizard.learnSpell(Spell.aguamenti);
+                    wizard.learnSpell(game.spell("Aguamenti"));
                 }
                 case "2" -> {
                     System.out.println("** You are trying to learn Bubble-Head... **");
                     threadSleep(2000);
                     System.out.println("** It is a charm that makes bubble around your head, to breath underwater. **");
                     threadSleep(2000);
-                    wizard.learnSpell(Spell.bubbleHead);
+                    wizard.learnSpell(game.spell("Bubble-Head"));
                 }
                 case "3" -> {
                     System.out.println("** You are trying to learn Disilluminatus... **");
                     threadSleep(2000);
                     System.out.println("** It is a charm that makes you invisible for a moment. **");
                     threadSleep(2000);
-                    wizard.learnSpell(Spell.disilluminatus);
+                    wizard.learnSpell(game.spell("Disilluminatus"));
                 }
                 case "4" -> {
                     System.out.println("** You are trying to learn Protego... **");
                     threadSleep(2000);
                     System.out.println("** It is a charm that protect you against an attack. **");
                     threadSleep(2000);
-                    wizard.learnSpell(Spell.protego);
+                    wizard.learnSpell(game.spell("protego"));
                 }
                 case "5" -> {
                     System.out.println("** You are trying to learn the Gillyweed Potion... **");
                     threadSleep(2000);
                     System.out.println("** It is a potion that allows you to breath underwater for a moment. **");
                     threadSleep(2000);
-                    wizard.learnPotion(Potion.gillyweed);
+                    wizard.learnPotion(game.potion("Gillyweed"));
                 }
                 case "6" -> {
                     System.out.println("** You are trying to learn the Invisibility Potion... **");
                     threadSleep(2000);
                     System.out.println("** It is a potion that makes you invisible for a moment. **");
                     threadSleep(2000);
-                    wizard.learnPotion(Potion.invisibility);
+                    wizard.learnPotion(game.potion("Invisibility"));
                 }
                 case "7" -> {
                     System.out.println("** You are trying to learn Wiggenweld Potion... **");
                     threadSleep(2000);
                     System.out.println("** It is a potion that heals you. **");
                     threadSleep(2000);
-                    wizard.learnPotion(Potion.wiggenweld);
+                    wizard.learnPotion(game.potion("Wiggenweld"));
                 }
                 default -> {
                     System.out.println("** Your choice is important. **");
@@ -166,7 +166,7 @@ public class Chapter4 implements StoryStep {
             switch (input) {
                 case "1" -> {
                     System.out.println("** You stand in front of the dragon, one of you have to die today. **");
-                    wizard.attack(Boss.dragon);
+                    wizard.attack(game.enemy("Dragon"));
                     threadSleep(1000);
                     System.out.println("** You really killed the Dragon! **");
                     threadSleep(2000);
@@ -175,7 +175,7 @@ public class Chapter4 implements StoryStep {
                 case "2" -> {
                     boolean invisible = true;
                     while (invisible) {
-                        for (Spell spell : wizard.getKnownSpells()) {
+                        for (AbstractSpell spell : wizard.getKnownSpells()) {
                             if (spell.getName().equals("Disilluminatus")) {
                                 System.out.println("** You use the Disillusion spell to be really stealthy... **");
                                 threadSleep(2000);
@@ -194,7 +194,7 @@ public class Chapter4 implements StoryStep {
                         }
                         if (invisible) {
                             System.out.println("You don't have any invisible spell or potion... So you have to fight the boss.");
-                            wizard.attack(Boss.dragon);
+                            wizard.attack(game.enemy("Dragon"));
                             threadSleep(1000);
                             System.out.println("** You really killed the Dragon! **");
                             threadSleep(2000);
@@ -222,7 +222,7 @@ public class Chapter4 implements StoryStep {
         System.out.println("** But have to dive deep, how will you do? **");
         threadSleep(2000);
         System.out.println(GREEN + "1. Just swim and dive" + RESET);
-        for (Spell spell : wizard.getKnownSpells()) {
+        for (AbstractSpell spell : wizard.getKnownSpells()) {
             if (spell.getName().equals("Bubble-Head")) {
                 System.out.println(GREEN + "2. Use the Bubble-Head Charm" + RESET);
                 verify[1] = true;
@@ -306,7 +306,7 @@ public class Chapter4 implements StoryStep {
         threadSleep(2000);
         System.out.println(RED + "Tournament Champion - " + RESET + "I'm gonna kill you to get the trophy!!");
         threadSleep(2000);
-        wizard.attack(Enemy.tournamentChampion);
+        wizard.attack(game.enemy("Tournament Champion"));
         System.out.println("** You killed him! But you had to... Anyway, you run to grab the trophy... **");
         threadSleep(3000);
         System.out.println("** But the 3rd participant arrives in the same time... **");

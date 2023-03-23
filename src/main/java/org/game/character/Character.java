@@ -1,13 +1,11 @@
 package org.game.character;
 import lombok.Getter;
 import lombok.Setter;
-import org.game.spells.Spell;
+import org.game.spells.AbstractSpell;
 
 @Getter
 @Setter
 public abstract class Character {
-    private boolean isAttacking = true; //to check if a Character is attacking
-
     // Properties
     private String name;
     private int health;
@@ -15,6 +13,7 @@ public abstract class Character {
     private int power;
     private int accuracy;
     private String condition;
+    private boolean isAttacking = true; //to check if a Character is attacking
 
     // Constructor
     public Character(String name, int health, int power) {
@@ -36,7 +35,7 @@ public abstract class Character {
         this.health = maxHealth;
     }
 
-    public void stopAttack(Spell spell) {
+    public void stopAttack(AbstractSpell spell) {
         isAttacking = false;
         condition = spell.getName();
     }

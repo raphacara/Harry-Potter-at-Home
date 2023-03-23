@@ -1,23 +1,22 @@
 package org.game.story;
+import org.game.GameContent;
 import org.game.attributes.House;
-import org.game.attributes.Potion;
-import org.game.character.enemies.Enemy;
 import org.game.character.Wizard;
-import org.game.spells.Spell;
 
 import java.util.Scanner;
 
 public class Chapter1  implements StoryStep {
-    private static final String RESET = "\u001B[0m"; //fun
-    private static final String RED = "\033[1;31m"; //fun
-    private static final String BLUE = "\033[1;34m"; //fun
-    private static final String GREEN = "\033[1;32m"; //fun
-    private static final String BLACK = "\033[1;30m"; //fun
+    private final String RESET = "\u001B[0m"; //fun
+    private final String RED = "\033[1;31m"; //fun
+    private final String BLUE = "\033[1;34m"; //fun
+    private final String GREEN = "\033[1;32m"; //fun
+    private final String BLACK = "\033[1;30m"; //fun
     private boolean check = false; //checking the loops
-    private static final String[] input = {"1","2","3","4","5","6","7","8"}; //the player inputs
+    private final String[] input = {"1","2","3","4","5","6","7","8"}; //the player inputs
     private final boolean[] classesTaken = new boolean[7]; //changing to true when the player take a lesson
     private final Scanner scanner = new Scanner(System.in); //to scan the inputs
-    private static Wizard wizard;
+    private final Wizard wizard;
+    private final GameContent game = new GameContent(); //to have access to the game content
 
     //Constructor
     public Chapter1(Wizard player) {
@@ -91,7 +90,7 @@ public class Chapter1  implements StoryStep {
                 System.out.println(BLUE + "Hagrid - " + RESET + "Haha! This one is tricky. Try: Wingardium Leviosaaa");
             }
         }
-        wizard.learnSpell(Spell.wingardiumLeviosa);
+        wizard.learnSpell(game.spell("Wingardium Leviosa"));
         System.out.println(BLUE + "\nHagrid - " + RESET + "Well done " + wizard.getName() + "!");
         Thread.sleep(2000);
         System.out.println(BLUE + "Hagrid - " + RESET + "Next time you will be able to write it with one 'a'.");
@@ -117,7 +116,7 @@ public class Chapter1  implements StoryStep {
         Thread.sleep(4000);
         System.out.println(RED + "\nTroll - " + RESET + "Raaargh!");
         Thread.sleep(2000);
-        wizard.attack(Enemy.troll); //attacking the troll
+        wizard.attack(game.enemy("Troll")); //attacking the troll
         System.out.println("\n** The year goes on and it is now almost the end of the year **");
         Thread.sleep(3000);
 
@@ -260,7 +259,7 @@ public class Chapter1  implements StoryStep {
                 System.out.println(BLUE + "Charms Teacher - " + RESET + "It is not exactly that, write: Lumos");
             }
         }
-        wizard.learnSpell(Spell.lumos);
+        wizard.learnSpell(game.spell("Lumos"));
         Thread.sleep(2000);
         System.out.println(BLUE + "\nCharms Teacher - " + RESET + "Wonderful!");
         Thread.sleep(2000);
@@ -295,7 +294,7 @@ public class Chapter1  implements StoryStep {
                 System.out.println(BLUE + "Defense Teacher - " + RESET + "It is not so easy, i know.");
             }
         }
-        wizard.learnSpell(Spell.protego);
+        wizard.learnSpell(game.spell("Protego"));
         Thread.sleep(2000);
         System.out.println(BLUE + "\nDefense Teacher - " + RESET + "Fabulous");
         Thread.sleep(2000);
@@ -417,7 +416,7 @@ public class Chapter1  implements StoryStep {
                         System.out.println(BLUE + "Professor Snape - " + RESET + "That is not correct, try again.");
             }
         }
-        wizard.learnPotion(Potion.wiggenweld);
+        wizard.learnPotion(game.potion("Wiggenweld"));
         Thread.sleep(2000);
         System.out.println(BLUE + "\nProfessor Snape - " + RESET + "Not bad.");
         Thread.sleep(2000);
