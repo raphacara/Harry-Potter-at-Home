@@ -117,14 +117,13 @@ public class Fight implements StoryStep {
                 String input;
                 System.out.print(RED + "Enter Yes or No :" + RESET);
                 input = scanner.nextLine();
-                switch (input.toLowerCase()) {
-                    case "yes" -> {
-                        wizard.setHealth(wizard.getMaxHealth());
-                        wizard.setLuck(0);
-                        wizard.attack(enemy);
-                        threadSleep(1000);
-                    }
-                    case "no" -> System.exit(0);
+                if ("yes".equalsIgnoreCase(input)) {
+                    wizard.setHealth(wizard.getMaxHealth());
+                    wizard.setLuck(0);
+                    wizard.attack(enemy);
+                    threadSleep(1000);
+                } else {
+                    System.exit(0);
                 }
             }
             isFinished = true;
