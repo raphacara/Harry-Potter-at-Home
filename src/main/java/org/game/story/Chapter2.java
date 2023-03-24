@@ -99,7 +99,7 @@ public class Chapter2 implements StoryStep {
         System.out.println(Color.BLUE + "Dumbledore - " + Color.RESET + wizard.getHouse() + "!");
         waiting();
         System.out.println("\n** Chapter 2 - THE END **\n");
-        Thread.sleep(1000);
+        threadSleep(1000);
     }
 
     public void defenseClass() {

@@ -62,9 +62,9 @@ public class Introduction implements StoryStep {
 
         //Choosing a Pet
         System.out.println(Color.BLUE + "Hagrid - " + Color.RESET + "First, you will have to choose a pet for your adventure,");
-        Thread.sleep(200);
+        threadSleep(200);
         System.out.println(Color.BLUE + "Hagrid - " + Color.RESET + "Usually, students choose an Owl, a Cat, or a Toad.");
-        Thread.sleep(200);
+        threadSleep(200);
         Pet pet = null;
         while (pet == null) {
             System.out.println(Color.BLUE + "Hagrid - " + Color.RESET + "Which Pet do you want?");
@@ -116,7 +116,7 @@ public class Introduction implements StoryStep {
         int check = 0;
         while (check == 0) { //The size based on player ambition
             System.out.println(Color.BLUE + "Ollivander - " + Color.RESET + "What's is the best definition of magic according to you ?");
-            Thread.sleep(1000);
+            threadSleep(1000);
             System.out.println(Color.GREEN + "1. Power\n" + "2. Art\n" + "3. Miracle\n" + "4. Fraud" + Color.RED);
             System.out.print("Enter a number to make your choice :\n" + Color.RESET);
             input[2] = scanner.nextLine();
@@ -137,7 +137,7 @@ public class Introduction implements StoryStep {
         //Core of the Wand
         threadSleep(200);
         System.out.println(Color.BLUE + "Ollivander - " + Color.RESET + "I see...");
-        Thread.sleep(1000);
+        threadSleep(1000);
         while (core == null) {
             switch (pet) { //the pet influence the core
                 case RAT, SNAKE -> { //if you have a special pet

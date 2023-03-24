@@ -24,19 +24,19 @@ public class Chapter3 implements StoryStep {
     public void runStory() throws InterruptedException {
         //-- Intro of Chapter 3 --
         System.out.println(Color.GREEN + "----------------- Chapter 3 -----------------");
-        Thread.sleep(200);
+        threadSleep(200);
         System.out.println("---------- The Prisoner of Azkaban ----------\n" + Color.RESET);
-        Thread.sleep(1000);
+        threadSleep(1000);
         System.out.println("** It is now your 3rd year at Hogwarts. **");
-        Thread.sleep(200);
+        threadSleep(200);
         System.out.println("** Let's hope it will be a normal year, without awful enemies. **");
-        Thread.sleep(200);
+        threadSleep(200);
         System.out.println("** Anyway, you know that this year you can take part in two new classes: **");
-        Thread.sleep(200);
+        threadSleep(200);
         System.out.println(Color.BLUE + "~~ DIVINATION ~~ " + Color.RESET + "and" + Color.BLUE + " ~~ CARE OF MAGICAL CREATURES ~~" + Color.RESET);
-        Thread.sleep(200);
+        threadSleep(200);
         System.out.println("** And you also remember about a dueling club... **");
-        Thread.sleep(200);
+        threadSleep(200);
 
         //-- 1st choice --
         System.out.println("** So, what are you going to do this year? **");
@@ -44,10 +44,10 @@ public class Chapter3 implements StoryStep {
 
         //-- Learning Expecto Patronum --
         System.out.println("** Then, you have a mandatory lesson of Defense Against the Dark Arts, with the new teacher. **");
-        Thread.sleep(200);
+        threadSleep(200);
         defenseClass();
         System.out.println("** What a great spell! **");
-        Thread.sleep(200);
+        threadSleep(200);
         classesTaken[5] = true;
 
         //-- other choices choice --
@@ -58,11 +58,11 @@ public class Chapter3 implements StoryStep {
 
         //-- Final Dementors fight and end of the Chapter --
         System.out.println("** You hear a wolf howl not very far from you, so you quicky go back to the castle. **");
-        Thread.sleep(200);
+        threadSleep(200);
         System.out.println("** It is the end of the year.**");
         waiting();
         System.out.println("\n** Chapter 3 - THE END **\n");
-        Thread.sleep(1000);
+        threadSleep(1000);
     }
 
     public void chooseClass() throws InterruptedException {

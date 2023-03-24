@@ -79,25 +79,26 @@ public class Wizard extends Character {
 
     //Wonderful method to check the attributes of the player.
     public void infoWizard(Wizard wizard) {
-        System.out.println(Color.YELLOW + "----- You ----- " +
-                "\nNAME: " + Color.RESET + wizard.getName() + Color.YELLOW +
-                "\nHEALTH: " + Color.RESET  + wizard.getHealth() + "/" + wizard.getMaxHealth() + "hp" + Color.YELLOW +
-                "\nPET: " + Color.RESET  + wizard.getPet() + Color.YELLOW +
-                "\nWAND: " + Color.RESET  + wizard.getWand().getCore() + " (" + wizard.getWand().getSize() + "cm) " + Color.YELLOW +
-                "\nHOUSE: " + Color.RESET  + wizard.getHouse() + Color.YELLOW +
-                "\nPATRONUS: " + Color.RESET  + wizard.getPatronus() + Color.YELLOW +
-                "\nSPELLS: "  + Color.RESET );
+        System.out.println(Color.YELLOW + "----------- You ----------- " +
+                "\nNAME:     " + Color.RESET + wizard.getName() + Color.YELLOW +
+                "\nHEALTH:   " + Color.RESET + wizard.getHealth() + "/" + wizard.getMaxHealth() + "hp" + Color.YELLOW +
+                "\nPET:      " + Color.RESET + wizard.getPet() + Color.YELLOW +
+                "\nWAND:     " + Color.RESET + wizard.getWand().getCore() + " (" + wizard.getWand().getSize() + "cm) " + Color.YELLOW +
+                "\nHOUSE:    " + Color.RESET + wizard.getHouse() + Color.YELLOW +
+                "\nPATRONUS: " + Color.RESET + wizard.getPatronus() + Color.YELLOW +
+                "\nSPELLS:   "  + Color.RESET );
         for (AbstractSpell spell : knownSpells) {
-            System.out.println("* "+spell.getName()+" *");
+            System.out.println("-- "+spell.getName()+" --");
         }
         System.out.println(Color.YELLOW + "POTIONS: " + Color.RESET );
         for (Potion potion : potions) {
-            System.out.println("* "+potion.getName()+" *");
+            System.out.println("-- "+potion.getName()+" --");
         }
-        System.out.println("-------------------" +
-                "\nPOWER bonus: " + Color.RESET  + wizard.getPower() + Color.YELLOW +
+        System.out.println(Color.YELLOW + "---------------------------" +
+                "\nPOWER bonus: " + Color.RESET  + "   " + wizard.getPower() + Color.YELLOW +
                 "\nACCURACY bonus: " + Color.RESET  + wizard.getAccuracy() + Color.YELLOW +
-                "\nBOTANIST bonus: " + Color.RESET  + wizard.getBotanist() + Color.RESET);
+                "\nBOTANIST bonus: " + Color.RESET  + wizard.getBotanist() + Color.YELLOW +
+                "\n---------------------------" + Color.RESET);
     }
 
     //To apply the bonus of each house on the wizard (huge bonus)
