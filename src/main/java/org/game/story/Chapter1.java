@@ -1,4 +1,5 @@
 package org.game.story;
+import org.game.Color;
 import org.game.GameContent;
 import org.game.attributes.House;
 import org.game.character.Wizard;
@@ -6,11 +7,6 @@ import org.game.character.Wizard;
 import java.util.Scanner;
 
 public class Chapter1  implements StoryStep {
-    private final String RESET = "\u001B[0m"; //fun
-    private final String RED = "\033[1;31m"; //fun
-    private final String BLUE = "\033[1;34m"; //fun
-    private final String GREEN = "\033[1;32m"; //fun
-    private final String BLACK = "\033[1;30m"; //fun
     private boolean check = false; //checking the loops
     private final String[] input = {"1","2","3","4","5","6","7","8"}; //the player inputs
     private final boolean[] classesTaken = new boolean[7]; //changing to true when the player take a lesson
@@ -24,11 +20,11 @@ public class Chapter1  implements StoryStep {
     }
 
     @Override
-    public void run() throws InterruptedException {
+    public void runStory() throws InterruptedException {
         //-- Intro of Chapter 1 --
-        System.out.println(GREEN + "\n----------------- Chapter 1 -----------------");
+        System.out.println(Color.GREEN + "\n----------------- Chapter 1 -----------------");
         threadSleep(200);
-        System.out.println("---------- The Philosopher’s Stone -----------\n" + RESET);
+        System.out.println("---------- The Philosopher’s Stone -----------\n" + Color.RESET);
         threadSleep(1000);
         System.out.println("** You are in your first year at Hogwarts. **");
         threadSleep(200);
@@ -40,29 +36,29 @@ public class Chapter1  implements StoryStep {
         threadSleep(200);
         System.out.println("** Furthermore, there is the headmaster of hogwarts, Albus Dumbledore, who says: **\n");
         waiting();
-        System.out.println(BLUE + "Dumbledore - " + RESET + "Dear students, welcome to Hogwarts!");
+        System.out.println(Color.BLUE + "Dumbledore - " + Color.RESET + "Dear students, welcome to Hogwarts!");
         threadSleep(200);
-        System.out.println(BLUE + "Dumbledore - " + RESET + "Here, you can choose the classes you want to take.");
+        System.out.println(Color.BLUE + "Dumbledore - " + Color.RESET + "Here, you can choose the classes you want to take.");
         threadSleep(200);
-        System.out.println(BLUE + "Dumbledore - " + RESET + "Let me present them to you:\n");
+        System.out.println(Color.BLUE + "Dumbledore - " + Color.RESET + "Let me present them to you:\n");
         threadSleep(200);
-        System.out.println(BLACK + "CHARMS: " + RESET + "A course that teaches the casting and effects of charms, which are spells that alter the properties of an object or creature.");
+        System.out.println(Color.BLACK + "CHARMS: " + Color.RESET + "A course that teaches the casting and effects of charms, which are spells that alter the properties of an object or creature.");
         threadSleep(200);
-        System.out.println(BLACK + "DEFENSE AGAINST THE DARK ARTS: " + RESET + "A course that teaches the defense against dark creatures, spells, and curses.");
+        System.out.println(Color.BLACK + "DEFENSE AGAINST THE DARK ARTS: " + Color.RESET + "A course that teaches the defense against dark creatures, spells, and curses.");
         threadSleep(200);
-        System.out.println(BLACK + "HERBOLOGY: " + RESET + "A course that teaches the study and cultivation of magical plants.");
+        System.out.println(Color.BLACK + "HERBOLOGY: " + Color.RESET + "A course that teaches the study and cultivation of magical plants.");
         threadSleep(200);
-        System.out.println(BLACK + "HISTORY OF MAGIC: " + RESET + "A course that teaches the history of magic and magical events.");
+        System.out.println(Color.BLACK + "HISTORY OF MAGIC: " + Color.RESET + "A course that teaches the history of magic and magical events.");
         threadSleep(200);
-        System.out.println(BLACK + "POTIONS: " + RESET + "A course that teaches the brewing of magical potions, which can have various effects on the drinker.\n");
+        System.out.println(Color.BLACK + "POTIONS: " + Color.RESET + "A course that teaches the brewing of magical potions, which can have various effects on the drinker.\n");
         waiting();
-        System.out.println(BLUE + "Dumbledore - " + RESET + "You will not be able to participate in all classes.");
+        System.out.println(Color.BLUE + "Dumbledore - " + Color.RESET + "You will not be able to participate in all classes.");
         threadSleep(200);
-        System.out.println(BLUE + "Dumbledore - " + RESET + "So choose well...");
+        System.out.println(Color.BLUE + "Dumbledore - " + Color.RESET + "So choose well...");
         threadSleep(200);
 
         //-- 1st lesson --
-        System.out.println(BLUE + "Dumbledore - " + RESET + wizard.getName() + ", what are you going to choose for your first class?");
+        System.out.println(Color.BLUE + "Dumbledore - " + Color.RESET + wizard.getName() + ", what are you going to choose for your first class?");
         chooseClass();
         waiting();
         System.out.println("\n** The year goes on and it is almost Christmas. **");
@@ -71,37 +67,37 @@ public class Chapter1  implements StoryStep {
         //-- Learning Wingardium Leviosa --
         System.out.println("** Meanwhile, You went to see Hagrid who lives in a small hut between the castle and the forest. **\n");
         threadSleep(200);
-        System.out.println(BLUE + "Hagrid - " + RESET + "Hey " + wizard.getName() + "! I hope you like your experience here :)");
+        System.out.println(Color.BLUE + "Hagrid - " + Color.RESET + "Hey " + wizard.getName() + "! I hope you like your experience here :)");
         threadSleep(200);
-        System.out.println(BLUE + "Hagrid - " + RESET + "I am happy you are a " + wizard.getHouse() + " by the way, it fits you well.");
+        System.out.println(Color.BLUE + "Hagrid - " + Color.RESET + "I am happy you are a " + wizard.getHouse() + " by the way, it fits you well.");
         threadSleep(200);
-        System.out.println(BLUE + "Hagrid - " + RESET + "Oh, I'll give you a little help, by teaching you a new spell!");
+        System.out.println(Color.BLUE + "Hagrid - " + Color.RESET + "Oh, I'll give you a little help, by teaching you a new spell!");
         waiting();
-        System.out.println(BLUE + "Hagrid - " + RESET + "It is a charm used to levitate objects: Wingardium Leviosa.");
+        System.out.println(Color.BLUE + "Hagrid - " + Color.RESET + "It is a charm used to levitate objects: Wingardium Leviosa.");
         threadSleep(200);
-        System.out.println(BLUE + "Hagrid - " + RESET + "But you have to pronounce it well, try it.");
+        System.out.println(Color.BLUE + "Hagrid - " + Color.RESET + "But you have to pronounce it well, try it.");
         threadSleep(200);
-        System.out.println(RED + "Write the spell to learn it :" + RESET);
+        System.out.println(Color.RED + "Write the spell to learn it :" + Color.RESET);
         while (true) {
             input[0] = scanner.nextLine();
             if (input[0].equalsIgnoreCase("Wingardium Leviosaaa")) {
                 break;
             } else {
-                System.out.println(BLUE + "Hagrid - " + RESET + "Haha! This one is tricky. Try: Wingardium Leviosaaa");
+                System.out.println(Color.BLUE + "Hagrid - " + Color.RESET + "Haha! This one is tricky. Try: Wingardium Leviosaaa");
             }
         }
         wizard.learnSpell(game.spell("Wingardium Leviosa"));
-        System.out.println(BLUE + "\nHagrid - " + RESET + "Well done " + wizard.getName() + "!");
+        System.out.println(Color.BLUE + "\nHagrid - " + Color.RESET + "Well done " + wizard.getName() + "!");
         threadSleep(200);
-        System.out.println(BLUE + "Hagrid - " + RESET + "Next time you will be able to write it with one 'a'.");
+        System.out.println(Color.BLUE + "Hagrid - " + Color.RESET + "Next time you will be able to write it with one 'a'.");
         waiting();
-        System.out.println(BLUE + "Hagrid - " + RESET + "Go back to the castle for your next class.\n");
+        System.out.println(Color.BLUE + "Hagrid - " + Color.RESET + "Go back to the castle for your next class.\n");
         threadSleep(200);
 
         //-- 2nd lesson --
         System.out.println("** You are going to attend your last lesson before the Christmas holidays. **\n");
         threadSleep(200);
-        System.out.println(BLUE + "Dumbledore - " + RESET + "Which class are you going to choose this time?");
+        System.out.println(Color.BLUE + "Dumbledore - " + Color.RESET + "Which class are you going to choose this time?");
         chooseClass();
         waiting();
         System.out.println("\n** Just after the lesson, you want to go to the toilet. **");
@@ -114,7 +110,7 @@ public class Chapter1  implements StoryStep {
         threadSleep(200);
         System.out.println("** As you turn around, you see a huge troll blocking the exit. You have no choice but to fight for your life! **");
         waiting();
-        System.out.println(RED + "\nTroll - " + RESET + "Raaargh!");
+        System.out.println(Color.RED + "\nTroll - " + Color.RESET + "Raaargh!");
         threadSleep(200);
         wizard.attack(game.enemy("Troll")); //attacking the troll
         System.out.println("\n** The year goes on and it is now almost the end of the year **");
@@ -123,22 +119,22 @@ public class Chapter1  implements StoryStep {
         //-- 3rd lesson
         System.out.println("** You have to do a last lesson before the end of the year. **\n");
         threadSleep(200);
-        System.out.println(BLUE + "Dumbledore - " + RESET + "This is going to be your last class, which one will you choose?");
+        System.out.println(Color.BLUE + "Dumbledore - " + Color.RESET + "This is going to be your last class, which one will you choose?");
         chooseClass();
         waiting();
 
         // End
         System.out.println("\n** This is the end of the year, so all the students meet in the Great Hall. **\n");
         threadSleep(200);
-        System.out.println(BLUE + "Dumbledore - " + RESET + "It is time to say which house was the best this year.");
+        System.out.println(Color.BLUE + "Dumbledore - " + Color.RESET + "It is time to say which house was the best this year.");
         threadSleep(200);
-        System.out.println(BLUE + "Dumbledore - " + RESET + "Before that, I would like to thanks " + wizard.getName() + " for beating the troll this year.");
+        System.out.println(Color.BLUE + "Dumbledore - " + Color.RESET + "Before that, I would like to thanks " + wizard.getName() + " for beating the troll this year.");
         threadSleep(200);
-        System.out.println(BLUE + "Dumbledore - " + RESET + "And I give 50 points to " + wizard.getHouse() + "!");
+        System.out.println(Color.BLUE + "Dumbledore - " + Color.RESET + "And I give 50 points to " + wizard.getHouse() + "!");
         threadSleep(200);
-        System.out.println(BLUE + "Dumbledore - " + RESET + "So the winning House of this year is...");
+        System.out.println(Color.BLUE + "Dumbledore - " + Color.RESET + "So the winning House of this year is...");
         waiting();
-        System.out.println(BLUE + "Dumbledore - " + RESET + wizard.getHouse() + "!");
+        System.out.println(Color.BLUE + "Dumbledore - " + Color.RESET + wizard.getHouse() + "!");
         waiting();
         System.out.println("\n** Chapter 1 - THE END **\n");
         threadSleep(1000);
@@ -148,7 +144,7 @@ public class Chapter1  implements StoryStep {
     public void chooseClass() {
         boolean ok = check;
         while (check == ok) {
-            System.out.print(GREEN);
+            System.out.print(Color.GREEN);
             if (!classesTaken[1]) { // hiding if the lesson was taken before
                 System.out.println("1. CHARMS");
             }
@@ -165,60 +161,60 @@ public class Chapter1  implements StoryStep {
                 System.out.println("5. POTIONS");
             }
             System.out.println("6. Skip class");
-            System.out.print(RED + "Enter a number to make your choice :\n" + RESET);
+            System.out.print(Color.RED + "Enter a number to make your choice :\n" + Color.RESET);
             input[1] = scanner.nextLine();
             check = !ok;
             switch (input[1]) {
                 case "1" :
                     if (classesTaken[1]) {
-                        System.out.println(BLUE + "Dumbledore - " + RESET + "You have already taken the Charms class.");
+                        System.out.println(Color.BLUE + "Dumbledore - " + Color.RESET + "You have already taken the Charms class.");
                         check = ok;
                     } else {
-                        System.out.println(BLUE + "Dumbledore - " + RESET + "Charms class is always interesting.");
+                        System.out.println(Color.BLUE + "Dumbledore - " + Color.RESET + "Charms class is always interesting.");
                         charmsClass();
                     }
                     break;
                 case "2":
                     if (classesTaken[2]) {
-                        System.out.println(BLUE + "Dumbledore - " + RESET + "You have already taken the Defense Against the Dark Arts class.");
+                        System.out.println(Color.BLUE + "Dumbledore - " + Color.RESET + "You have already taken the Defense Against the Dark Arts class.");
                         check = ok;
                     } else {
-                        System.out.println(BLUE + "Dumbledore - " + RESET + "I think that you have a warrior's soul.");
+                        System.out.println(Color.BLUE + "Dumbledore - " + Color.RESET + "I think that you have a warrior's soul.");
                         defenseClass();
                     }
                     break;
                 case "3":
                     if (classesTaken[3]) {
-                        System.out.println(BLUE + "Dumbledore - " + RESET + "You have already taken the Herbology class.");
+                        System.out.println(Color.BLUE + "Dumbledore - " + Color.RESET + "You have already taken the Herbology class.");
                         check = ok;
                     } else {
-                        System.out.println(BLUE + "Dumbledore - " + RESET + "You must love plants.");
+                        System.out.println(Color.BLUE + "Dumbledore - " + Color.RESET + "You must love plants.");
                         herbologyClass();
                     }
                     break;
                 case "4":
                     if (classesTaken[4]) {
-                        System.out.println(BLUE + "Dumbledore - " + RESET + "You have already taken the History of Magic class.");
+                        System.out.println(Color.BLUE + "Dumbledore - " + Color.RESET + "You have already taken the History of Magic class.");
                         check = ok;
                     } else {
-                        System.out.println(BLUE + "Dumbledore - " + RESET + "Who likes history class?");
+                        System.out.println(Color.BLUE + "Dumbledore - " + Color.RESET + "Who likes history class?");
                         historyClass();
                     }
                     break;
                 case "5":
                     if (classesTaken[5]) {
-                        System.out.println(BLUE + "Dumbledore - " + RESET + "You have already taken the Potions class.");
+                        System.out.println(Color.BLUE + "Dumbledore - " + Color.RESET + "You have already taken the Potions class.");
                         check = ok;
                     } else {
-                        System.out.println(BLUE + "Dumbledore - " + RESET + "Nice, that is always useful.");
+                        System.out.println(Color.BLUE + "Dumbledore - " + Color.RESET + "Nice, that is always useful.");
                         potionsClass();
                     }
                     break;
                 case "6":
-                    System.out.println(BLUE + "Dumbledore - " + RESET + "As you want.");
+                    System.out.println(Color.BLUE + "Dumbledore - " + Color.RESET + "As you want.");
                     break;
                 default :
-                    System.out.println(BLUE + "Dumbledore - " + RESET + "You have to choose a class. -10 points for " + wizard.getHouse()+ "!");
+                    System.out.println(Color.BLUE + "Dumbledore - " + Color.RESET + "You have to choose a class. -10 points for " + wizard.getHouse()+ "!");
                     check = ok;
             }
         }
@@ -234,30 +230,30 @@ public class Chapter1  implements StoryStep {
         threadSleep(200);
         System.out.println("                   | |\n                   | |\n                   | |\n                   | |\n                   | |");
         threadSleep(200);
-        System.out.println(BLACK + "            ~~~   CHARMS   ~~~\n" + RESET);
+        System.out.println(Color.BLACK + "            ~~~   CHARMS   ~~~\n" + Color.RESET);
         threadSleep(1000);
-        System.out.println(BLUE + "Charms Teacher - " + RESET + "Welcome to the Charms class!");
+        System.out.println(Color.BLUE + "Charms Teacher - " + Color.RESET + "Welcome to the Charms class!");
         threadSleep(200);
-        System.out.println(BLUE + "Charms Teacher - " + RESET + "Today, we will learn how to make light with your wand.");
+        System.out.println(Color.BLUE + "Charms Teacher - " + Color.RESET + "Today, we will learn how to make light with your wand.");
         threadSleep(200);
-        System.out.println(BLUE + "Charms Teacher - " + RESET + "There is a charm for that, it is called: Lumos.");
+        System.out.println(Color.BLUE + "Charms Teacher - " + Color.RESET + "There is a charm for that, it is called: Lumos.");
         threadSleep(200);
-        System.out.println(BLUE + "Charms Teacher - " + RESET + "Let's try to learn it.");
+        System.out.println(Color.BLUE + "Charms Teacher - " + Color.RESET + "Let's try to learn it.");
         threadSleep(200);
-        System.out.println(RED + "Write Lumos to learn the spell :" + RESET);
+        System.out.println(Color.RED + "Write Lumos to learn the spell :" + Color.RESET);
         while (true) {
             input[3] = scanner.nextLine();
             if (input[3].equalsIgnoreCase("Lumos")) {
                 break;
             } else {
-                System.out.println(BLUE + "Charms Teacher - " + RESET + "It is not exactly that, write: Lumos");
+                System.out.println(Color.BLUE + "Charms Teacher - " + Color.RESET + "It is not exactly that, write: Lumos");
             }
         }
         wizard.learnSpell(game.spell("Lumos"));
         threadSleep(200);
-        System.out.println(BLUE + "\nCharms Teacher - " + RESET + "Wonderful!");
+        System.out.println(Color.BLUE + "\nCharms Teacher - " + Color.RESET + "Wonderful!");
         threadSleep(200);
-        System.out.println(BLUE + "Charms Teacher - " + RESET + "It is the end of the lesson. Thank you.");
+        System.out.println(Color.BLUE + "Charms Teacher - " + Color.RESET + "It is the end of the lesson. Thank you.");
     }
 
     public void defenseClass() {
@@ -269,30 +265,30 @@ public class Chapter1  implements StoryStep {
         threadSleep(200);
         System.out.println("                   | |\n                   | |\n                   | |\n                   | |\n                   | |");
         threadSleep(200);
-        System.out.println(BLACK + "~~~   DEFENSE AGAINST THE DARK ARTS   ~~~\n" + RESET);
+        System.out.println(Color.BLACK + "~~~   DEFENSE AGAINST THE DARK ARTS   ~~~\n" + Color.RESET);
         threadSleep(1000);
-        System.out.println(BLUE + "Defense Teacher - " + RESET + "Welcome to the Defense Against the Dark Arts class!");
+        System.out.println(Color.BLUE + "Defense Teacher - " + Color.RESET + "Welcome to the Defense Against the Dark Arts class!");
         threadSleep(200);
-        System.out.println(BLUE + "Defense Teacher - " + RESET + "Today we will learn one of the most important and useful spell.");
+        System.out.println(Color.BLUE + "Defense Teacher - " + Color.RESET + "Today we will learn one of the most important and useful spell.");
         threadSleep(200);
-        System.out.println(BLUE + "Defense Teacher - " + RESET + "A spell that protects you for a moment: Protego");
+        System.out.println(Color.BLUE + "Defense Teacher - " + Color.RESET + "A spell that protects you for a moment: Protego");
         threadSleep(200);
-        System.out.println(BLUE + "Defense Teacher - " + RESET + "Practice it to learn it.");
+        System.out.println(Color.BLUE + "Defense Teacher - " + Color.RESET + "Practice it to learn it.");
         threadSleep(200);
-        System.out.println(RED + "Write Protego to learn the spell :" + RESET);
+        System.out.println(Color.RED + "Write Protego to learn the spell :" + Color.RESET);
         while (true) {
             input[4] = scanner.nextLine();
             if (input[4].equalsIgnoreCase("Protego")) {
                 break;
             } else {
-                System.out.println(BLUE + "Defense Teacher - " + RESET + "It is not so easy, i know.");
+                System.out.println(Color.BLUE + "Defense Teacher - " + Color.RESET + "It is not so easy, i know.");
             }
         }
         wizard.learnSpell(game.spell("Protego"));
         threadSleep(200);
-        System.out.println(BLUE + "\nDefense Teacher - " + RESET + "Fabulous");
+        System.out.println(Color.BLUE + "\nDefense Teacher - " + Color.RESET + "Fabulous");
         threadSleep(200);
-        System.out.println(BLUE + "Defense Teacher - " + RESET + "We will stop for today. Thank you.");
+        System.out.println(Color.BLUE + "Defense Teacher - " + Color.RESET + "We will stop for today. Thank you.");
     }
 
     public void herbologyClass() {
@@ -304,11 +300,11 @@ public class Chapter1  implements StoryStep {
         threadSleep(200);
         System.out.println("                   | |\n                   | |\n                   | |\n                   | |\n                   | |");
         threadSleep(200);
-        System.out.println(BLACK + "          ~~~   HERBOLOGY   ~~~\n" + RESET);
+        System.out.println(Color.BLACK + "          ~~~   HERBOLOGY   ~~~\n" + Color.RESET);
         threadSleep(1000);
-        System.out.println(BLUE + "Herbology Teacher - " + RESET + "Welcome to the Herbology class!");
+        System.out.println(Color.BLUE + "Herbology Teacher - " + Color.RESET + "Welcome to the Herbology class!");
         threadSleep(200);
-        System.out.println(BLUE + "Herbology Teacher - " + RESET + "Today, We will see the benefits of plants.\n");
+        System.out.println(Color.BLUE + "Herbology Teacher - " + Color.RESET + "Today, We will see the benefits of plants.\n");
         threadSleep(200);
         System.out.println("** The Herbology Teacher is showing you how to take care of magical plants **");
         waiting();
@@ -327,9 +323,9 @@ public class Chapter1  implements StoryStep {
             threadSleep(200);
             wizard.setMaxHealth(wizard.getMaxHealth() + 10);
         }
-        System.out.println(GREEN + "** Your health is now " + wizard.getHealth() + "hp! **" + RESET);
+        System.out.println(Color.GREEN + "** Your health is now " + wizard.getHealth() + "hp! **" + Color.RESET);
         threadSleep(200);
-        System.out.println(BLUE + "\nHerbology Teacher - " + RESET + "Perfect, that will be enough for today. See you next time!");
+        System.out.println(Color.BLUE + "\nHerbology Teacher - " + Color.RESET + "Perfect, that will be enough for today. See you next time!");
 
     }
     public void historyClass() {
@@ -341,29 +337,29 @@ public class Chapter1  implements StoryStep {
         threadSleep(200);
         System.out.println("                   | |\n                   | |\n                   | |\n                   | |\n                   | |");
         threadSleep(200);
-        System.out.println(BLACK + "       ~~~   HISTORY OF MAGIC   ~~~\n" + RESET);
+        System.out.println(Color.BLACK + "       ~~~   HISTORY OF MAGIC   ~~~\n" + Color.RESET);
         threadSleep(1000);
-        System.out.println(BLUE + "History Teacher - " + RESET + "Welcome to the History of Magic class!");
+        System.out.println(Color.BLUE + "History Teacher - " + Color.RESET + "Welcome to the History of Magic class!");
         threadSleep(2000);
-        System.out.println(BLUE + "History Teacher - " + RESET + "Today, we will be studying the story of the four founders of Hogwarts School of Witchcraft and Wizardry.");
+        System.out.println(Color.BLUE + "History Teacher - " + Color.RESET + "Today, we will be studying the story of the four founders of Hogwarts School of Witchcraft and Wizardry.");
         threadSleep(3000);
-        System.out.println(BLUE + "History Teacher - " + RESET + "In the 10th century, four powerful wizards : Godric Gryffindor, Helga Hufflepuff, Rowena Ravenclaw, and Salazar Slytherin.");
+        System.out.println(Color.BLUE + "History Teacher - " + Color.RESET + "In the 10th century, four powerful wizards : Godric Gryffindor, Helga Hufflepuff, Rowena Ravenclaw, and Salazar Slytherin.");
         threadSleep(3000);
-        System.out.println(BLUE + "History Teacher - " + RESET + "They came together to create a school where young witches and wizards could learn and hone their magical skills.");
+        System.out.println(Color.BLUE + "History Teacher - " + Color.RESET + "They came together to create a school where young witches and wizards could learn and hone their magical skills.");
         threadSleep(3000);
-        System.out.println(BLUE + "History Teacher - " + RESET + "Each of the founders valued different qualities in their students, and they created separate houses within the school to reflect these values.");
+        System.out.println(Color.BLUE + "History Teacher - " + Color.RESET + "Each of the founders valued different qualities in their students, and they created separate houses within the school to reflect these values.");
         threadSleep(4000);
-        System.out.println(BLUE + "History Teacher - " + RESET + "Gryffindor valued bravery and chivalry, Hufflepuff valued hard work and loyalty, Ravenclaw valued intelligence and wit, and Slytherin valued ambition and cunning.");
+        System.out.println(Color.BLUE + "History Teacher - " + Color.RESET + "Gryffindor valued bravery and chivalry, Hufflepuff valued hard work and loyalty, Ravenclaw valued intelligence and wit, and Slytherin valued ambition and cunning.");
         threadSleep(4000);
-        System.out.println(BLUE + "History Teacher - " + RESET + "Over the centuries, Hogwarts has grown and evolved, but the four houses founded by the school's founders have remained at the heart of its culture and tradition.");
+        System.out.println(Color.BLUE + "History Teacher - " + Color.RESET + "Over the centuries, Hogwarts has grown and evolved, but the four houses founded by the school's founders have remained at the heart of its culture and tradition.");
         threadSleep(4000);
-        System.out.println(BLUE + "History Teacher - " + RESET + "In this class, we will explore the story of the four founders and the legacy they left behind, as well as the role that Hogwarts has played in shaping the course of magical history.\n");
+        System.out.println(Color.BLUE + "History Teacher - " + Color.RESET + "In this class, we will explore the story of the four founders and the legacy they left behind, as well as the role that Hogwarts has played in shaping the course of magical history.\n");
         threadSleep(4000);
         System.out.println("**    Zzz... **");
         waiting();
         System.out.println("** You wake up, the class has just ended. **");
         threadSleep(200);
-        System.out.println(BLUE + "\nHistory Teacher - " + RESET + "Thank you all for your attention.\n");
+        System.out.println(Color.BLUE + "\nHistory Teacher - " + Color.RESET + "Thank you all for your attention.\n");
     }
 
     public void potionsClass() {
@@ -375,39 +371,39 @@ public class Chapter1  implements StoryStep {
         threadSleep(200);
         System.out.println("                   | |\n                   | |\n                   | |\n                   | |\n                   | |");
         threadSleep(200);
-        System.out.println(BLACK + "           ~~~   POTIONS   ~~~\n" + RESET);
+        System.out.println(Color.BLACK + "           ~~~   POTIONS   ~~~\n" + Color.RESET);
         threadSleep(1000);
-        System.out.println(BLUE + "Potions Teacher - " + RESET + "Welcome to the Potions class! My name is Severus Snape.");
+        System.out.println(Color.BLUE + "Potions Teacher - " + Color.RESET + "Welcome to the Potions class! My name is Severus Snape.");
         threadSleep(200);
-        System.out.println(BLUE + "Professor Snape - " + RESET + "This will probably be your most important class of the year.");
+        System.out.println(Color.BLUE + "Professor Snape - " + Color.RESET + "This will probably be your most important class of the year.");
         threadSleep(200);
-        System.out.println(BLUE + "Professor Snape - " + RESET + "Well, today we will learn a potion that can heal you.");
+        System.out.println(Color.BLUE + "Professor Snape - " + Color.RESET + "Well, today we will learn a potion that can heal you.");
         threadSleep(200);
-        System.out.println(BLUE + "Professor Snape - " + RESET + "This potion is called: Wiggenweld");
+        System.out.println(Color.BLUE + "Professor Snape - " + Color.RESET + "This potion is called: Wiggenweld");
         threadSleep(200);
-        System.out.println(BLUE + "Professor Snape - " + RESET + wizard.getName()+"! What do you need to make such a potion?");
+        System.out.println(Color.BLUE + "Professor Snape - " + Color.RESET + wizard.getName()+"! What do you need to make such a potion?");
         threadSleep(200);
         boolean loop = true;
         while (loop) {
-            System.out.println(GREEN + "1. A cauldron\n" + "2. Ingredients\n" + "3. Heat source" + RED);
-            System.out.println("Enter a number to make your choice :" + RESET);
+            System.out.println(Color.GREEN + "1. A cauldron\n" + "2. Ingredients\n" + "3. Heat source" + Color.RED);
+            System.out.println("Enter a number to make your choice :" + Color.RESET);
             input[7] = scanner.nextLine();
             switch (input[7]) {
                 case "1", "2", "3" -> {
-                    System.out.println(BLUE + "Professor Snape - " + RESET + "Well, that's not wrong, " + wizard.getName() + ".");
+                    System.out.println(Color.BLUE + "Professor Snape - " + Color.RESET + "Well, that's not wrong, " + wizard.getName() + ".");
                     loop = false;
                 }
                 default ->
-                        System.out.println(BLUE + "Professor Snape - " + RESET + "That is not correct, try again.");
+                        System.out.println(Color.BLUE + "Professor Snape - " + Color.RESET + "That is not correct, try again.");
             }
         }
         wizard.learnPotion(game.potion("Wiggenweld"));
         threadSleep(200);
-        System.out.println(BLUE + "\nProfessor Snape - " + RESET + "Not bad.");
+        System.out.println(Color.BLUE + "\nProfessor Snape - " + Color.RESET + "Not bad.");
         threadSleep(200);
-        System.out.println(BLUE + "Professor Snape - " + RESET + "This potion will be useful later, believe me.");
+        System.out.println(Color.BLUE + "Professor Snape - " + Color.RESET + "This potion will be useful later, believe me.");
         threadSleep(200);
-        System.out.println(BLUE + "Professor Snape - " + RESET + "But that's it for today, thank you.");
+        System.out.println(Color.BLUE + "Professor Snape - " + Color.RESET + "But that's it for today, thank you.");
     }
 
     @Override

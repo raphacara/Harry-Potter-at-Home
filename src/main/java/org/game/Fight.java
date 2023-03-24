@@ -34,7 +34,7 @@ public class Fight implements StoryStep {
     }
 
     @Override
-    public void run() throws InterruptedException { //THE fighting method
+    public void runStory() throws InterruptedException { //THE fighting method
         while (!isFinished) { //Fight loop
             //-- INFOS --
             System.out.println("\n-----------------------" + YELLOW);
@@ -72,7 +72,7 @@ public class Fight implements StoryStep {
                     }
                 }
                 case "2" -> usePotion();
-                case "3" -> System.out.println("You decide to flee the fight. But as you turn around to run away, the " + enemy.getName() + " catches you...");
+                case "3" -> System.out.println("You decide to flee the fight. But as you turn around to runStory away, the " + enemy.getName() + " catches you...");
                 default -> System.out.println("You missed your choice...");
             }
         ifDead(wizard, enemy); // Check if the fight is over
@@ -213,14 +213,13 @@ public class Fight implements StoryStep {
                     String input;
                     System.out.print(RED + "Enter Yes or No :" + RESET);
                     input = scanner.nextLine();
-                    switch (input.toLowerCase()) {
-                        case "yes" -> {
-                            wizard.setHealth(wizard.getMaxHealth());
-                            wizard.setLuck(0);
-                            wizard.attack(enemy);
-                            threadSleep(1000);
-                        }
-                        case "no" -> System.exit(0);
+                    if ("yes".equalsIgnoreCase(input)) {
+                        wizard.setHealth(wizard.getMaxHealth());
+                        wizard.setLuck(0);
+                        wizard.attack(enemy);
+                        threadSleep(1000);
+                    } else {
+                        System.exit(0);
                     }
                 } else {
                     threadSleep(1000);
@@ -365,7 +364,7 @@ public class Fight implements StoryStep {
                         case "1" -> basiliskFight("Gryffindor Sword");
                         case "2" -> {
                             enemyTurn();
-                            run();
+                            runStory();
                         }
                         default -> {
                             System.out.println("You missed your choice...");

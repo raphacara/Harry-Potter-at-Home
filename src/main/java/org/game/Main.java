@@ -48,8 +48,8 @@ public class Main {
 
             // 8. ----- CHAPTER 7 -----
             if (Objects.equals(wizard.getCondition(), "Dark")) { //If the enemy joined the Voldemort's army
-                Chapter7_Dark chapter7_dark = new Chapter7_Dark(wizard); //Then it is an alternative Chapter 7
-                play(chapter7_dark, "Chapter 7", wizard, game);
+                Chapter7Dark chapter7Dark = new Chapter7Dark(wizard); //Then it is an alternative Chapter 7
+                play(chapter7Dark, "Chapter 7", wizard, game);
             } else { //Else: regular Chapter 7
                 Chapter7 chapter7 = new Chapter7(wizard);
                 play(chapter7, "Chapter 7", wizard, game);
@@ -73,7 +73,7 @@ public class Main {
             String input = scanner.nextLine();
             if (input.equals("1")) { //Play the step
                 System.out.println("=======================================\n");
-                step.run(); //run the step of history
+                step.runStory(); //runStory the step of history
                 wizard = step.getWizard(); //Updating the wizard
                 break;
             } else if (input.equals("2")) { //skip the step
@@ -110,6 +110,6 @@ public class Main {
                 System.out.println("You have to enter a number.");
             }
         }
-        wizard.checkWizard(wizard); //checking the wizard infos
+        wizard.infoWizard(wizard); //checking the wizard infos
     }
 }

@@ -1,5 +1,6 @@
 package org.game.story;
 
+import org.game.Color;
 import org.game.GameContent;
 import org.game.character.Wizard;
 
@@ -12,13 +13,11 @@ public class Chapter5 implements StoryStep {
         wizard = player;
     }
     @Override
-    public void run() throws InterruptedException {
+    public void runStory() throws InterruptedException {
         //-- Intro of Chapter 5 --
-        String GREEN = "\033[1;32m"; //fun
-        System.out.println(GREEN + "\n----------------- Chapter 5 -----------------");
+        System.out.println(Color.GREEN + "\n----------------- Chapter 5 -----------------");
         threadSleep(200);
-        String RESET = "\u001B[0m"; //fun
-        System.out.println("---------- The Order of the Phoenix ---------\n" + RESET);
+        System.out.println("---------- The Order of the Phoenix ---------\n" + Color.RESET);
         threadSleep(1000);
         System.out.println("** This is your 5th year at Hogwarts. **");
         threadSleep(200);
@@ -42,14 +41,14 @@ public class Chapter5 implements StoryStep {
         waiting();
         wizard.learnSpell(game.spell("Stupefy"));
         threadSleep(200);
-        System.out.println("** Still and always... **" + GREEN);
+        System.out.println("** Still and always... **" + Color.GREEN);
         waiting();
         wizard.learnPotion(game.potion("Wiggenweld"));
         threadSleep(200);
-        System.out.println(RESET + "** And increase your power... **");
+        System.out.println(Color.RESET + "** And increase your power... **");
         waiting();
         wizard.setPower(wizard.getPower() + 1);
-        System.out.println(GREEN + "** You gained +1 of power! **" + RESET);
+        System.out.println(Color.GREEN + "** You gained +1 of power! **" + Color.RESET);
         threadSleep(200);
         System.out.println("** As you are training really hard, the year is going on. **");
         threadSleep(200);
@@ -59,15 +58,13 @@ public class Chapter5 implements StoryStep {
         threadSleep(200);
 
         //B.U.S.E exam and final fight
-        String RED = "\033[1;31m"; //fun
-        System.out.println(RED + "Umbridge - " + RESET + "Well, I hope you have revised for you exam... Good Luck.\n");
+        System.out.println(Color.RED + "Umbridge - " + Color.RESET + "Well, I hope you have revised for you exam... Good Luck.\n");
         threadSleep(200);
         System.out.println("** The situation is so terrible that it's as if you were fighting Umbridge... **");
         waiting();
-        String BLACK = "\033[1;30m"; //fun
-        System.out.println(BLACK + "            |\n            |\n            |\n            |\n            |\n            |" + RESET);
+        System.out.println(Color.BLACK + "            |\n            |\n            |\n            |\n            |\n            |" + Color.RESET);
         threadSleep(200);
-        System.out.println(BLACK + "            |\n            |\n            |\n            |\n            |\n            |\n" + RESET);
+        System.out.println(Color.BLACK + "            |\n            |\n            |\n            |\n            |\n            |\n" + Color.RESET);
         threadSleep(200);
         wizard.attack(game.enemy("Umbridge"));
 

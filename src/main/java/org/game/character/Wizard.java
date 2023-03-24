@@ -44,7 +44,7 @@ public class Wizard extends Character {
     public void attack(Character target) throws InterruptedException {
         target.setHealth(target.getMaxHealth()); //To be sure that the enemy is full life when we attack it.
         Fight fight = new Fight(this, target); //Creating the fight
-        fight.run(); //Running the fight
+        fight.runStory(); //Running the fight
     }
 
     @Override
@@ -81,7 +81,7 @@ public class Wizard extends Character {
     }
 
     //Wonderful method to check the attributes of the player.
-    public void checkWizard(Wizard wizard) {
+    public void infoWizard(Wizard wizard) {
         System.out.println(YELLOW + "----- You ----- " +
                 "\nNAME: " + wizard.getName() +
                 "\nHEALTH: " + wizard.getHealth() + "/" + wizard.getMaxHealth() + "hp" +

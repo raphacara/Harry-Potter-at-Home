@@ -1,4 +1,5 @@
 package org.game.story;
+import org.game.Color;
 import org.game.attributes.Core;
 import org.game.attributes.House;
 import org.game.attributes.Pet;
@@ -15,19 +16,16 @@ public class SortingHat implements StoryStep {
     }
 
     @Override
-    public void run() throws InterruptedException {
-        String GREEN = "\033[1;32m"; //fun
-        String RESET = "\u001B[0m"; //fun
-        System.out.println(GREEN + "\n----------------- SORTING HAT -----------------\n" + RESET);
+    public void runStory() throws InterruptedException {
+        System.out.println(Color.GREEN + "\n----------------- SORTING HAT -----------------\n" + Color.RESET);
         threadSleep(1000);
-        String BLUE = "\033[1;34m"; //fun
-        System.out.print(BLUE + "Sorting Hat - " + RESET + "Well, well, well... Let's see what student we have here...\n");
+        System.out.print(Color.BLUE + "Sorting Hat - " + Color.RESET + "Well, well, well... Let's see what student we have here...\n");
         waiting();
-        System.out.print(BLUE + "Sorting Hat - " + RESET + wizard.getName() + "... ");
+        System.out.print(Color.BLUE + "Sorting Hat - " + Color.RESET + wizard.getName() + "... ");
         threadSleep(2000);
         System.out.print("what an intriguing name.\n");
         waiting();
-        System.out.print(BLUE + "Sorting Hat - " + RESET + "Oh, that's very very clear...\n");
+        System.out.print(Color.BLUE + "Sorting Hat - " + Color.RESET + "Oh, that's very very clear...\n");
         waiting();
         //Little condition if you were specifically lucky/unlucky during the Introduction
         House houseName;
@@ -44,12 +42,12 @@ public class SortingHat implements StoryStep {
             House[] houses = House.values(); //get an array of all House enum constants
             houseName = houses[random.nextInt(houses.length)]; //generate a random house
         }
-        System.out.print(BLUE + "Sorting Hat - " + RESET + "I would say...");
+        System.out.print(Color.BLUE + "Sorting Hat - " + Color.RESET + "I would say...");
         threadSleep(2000);
         System.out.print(houseName + "!!!\n");
         threadSleep(2000);
         wizard.setHouse(houseName);
-        System.out.println(GREEN + "** You are now a " + wizard.getHouse() + " student! **" + RESET);
+        System.out.println(Color.GREEN + "** You are now a " + wizard.getHouse() + " student! **" + Color.RESET);
         threadSleep(500);
         wizard.bonusHouses(wizard); //setting the BONUS considering the House of the wizard
         waiting();

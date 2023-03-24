@@ -1,5 +1,6 @@
 package org.game.story;
 
+import org.game.Color;
 import org.game.GameContent;
 import org.game.attributes.House;
 import org.game.character.Wizard;
@@ -7,9 +8,6 @@ import org.game.character.Wizard;
 import java.util.Scanner;
 
 public class Chapter6 implements StoryStep {
-    private final String RESET = "\u001B[0m"; //fun
-    private final String RED = "\033[1;31m"; //fun
-    private final String BLACK = "\033[1;30m"; //fun
     private final Wizard wizard;
     private final GameContent game = new GameContent(); //to have access to the game content
 
@@ -18,12 +16,12 @@ public class Chapter6 implements StoryStep {
         wizard = player;
     }
     @Override
-    public void run() throws InterruptedException {
+    public void runStory() throws InterruptedException {
         //-- Intro of Chapter 6 --
-        String GREEN = "\033[1;32m"; //fun
-        System.out.println(GREEN + "\n----------------- Chapter 6 -----------------");
+
+        System.out.println(Color.GREEN + "\n----------------- Chapter 6 -----------------");
         threadSleep(200);
-        System.out.println("----------- The Half-Blood Prince -----------\n" + RESET);
+        System.out.println("----------- The Half-Blood Prince -----------\n" + Color.RESET);
         threadSleep(1000);
 
         //-- Story --
@@ -43,8 +41,8 @@ public class Chapter6 implements StoryStep {
         threadSleep(200);
         wizard.setPower(wizard.getPower() + 5);
         wizard.setBotanist(wizard.getBotanist() + 5);
-        System.out.println(GREEN + "** You gain +5 power! **");
-        System.out.println("** You gain +5 botanist points! **" + RESET);
+        System.out.println(Color.GREEN + "** You gain +5 power! **");
+        System.out.println("** You gain +5 botanist points! **" + Color.RESET);
         threadSleep(200);
         System.out.println("** The year is going on... **");
         waiting();
@@ -77,14 +75,13 @@ public class Chapter6 implements StoryStep {
         threadSleep(200);
         System.out.println("                   | |\n                   | |\n                   | |\n                   | |\n                   | |");
         threadSleep(200);
-        System.out.println(BLACK + "           ~~~   POTIONS   ~~~\n" + RESET);
+        System.out.println(Color.BLACK + "           ~~~   POTIONS   ~~~\n" + Color.RESET);
         threadSleep(1000);
-        String BLUE = "\033[1;34m"; //fun
-        System.out.println(BLUE + "Potions Teacher - " + RESET + "Welcome to the Potions class!");
+        System.out.println(Color.BLUE + "Potions Teacher - " + Color.RESET + "Welcome to the Potions class!");
         threadSleep(200);
-        System.out.println(BLUE + "Potions Teacher - " + RESET + "Today we will learn a potion that gives luck!");
+        System.out.println(Color.BLUE + "Potions Teacher - " + Color.RESET + "Today we will learn a potion that gives luck!");
         threadSleep(200);
-        System.out.println(BLUE + "Potions Teacher - " + RESET + "It is called : Felix Felicis!");
+        System.out.println(Color.BLUE + "Potions Teacher - " + Color.RESET + "It is called : Felix Felicis!");
         threadSleep(200);
         System.out.println("\n** You are trying to learn the potion... **");
         threadSleep(200);
@@ -92,29 +89,29 @@ public class Chapter6 implements StoryStep {
         waiting();
         wizard.learnPotion(game.potion("Felix Felicis"));
         threadSleep(200);
-        System.out.println(BLUE + "\nPotions Teacher  - " + RESET + "Congratulations " + wizard.getName() + "!");
+        System.out.println(Color.BLUE + "\nPotions Teacher  - " + Color.RESET + "Congratulations " + wizard.getName() + "!");
         threadSleep(200);
     }
 
     public void finalChoice() throws InterruptedException {
         if (wizard.getHouse() == House.Slytherin) {
             threadSleep(200);
-            System.out.println(RED + "Death Eater -" + RESET + "Hey, you are a Slytherin...");
+            System.out.println(Color.RED + "Death Eater -" + Color.RESET + "Hey, you are a Slytherin...");
             threadSleep(200);
-            System.out.println(RED + "Death Eater -" + RESET + "Would you like to join us?");
+            System.out.println(Color.RED + "Death Eater -" + Color.RESET + "Would you like to join us?");
             threadSleep(200);
             Scanner scanner = new Scanner(System.in);
             String input = "";
             while (!(input.equalsIgnoreCase("Yes") || input.equalsIgnoreCase("No"))) {
-                System.out.print(RED + "Enter Yes or No :" + RESET);
+                System.out.print(Color.RED + "Enter Yes or No :" + Color.RESET);
                 input = scanner.nextLine();
                 switch (input.toLowerCase()) {
                     case "yes" -> {
                         darkEnd();
                         return;
                     }
-                    case "no" -> System.out.println(RED + "Death Eater -" + RESET + "You are going to regret it!");
-                    default -> System.out.println(RED + "Death Eater -" + RESET + "This is a serious choice.");
+                    case "no" -> System.out.println(Color.RED + "Death Eater -" + Color.RESET + "You are going to regret it!");
+                    default -> System.out.println(Color.RED + "Death Eater -" + Color.RESET + "This is a serious choice.");
                 }
             }
         } else {
@@ -130,25 +127,25 @@ public class Chapter6 implements StoryStep {
     }
 
     public void darkEnd() {
-        System.out.println(RED + "Death Eater - " + RESET + "I knew it! Haha, you are smart.");
+        System.out.println(Color.RED + "Death Eater - " + Color.RESET + "I knew it! Haha, you are smart.");
         threadSleep(200);
-        System.out.println(RED + "Death Eater - " + RESET + "By the way, my name is Bellatrix Lestrange.");
+        System.out.println(Color.RED + "Death Eater - " + Color.RESET + "By the way, my name is Bellatrix Lestrange.");
         threadSleep(200);
-        System.out.println(RED + "Bellatrix - " + RESET + "I will give you the Dark Mark: Then you will be a Death Eater like us!");
+        System.out.println(Color.RED + "Bellatrix - " + Color.RESET + "I will give you the Dark Mark: Then you will be a Death Eater like us!");
         threadSleep(200);
-        System.out.println(BLACK + "\n** You receive the Dark Mark on your left arm. **\n");
+        System.out.println(Color.BLACK + "\n** You receive the Dark Mark on your left arm. **\n");
         threadSleep(200);
-        System.out.println("Dark Mark : " + RESET + "Magical 'Tattoo' on Death Eater's left arm, it looks like a snake ;\n" +
+        System.out.println("Dark Mark : " + Color.RESET + "Magical 'Tattoo' on Death Eater's left arm, it looks like a snake ;\n" +
                 "            It forces you to serve the Dark lord, if you betray him, you die instantly ;\n" +
                 "            It allows you to fly through the air in a black smoke-like form ;\n" +
                 "            By touching the mark with your wand, you can feel a burning sensation and will be able to locate Voldemort and join his ranks.\n");
         waiting();
-        System.out.println(RED + "Bellatrix - " + RESET + "Welcome among us! To celebrate that, I will teach you a special curse, Haha. ");
+        System.out.println(Color.RED + "Bellatrix - " + Color.RESET + "Welcome among us! To celebrate that, I will teach you a special curse, Haha. ");
         threadSleep(200);
-        System.out.println(RED + "Bellatrix - " + RESET + "It is called crucio and it makes your enemies to suffer, Hahaha.");
+        System.out.println(Color.RED + "Bellatrix - " + Color.RESET + "It is called crucio and it makes your enemies to suffer, Hahaha.");
         waiting();
         wizard.learnSpell(game.spell("Crucio"));
-        System.out.println(RED + "Bellatrix - " + RESET + "Wonderful, now follow me, we will join the Dark Lord to introduce him to his new recruit.");
+        System.out.println(Color.RED + "Bellatrix - " + Color.RESET + "Wonderful, now follow me, we will join the Dark Lord to introduce him to his new recruit.");
         threadSleep(200);
         System.out.println("\n** You follow Bellatrix and fly in a dark smoke to a distant destination...");
         waiting();

@@ -1,4 +1,5 @@
 package org.game.story;
+import org.game.Color;
 import org.game.GameContent;
 import org.game.attributes.Potion;
 import org.game.character.Wizard;
@@ -7,11 +8,6 @@ import org.game.spells.AbstractSpell;
 import java.util.Scanner;
 
 public class Chapter4 implements StoryStep {
-    private final String RESET = "\u001B[0m"; //fun
-    private final String RED = "\033[1;31m"; //fun
-    private final String BLUE = "\033[1;34m"; //fun
-    private final String GREEN = "\033[1;32m"; //fun
-    private final String BLACK = "\033[1;30m"; //fun
     private final Wizard wizard; //the player
     private final GameContent game = new GameContent(); //to have access to the game content
     private boolean check; //checking the loops
@@ -23,11 +19,11 @@ public class Chapter4 implements StoryStep {
         wizard = player;
     }
     @Override
-    public void run() throws InterruptedException {
+    public void runStory() throws InterruptedException {
         //-- Intro of Chapter 4 --
-        System.out.println(GREEN + "\n----------------- Chapter 4 -----------------");
+        System.out.println(Color.GREEN + "\n----------------- Chapter 4 -----------------");
         threadSleep(200);
-        System.out.println("------------- The Goblet of Fire ------------\n" + RESET);
+        System.out.println("------------- The Goblet of Fire ------------\n" + Color.RESET);
         threadSleep(1000);
         System.out.println("** This year there is an important tournament: The Triwizard Tournament. **");
         threadSleep(200);
@@ -46,9 +42,9 @@ public class Chapter4 implements StoryStep {
         System.out.println("** You are now going to the 1st challenge. **");
 
         //-- 1st Challenge --
-        System.out.println(BLUE + "\n~~~~~~~~~~~~ 1st Challenge ~~~~~~~~~~~~");
+        System.out.println(Color.BLUE + "\n~~~~~~~~~~~~ 1st Challenge ~~~~~~~~~~~~");
         threadSleep(200);
-        System.out.println("~~~~~~~~~~~~~ Dragon Task ~~~~~~~~~~~~~\n" + RESET);
+        System.out.println("~~~~~~~~~~~~~ Dragon Task ~~~~~~~~~~~~~\n" + Color.RESET);
         dragon();
         waiting();
 
@@ -61,9 +57,9 @@ public class Chapter4 implements StoryStep {
         System.out.println("** You are now going to the 2nd challenge. **");
 
         //-- 2nd Challenge --
-        System.out.println(BLUE + "\n~~~~~~~~~~~~ 2nd Challenge ~~~~~~~~~~~~");
+        System.out.println(Color.BLUE + "\n~~~~~~~~~~~~ 2nd Challenge ~~~~~~~~~~~~");
         threadSleep(200);
-        System.out.println("~~~~~~~~~~ Underwater Rescue ~~~~~~~~~~\n" + RESET);
+        System.out.println("~~~~~~~~~~ Underwater Rescue ~~~~~~~~~~\n" + Color.RESET);
         underwater();
         waiting();
 
@@ -72,14 +68,14 @@ public class Chapter4 implements StoryStep {
         learnSkill();
 
         //-- 3rd Challenge --
-        System.out.println(BLUE + "\n~~~~~~~~~~~~ 3rd Challenge ~~~~~~~~~~~~");
+        System.out.println(Color.BLUE + "\n~~~~~~~~~~~~ 3rd Challenge ~~~~~~~~~~~~");
         threadSleep(200);
-        System.out.println("~~~~~~~~~~~~~~ Labyrinth ~~~~~~~~~~~~~~\n" + RESET);
+        System.out.println("~~~~~~~~~~~~~~ Labyrinth ~~~~~~~~~~~~~~\n" + Color.RESET);
         labyrinth();
         threadSleep(200);
 
         //Final battle in the Cemetery
-        System.out.println(" ****** Little Hangleton Cemetery ******\n" + RESET);
+        System.out.println(" ****** Little Hangleton Cemetery ******\n" + Color.RESET);
         cemetery();
         waiting();
         System.out.println("\n** Chapter 4 - THE END **\n");
@@ -88,12 +84,12 @@ public class Chapter4 implements StoryStep {
 
     public void learnSkill() {
         threadSleep(200);
-        System.out.println(GREEN + "1. Aguamenti Spell\n2. Bubble-Head Charm\n3. Disillusionment Charm\n4. Protego Charm");
-        System.out.println(GREEN + "5. Gillyweed Potion\n6. Invisibility Potion\n7. Wiggenweld Potion");
+        System.out.println(Color.GREEN + "1. Aguamenti Spell\n2. Bubble-Head Charm\n3. Disillusionment Charm\n4. Protego Charm");
+        System.out.println(Color.GREEN + "5. Gillyweed Potion\n6. Invisibility Potion\n7. Wiggenweld Potion");
         check = false;
         while (!check) {
             check = true;
-            System.out.print(RED + "Enter a number to make your choice :\n" + RESET);
+            System.out.print(Color.RED + "Enter a number to make your choice :\n" + Color.RESET);
             String input = scanner.nextLine();
             switch (input) {
                 case "1" -> {
@@ -162,7 +158,7 @@ public class Chapter4 implements StoryStep {
         threadSleep(200);
         System.out.println("** How are you going to steal the egg? **");
         threadSleep(200);
-        System.out.println(GREEN + "1. Fighting the dragon\n2. Trying to be stealthy" + RESET);
+        System.out.println(Color.GREEN + "1. Fighting the dragon\n2. Trying to be stealthy" + Color.RESET);
         while (check) {
             check = false;
             String input = scanner.nextLine();
@@ -190,7 +186,7 @@ public class Chapter4 implements StoryStep {
                                 System.out.println("** You use the Gillyweed Potion to be extremely stealthy... **");
                                 waiting();
                                 wizard.setAccuracy(wizard.getAccuracy() + 1);
-                                System.out.println(GREEN + "** It works very well so you gain +1 accuracy point! **" + RESET);
+                                System.out.println(Color.GREEN + "** It works very well so you gain +1 accuracy point! **" + Color.RESET);
                                 threadSleep(200);
                                 invisible = false;
                             }
@@ -223,16 +219,16 @@ public class Chapter4 implements StoryStep {
         threadSleep(200);
         System.out.println("** But have to dive deep, how will you do? **");
         threadSleep(200);
-        System.out.println(GREEN + "1. Just swim and dive" + RESET);
+        System.out.println(Color.GREEN + "1. Just swim and dive" + Color.RESET);
         for (AbstractSpell spell : wizard.getKnownSpells()) {
             if (spell.getName().equals("Bubble-Head")) {
-                System.out.println(GREEN + "2. Use the Bubble-Head Charm" + RESET);
+                System.out.println(Color.GREEN + "2. Use the Bubble-Head Charm" + Color.RESET);
                 verify[1] = true;
             }
         }
         for (Potion potion: wizard.getPotions()) {
             if (potion.getName().equals("Gillyweed")) {
-                System.out.println(GREEN + "3. Use the Gillyweed Potion" + RESET);
+                System.out.println(Color.GREEN + "3. Use the Gillyweed Potion" + Color.RESET);
                 verify[2] = true;
             }
         }
@@ -272,7 +268,7 @@ public class Chapter4 implements StoryStep {
                         threadSleep(200);
                         System.out.println("** You easily save your target, this potion is awesome. **");
                         threadSleep(200);
-                        System.out.println(GREEN + "** You gain +1 Botanist point for using this potion! **" + RESET);
+                        System.out.println(Color.GREEN + "** You gain +1 Botanist point for using this potion! **" + Color.RESET);
                         threadSleep(200);
                         System.out.println("** There is only one last task in this tournament, and you are currently in the 1st place! **");
                         wizard.setCondition("1st"); //Story needs to know the position of the player in the tournament
@@ -298,22 +294,22 @@ public class Chapter4 implements StoryStep {
         threadSleep(200);
         System.out.println("** You step inside the labyrinth at the " + wizard.getCondition() + " place, because of the previous task. **");
         threadSleep(200);
-        System.out.println(BLUE + "\n!!! This is the Beta Test, the full labyrinth will be available later in the game with JavaFX !!!\n" + RESET);
+        System.out.println(Color.BLUE + "\n!!! This is the Beta Test, the full labyrinth will be available later in the game with JavaFX !!!\n" + Color.RESET);
         threadSleep(200);
         System.out.println("** You turn right, and see the trophy at the end of the corridor. **");
         threadSleep(200);
         System.out.println("** But an other participant reaches you, he also saw trophy... **\n");
         threadSleep(200);
-        System.out.println(RED + "Tournament Champion - " + RESET + "I'm gonna kill you to get the trophy!!");
+        System.out.println(Color.RED + "Tournament Champion - " + Color.RESET + "I'm gonna kill you to get the trophy!!");
         waiting();
         wizard.attack(game.enemy("Tournament Champion"));
-        System.out.println("** You killed him! But you had to... Anyway, you run to grab the trophy... **");
+        System.out.println("** You killed him! But you had to... Anyway, you runStory to grab the trophy... **");
         threadSleep(200);
         System.out.println("** But the 3rd participant arrives in the same time... **");
         threadSleep(200);
         System.out.println("** And you are... in a teleportation??? **");
         threadSleep(200);
-        System.out.println(BLACK + "          * * * * * * * * * *\n           * * * * * * * * *");
+        System.out.println(Color.BLACK + "          * * * * * * * * * *\n           * * * * * * * * *");
         threadSleep(200);
         System.out.println("            * * * * * * * *\n             * * * * * * *");
         threadSleep(200);
@@ -326,39 +322,39 @@ public class Chapter4 implements StoryStep {
 
     public void cemetery() {
         waiting();
-        System.out.println(BLUE + "Other participant - " + RESET + "The trophy was a Portkey...");
+        System.out.println(Color.BLUE + "Other participant - " + Color.RESET + "The trophy was a Portkey...");
         threadSleep(200);
-        System.out.println(BLUE + "Other participant - " + RESET + "So when we touched it, it teleported us.");
+        System.out.println(Color.BLUE + "Other participant - " + Color.RESET + "So when we touched it, it teleported us.");
         waiting();
-        System.out.println(RED + "??? - " + RESET + "AH AH AH AH!!! What a wonderful evening to kill you, both!");
+        System.out.println(Color.RED + "??? - " + Color.RESET + "AH AH AH AH!!! What a wonderful evening to kill you, both!");
         threadSleep(200);
-        System.out.println(RED + "??? - " + RESET + "I am " + BLACK + "Voldemort " + RESET + "and thanks to you, i will become the lord of the world again!");
+        System.out.println(Color.RED + "??? - " + Color.RESET + "I am " + Color.BLACK + "Voldemort " + Color.RESET + "and thanks to you, i will become the lord of the world again!");
         threadSleep(200);
         System.out.println("\n** Voldemort is in front of you two, and he has a partisan called Peter Pettigrew next to him. **\n");
         threadSleep(200);
         System.out.println("** You have to act, what do you do? **");
-        System.out.println(GREEN + "1. attack them\n 2.Trying to go back at the Portkey\n3. To play dead." + RESET);
+        System.out.println(Color.GREEN + "1. attack them\n 2.Trying to go back at the Portkey\n3. To play dead." + Color.RESET);
         threadSleep(3000);
         System.out.println("\n** You don't even have the time to do anything that Voldemort said: **\n");
         threadSleep(200);
-        System.out.println(RED + "Lord Voldemort - " + RESET + "Kill them.");
+        System.out.println(Color.RED + "Lord Voldemort - " + Color.RESET + "Kill them.");
         waiting();
         System.out.println("\n** His partisan instantly take his wand and look at the other participant... **\n");
         threadSleep(200);
-        System.out.println(RED + "Peter Pettigrew - " + RESET + "AVADA KEDAVRA!");
+        System.out.println(Color.RED + "Peter Pettigrew - " + Color.RESET + "AVADA KEDAVRA!");
         waiting();
         System.out.println("\n** The other participant immediately dies. **");
         threadSleep(200);
         System.out.println("** You don't have the time to think, just attract the Portkey... NOW! **");
         threadSleep(200);
-        System.out.println(RED + "Write Accio to attract the Portkey :" + RESET);
+        System.out.println(Color.RED + "Write Accio to attract the Portkey :" + Color.RESET);
         String input = scanner.nextLine();
         if (input.equalsIgnoreCase("Accio")) {
             System.out.println("** You attract the portkey and instantly teleport to the castle. **\n");
         } else {
-            System.out.println(RED + "\nPeter Pettigrew - " + RESET + "AVADA KEDAVRA!");
+            System.out.println(Color.RED + "\nPeter Pettigrew - " + Color.RESET + "AVADA KEDAVRA!");
             waiting();
-            System.out.println(RED + "** You died. **" + RESET);
+            System.out.println(Color.RED + "** You died. **" + Color.RESET);
             waiting();
             System.exit(0);
         }
@@ -369,7 +365,7 @@ public class Chapter4 implements StoryStep {
         threadSleep(200);
         System.out.println("** Anyway, you won the Triwizard Tournament! **");
         waiting();
-        System.out.println(GREEN + "** All your stats have increased! **" + RESET);
+        System.out.println(Color.GREEN + "** All your stats have increased! **" + Color.RESET);
         wizard.setAccuracy(wizard.getAccuracy() + 1);
         wizard.setBotanist(wizard.getBotanist() + 1);
         wizard.setMaxHealth(wizard.getMaxHealth() + 5);
