@@ -15,7 +15,7 @@ public class Chapter5 implements StoryStep {
     @Override
     public void runStory() throws InterruptedException {
         //-- Intro of Chapter 5 --
-        System.out.println(Color.GREEN + "\n----------------- Chapter 5 -----------------");
+        System.out.println(Color.GREEN + "----------------- Chapter 5 -----------------");
         threadSleep(200);
         System.out.println("---------- The Order of the Phoenix ---------\n" + Color.RESET);
         threadSleep(1000);

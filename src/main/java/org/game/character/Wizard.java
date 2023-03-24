@@ -13,9 +13,6 @@ import java.util.Random;
 @Setter
 public class Wizard extends Character {
     // Properties
-    private final String GREEN = "\033[1;32m"; //fun
-    private final String YELLOW = "\033[1;33m"; //fun
-    private final String RESET = "\u001B[0m"; //fun
     private Pet pet;
     private Wand wand;
     private House house;
@@ -62,7 +59,7 @@ public class Wizard extends Character {
         } else {
             // Learn the new spell
             knownSpells.add(spell);
-            System.out.println(GREEN + "** You have learned the spell " + spell.getName() + "! **" + RESET);
+            System.out.println(Color.GREEN + "** You have learned the spell " + spell.getName() + "! **" + Color.RESET);
         }
     }
 
@@ -76,30 +73,31 @@ public class Wizard extends Character {
         } else {
             // Learn the new potion
             potions.add(potion);
-            System.out.println(GREEN + "** You have learned the potion " + potion.getName() + "! **" + RESET);
+            System.out.println(Color.GREEN + "** You have learned the potion " + potion.getName() + "! **" + Color.RESET);
         }
     }
 
     //Wonderful method to check the attributes of the player.
     public void infoWizard(Wizard wizard) {
-        System.out.println(YELLOW + "----- You ----- " +
-                "\nNAME: " + wizard.getName() +
-                "\nHEALTH: " + wizard.getHealth() + "/" + wizard.getMaxHealth() + "hp" +
-                "\nPET: " + wizard.getPet() +
-                "\nWAND: " + wizard.getWand().getCore() + " (" + wizard.getWand().getSize() + "cm) " +
-                "\nHOUSE: " + wizard.getHouse() +
-                "\nPATRONUS: " + wizard.getPatronus() +
-                "\nSPELLS: ");
+        System.out.println(Color.YELLOW + "----- You ----- " +
+                "\nNAME: " + Color.RESET + wizard.getName() + Color.YELLOW +
+                "\nHEALTH: " + Color.RESET  + wizard.getHealth() + "/" + wizard.getMaxHealth() + "hp" + Color.YELLOW +
+                "\nPET: " + Color.RESET  + wizard.getPet() + Color.YELLOW +
+                "\nWAND: " + Color.RESET  + wizard.getWand().getCore() + " (" + wizard.getWand().getSize() + "cm) " + Color.YELLOW +
+                "\nHOUSE: " + Color.RESET  + wizard.getHouse() + Color.YELLOW +
+                "\nPATRONUS: " + Color.RESET  + wizard.getPatronus() + Color.YELLOW +
+                "\nSPELLS: "  + Color.RESET );
         for (AbstractSpell spell : knownSpells) {
             System.out.println("* "+spell.getName()+" *");
         }
-        System.out.println("POTIONS: ");
+        System.out.println(Color.YELLOW + "POTIONS: " + Color.RESET );
         for (Potion potion : potions) {
             System.out.println("* "+potion.getName()+" *");
         }
-        System.out.println("---------------\nPOWER bonus: " + wizard.getPower() +
-                "\nACCURACY bonus: " + wizard.getAccuracy() +
-                "\nBOTANIST bonus: " + wizard.getBotanist() + RESET);
+        System.out.println("-------------------" +
+                "\nPOWER bonus: " + Color.RESET  + wizard.getPower() + Color.YELLOW +
+                "\nACCURACY bonus: " + Color.RESET  + wizard.getAccuracy() + Color.YELLOW +
+                "\nBOTANIST bonus: " + Color.RESET  + wizard.getBotanist() + Color.RESET);
     }
 
     //To apply the bonus of each house on the wizard (huge bonus)
@@ -109,25 +107,25 @@ public class Wizard extends Character {
                 // Increase the effectiveness of potions for Hufflepuff members
                 int newBotanist = wizard.getBotanist()+ 10;
                 wizard.setBotanist(newBotanist);
-                System.out.println(GREEN + "Hufflepuff bonus: +10 Botanist points" + RESET);
+                System.out.println(Color.GREEN + "Hufflepuff bonus: +10 Botanist points" + Color.RESET);
             }
             case Slytherin -> {
                 // Increase spell damage for Slytherin members
                 int newPower = wizard.getPower() + 10;
                 wizard.setPower(newPower);
-                System.out.println(GREEN + "Slytherin bonus: +10 damage" + RESET);
+                System.out.println(Color.GREEN + "Slytherin bonus: +10 damage" + Color.RESET);
             }
             case Gryffindor -> {
                 // Increase the wizard's health for Gryffindor members
                 int newHealth = wizard.getHealth() + 20;
                 wizard.setMaxHealth(newHealth);
-                System.out.println(GREEN + "Gryffindor bonus: +20 hp" + RESET);
+                System.out.println(Color.GREEN + "Gryffindor bonus: +20 hp" + Color.RESET);
             }
             case Ravenclaw -> {
                 // Increase the accuracy of spells for Ravenclaw members
                 int newAccuracy = wizard.getAccuracy() + 10;
                 wizard.setAccuracy(newAccuracy);
-                System.out.println(GREEN + "Ravenclaw bonus: +10 accuracy" + RESET);
+                System.out.println(Color.GREEN + "Ravenclaw bonus: +10 accuracy" + Color.RESET);
             }
         }
     }
@@ -139,19 +137,19 @@ public class Wizard extends Character {
                 // Increase the effectiveness of accuracy
                 int newAccuracy = wizard.getAccuracy() + 2;
                 wizard.setAccuracy(newAccuracy);
-                System.out.println(GREEN + "Dragon heartstring Core bonus: +2 accuracy" + RESET);
+                System.out.println(Color.GREEN + "Dragon heartstring Core bonus: +2 accuracy" + Color.RESET);
             }
             case UNICORN_HAIR -> {
                 // Increase spell damage
                 int newHealth = wizard.getHealth() + 5;
                 wizard.setMaxHealth(newHealth);
-                System.out.println(GREEN + "Unicorn hair Core bonus: +5hp" + RESET);
+                System.out.println(Color.GREEN + "Unicorn hair Core bonus: +5hp" + Color.RESET);
             }
             case PHOENIX_FEATHER -> {
                 // Increase the wizard's power
                 int newPower = wizard.getPower() + 2;
                 wizard.setPower(newPower);
-                System.out.println(GREEN + "Phoenix Feather Core bonus: +2 damage" + RESET);
+                System.out.println(Color.GREEN + "Phoenix Feather Core bonus: +2 damage" + Color.RESET);
             }
         }
     }
@@ -162,22 +160,22 @@ public class Wizard extends Character {
             case TOAD -> {
                 // Increase the effectiveness of potions for Hufflepuff members
                 wizard.setBotanist(wizard.getBotanist()+ 1);
-                System.out.println(GREEN + "TOAD bonus: +1 Botanist points" + RESET);
+                System.out.println(Color.GREEN + "TOAD bonus: +1 Botanist points" + Color.RESET);
             }
             case RAT, SNAKE -> {
                 // Increase spell damage for Slytherin members
                 wizard.setPower(wizard.getPower() + 1);
-                System.out.println(GREEN + wizard.getPet() + " bonus: +1 damage" + RESET);
+                System.out.println(Color.GREEN + "" + wizard.getPet() + " bonus: +1 damage" + Color.RESET);
             }
             case CAT -> {
                 // Increase the wizard's health for Gryffindor members
                 wizard.setMaxHealth(wizard.getHealth() + 2);
-                System.out.println(GREEN + "CAT bonus: +2 hp" + RESET);
+                System.out.println(Color.GREEN + "CAT bonus: +2 hp" + Color.RESET);
             }
             case OWL -> {
                 // Increase the accuracy of spells for Ravenclaw members
                 wizard.setAccuracy(wizard.getAccuracy() + 1);
-                System.out.println(GREEN + "OWL bonus: +1 accuracy" + RESET);
+                System.out.println(Color.GREEN + "OWL bonus: +1 accuracy" + Color.RESET);
             }
         }
     }

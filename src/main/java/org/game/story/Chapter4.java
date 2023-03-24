@@ -21,7 +21,7 @@ public class Chapter4 implements StoryStep {
     @Override
     public void runStory() throws InterruptedException {
         //-- Intro of Chapter 4 --
-        System.out.println(Color.GREEN + "\n----------------- Chapter 4 -----------------");
+        System.out.println(Color.GREEN + "----------------- Chapter 4 -----------------");
         threadSleep(200);
         System.out.println("------------- The Goblet of Fire ------------\n" + Color.RESET);
         threadSleep(1000);
@@ -75,7 +75,7 @@ public class Chapter4 implements StoryStep {
         threadSleep(200);
 
         //Final battle in the Cemetery
-        System.out.println(" ****** Little Hangleton Cemetery ******\n" + Color.RESET);
+        System.out.println(" ****** Little Hangleton Cemetery ******" + Color.RESET);
         cemetery();
         waiting();
         System.out.println("\n** Chapter 4 - THE END **\n");
@@ -333,7 +333,7 @@ public class Chapter4 implements StoryStep {
         System.out.println("\n** Voldemort is in front of you two, and he has a partisan called Peter Pettigrew next to him. **\n");
         threadSleep(200);
         System.out.println("** You have to act, what do you do? **");
-        System.out.println(Color.GREEN + "1. attack them\n 2.Trying to go back at the Portkey\n3. To play dead." + Color.RESET);
+        System.out.println(Color.GREEN + "1. attack them\n2.Trying to go back at the Portkey\n3. To play dead." + Color.RESET);
         threadSleep(3000);
         System.out.println("\n** You don't even have the time to do anything that Voldemort said: **\n");
         threadSleep(200);

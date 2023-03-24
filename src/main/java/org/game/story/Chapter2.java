@@ -19,7 +19,7 @@ public class Chapter2 implements StoryStep {
     @Override
     public void runStory() throws InterruptedException {
         //-- Intro of Chapter 2 --
-        System.out.println(Color.GREEN + "\n----------------- Chapter 2 -----------------");
+        System.out.println(Color.GREEN + "----------------- Chapter 2 -----------------");
         threadSleep(200);
         System.out.println("---------- The Chamber of Secrets -----------\n" + Color.RESET);
         threadSleep(1000);
@@ -325,7 +325,7 @@ public class Chapter2 implements StoryStep {
             }
         }
         threadSleep(200);
-        System.out.println(Color.BLUE + "\nStudent - " + Color.RESET + "Perfect, practice this spell, and next year, don't hesitate to come to the dueling club!\n");
+        System.out.println(Color.BLUE + "\nStudent - " + Color.RESET + "Perfect, practice this spell, and next year, don't hesitate to come to the dueling club!");
         waiting();
     }
 

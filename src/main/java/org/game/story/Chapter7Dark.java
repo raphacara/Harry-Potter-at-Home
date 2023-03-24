@@ -15,7 +15,7 @@ public class Chapter7Dark implements StoryStep {
     @Override
     public void runStory() throws InterruptedException {
         //-- Intro of Chapter 7 --
-        System.out.println(Color.GREEN + "\n----------------- Chapter 7 -----------------");
+        System.out.println(Color.GREEN + "----------------- Chapter 7 -----------------");
         threadSleep(200);
         System.out.println("------------ The Deathly Hallows ------------\n" + Color.RESET);
         threadSleep(1000);

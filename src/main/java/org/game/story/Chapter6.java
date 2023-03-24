@@ -19,7 +19,7 @@ public class Chapter6 implements StoryStep {
     public void runStory() throws InterruptedException {
         //-- Intro of Chapter 6 --
 
-        System.out.println(Color.GREEN + "\n----------------- Chapter 6 -----------------");
+        System.out.println(Color.GREEN + "----------------- Chapter 6 -----------------");
         threadSleep(200);
         System.out.println("----------- The Half-Blood Prince -----------\n" + Color.RESET);
         threadSleep(1000);

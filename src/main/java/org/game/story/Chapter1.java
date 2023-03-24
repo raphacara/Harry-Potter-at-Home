@@ -22,7 +22,7 @@ public class Chapter1  implements StoryStep {
     @Override
     public void runStory() throws InterruptedException {
         //-- Intro of Chapter 1 --
-        System.out.println(Color.GREEN + "\n----------------- Chapter 1 -----------------");
+        System.out.println(Color.GREEN + "----------------- Chapter 1 -----------------");
         threadSleep(200);
         System.out.println("---------- The Philosopher’s Stone -----------\n" + Color.RESET);
         threadSleep(1000);

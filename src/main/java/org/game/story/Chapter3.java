@@ -23,7 +23,7 @@ public class Chapter3 implements StoryStep {
     @Override
     public void runStory() throws InterruptedException {
         //-- Intro of Chapter 3 --
-        System.out.println(Color.GREEN + "\n----------------- Chapter 3 -----------------");
+        System.out.println(Color.GREEN + "----------------- Chapter 3 -----------------");
         Thread.sleep(200);
         System.out.println("---------- The Prisoner of Azkaban ----------\n" + Color.RESET);
         Thread.sleep(1000);
@@ -33,7 +33,7 @@ public class Chapter3 implements StoryStep {
         Thread.sleep(200);
         System.out.println("** Anyway, you know that this year you can take part in two new classes: **");
         Thread.sleep(200);
-        System.out.println(Color.BLACK + "~~ DIVINATION ~~ " + Color.RESET + "and" + Color.BLACK + " ~~ CARE OF MAGICAL CREATURES ~~" + Color.RESET);
+        System.out.println(Color.BLUE + "~~ DIVINATION ~~ " + Color.RESET + "and" + Color.BLUE + " ~~ CARE OF MAGICAL CREATURES ~~" + Color.RESET);
         Thread.sleep(200);
         System.out.println("** And you also remember about a dueling club... **");
         Thread.sleep(200);
@@ -199,7 +199,7 @@ public class Chapter3 implements StoryStep {
         threadSleep(200);
         System.out.println(Color.BLUE + "Student - " + Color.RESET + "You came here by yourself, so I suppose you are ready to fight.");
         threadSleep(200);
-        System.out.println(Color.BLUE + "Student - " + Color.RESET + "Today you will fight against a Slytherin student.\n");
+        System.out.println(Color.BLUE + "Student - " + Color.RESET + "Today you will fight against a Slytherin student.");
         waiting();
         System.out.println(Color.RED + "Slytherin Student - " + Color.RESET + "Good luck...");
         wizard.attack(game.enemy("Slytherin Student"));
@@ -297,7 +297,7 @@ public class Chapter3 implements StoryStep {
         threadSleep(200);
         System.out.println(Color.BLUE + "Lupin - " + Color.RESET + "A lot of dementors have been seen in the Forbidden Forest, so be careful.");
         threadSleep(200);
-        System.out.println(Color.BLUE + "Lupin - " + Color.RESET + "Anyway, see you next time.\n");
+        System.out.println(Color.BLUE + "Lupin - " + Color.RESET + "Anyway, see you next time.");
         waiting();
     }
 

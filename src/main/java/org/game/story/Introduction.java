@@ -22,7 +22,7 @@ public class Introduction implements StoryStep {
     public void runStory() throws InterruptedException {
         //Introduction
         Scanner scanner = new Scanner(System.in);
-        System.out.print(Color.GREEN + "\n----------------- INTRODUCTION -----------------\n\n" + Color.RESET);
+        System.out.print(Color.GREEN + "----------------- INTRODUCTION -----------------\n\n" + Color.RESET);
         threadSleep(1000);
         System.out.print("** Welcome in the Wizarding World, a world full of magic, hidden away for those who do not know magic, muggles. **\n");
         threadSleep(200);

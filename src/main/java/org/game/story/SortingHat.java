@@ -44,7 +44,7 @@ public class SortingHat implements StoryStep {
         }
         System.out.print(Color.BLUE + "Sorting Hat - " + Color.RESET + "I would say...");
         threadSleep(2000);
-        System.out.print(houseName + "!!!\n");
+        System.out.print(Color.BLUE + "Sorting Hat - " + Color.RESET + houseName + "!!!\n");
         threadSleep(2000);
         wizard.setHouse(houseName);
         System.out.println(Color.GREEN + "** You are now a " + wizard.getHouse() + " student! **" + Color.RESET);
