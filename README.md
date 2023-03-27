@@ -22,7 +22,8 @@ Follow the on-screen instructions to navigate the game.
 Contributions are welcome! To contribute to this project, please create a pull request explaining the changes you propose.
 
 ### License
-This project is licensed under the MIT license. Please see the LICENSE file for more details.
+This project is licensed. Please see the LICENSE file for more details.
+License: https://github.com/raphacara/Harry-Potter-at-Home/blob/master/LICENSE
 
 ### Author
 This project was created by Raphaël CARABEUF.
@@ -47,7 +48,8 @@ Suivez les instructions à l'écran pour naviguer dans le jeu.
 Les contributions sont les bienvenues ! Pour contribuer à ce projet, veuillez créer une pull request en expliquant les changements que vous proposez.
 
 ### Licence
-Ce projet est sous licence MIT. Veuillez consulter le fichier LICENSE pour plus de détails.
+Ce projet est sous licence. Veuillez consulter le fichier LICENSE pour plus de détails.
+Licence: https://github.com/raphacara/Harry-Potter-at-Home/blob/master/LICENSE
 
 ### Auteur
 Ce projet a été créé par Raphaël CARABEUF.
