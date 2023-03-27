@@ -55,8 +55,6 @@ public class Main {
                 play(chapter7, "Chapter 7", wizard, game);
             }
 
-            System.out.println("test");
-
             //Stop the music
             } catch (InterruptedException | UnsupportedAudioFileException | IOException | LineUnavailableException e) {
                 e.printStackTrace();

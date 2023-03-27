@@ -42,7 +42,7 @@ public class SortingHat implements StoryStep {
             House[] houses = House.values(); //get an array of all House enum constants
             houseName = houses[random.nextInt(houses.length)]; //generate a random house
         }
-        System.out.print(Color.BLUE + "Sorting Hat - " + Color.RESET + "I would say...");
+        System.out.print(Color.BLUE + "Sorting Hat - " + Color.RESET + "I would say...\n");
         threadSleep(2000);
         System.out.print(Color.BLUE + "Sorting Hat - " + Color.RESET + houseName + "!!!\n");
         threadSleep(2000);
