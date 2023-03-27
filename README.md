@@ -1,7 +1,6 @@
 # Harry-Potter-at-Home
 
 ## English:
-
 ### Project Name
 Project Name is an adventure and role-playing game set in the world of Harry Potter.
 
@@ -29,7 +28,6 @@ This project is licensed under the MIT license. Please see the LICENSE file for 
 This project was created by Raphaël CARABEUF.
 
 ## Français:
-
 ### Nom du projet
 Nom du projet est un jeu d'aventure et de rôle dans l'univers de Harry Potter.
 
