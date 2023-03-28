@@ -35,7 +35,7 @@ public class Credits implements StoryStep {
         threadSleep(600);
         System.out.println("                                               Raphaël CARABEUF");
         threadSleep(600);
-        creditMovement();;
+        creditMovement();
         System.out.println("                                                   Music:");
         threadSleep(600);
         System.out.println("                                               John WILLIAMS");
