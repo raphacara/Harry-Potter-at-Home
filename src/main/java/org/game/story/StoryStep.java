@@ -23,7 +23,7 @@ public interface StoryStep { //Maybe most useful class (more exactly interface) 
 
     // To wait for the user before printing the text
     default void waiting() {
-        System.out.print("->");
+        System.out.print("-");
         try {
             int readChar;
             do {

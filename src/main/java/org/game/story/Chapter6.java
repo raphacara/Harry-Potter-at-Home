@@ -93,7 +93,7 @@ public class Chapter6 implements StoryStep {
         threadSleep(200);
     }
 
-    public void finalChoice() throws InterruptedException {
+    public void finalChoice() {
         if (wizard.getHouse() == House.Slytherin) {
             threadSleep(200);
             System.out.println(Color.RED + "Death Eater -" + Color.RESET + "Hey, you are a Slytherin...");

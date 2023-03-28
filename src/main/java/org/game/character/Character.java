@@ -26,7 +26,7 @@ public abstract class Character {
     }
 
     // Methods
-    public abstract void attack(Character target) throws InterruptedException;
+    public abstract void attack(Character target);
     public abstract void specialAttack(Wizard wizard, String spell);
 
     // Specific setter

@@ -20,6 +20,10 @@ public class Introduction implements StoryStep {
 
     // Method to runStory this step of the story
     public void runStory() throws InterruptedException {
+        //Information
+        System.out.println("When you will see this : '-' Press enter to continue the story.");
+        waiting();
+
         //Introduction
         Scanner scanner = new Scanner(System.in);
         System.out.print(Color.GREEN + "----------------- INTRODUCTION -----------------\n\n" + Color.RESET);
@@ -30,10 +34,13 @@ public class Introduction implements StoryStep {
         threadSleep(200);
 
         //Player Name
-        System.out.print(Color.BLUE + "??? - " + Color.RESET + "Hey, you! What's your name ?\n");
-        threadSleep(200);
-        System.out.print(Color.RED + "Enter your name :\n" + Color.RESET);
-        String name = scanner.nextLine();
+        String name = "";
+        while (name.isEmpty()) { //while the name is empty
+            System.out.print(Color.BLUE + "??? - " + Color.RESET + "Hey, you! What's your name ?\n");
+            threadSleep(200);
+            System.out.print(Color.RED + "Enter your name :\n" + Color.RESET);
+            name = scanner.nextLine().trim(); //trim to remove the spaces
+        }
         wizard.setName(name);
 
         //Story
@@ -116,7 +123,6 @@ public class Introduction implements StoryStep {
         int check = 0;
         while (check == 0) { //The size based on player ambition
             System.out.println(Color.BLUE + "Ollivander - " + Color.RESET + "What's is the best definition of magic according to you ?");
-            threadSleep(1000);
             System.out.println(Color.GREEN + "1. Power\n" + "2. Art\n" + "3. Miracle\n" + "4. Fraud" + Color.RED);
             System.out.print("Enter a number to make your choice :\n" + Color.RESET);
             input[2] = scanner.nextLine();

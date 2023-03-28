@@ -38,7 +38,7 @@ public class Wizard extends Character {
 
     //method to attack an enemy
     @Override //I switched the name of defend() method in the subject by an attack() method. (easier because of the @Override)
-    public void attack(Character target) throws InterruptedException {
+    public void attack(Character target) {
         target.setHealth(target.getMaxHealth()); //To be sure that the enemy is full life when we attack it.
         Fight fight = new Fight(this, target); //Creating the fight
         fight.runStory(); //Running the fight

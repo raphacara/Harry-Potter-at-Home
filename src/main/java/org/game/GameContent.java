@@ -12,6 +12,7 @@ import org.game.spells.Spell;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @Getter
 @Setter
@@ -53,16 +54,22 @@ public class GameContent {
         potions.add(new Potion("Invisibility", 0, "it allows you to be invisible for a limited time."));
         potions.add(new Potion("Wiggenweld", 40, "It instantly heals by restoring some health."));
         //Enemies
+        enemies.add(new Enemy("Auror", (new Random().nextInt(11)+10)*10, 50)); //Creating an Auror
         enemies.add(new Enemy("Death Eater", 130, 35)); //Creating a DeathEater
         enemies.add(new Enemy("Dementors", 9999, 10)); //Creating a Dementor
+        enemies.add(new Enemy("Hogwarts Teacher", 150, 45)); //Creating a Teacher
+        enemies.add(new Enemy("Muggle", (new Random().nextInt(8)+3)*10, 1)); //Creating a Muggle
         enemies.add(new Enemy("Spider", 70, 25)); //Creating a Spider
         enemies.add(new Enemy("Slytherin Student", 120, 25)); //Creating a Student
-        enemies.add(new Enemy("Tournament Champion", 100, 28)); //Creating a Student
+        enemies.add(new Enemy("Tournament Champion", 100, 28)); //Creating a champion
         enemies.add(new Enemy("Troll", 150, 30)); //Creating a Troll
         //Bosses
-        enemies.add(new Boss("Basilisk", 500, 45)); //Creating a Troll
+        enemies.add(new Boss("Basilisk", 500, 45)); //Creating the Basilisk
+        enemies.add(new Boss("Bellatrix", 200, 60)); //Creating Bellatrix
         enemies.add(new Boss("Dragon",200,40)); //Creating a Dragon
-        enemies.add(new Boss("Umbridge",9999,1)); //Creating a Dragon
+        enemies.add(new Boss("Minister of Magic", 200, 40)); //Creating the Minister of Magic
+        enemies.add(new Boss("Umbridge",9999,1)); //Creating Umbridge
+        enemies.add(new Boss("Voldemort", 350, 100)); //Creating Voldemort
     }
 
     //To get a spell

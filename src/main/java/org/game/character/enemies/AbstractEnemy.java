@@ -13,7 +13,7 @@ public abstract class AbstractEnemy extends Character {
 
     // Attack methods
     @Override
-    public void attack(Character target) throws InterruptedException {
+    public void attack(Character target) {
         // Basic attack implementation
         int randomNum = (int)(Math.random() * 10); // Generate a random number between 0 and 9
         int damage;
@@ -33,10 +33,8 @@ public abstract class AbstractEnemy extends Character {
             System.out.println(this.getName() + " attack you."); // Normal hit
             damage = this.getPower(); // 100% damage
         }
-        Thread.sleep(1000);
         System.out.println("You take " + damage + " damage!");
         target.takeDamage(damage); //This method is in Character
-        Thread.sleep(1000);
     }
 
     public void specialAttack(Wizard wizard, String spell) {
