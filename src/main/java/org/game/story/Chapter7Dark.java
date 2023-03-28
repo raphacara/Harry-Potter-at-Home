@@ -67,7 +67,7 @@ public class Chapter7Dark implements StoryStep {
         waiting();
         System.out.println(Color.RED + "Voldemort - " + Color.RESET + "I've got the Elder Wand by the way.");
         waiting();
-        System.out.println(Color.RED + "Voldemort - " + Color.RESET + "We are now unstoppable, we will rule the world!\n");
+        System.out.println(Color.RED + "Voldemort - " + Color.RESET + "We are now unstoppable, we will rule the world!");
         waiting();
         System.out.println(Color.RED + "Bellatrix - " + Color.RESET + "Hahaha! I can't wait to kill all the mudbloods and muggles!");
         waiting();
@@ -75,7 +75,7 @@ public class Chapter7Dark implements StoryStep {
         //Learning Imperio
         System.out.println("\n** To reward you to have proven your worth, Voldemort teach you the Imperius curse. **");
         wizard.learnSpell(game.spell("Imperio")); //You learn the Imperius curse
-        System.out.println("** You now know all the forbidden curse, you are a powerful Death Eater! **\n");
+        System.out.println("** You now know all the forbidden curse, you are a powerful Death Eater! **");
         waiting();
         System.out.println(Color.GREEN + "** Voldemort, You, Bellatrix and all the other Death Eaters are now dominating the world! **" + Color.RESET);
         waiting();
@@ -83,6 +83,7 @@ public class Chapter7Dark implements StoryStep {
         //-- End of Chapter 7 --
         System.out.println("\n********** THE END **********\n");
         threadSleep(1000);
+        wizard.setCondition("Death Eater"); //You are now a Death Eater
     }
 
     public void chooseWhatToDo() {
@@ -114,7 +115,7 @@ public class Chapter7Dark implements StoryStep {
         waiting();
         System.out.println("** There are some teachers that recognize you, so you have to kill them. **");
         waiting();
-        wizard.attack(game.enemy("Hogwarts Teacher"));
+        wizard.attack(game.enemy("Teacher"));
         System.out.println("** You are now going to the Great Hall. **");
         waiting();
         System.out.println("** There is a troll in the middle of the hall. **");
@@ -143,7 +144,7 @@ public class Chapter7Dark implements StoryStep {
         wizard.attack(game.enemy("Auror"));
         System.out.println("** You enter the Ministry and kill all the muggles. **");
         threadSleep(200);
-        System.out.println(Color.BLUE + "\n** Example of a fight with a muggle: **\n" + Color.RESET);
+        System.out.println(Color.BLUE + "\n** Example of a fight with a muggle: **" + Color.RESET);
         waiting();
         wizard.attack(game.enemy("Muggle"));
         System.out.println("** You are now going to the main office of the Ministry of Magic. **");
@@ -183,7 +184,7 @@ public class Chapter7Dark implements StoryStep {
         System.out.println(Color.RED + "** You lost 50hp from your maximum health! **");
         System.out.println(Color.GREEN + "Your health : " + wizard.getHealth() + "/" + wizard.getMaxHealth() + "hp" + Color.RESET);
         waiting();
-        System.out.println(Color.RED + "Voldemort - " + Color.RESET + "How dare you betray me?\n");
+        System.out.println(Color.RED + "Voldemort - " + Color.RESET + "How dare you betray me?");
         waiting();
         if (wizard.getPet() == Pet.SNAKE || wizard.getWand().getCore() == Core.PHOENIX_FEATHER) {
             System.out.println(Color.RED + "Bellatrix - " + Color.RESET + "Avada Kedavra!");
@@ -213,7 +214,8 @@ public class Chapter7Dark implements StoryStep {
         wizard.attack(game.enemy("Muggle"));
         System.out.println("** You destroyed the muggle! There is an other one in the house. **");
         waiting();
-        wizard.attack(game.enemy("Muggle"));
+        GameContent game2 = new GameContent(); // instantiate new other game content
+        wizard.attack(game2.enemy("Muggle"));
         System.out.println("** You cleaned this house **");
         threadSleep(200);
         i++;
@@ -222,8 +224,8 @@ public class Chapter7Dark implements StoryStep {
             while (ok) {
                 ok = false;
                 System.out.println("** Do you want to go to the next house? **");
-                System.out.print(Color.GREEN + "1. Yes\n2. No" + Color.RED);
-                System.out.print("Enter a number to make your choice :" + Color.RESET);
+                System.out.print(Color.GREEN + "1. Yes\n2. No\n" + Color.RED);
+                System.out.print("Enter a number to make your choice :\n" + Color.RESET);
                 String input = scanner.nextLine();
                 switch (input) {
                     case "1" -> {
@@ -260,7 +262,7 @@ public class Chapter7Dark implements StoryStep {
         //-- End of Chapter 7 --
         System.out.println("\n********** THE END **********\n");
         threadSleep(1000);
-        wizard.setCondition("Dark Lord");
+        wizard.setCondition("Dark Lord"); // You are now a Dark Lord
     }
 
     @Override

@@ -116,8 +116,9 @@ public class Chapter6 implements StoryStep {
             }
         } else {
             threadSleep(200);
+            GameContent game2 = new GameContent(); // instantiate new content.
             wizard.stopAttack(game.spell("Lumos")); //Just for the story.
-            wizard.attack(game.enemy("Death Eater"));
+            wizard.attack(game2.enemy("Death Eater"));
             threadSleep(200);
             System.out.println("** You killed the Death Eaters! **");
             threadSleep(200);
@@ -138,7 +139,7 @@ public class Chapter6 implements StoryStep {
         System.out.println("Dark Mark : " + Color.RESET + "Magical 'Tattoo' on Death Eater's left arm, it looks like a snake ;\n" +
                 "            It forces you to serve the Dark lord, if you betray him, you die instantly ;\n" +
                 "            It allows you to fly through the air in a black smoke-like form ;\n" +
-                "            By touching the mark with your wand, you can feel a burning sensation and will be able to locate Voldemort and join his ranks.\n");
+                "            By touching the mark with your wand, you can feel a burning sensation and will be able to locate Voldemort and join his ranks.");
         waiting();
         System.out.println(Color.RED + "Bellatrix - " + Color.RESET + "Welcome among us! To celebrate that, I will teach you a special curse, Haha. ");
         threadSleep(200);

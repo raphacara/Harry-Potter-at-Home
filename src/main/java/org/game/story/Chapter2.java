@@ -35,7 +35,7 @@ public class Chapter2 implements StoryStep {
         threadSleep(200);
         System.out.println(Color.BLUE + "Dumbledore - " + Color.RESET + "No one knows where it is but it contains a deadly enemy.");
         threadSleep(200);
-        System.out.println(Color.BLUE + "Dumbledore - " + Color.RESET + "So be very careful.\n");
+        System.out.println(Color.BLUE + "Dumbledore - " + Color.RESET + "So be very careful.");
         waiting();
         System.out.println("** Dumbledore leave the Great Hall. **");
         threadSleep(200);
@@ -134,7 +134,7 @@ public class Chapter2 implements StoryStep {
     }
 
     //Algorithm to let the player choose a class (I use it 3 times in the story)
-    public void chooseWhatToDo() throws InterruptedException {
+    public void chooseWhatToDo() {
         boolean ok = check;
         while (check == ok) {
             System.out.print(Color.GREEN);
@@ -330,7 +330,7 @@ public class Chapter2 implements StoryStep {
     }
 
     //Chapter 2 fights, and end of chapter 2
-    public void spiderChoice() throws InterruptedException {
+    public void spiderChoice() {
         threadSleep(200);
         System.out.println("** It is a dense and mysterious woodland... **");
         threadSleep(200);

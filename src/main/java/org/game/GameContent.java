@@ -55,13 +55,13 @@ public class GameContent {
         potions.add(new Potion("Wiggenweld", 40, "It instantly heals by restoring some health."));
         //Enemies
         enemies.add(new Enemy("Auror", (new Random().nextInt(11)+10)*10, 50)); //Creating an Auror
-        enemies.add(new Enemy("Death Eater", 130, 35)); //Creating a DeathEater
+        enemies.add(new Enemy("Death Eater", (new Random().nextInt(9)+10)*10, 40)); //Creating a DeathEater
         enemies.add(new Enemy("Dementors", 9999, 10)); //Creating a Dementor
-        enemies.add(new Enemy("Hogwarts Teacher", 150, 45)); //Creating a Teacher
+        enemies.add(new Enemy("Teacher", 150, 45)); //Creating a Teacher
         enemies.add(new Enemy("Muggle", (new Random().nextInt(8)+3)*10, 1)); //Creating a Muggle
         enemies.add(new Enemy("Spider", 70, 25)); //Creating a Spider
-        enemies.add(new Enemy("Slytherin Student", 120, 25)); //Creating a Student
-        enemies.add(new Enemy("Tournament Champion", 100, 28)); //Creating a champion
+        enemies.add(new Enemy("Student", 120, 25)); //Creating a Student
+        enemies.add(new Enemy("Champion", 100, 28)); //Creating a champion
         enemies.add(new Enemy("Troll", 150, 30)); //Creating a Troll
         //Bosses
         enemies.add(new Boss("Basilisk", 500, 45)); //Creating the Basilisk

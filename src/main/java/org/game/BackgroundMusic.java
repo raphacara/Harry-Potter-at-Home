@@ -11,8 +11,8 @@ public class BackgroundMusic {
         AudioInputStream audioStream = AudioSystem.getAudioInputStream(musicFile);
         clip = AudioSystem.getClip();
         clip.open(audioStream);
-        FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN); //set the volume
-        gainControl.setValue(-30.0f); //reduce volume by 30 decibels !!!!! CHANGE THIS VALUE TO CHANGE THE VOLUME !!!!!
+        //FloatControl volume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN); //set the volume
+        //volume.setValue(-30.0f); //reduce volume by 30 decibels !!!!! CHANGE THIS VALUE TO CHANGE THE VOLUME !!!!!
         clip.loop(Clip.LOOP_CONTINUOUSLY);
     }
 

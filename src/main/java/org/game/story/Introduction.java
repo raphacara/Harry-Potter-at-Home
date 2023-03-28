@@ -26,7 +26,7 @@ public class Introduction implements StoryStep {
 
         //Introduction
         Scanner scanner = new Scanner(System.in);
-        System.out.print(Color.GREEN + "----------------- INTRODUCTION -----------------\n\n" + Color.RESET);
+        System.out.print(Color.GREEN + "\n----------------- INTRODUCTION -----------------\n\n" + Color.RESET);
         threadSleep(1000);
         System.out.print("** Welcome in the Wizarding World, a world full of magic, hidden away for those who do not know magic, muggles. **\n");
         threadSleep(200);
@@ -46,7 +46,7 @@ public class Introduction implements StoryStep {
         //Story
         System.out.print(Color.BLUE + "??? - " + Color.RESET + "OH! So you are " + name + "! Sorry, I didn't introduce myself, I am Hagrid.\n");
         threadSleep(200);
-        System.out.println(Color.BLUE + "Hagrid - " + Color.RESET + "I was looking for you, and I have a letter for you :\n");
+        System.out.println(Color.BLUE + "Hagrid - " + Color.RESET + "I was looking for you, and I have a letter for you :");
         waiting();
         System.out.println(Color.GREEN + "~  Dear " + name + ",\n");
         threadSleep(200);
@@ -60,7 +60,7 @@ public class Introduction implements StoryStep {
         threadSleep(200);
         System.out.println("~  Sincerely,");
         threadSleep(200);
-        System.out.println("~                          Albus Dumbledore, Headmaster of Hogwarts\n" + Color.RESET);
+        System.out.println("~                          Albus Dumbledore, Headmaster of Hogwarts" + Color.RESET);
         waiting();
         System.out.println(Color.BLUE + "Hagrid - " + Color.RESET + "Congratulations " + name + "! Follow me, I will help you to go to Hogwarts.\n");
         threadSleep(200);
@@ -193,15 +193,15 @@ public class Introduction implements StoryStep {
         System.out.println("** And you take the Hogwarts™ Express's train right to Hogwarts! **");
         waiting();
         System.out.println("               || ____ ||\n               || ____ ||\n               || ____ ||\n               || ____ ||\n               || ____ ||");
-        threadSleep(500);
+        threadSleep(400);
         System.out.println("               || ____ ||\n               || ____ ||\n               || ____ ||\n               || ____ ||\n               || ____ ||");
-        threadSleep(500);
+        threadSleep(400);
         System.out.println("               || ____ ||\n               || ____ ||\n               || ____ ||\n               || ____ ||\n               || ____ ||");
-        threadSleep(500);
+        threadSleep(400);
         System.out.println("               || ____ ||\n               || ____ ||\n               || ____ ||\n               || ____ ||\n               || ____ ||\n               || ____ ||");
-        threadSleep(500);
+        threadSleep(400);
         System.out.println("               || ____ ||\n               || ____ ||\n               || ____ ||\n               || ____ ||\n               || ____ ||\n               || ____ ||");
-        threadSleep(500);
+        threadSleep(400);
         System.out.println("** Finally, you arrive at Hogwarts Castle. **");
         waiting();
         System.out.println("** You follow the other students to a Great Hall, with a Sorting Hat. **");

@@ -65,7 +65,7 @@ public class Chapter3 implements StoryStep {
         threadSleep(1000);
     }
 
-    public void chooseClass() throws InterruptedException {
+    public void chooseClass() {
         boolean ok = check;
         while (check == ok) {
             System.out.print(Color.GREEN);
@@ -185,7 +185,7 @@ public class Chapter3 implements StoryStep {
         threadSleep(200);
     }
 
-    public void duelingClub() throws InterruptedException {
+    public void duelingClub() {
         classesTaken[3] = true;
         System.out.println("** You are going at the secret Dueling Student Club. **");
         threadSleep(200);
@@ -202,13 +202,13 @@ public class Chapter3 implements StoryStep {
         System.out.println(Color.BLUE + "Student - " + Color.RESET + "Today you will fight against a Slytherin student.");
         waiting();
         System.out.println(Color.RED + "Slytherin Student - " + Color.RESET + "Good luck...");
-        wizard.attack(game.enemy("Slytherin Student"));
+        wizard.attack(game.enemy("Student"));
         threadSleep(1000);
         if (Objects.equals(wizard.getCondition(), "Defeated")) {
-            System.out.println(Color.BLUE + "\nStudent - " + Color.RESET + "You are not enough powerful, come back when you'll be better.\n");
+            System.out.println(Color.BLUE + "\nStudent - " + Color.RESET + "You are not enough powerful, come back when you'll be better.");
             waiting();
         } else {
-            System.out.println(Color.BLUE + "\nStudent - " + Color.RESET + "Congratulation " + wizard.getName() + "!");
+            System.out.println(Color.BLUE + "Student - " + Color.RESET + "Congratulation " + wizard.getName() + "!");
             threadSleep(200);
             System.out.println(Color.BLUE + "Student - " + Color.RESET + "You deserve me to teach you a new Spell: Diffindo");
             threadSleep(200);
@@ -227,7 +227,7 @@ public class Chapter3 implements StoryStep {
         threadSleep(200);
     }
 
-    public void forbiddenForest() throws InterruptedException {
+    public void forbiddenForest() {
         System.out.println("** You are going in the Forbidden forest. **");
         waiting();
         System.out.println("** It is really dark and mysterious. **");

@@ -44,14 +44,15 @@ public class Fight implements StoryStep {
                 checkingBoss(); //Do different things regarding which boss you are fighting.
                 ifDead(wizard, enemy); // Check if the fight is over
             }
+            threadSleep(1000);
             turn += 1; //To count the turn
         }
     }
 
     public void infos() {
-        System.out.println("\n==================================================================" + Color.YELLOW);
-        System.out.println(wizard.getName() + ": " + wizard.getHealth() + "/" + wizard.getMaxHealth() + " hp" + Color.RESET +"       --- VS ---       " + Color.RED + enemy.getName() + ": " + enemy.getHealth() + "/" + enemy.getMaxHealth() + " hp");
-        System.out.println(Color.RESET + "==================================================================");
+        System.out.println("\n===================================================================" + Color.YELLOW);
+        System.out.println(wizard.getName() + ": " + wizard.getHealth() + "/" + wizard.getMaxHealth() + " hp" + Color.RESET +"        --- VS ---        " + Color.RED + enemy.getName() + ": " + enemy.getHealth() + "/" + enemy.getMaxHealth() + " hp");
+        System.out.println(Color.RESET + "===================================================================");
         waiting();
     }
 
@@ -105,10 +106,15 @@ public class Fight implements StoryStep {
     //To check if someone is dead
     private void ifDead(Wizard wizard, Character enemy) {
         if (wizard.getHealth() <= 0) {
-            System.out.println("\n** You have been defeated by the " + enemy.getName() + ". **");
+            System.out.println("\n** You have been defeated by " + enemy.getName() + ". **");
             if (Objects.equals(enemy.getName(), "Slytherin Student")) {
-                wizard.setHealth(wizard.getMaxHealth()); //Putting the Heath of the player to the max
+                wizard.setHealth(wizard.getMaxHealth()); //Putting the Health of the player to the max
                 wizard.setCondition("Defeated");
+            } else if (Objects.equals(enemy.getName(), "Voldemort") || Objects.equals(enemy.getName(), "Bellatrix")) {
+                waiting();
+                System.out.println(Color.RED + "** Game over! **" + Color.RESET);
+                waiting();
+                System.exit(0);
             } else {
                 System.out.println(Color.RED + "** Game over! **" + Color.RESET);
                 System.out.println("\nDo you want to restart this fight?");
@@ -155,7 +161,7 @@ public class Fight implements StoryStep {
             }
         }
         if (selectedSpell == null) {
-            System.out.println("You missed the spell.");
+            System.out.println("You missed the spell. Wrong spelling...");
         }
         if (Objects.equals(enemy.getCondition(), "Incendio")) {
             isBurned = true;
@@ -235,14 +241,18 @@ public class Fight implements StoryStep {
         } else if (Objects.equals(enemy.getName(), "Dragon")) {
             if (randomNum == 0) {
                 System.out.println("The dragon is preparing his attack...");
+                enemy.setPower(enemy.getPower() + 5); // Increasing the enemy attack
             } else {
                 enemy.attack(wizard); // This method is in AbstractEnemy
             }
         } else if (Objects.equals(enemy.getName(), "Bellatrix") || Objects.equals(enemy.getName(), "Voldemort")) {
             if (randomNum <= 1 ) {
                 enemy.specialAttack(wizard, "Avada Kedavra");
+            } else {
+                enemy.attack(wizard); // This method is in AbstractEnemy
+                wizard.setAttacking(true);
             }
-            System.out.println(enemy.getName() + "is feeling the Dark Power and heals 10hp!");
+            System.out.println(enemy.getName() + " is feeling the Dark Power and heals 10hp!");
             enemy.healing(10);
         } else {
             enemy.attack(wizard); // Standard attack
@@ -349,7 +359,7 @@ public class Fight implements StoryStep {
             }
         }
         if (Objects.equals(enemy.getCondition(), "Incendio")) {
-            if (luck <= (67 + wizard.getAccuracy()) && enemy.getMaxHealth() < 1000) {
+            if (luck <= (67 + wizard.getAccuracy()) && (!Objects.equals(enemy.getName(), "Dementors") || !Objects.equals(enemy.getName(), "Umbridge"))) {
                 isBurned = true;
                 System.out.println("The " + enemy.getName() + " is burned!");
                 threadSleep(1000);
@@ -407,11 +417,13 @@ public class Fight implements StoryStep {
         if (Objects.equals(enemy.getName(), "Dementors")) {
             threadSleep(1000);
             System.out.println("There are plenty of dementors! A an other one attack you.");
-            threadSleep(1000);
+            waiting();
             enemy.attack(wizard);
             System.out.println("An other one attack you!");
+            waiting();
             enemy.attack(wizard);
             System.out.println("An other one attack you!");
+            waiting();
             enemy.attack(wizard);
             isBurned = false;
         }

@@ -19,7 +19,7 @@ public class Chapter4 implements StoryStep {
         wizard = player;
     }
     @Override
-    public void runStory() throws InterruptedException {
+    public void runStory() {
         //-- Intro of Chapter 4 --
         System.out.println(Color.GREEN + "----------------- Chapter 4 -----------------");
         threadSleep(200);
@@ -150,7 +150,7 @@ public class Chapter4 implements StoryStep {
         threadSleep(200);
     }
 
-    public void dragon() throws InterruptedException {
+    public void dragon() {
         threadSleep(1000);
         System.out.println("** The goal of this task is to steal an egg from the dragon. **");
         threadSleep(200);
@@ -284,7 +284,7 @@ public class Chapter4 implements StoryStep {
         System.out.println("** Anyway, you come back to train before the last task. **");
     }
 
-    public void labyrinth() throws InterruptedException {
+    public void labyrinth() {
         threadSleep(1000);
         System.out.println("** You are in front of a immense and deadly Labyrinth. **");
         threadSleep(200);
@@ -294,7 +294,7 @@ public class Chapter4 implements StoryStep {
         threadSleep(200);
         System.out.println("** You step inside the labyrinth at the " + wizard.getCondition() + " place, because of the previous task. **");
         threadSleep(200);
-        System.out.println(Color.BLUE + "\n!!! This is the Beta Test, the full labyrinth will be available later in the game with JavaFX !!!\n" + Color.RESET);
+        System.out.println(Color.BLUE + "\n!!! There will be a real labyrinth in the JavaFX game !!!\n" + Color.RESET);
         threadSleep(200);
         System.out.println("** You turn right, and see the trophy at the end of the corridor. **");
         threadSleep(200);
@@ -302,7 +302,7 @@ public class Chapter4 implements StoryStep {
         threadSleep(200);
         System.out.println(Color.RED + "Tournament Champion - " + Color.RESET + "I'm gonna kill you to get the trophy!!");
         waiting();
-        wizard.attack(game.enemy("Tournament Champion"));
+        wizard.attack(game.enemy("Champion"));
         System.out.println("** You killed him! But you had to... Anyway, you runStory to grab the trophy... **");
         threadSleep(200);
         System.out.println("** But the 3rd participant arrives in the same time... **");
@@ -333,7 +333,7 @@ public class Chapter4 implements StoryStep {
         System.out.println("\n** Voldemort is in front of you two, and he has a partisan called Peter Pettigrew next to him. **\n");
         threadSleep(200);
         System.out.println("** You have to act, what do you do? **");
-        System.out.println(Color.GREEN + "1. attack them\n2.Trying to go back at the Portkey\n3. To play dead." + Color.RESET);
+        System.out.println(Color.GREEN + "1. Attack them\n2. Trying to go back at the Portkey\n3. To play dead." + Color.RESET);
         threadSleep(3000);
         System.out.println("\n** You don't even have the time to do anything that Voldemort said: **\n");
         threadSleep(200);

@@ -20,42 +20,44 @@ public class Main {
 
             // 1. ----- INTRODUCTION -----
             Introduction intro = new Introduction(wizard); //creating an Introduction
-            playStory(intro, "Introduction", wizard, game); //playing it
+            play(intro, "Introduction", wizard, game); //playing it
 
             // 2. ----- CHAPTER 1 -----
             Chapter1 chapter1 = new Chapter1(wizard);
-            playStory(chapter1, "Chapter 1", wizard, game);
+            play(chapter1, "Chapter 1", wizard, game);
 
             // 3. ----- CHAPTER 2 -----
             Chapter2 chapter2 = new Chapter2(wizard);
-            playStory(chapter2, "Chapter 2", wizard, game);
+            play(chapter2, "Chapter 2", wizard, game);
 
             // 4. ----- CHAPTER 3 -----
             Chapter3 chapter3 = new Chapter3(wizard);
-            playStory(chapter3, "Chapter 3", wizard, game);
+            play(chapter3, "Chapter 3", wizard, game);
 
             // 5. ----- CHAPTER 4 -----
             Chapter4 chapter4 = new Chapter4(wizard);
-            playStory(chapter4, "Chapter 4", wizard, game);
+            play(chapter4, "Chapter 4", wizard, game);
 
             // 6. ----- CHAPTER 5 -----
             Chapter5 chapter5 = new Chapter5(wizard);
-            playStory(chapter5, "Chapter 5", wizard, game);
+            play(chapter5, "Chapter 5", wizard, game);
 
             // 7. ----- CHAPTER 6 -----
             Chapter6 chapter6 = new Chapter6(wizard);
-            playStory(chapter6, "Chapter 6", wizard, game);
-
-            wizard.setCondition("Dark"); //intern test
+            play(chapter6, "Chapter 6", wizard, game);
 
             // 8. ----- CHAPTER 7 -----
             if (Objects.equals(wizard.getCondition(), "Dark")) { //If the enemy joined the Voldemort's army
                 Chapter7Dark chapter7Dark = new Chapter7Dark(wizard); //Then it is an alternative Chapter 7
-                playStory(chapter7Dark, "Chapter 7", wizard, game);
+                play(chapter7Dark, "Chapter 7", wizard, game);
             } else { //Else: regular Chapter 7
                 Chapter7 chapter7 = new Chapter7(wizard);
-                playStory(chapter7, "Chapter 7", wizard, game);
+                play(chapter7, "Chapter 7", wizard, game);
             }
+
+            // 9. ----- CREDITS -----
+            Credits credits = new Credits(wizard);
+            credits.runStory();
 
             //Stop the music
             } catch (InterruptedException | UnsupportedAudioFileException | IOException | LineUnavailableException e) {
@@ -66,7 +68,7 @@ public class Main {
     }
 
     //I created this method because my game is a bit long, so it will ask to skip steps of the game.
-    public static void playStory(StoryStep step, String name, Wizard wizard, GameContent game) throws InterruptedException {
+    public static void play(StoryStep step, String name, Wizard wizard, GameContent game) throws InterruptedException {
         System.out.println("\n=======================================");
         System.out.println("Do you want to play the " + name + "?");
         System.out.println("* 1. PLAY\n* 2. SKIP");
@@ -79,7 +81,7 @@ public class Main {
                 wizard = step.getWizard(); //Updating the wizard
                 break;
             } else if (input.equals("2")) { //skip the step
-                System.out.println("=======================================\n");
+                System.out.println("=========C===============\n");
                 if (wizard.getHouse() == null) { //= if you skipped the intro
                     wizard.randomWizard(wizard); //create a random wizard
                 }

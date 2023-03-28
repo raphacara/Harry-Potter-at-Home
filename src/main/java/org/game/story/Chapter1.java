@@ -20,7 +20,7 @@ public class Chapter1  implements StoryStep {
     }
 
     @Override
-    public void runStory() throws InterruptedException {
+    public void runStory() {
         //-- Intro of Chapter 1 --
         System.out.println(Color.GREEN + "----------------- Chapter 1 -----------------");
         threadSleep(200);
@@ -34,7 +34,7 @@ public class Chapter1  implements StoryStep {
         threadSleep(200);
         System.out.println("** So you go to the Great Hall because it's the perfect place to eat, work, and meet. **");
         threadSleep(200);
-        System.out.println("** Furthermore, there is the headmaster of hogwarts, Albus Dumbledore, who says: **\n");
+        System.out.println("** Furthermore, there is the headmaster of hogwarts, Albus Dumbledore, who says: **");
         waiting();
         System.out.println(Color.BLUE + "Dumbledore - " + Color.RESET + "Dear students, welcome to Hogwarts!");
         threadSleep(200);
@@ -50,7 +50,7 @@ public class Chapter1  implements StoryStep {
         threadSleep(200);
         System.out.println(Color.BLACK + "HISTORY OF MAGIC: " + Color.RESET + "A course that teaches the history of magic and magical events.");
         threadSleep(200);
-        System.out.println(Color.BLACK + "POTIONS: " + Color.RESET + "A course that teaches the brewing of magical potions, which can have various effects on the drinker.\n");
+        System.out.println(Color.BLACK + "POTIONS: " + Color.RESET + "A course that teaches the brewing of magical potions, which can have various effects on the drinker.");
         waiting();
         System.out.println(Color.BLUE + "Dumbledore - " + Color.RESET + "You will not be able to participate in all classes.");
         threadSleep(200);
