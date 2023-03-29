@@ -21,7 +21,13 @@ public class Credits implements StoryStep {
         threadSleep(200);
         System.out.println("Don't hesitate to start an other game, there are several endings in this game:");
         waiting();
-        System.out.println("- Standard Ending\n- Dark Ending\n- Golden Ending\n- Secret Ending\n- Ultra-Secret Ending");
+        System.out.println(Color.BLUE + """
+        * Standard Ending
+        * Dark Ending
+        * Golden Ending
+        * Secret Ending
+        * Ultra-Secret Ending
+        """ + Color.RESET);
         waiting();
         defineEnding();
         System.out.println(Color.GREEN + "And you have found the " + ending + "!" + Color.RESET);
@@ -55,7 +61,7 @@ public class Credits implements StoryStep {
         threadSleep(600);
         creditMovement();
         creditMovement();
-        System.out.println("                                 ================  THANK YOU FOR PLAYING! ================");
+        System.out.println("                                ================  THANK YOU FOR PLAYING! ================");
         int i;
         for (i = 0; i < 35; i++) {
             threadSleep(300);
@@ -77,6 +83,7 @@ public class Credits implements StoryStep {
             this.ending = "Dark Ending";
         } else if (Objects.equals(wizard.getCondition(), "the" + Color.RED + "Dark Lord" + Color.RESET)) {
             this.ending = "Ultra-Secret Ending";
+        } else if (Objects.equals(wizard.getCondition(), "the" + Color.BLUE + "Great Auror" + Color.RESET)) {
         } else {
             this.ending = "Secret Ending";
         }

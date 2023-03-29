@@ -287,20 +287,32 @@ public class Fight implements StoryStep {
             System.out.println("It is too much for the dementors, they are going far away...");
             enemy.setHealth(0);
         } else if (spell.getName().equalsIgnoreCase("Avada Kedavra")) {
-            System.out.println(Color.YELLOW + "YOU - " + Color.RESET + "Avada Kedavra!");
-            waiting();
-            System.out.println("The " + enemy.getName() + " instantly die.");
-            enemy.setHealth(0);
+            int accuracyRoll = (int) (Math.random() * 101); // Generate a random number between 0 and 100 (inclusive)
+            if (accuracyRoll <= (50 + wizard.getAccuracy() + wizard.getLuck())) { // Check if the spell hits its target
+                System.out.println(Color.YELLOW + "YOU - " + Color.RESET + "Avada Kedavra!");
+                waiting();
+                System.out.println("The " + enemy.getName() + " instantly die.");
+                enemy.setHealth(0);
+            } else {
+                System.out.println("You missed the spell! It is hard to cast this spell.");
+                waiting();
+            }
         } else if (spell.getName().equalsIgnoreCase("Crucio")) {
-            System.out.println(Color.YELLOW + "YOU - " + Color.RESET + "Crucio!");
-            waiting();
-            System.out.println(enemy.getName() + " is hardly suffering, he can't attack anymore.");
-            while (enemy.getHealth() > 0) {
-                infos();
-                playerTurn();
-                System.out.println(Color.RED + "\n~~~~~~~~~~ " + enemy.getName() + " turn! ~~~~~~~~~~" + Color.RESET);
+            int accuracyRoll = (int) (Math.random() * 101); // Generate a random number between 0 and 100 (inclusive)
+            if (accuracyRoll <= (50 + wizard.getAccuracy() + wizard.getLuck())) { // Check if the spell hits its target
+                System.out.println(Color.YELLOW + "YOU - " + Color.RESET + "Crucio!");
+                waiting();
                 System.out.println(enemy.getName() + " is hardly suffering, he can't attack anymore.");
-                threadSleep(1000);
+                while (enemy.getHealth() > 0) {
+                    infos();
+                    playerTurn();
+                    System.out.println(Color.RED + "\n~~~~~~~~~~ " + enemy.getName() + " turn! ~~~~~~~~~~" + Color.RESET);
+                    System.out.println(enemy.getName() + " is hardly suffering, he can't attack anymore.");
+                    threadSleep(1000);
+                }
+            } else {
+                System.out.println("You missed the spell! It is hard to cast this spell.")
+                waiting();
             }
         } else {
             spell.cast(wizard, enemy);
@@ -333,7 +345,7 @@ public class Fight implements StoryStep {
             threadSleep(1000);
             System.out.println("Protego protected you!");
             threadSleep(1000);
-            if (luck <= (33 + wizard.getAccuracy())) {
+            if (luck <= (33 + wizard.getAccuracy() + wizard.getLuck())) {
                 damage = 10 + wizard.getPower();
                 System.out.println("And it returns " + damage + " damage to " + enemy.getName() + "!");
                 enemy.takeDamage(damage);
@@ -341,7 +353,7 @@ public class Fight implements StoryStep {
             }
         }
         if (Objects.equals(enemy.getCondition(), "Expelliarmus")) {
-            if (luck <= (33 + wizard.getAccuracy())) {
+            if (luck <= (33 + wizard.getAccuracy() + wizard.getLuck())) {
                 System.out.println("Expelliarmus prevents " + enemy.getName() + " from attacking!");
                 threadSleep(1000);
             } else {
@@ -350,7 +362,7 @@ public class Fight implements StoryStep {
             }
         }
         if (Objects.equals(enemy.getCondition(), "Stupefy")) {
-            if (luck <= (75 + wizard.getAccuracy())) {
+            if (luck <= (75 + wizard.getAccuracy()+ wizard.getLuck())) {
                 System.out.println("Stupefy stunned " + enemy.getName() + "!");
                 threadSleep(1000);
             } else {
@@ -359,7 +371,7 @@ public class Fight implements StoryStep {
             }
         }
         if (Objects.equals(enemy.getCondition(), "Incendio")) {
-            if (luck <= (67 + wizard.getAccuracy()) && (!Objects.equals(enemy.getName(), "Dementors") || !Objects.equals(enemy.getName(), "Umbridge"))) {
+            if (luck <= (67 + wizard.getAccuracy()+ wizard.getLuck()) && (!Objects.equals(enemy.getName(), "Dementors") || !Objects.equals(enemy.getName(), "Umbridge"))) {
                 isBurned = true;
                 System.out.println("The " + enemy.getName() + " is burned!");
                 threadSleep(1000);
@@ -367,7 +379,7 @@ public class Fight implements StoryStep {
             threadSleep(1000);
         }
         if (Objects.equals(enemy.getCondition(), "Sectumsempra")) {
-            if (luck <= (75 + wizard.getAccuracy())) {
+            if (luck <= (75 + wizard.getAccuracy()+ wizard.getLuck())) {
                 isBleeding = true;
                 System.out.println(enemy.getName() + " is Bleeding!");
                 threadSleep(1000);

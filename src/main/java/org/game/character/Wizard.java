@@ -22,7 +22,6 @@ public class Wizard extends Character {
     private int luck;
     private String patronus;
 
-
     // Constructor
     public Wizard() {
         super("unknown",100, 0);

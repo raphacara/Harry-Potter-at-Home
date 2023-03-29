@@ -3,8 +3,10 @@ package org.game.story;
 import org.game.Color;
 import org.game.GameContent;
 import org.game.attributes.Core;
+import org.game.attributes.House;
 import org.game.character.Wizard;
 
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Chapter7 implements StoryStep {
@@ -91,7 +93,13 @@ public class Chapter7 implements StoryStep {
         //-- End of Chapter 7 --
         System.out.println("\n********** THE END **********\n");
         threadSleep(1000);
-        wizard.setCondition("a " + Color.BLUE+ "Hero" + Color.RESET); //You are now a hero
+        if (Objects.equals(wizard.getPatronus(), "Hare")) {
+            System.out.println("** ALl the Order of the Phoenix thanks you for your actions, and you become a powerful Auror: One of the best wizard. **");
+            waiting();
+            wizard.setCondition("the " + Color.BLUE + "Great Auror" + Color.RESET); //You are now a hero
+        } else {
+            wizard.setCondition("a " + Color.BLUE + "Hero" + Color.RESET); //You are now a hero
+        }
     }
 
     public void chooseWhatToDo() {
@@ -124,11 +132,27 @@ public class Chapter7 implements StoryStep {
         waiting();
         System.out.println(Color.BLUE + "\nLuna - " + Color.RESET + "hi! Are you ready for the final battle?");
         waiting();
-        System.out.println(Color.BLUE + "\nLuna - " + Color.RESET + "This ");
+        System.out.println(Color.BLUE + "\nLuna - " + Color.RESET + "You don't have to worry about it. ALl that matters is enjoying life.");
         waiting();
-        System.out.println("** You decide to train with another Order member. **");
+        System.out.println(Color.BLUE + "\nLuna - " + Color.RESET + "Fights are easy when you know what to do, let me tell you a trick.");
         waiting();
+        System.out.println(Color.BLUE + "\nLuna - " + Color.RESET + "You can use Incendio to burn your enemy, and Sectumsempra to make him bleed.");
         waiting();
+        System.out.println(Color.BLUE + "\nLuna - " + Color.RESET + "Those to spells make damage over the fight, so don't hesitate to use them.");
+        waiting();
+        System.out.println(Color.BLUE + "\nLuna - " + Color.RESET + "Those to spells make damage over the fight, so don't hesitate to use them.");
+        waiting();
+        if (wizard.getHouse() == House.Ravenclaw) {
+            secretEnding();
+        } else {
+            System.out.println(Color.BLUE + "\nLuna - " + Color.RESET + "You can also use the spell Lumos to see in the dark!");
+            waiting();
+            wizard.setBotanist(wizard.getBotanist() + 20); //huge buff
+            System.out.println(Color.GREEN + "** You don't know why, but your potions are more powerful now! **" + Color.RESET);
+            waiting();
+            System.out.println("** You have heard that the dark forces are coming to Hogwarts. **");
+            waiting();
+        }
     }
 
     public void trainInTheForest() {
@@ -147,7 +171,7 @@ public class Chapter7 implements StoryStep {
         System.out.println("** Suddenly, you see a Death Eater walking in your way... **");
         waiting();
         wizard.attack(game.enemy("Death Eater"));
-        System.out.println("** You can't train more, you hav just seen a Death Eater, so they are all going to Hogwarts! **");
+        System.out.println("** You can't train more, you have just seen a Death Eater, so they are all going to Hogwarts! **");
         waiting();
     }
 
@@ -166,6 +190,28 @@ public class Chapter7 implements StoryStep {
         waiting();
         System.out.println("** You find out about their plans, which gives you an advantage in the upcoming battle. **");
         waiting();
+    }
+
+    public void secretEnding() {
+        System.out.println(Color.BLUE + "\nLuna - " + Color.RESET + "Oh! I see that your patronus is a " + wizard.getPatronus() + "! I love it!");
+        waiting();
+        System.out.println(Color.BLUE + "\nLuna - " + Color.RESET + "I will tell you an other secret: There is something in fight that can be very useful: it is luck.");
+        waiting();
+        System.out.println(Color.BLUE + "\nLuna - " + Color.RESET + "You can be 100% lucky by using Felicis potion, Let me show you.");
+        waiting();
+        System.out.println("** You two are drinking a Felix Felicis potion **");
+        waiting();
+        wizard.learnPotion(game.potion("Felix Felicis"));
+        wizard.setLuck(100);
+        waiting();
+        System.out.println(Color.BLUE + "\nLuna - " + Color.RESET + "You will start the next fight with 100% luck, so you will be able to use complicated spells!");
+        waiting();
+        wizard.setBotanist(wizard.getBotanist() + 50); //huge buff
+        System.out.println(Color.GREEN + "** Your potion stats have been really boosted! **" + Color.RESET);
+        waiting();
+        System.out.println("** You have heard that the dark forces are coming to Hogwarts. **");
+        waiting();
+        wizard.setPatronus("Hare"); //The patronus can change in a life.
     }
 
     public void goldenEnding() {
