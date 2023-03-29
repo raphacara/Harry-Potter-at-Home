@@ -1,9 +1,13 @@
 package org.game.story;
 
+import org.game.Color;
 import org.game.character.Wizard;
+
+import java.util.Objects;
 
 public class Credits implements StoryStep {
     private final Wizard wizard;
+    private String ending;
 
     //Constructor
     public Credits(Wizard player) {
@@ -12,40 +16,49 @@ public class Credits implements StoryStep {
 
     @Override
     public void runStory() {
-        System.out.println("\n\n                                  ================ RESULTS ================");
+        waiting();
+        System.out.println("Thanks for playing!");
+        threadSleep(200);
+        System.out.println("Don't hesitate to start an other game, there are several endings in this game:");
+        waiting();
+        System.out.println("- Standard Ending\n- Dark Ending\n- Golden Ending\n- Secret Ending\n- Ultra-Secret Ending");
+        waiting();
+        defineEnding();
+        System.out.println(Color.GREEN + "And you have found the " + ending + "!" + Color.RESET);
+        System.out.println("\n\n                                         ================ RESULTS ================");
         threadSleep(600);
         creditMovement();
-        System.out.println("                                          Congratulation " + wizard.getName() + "!");
+        System.out.println("                                                  Congratulation " + wizard.getName() + "!");
         threadSleep(600);
-        System.out.println("                                            You are the " + wizard.getCondition() + ".");
+        System.out.println("                                                     You are " + wizard.getCondition() + ".");
         threadSleep(600);
-        System.out.println("                                           And a real " + wizard.getHouse() + ".");
-        threadSleep(600);
-        creditMovement();
-        creditMovement();
-        System.out.println("                                  ================ CREDITS ================");
-        threadSleep(600);
-        creditMovement();
-        System.out.println("                                          Game Design & Development:");
-        threadSleep(600);
-        System.out.println("                                               Raphaël CARABEUF\n");
-        threadSleep(600);
-        creditMovement();
-        System.out.println("                                               Story & Writing:");
-        threadSleep(600);
-        System.out.println("                                               Raphaël CARABEUF");
-        threadSleep(600);
-        creditMovement();
-        System.out.println("                                                   Music:");
-        threadSleep(600);
-        System.out.println("                                               John WILLIAMS");
+        System.out.println("                                                   And a real " + wizard.getHouse() + ".");
         threadSleep(600);
         creditMovement();
         creditMovement();
-        System.out.println("                         ================  THANK YOU FOR PLAYING! ================");
+        System.out.println("                                         ================ CREDITS ================");
+        threadSleep(600);
+        creditMovement();
+        System.out.println("                                                 Game Design & Development:");
+        threadSleep(600);
+        System.out.println("                                                     Raphaël CARABEUF");
+        threadSleep(600);
+        creditMovement();
+        System.out.println("                                                      Story & Writing:");
+        threadSleep(600);
+        System.out.println("                                                     Raphaël CARABEUF");
+        threadSleep(600);
+        creditMovement();
+        System.out.println("                                                          Music:");
+        threadSleep(600);
+        System.out.println("                                                      John WILLIAMS");
+        threadSleep(600);
+        creditMovement();
+        creditMovement();
+        System.out.println("                                 ================  THANK YOU FOR PLAYING! ================");
         int i;
         for (i = 0; i < 35; i++) {
-            threadSleep(600);
+            threadSleep(300);
             creditMovement();
         }
     }
@@ -53,6 +66,20 @@ public class Credits implements StoryStep {
     public void creditMovement() {
         System.out.println(" ");
         threadSleep(500);
+    }
+
+    public void defineEnding() {
+        if (Objects.equals(wizard.getCondition(), "a " + Color.BLUE + "Hero" + Color.RESET)) {
+            this.ending = "Standard Ending";
+        } else if (Objects.equals(wizard.getCondition(), "the " + Color.BLUE + "Legendary Hero" + Color.RESET)) {
+            this.ending = "Golden Ending";
+        } else if (Objects.equals(wizard.getCondition(), "a " + Color.RED + "Death Eater" + Color.RESET)) {
+            this.ending = "Dark Ending";
+        } else if (Objects.equals(wizard.getCondition(), "the" + Color.RED + "Dark Lord" + Color.RESET)) {
+            this.ending = "Ultra-Secret Ending";
+        } else {
+            this.ending = "Secret Ending";
+        }
     }
 
     @Override

@@ -59,7 +59,7 @@ public class Chapter7Dark implements StoryStep {
         chooseWhatToDo();
 
         //Checking if the player has killed Voldemort -> Secret Ending
-        if (Objects.equals(wizard.getCondition(), "Dark Lord")) {
+        if (Objects.equals(wizard.getCondition(), "the" + Color.RED + "Dark Lord" + Color.RESET)) {
             return;
         }
         waiting();
@@ -83,7 +83,7 @@ public class Chapter7Dark implements StoryStep {
         //-- End of Chapter 7 --
         System.out.println("\n********** THE END **********\n");
         threadSleep(1000);
-        wizard.setCondition("Death Eater"); //You are now a Death Eater
+        wizard.setCondition("a " + Color.RED + "Death Eater" + Color.RESET); //You are now a Death Eater
     }
 
     public void chooseWhatToDo() {
@@ -199,13 +199,14 @@ public class Chapter7Dark implements StoryStep {
             System.out.println("\n------------ Final Battle ------------");
             waiting();
             wizard.attack(game.enemy("Voldemort"));
-            secretEnding();
+            ultraSecretEnding();
         } else {
             System.out.println(Color.RED + "Bellatrix - " + Color.RESET + "Avada Kedavra!");
             waiting();
             System.out.println("** You died. **");
             waiting();
             System.out.println(Color.RED + "** Game Over **");
+            waiting();
             System.exit(0);
         }
     }
@@ -244,7 +245,7 @@ public class Chapter7Dark implements StoryStep {
         }
     }
 
-    public void secretEnding() {
+    public void ultraSecretEnding() {
         System.out.println("** You killed Voldemort! **");
         waiting();
         System.out.println("** You are now the new Dark Lord! **");
@@ -262,7 +263,7 @@ public class Chapter7Dark implements StoryStep {
         //-- End of Chapter 7 --
         System.out.println("\n********** THE END **********\n");
         threadSleep(1000);
-        wizard.setCondition("Dark Lord"); // You are now a Dark Lord
+        wizard.setCondition("the" + Color.RED + "Dark Lord" + Color.RESET); // You are now a Dark Lord
     }
 
     @Override
