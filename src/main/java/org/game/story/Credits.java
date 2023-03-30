@@ -16,32 +16,36 @@ public class Credits implements StoryStep {
 
     @Override
     public void runStory() {
-        waiting();
-        System.out.println("Thanks for playing!");
-        threadSleep(200);
-        System.out.println("Don't hesitate to start an other game, there are several endings in this game:");
-        waiting();
-        System.out.println(Color.BLUE + """
-        * Standard Ending
-        * Dark Ending
-        * Golden Ending
-        * Secret Ending
-        * Ultra-Secret Ending
-        """ + Color.RESET);
-        waiting();
-        defineEnding();
-        System.out.println(Color.GREEN + "And you have found the " + ending + "!" + Color.RESET);
-        System.out.println("\n\n                                         ================ RESULTS ================");
-        threadSleep(600);
-        creditMovement();
-        System.out.println("                                                  Congratulation " + wizard.getName() + "!");
-        threadSleep(600);
-        System.out.println("                                                     You are " + wizard.getCondition() + ".");
-        threadSleep(600);
-        System.out.println("                                                   And a real " + wizard.getHouse() + ".");
-        threadSleep(600);
-        creditMovement();
-        creditMovement();
+        if (!Objects.equals(wizard.getCondition(), "Bad player")) {
+            waiting();
+            System.out.println("Thanks for playing!");
+            threadSleep(200);
+            System.out.println("Don't hesitate to start an other game, there are several endings in this game:");
+            waiting();
+            System.out.println(Color.BLUE + """
+                    * Standard Ending
+                    * Dark Ending
+                    * Golden Ending
+                    * Secret Ending
+                    * Ultra-Secret Ending
+                    """ + Color.RESET);
+            defineEnding();
+            System.out.println(Color.GREEN + "And you have found the " + ending + "!" + Color.RESET);
+            waiting();
+            System.out.println("\n                                         ================ RESULTS ================");
+            threadSleep(600);
+            creditMovement();
+            System.out.println("                                                  Congratulation " + wizard.getName() + "!");
+            threadSleep(600);
+            System.out.println("                                                     You are " + wizard.getCondition() + ".");
+            threadSleep(600);
+            System.out.println("                                                   And a real " + wizard.getHouse() + ".");
+            threadSleep(600);
+            creditMovement();
+            creditMovement();
+        } else {
+            waiting();
+        }
         System.out.println("                                         ================ CREDITS ================");
         threadSleep(600);
         creditMovement();
@@ -64,7 +68,7 @@ public class Credits implements StoryStep {
         System.out.println("                                ================  THANK YOU FOR PLAYING! ================");
         int i;
         for (i = 0; i < 35; i++) {
-            threadSleep(300);
+            threadSleep(200);
             creditMovement();
         }
     }
@@ -84,8 +88,9 @@ public class Credits implements StoryStep {
         } else if (Objects.equals(wizard.getCondition(), "the" + Color.RED + "Dark Lord" + Color.RESET)) {
             this.ending = "Ultra-Secret Ending";
         } else if (Objects.equals(wizard.getCondition(), "the" + Color.BLUE + "Great Auror" + Color.RESET)) {
-        } else {
             this.ending = "Secret Ending";
+        } else {
+            this.ending = "Bad player Ending";
         }
     }
 

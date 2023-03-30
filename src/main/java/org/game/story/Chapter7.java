@@ -171,24 +171,70 @@ public class Chapter7 implements StoryStep {
         System.out.println("** Suddenly, you see a Death Eater walking in your way... **");
         waiting();
         wizard.attack(game.enemy("Death Eater"));
-        System.out.println("** You can't train more, you have just seen a Death Eater, so they are all going to Hogwarts! **");
+        System.out.println("** You can't train more, you have just seen a Death Eater, so they are all coming to Hogwarts! **");
         waiting();
     }
 
     public void studyPotions() {
-        System.out.println("** You decide to boost your power with a potion. **");
+        System.out.println("** You are going in the potion room to make potion in order to be prepared for the battle. **");
         waiting();
-        wizard.setPower(wizard.getPower() + 10);
-        System.out.println(Color.GREEN + "** You gained 10 power! **" + Color.RESET);
+        System.out.println("** So you make a potion... **");
+        waiting();
+        wizard.learnPotion(game.potion("Wiggenweld"));
+        waiting();
+        System.out.println("** And an other one... **");
+        waiting();
+        wizard.learnPotion(game.potion("Felix Felicis"));
+        waiting();
+        System.out.println("** You don't stop... **");
+        waiting();
+        wizard.learnPotion(game.potion("Gillyweed"));
+        waiting();
+        System.out.println("** And again an other one... **");
+        waiting();
+        wizard.learnPotion(game.potion("Invisibility"));
+        waiting();
+        System.out.println("** Suddenly, a Slytherin Student come in the room and try to kill you: **");
+        waiting();
+        wizard.attack(game.enemy("Student"));
+        System.out.println("** This fight meant that the final battle is coming! You have to leave this room. **");
         waiting();
     }
 
     public void searchingDarkForces() {
         System.out.println("** You decide to search the dark forces by yourself in Hogwarts. **");
         waiting();
-        System.out.println("** You find a secret passage to the Death Eaters' hideout. **");
+        System.out.println("** You walk in the undergrounds of the castle... **");
         waiting();
-        System.out.println("** You find out about their plans, which gives you an advantage in the upcoming battle. **");
+        System.out.println("** You find a strange mirror in the Room of Requirement. **");
+        waiting();
+        System.out.println("** It seems like you can see your future in it. **");
+        waiting();
+        System.out.println("** What will you choose? **");
+        boolean loop = true;
+        while (loop) {
+            loop = false;
+            System.out.print(Color.GREEN + "1. Power\n2. Peace\n3. Fame\n4. Happiness" + Color.RESET);
+            String input = scanner.nextLine();
+            switch (input.toLowerCase()) {
+                case "1" -> wizard.setPower(wizard.getPower() + 10);
+                case "2" -> wizard.setBotanist(wizard.getBotanist() + 10);
+                case "3" -> wizard.setMaxHealth(wizard.getMaxHealth() + 10);
+                case "4" -> wizard.setAccuracy(wizard.getAccuracy() + 10);
+                default -> {
+                    System.out.println("** It seems that the mirror don't understand, what will you choose? **");
+                    loop = true;
+                }
+            }
+        }
+        System.out.println("** It seems that the mirror listened to you, but you don't know what it did... **");
+        waiting();
+        System.out.println("** You continue to explore the castle. **");
+        waiting();
+        System.out.println("** You find a Death Eater in the corridor! **");
+        waiting();
+        wizard.attack(game.enemy("Death Eater"));
+        System.out.println("** You can't search more, you have just seen a Death Eater, so they are all coming to Hogwarts! **");
         waiting();
     }
 

@@ -1,5 +1,6 @@
 package org.game;
 
+import org.game.attributes.House;
 import org.game.character.Wizard;
 import org.game.story.*;
 
@@ -109,6 +110,12 @@ public class Main {
                     wizard.learnSpell(game.spell("Sectumsempra")); //assign spells
                     wizard.learnSpell(game.spell("Crucio"));
                     wizard.learnPotion(game.potion("Felix Felicis"));
+                    if (wizard.getHouse() == House.Slytherin) { //If the player is a Gryffindor
+                        wizard.setCondition("Dark"); //Then he is a Dark Wizard
+                    }
+                }
+                if (Objects.equals(name, "Chapter 7") ) { //If the player didn't playStory Chapter 3
+                    wizard.setCondition("Bad player"); //Why not playing the last chapter?
                 }
                 System.out.println(" ");
                 break;

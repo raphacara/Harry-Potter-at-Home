@@ -107,7 +107,7 @@ public class Fight implements StoryStep {
     private void ifDead(Wizard wizard, Character enemy) {
         if (wizard.getHealth() <= 0) {
             System.out.println("\n** You have been defeated by " + enemy.getName() + ". **");
-            if (Objects.equals(enemy.getName(), "Slytherin Student")) {
+            if (Objects.equals(enemy.getName(), "Student")) {
                 wizard.setHealth(wizard.getMaxHealth()); //Putting the Health of the player to the max
                 wizard.setCondition("Defeated");
             } else if (Objects.equals(enemy.getName(), "Voldemort") || Objects.equals(enemy.getName(), "Bellatrix")) {
@@ -311,7 +311,7 @@ public class Fight implements StoryStep {
                     threadSleep(1000);
                 }
             } else {
-                System.out.println("You missed the spell! It is hard to cast this spell.")
+                System.out.println("You missed the spell! It is hard to cast this spell.");
                 waiting();
             }
         } else {
