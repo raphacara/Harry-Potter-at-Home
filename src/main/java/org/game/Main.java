@@ -108,7 +108,6 @@ public class Main {
                 }
                 if (Objects.equals(name, "Chapter 6") ) { //If the player didn't playStory Chapter 3
                     wizard.learnSpell(game.spell("Sectumsempra")); //assign spells
-                    wizard.learnSpell(game.spell("Crucio"));
                     wizard.learnPotion(game.potion("Felix Felicis"));
                     if (wizard.getHouse() == House.Slytherin) { //If the player is a Gryffindor
                         wizard.setCondition("Dark"); //Then he is a Dark Wizard

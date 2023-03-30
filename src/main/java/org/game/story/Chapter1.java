@@ -61,7 +61,7 @@ public class Chapter1  implements StoryStep {
         System.out.println(Color.BLUE + "Dumbledore - " + Color.RESET + wizard.getName() + ", what are you going to choose for your first class?");
         chooseClass();
         waiting();
-        System.out.println("\n** The year goes on and it is almost Christmas. **");
+        System.out.println("** The year goes on and it is almost Christmas. **");
         waiting();
 
         //-- Learning Wingardium Leviosa --
@@ -89,7 +89,7 @@ public class Chapter1  implements StoryStep {
         wizard.learnSpell(game.spell("Wingardium Leviosa"));
         System.out.println(Color.BLUE + "\nHagrid - " + Color.RESET + "Well done " + wizard.getName() + "!");
         threadSleep(200);
-        System.out.println(Color.BLUE + "Hagrid - " + Color.RESET + "Next time you will be able to write it with one 'a'.");
+        System.out.println(Color.BLUE + "Hagrid - " + Color.RESET + "Next time you will be able to write it with one 'a' at the end.");
         waiting();
         System.out.println(Color.BLUE + "Hagrid - " + Color.RESET + "Go back to the castle for your next class.\n");
         threadSleep(200);
@@ -100,7 +100,7 @@ public class Chapter1  implements StoryStep {
         System.out.println(Color.BLUE + "Dumbledore - " + Color.RESET + "Which class are you going to choose this time?");
         chooseClass();
         waiting();
-        System.out.println("\n** Just after the lesson, you want to go to the toilet. **");
+        System.out.println("** Just after the lesson, you want to go to the toilet. **");
         waiting();
 
         //-- Troll battle --
@@ -110,10 +110,10 @@ public class Chapter1  implements StoryStep {
         threadSleep(200);
         System.out.println("** As you turn around, you see a huge troll blocking the exit. You have no choice but to fight for your life! **");
         waiting();
-        System.out.println(Color.RED + "\nTroll - " + Color.RESET + "Raaargh!");
+        System.out.println(Color.RED + "Troll - " + Color.RESET + "Raaargh!");
         threadSleep(200);
         wizard.attack(game.enemy("Troll")); //attacking the troll
-        System.out.println("\n** The year goes on and it is now almost the end of the year **");
+        System.out.println("** The year goes on and it is now almost the end of the year **");
         waiting();
 
         //-- 3rd lesson

@@ -114,7 +114,7 @@ public class Chapter3 implements StoryStep {
                     System.out.println("** You go back in your bed and you sleep. **");
                     waiting();
                     System.out.println("** A long time after that, you wake up.  **");
-                    threadSleep(1000);
+                    waiting();
                     break;
                 case "5":
                     if (!classesTaken[5]) {
@@ -164,7 +164,7 @@ public class Chapter3 implements StoryStep {
         }
         System.out.println(Color.GREEN + "** One of your stats has secretly increased... **" + Color.RESET);
         waiting();
-        System.out.println(Color.BLUE + "\nDivinity Teacher - " + Color.RESET + "Interesting...");
+        System.out.println(Color.BLUE + "Divinity Teacher - " + Color.RESET + "Interesting...");
         threadSleep(200);
         System.out.println(Color.BLUE + "Divinity Teacher - " + Color.RESET + "That will be enough for today.\n");
         threadSleep(200);
@@ -293,7 +293,7 @@ public class Chapter3 implements StoryStep {
         System.out.println("** a " + wizard.getPatronus() + "!!! **");
         System.out.println(Color.GREEN + "** Your Patronus is a " + wizard.getPatronus() + "! **" + Color.RESET); //telling the player what he/she got.
         waiting();
-        System.out.println(Color.BLUE + "\nLupin - " + Color.RESET + "Unbelievable! You did it!");
+        System.out.println(Color.BLUE + "Lupin - " + Color.RESET + "Unbelievable! You did it!");
         threadSleep(200);
         System.out.println(Color.BLUE + "Lupin - " + Color.RESET + "A lot of dementors have been seen in the Forbidden Forest, so be careful.");
         threadSleep(200);

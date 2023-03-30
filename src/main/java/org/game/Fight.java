@@ -248,6 +248,28 @@ public class Fight implements StoryStep {
         } else if (Objects.equals(enemy.getName(), "Bellatrix") || Objects.equals(enemy.getName(), "Voldemort")) {
             if (randomNum <= 1 ) {
                 enemy.specialAttack(wizard, "Avada Kedavra");
+                if (Objects.equals(wizard.getCondition(), "Dead")) {
+                    threadSleep(2000);
+                    System.out.println(Color.RED + "** You died. **" + Color.RESET);
+                    System.out.println("\nDo you want to restart this fight?");
+                    Scanner scanner = new Scanner(System.in);
+                    String input;
+                    System.out.print(Color.RED + "Enter Yes or No :" + Color.RESET);
+                    input = scanner.nextLine();
+                    if ("yes".equalsIgnoreCase(input)) {
+                        wizard.setHealth(wizard.getMaxHealth());
+                        wizard.setLuck(0);
+                        wizard.attack(enemy);
+                        threadSleep(1000);
+                    } else {
+                        System.exit(0);
+                    }
+                } else {
+                    threadSleep(1000);
+                    System.out.println(Color.YELLOW + "YOU - " + Color.RESET + "EXPELLIARMUS!");
+                    threadSleep(1000);
+                    System.out.println("You have countered the spell!");
+                }
             } else {
                 enemy.attack(wizard); // This method is in AbstractEnemy
                 wizard.setAttacking(true);
@@ -293,7 +315,7 @@ public class Fight implements StoryStep {
                 waiting();
                 System.out.println("The " + enemy.getName() + " instantly die.");
                 enemy.setHealth(0);
-            } else {
+            } else { // If the spell misses
                 System.out.println("You missed the spell! It is hard to cast this spell.");
                 waiting();
             }

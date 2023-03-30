@@ -55,7 +55,7 @@ public class Chapter7 implements StoryStep {
         chooseWhatToDo();
 
         //-- The Final Battle --
-        System.out.println("\n** You come back in front of the castle amongst the other members of the Order of the Phoenix. **");
+        System.out.println("** You come back in front of the castle amongst the other members of the Order of the Phoenix. **");
         waiting();
         System.out.println("** The time has come for the final battle against the dark forces. **");
         waiting();
@@ -104,6 +104,7 @@ public class Chapter7 implements StoryStep {
 
     public void chooseWhatToDo() {
         while (!check) {
+            check = true;
             System.out.print(Color.GREEN);
             System.out.println("""
                     1. Train with another Order member
@@ -119,9 +120,12 @@ public class Chapter7 implements StoryStep {
                 case "2" -> trainInTheForest();
                 case "3" -> studyPotions();
                 case "4" -> searchingDarkForces();
-                default -> System.out.println("Enter a number between 1 and 4");
+                default -> {
+                    System.out.println("Enter a number between 1 and 4");
+                    check = false;
+                }
             }
-            check = true;
+
         }
     }
 
@@ -130,22 +134,20 @@ public class Chapter7 implements StoryStep {
         waiting();
         System.out.println("** You find a girl called Luna who has a great knowledge in spells. **");
         waiting();
-        System.out.println(Color.BLUE + "\nLuna - " + Color.RESET + "hi! Are you ready for the final battle?");
+        System.out.println(Color.BLUE + "Luna - " + Color.RESET + "hi! Are you ready for the final battle?");
         waiting();
-        System.out.println(Color.BLUE + "\nLuna - " + Color.RESET + "You don't have to worry about it. ALl that matters is enjoying life.");
+        System.out.println(Color.BLUE + "Luna - " + Color.RESET + "You don't have to worry about it. ALl that matters is enjoying life.");
         waiting();
-        System.out.println(Color.BLUE + "\nLuna - " + Color.RESET + "Fights are easy when you know what to do, let me tell you a trick.");
+        System.out.println(Color.BLUE + "Luna - " + Color.RESET + "Fights are easy when you know what to do, let me tell you a trick.");
         waiting();
-        System.out.println(Color.BLUE + "\nLuna - " + Color.RESET + "You can use Incendio to burn your enemy, and Sectumsempra to make him bleed.");
+        System.out.println(Color.BLUE + "Luna - " + Color.RESET + "You can use Incendio to burn your enemy, and Sectumsempra to make him bleed.");
         waiting();
-        System.out.println(Color.BLUE + "\nLuna - " + Color.RESET + "Those to spells make damage over the fight, so don't hesitate to use them.");
-        waiting();
-        System.out.println(Color.BLUE + "\nLuna - " + Color.RESET + "Those to spells make damage over the fight, so don't hesitate to use them.");
+        System.out.println(Color.BLUE + "Luna - " + Color.RESET + "Those to spells make damage over the fight, so don't hesitate to use them.");
         waiting();
         if (wizard.getHouse() == House.Ravenclaw) {
             secretEnding();
         } else {
-            System.out.println(Color.BLUE + "\nLuna - " + Color.RESET + "You can also use the spell Lumos to see in the dark!");
+            System.out.println(Color.BLUE + "Luna - " + Color.RESET + "You can also use the spell Lumos to see in the dark!");
             waiting();
             wizard.setBotanist(wizard.getBotanist() + 20); //huge buff
             System.out.println(Color.GREEN + "** You don't know why, but your potions are more powerful now! **" + Color.RESET);
@@ -239,18 +241,18 @@ public class Chapter7 implements StoryStep {
     }
 
     public void secretEnding() {
-        System.out.println(Color.BLUE + "\nLuna - " + Color.RESET + "Oh! I see that your patronus is a " + wizard.getPatronus() + "! I love it!");
+        System.out.println(Color.BLUE + "Luna - " + Color.RESET + "Oh! I see that your patronus is a " + wizard.getPatronus() + "! I love it!");
         waiting();
-        System.out.println(Color.BLUE + "\nLuna - " + Color.RESET + "I will tell you an other secret: There is something in fight that can be very useful: it is luck.");
+        System.out.println(Color.BLUE + "Luna - " + Color.RESET + "I will tell you an other secret: There is something in fight that can be very useful: it is luck.");
         waiting();
-        System.out.println(Color.BLUE + "\nLuna - " + Color.RESET + "You can be 100% lucky by using Felicis potion, Let me show you.");
+        System.out.println(Color.BLUE + "Luna - " + Color.RESET + "You can be 100% lucky by using Felicis potion, Let me show you.");
         waiting();
         System.out.println("** You two are drinking a Felix Felicis potion **");
         waiting();
         wizard.learnPotion(game.potion("Felix Felicis"));
         wizard.setLuck(100);
         waiting();
-        System.out.println(Color.BLUE + "\nLuna - " + Color.RESET + "You will start the next fight with 100% luck, so you will be able to use complicated spells!");
+        System.out.println(Color.BLUE + "Luna - " + Color.RESET + "You will start the next fight with 100% luck, so you will be able to use complicated spells!");
         waiting();
         wizard.setBotanist(wizard.getBotanist() + 50); //huge buff
         System.out.println(Color.GREEN + "** Your potion stats have been really boosted! **" + Color.RESET);

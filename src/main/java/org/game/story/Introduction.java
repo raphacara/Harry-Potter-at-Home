@@ -188,7 +188,7 @@ public class Introduction implements StoryStep {
         waiting();
 
         //End of the Introduction
-        System.out.println("\n** You are now ready to go to Hogwarts, so you go to the platform 9 3/4 at King's Cross Station. **");
+        System.out.println("** You are now ready to go to Hogwarts, so you go to the platform 9 3/4 at King's Cross Station. **");
         threadSleep(200);
         System.out.println("** And you take the Hogwarts™ Express's train right to Hogwarts! **");
         waiting();

@@ -63,7 +63,7 @@ public class Chapter7Dark implements StoryStep {
             return;
         }
         waiting();
-        System.out.println(Color.RED + "\nVoldemort - " + Color.RESET + "Well done, " + wizard.getName() + ", I have seen your exploits.");
+        System.out.println(Color.RED + "Voldemort - " + Color.RESET + "Well done, " + wizard.getName() + ", I have seen your exploits.");
         waiting();
         System.out.println(Color.RED + "Voldemort - " + Color.RESET + "I've got the Elder Wand by the way.");
         waiting();

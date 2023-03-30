@@ -19,13 +19,13 @@ public class SortingHat implements StoryStep {
     public void runStory() throws InterruptedException {
         System.out.println(Color.GREEN + "\n----------------- SORTING HAT -----------------\n" + Color.RESET);
         threadSleep(1000);
-        System.out.print(Color.BLUE + "Sorting Hat - " + Color.RESET + "Well, well, well... Let's see what student we have here...");
+        System.out.print(Color.BLUE + "Sorting Hat - " + Color.RESET + "Well, well, well... Let's see what student we have here...\n");
         waiting();
         System.out.print(Color.BLUE + "\nSorting Hat - " + Color.RESET + wizard.getName() + "... ");
         threadSleep(2000);
-        System.out.print("what an intriguing name.");
+        System.out.print("what an intriguing name.\n");
         waiting();
-        System.out.print(Color.BLUE + "\nSorting Hat - " + Color.RESET + "Oh, that's very very clear...");
+        System.out.print(Color.BLUE + "\nSorting Hat - " + Color.RESET + "Oh, that's very very clear...\n");
         waiting();
         //Little condition if you were specifically lucky/unlucky during the Introduction
         House houseName;
@@ -42,7 +42,7 @@ public class SortingHat implements StoryStep {
             House[] houses = House.values(); //get an array of all House enum constants
             houseName = houses[random.nextInt(houses.length)]; //generate a random house
         }
-        System.out.print(Color.BLUE + "\nSorting Hat - " + Color.RESET + "I would say...");
+        System.out.print(Color.BLUE + "\nSorting Hat - " + Color.RESET + "I would say...\n");
         waiting();
         System.out.print(Color.BLUE + "\nSorting Hat - " + Color.RESET + houseName + "!!!\n");
         threadSleep(2000);

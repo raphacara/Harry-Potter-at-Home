@@ -343,7 +343,7 @@ public class Chapter2 implements StoryStep {
         System.out.println("** But suddenly a spider attacks you from behind! **");
         waiting();
         wizard.attack(game.enemy("Spider"));
-        System.out.println("\n** What a fight! **\n");
+        System.out.println("** What a fight! **\n");
         threadSleep(200);
         System.out.println(Color.RED + "Giant Spider - " + Color.RESET + "Sorry for that, my spiders attack everyone except Hagrid.");
         threadSleep(200);
