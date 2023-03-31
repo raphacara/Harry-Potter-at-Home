@@ -347,7 +347,7 @@ public class Chapter2 implements StoryStep {
         threadSleep(200);
         System.out.println(Color.RED + "Giant Spider - " + Color.RESET + "Sorry for that, my spiders attack everyone except Hagrid.");
         threadSleep(200);
-        System.out.println(Color.RED + "Giant Spider - " + Color.RESET + "But he told me be that you would come.");
+        System.out.println(Color.RED + "Giant Spider - " + Color.RESET + "But he told me that you would come.");
         threadSleep(200);
         System.out.println(Color.RED + "Giant Spider - " + Color.RESET + "So I will tell you what I know about the Chamber of Secrets...");
         waiting();

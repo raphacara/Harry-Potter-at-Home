@@ -216,7 +216,7 @@ public class Chapter7 implements StoryStep {
         boolean loop = true;
         while (loop) {
             loop = false;
-            System.out.print(Color.GREEN + "1. Power\n2. Peace\n3. Fame\n4. Happiness" + Color.RESET);
+            System.out.print(Color.GREEN + "1. Power\n2. Peace\n3. Fame\n4. Happiness\n" + Color.RESET);
             String input = scanner.nextLine();
             switch (input.toLowerCase()) {
                 case "1" -> wizard.setPower(wizard.getPower() + 10);

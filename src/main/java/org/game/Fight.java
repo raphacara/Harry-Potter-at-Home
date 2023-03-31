@@ -44,7 +44,7 @@ public class Fight implements StoryStep {
                 checkingBoss(); //Do different things regarding which boss you are fighting.
                 ifDead(wizard, enemy); // Check if the fight is over
             }
-            threadSleep(1000);
+            threadSleep(500);
             turn += 1; //To count the turn
         }
     }
@@ -72,7 +72,7 @@ public class Fight implements StoryStep {
                     }
                 }
                 case "2" -> usePotion();
-                case "3" -> System.out.println("You decide to flee the fight. But as you turn around to runStory away, " + enemy.getName() + " catches you...");
+                case "3" -> System.out.println("You decide to flee the fight. But as you turn around to run away, " + enemy.getName() + " catches you...");
                 default -> System.out.println("You missed your choice...");
             }
         ifDead(wizard, enemy); // Check if the fight is over

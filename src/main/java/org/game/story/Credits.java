@@ -65,9 +65,9 @@ public class Credits implements StoryStep {
         threadSleep(600);
         creditMovement();
         creditMovement();
-        System.out.println("                                ================  THANK YOU FOR PLAYING! ================");
+        System.out.println("                                 ================  THANK YOU FOR PLAYING! ================");
         int i;
-        for (i = 0; i < 35; i++) {
+        for (i = 0; i < 30; i++) {
             threadSleep(200);
             creditMovement();
         }

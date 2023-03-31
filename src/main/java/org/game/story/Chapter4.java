@@ -118,7 +118,7 @@ public class Chapter4 implements StoryStep {
                     threadSleep(200);
                     System.out.println("** It is a charm that protect you against an attack. **");
                     waiting();
-                    wizard.learnSpell(game.spell("protego"));
+                    wizard.learnSpell(game.spell("Protego"));
                 }
                 case "5" -> {
                     System.out.println("** You are trying to learn the Gillyweed Potion... **");
@@ -166,7 +166,6 @@ public class Chapter4 implements StoryStep {
                 case "1" -> {
                     System.out.println("** You stand in front of the dragon, one of you have to die today. **");
                     wizard.attack(game.enemy("Dragon"));
-                    threadSleep(200);
                     System.out.println("** You really killed the Dragon! **");
                     waiting();
                     System.out.println("** So you easily grab the egg, and pass the challenge. **");

@@ -42,7 +42,7 @@ public class GameContent {
         spells.add(new Spell("Protego", 0, 67, "It will protect you."));
         spells.add(new Spell("Reducto", 25, 80, "It makes a little explosion."));
         spells.add(new Spell("Stupefy", 20, 50, "It damages the enemy, and trying to stun it."));
-        spells.add(new Spell("Sectumsempra", 50, 67, "It causes deep, bleeding cuts on the victim's body."));
+        spells.add(new Spell("Sectumsempra", 50, 60, "It causes deep, bleeding cuts on the victim's body."));
         spells.add(new Spell("Wingardium Leviosa", 0, 80, "It makes objects to levitate, but it does not work on the enemy."));
         //Forbidden Spells
         spells.add(new ForbiddenSpell("Avada Kedavra", 999999, 50, "killing curse."));
