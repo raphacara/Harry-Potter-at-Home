@@ -89,6 +89,10 @@ public class Fight implements StoryStep {
                 checkingCondition(); //checking the condition of the enemy.
             }
             //adding debuffs to the enemy
+            if (Objects.equals(enemy.getName(), "Dementors") || Objects.equals(enemy.getName(), "Umbridge")) {
+                isBurned = false;
+                isBleeding = false;
+            }
             if (isBurned) {
                 int damage = enemy.getMaxHealth() / 10; //burn makes damage on the enemy max hp.
                 enemy.takeDamage(damage);
@@ -393,7 +397,7 @@ public class Fight implements StoryStep {
             }
         }
         if (Objects.equals(enemy.getCondition(), "Incendio")) {
-            if (luck <= (67 + wizard.getAccuracy()+ wizard.getLuck()) && (!Objects.equals(enemy.getName(), "Dementors") || !Objects.equals(enemy.getName(), "Umbridge"))) {
+            if (luck <= (67 + wizard.getAccuracy()+ wizard.getLuck())) {
                 isBurned = true;
                 System.out.println("The " + enemy.getName() + " is burned!");
                 threadSleep(1000);
